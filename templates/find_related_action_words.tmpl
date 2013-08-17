@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block results %}
+{{ query }}
+<ul class="unstyled">
+  <!--viewで分岐は気持ち悪いけど直すのめんどい-->
+  {% for item in sorted_action_words %}
+  <li>
+    <p>{{ item.word }}: {{ item.count }}</p>
+  </li>
+  {% endfor %}
+</ul>
+<ul class="unstyled">
+  <!--viewで分岐は気持ち悪いけど直すのめんどい-->
+  {% for item in items %}
+  <li>
+    <a href="{{ item.url }}">{{ item.title }}</a>
+    <p>{{ item.action_word }}</p>
+  </li>
+  {% endfor %}
+</ul>
+<ul>
+  {% for item in found_pages %}
+  <li>
+    <a href="{{ item.url }}">{{ item.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

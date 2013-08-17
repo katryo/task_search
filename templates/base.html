@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Task Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <!--link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css"-->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="demo-headline">
+          <a href="/">
+            <h1 class="demo-logo">
+              Task Search
+            </h1>
+          </a>
+        </div> <!-- /demo-headline -->
+      </div><!--row-->
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+          <form action="/search" method="POST">
+            <div class="search_option">
+              <input type="search" name="query" value placeholder="Input your task" class="span4 offset4" />
+              <input type="submit" value="Simple Search" class="btn btn-primary btn-large"/>
+            </div>
+            <div class="search_option">
+              <span class="radio_option">
+                <input id="google" type="radio" name="search_engine" value="google" checked><label class="radio_label" for="google"> Google</label>
+              </span>
+            </div>
+            <div class="search_option">
+              <span class="radio_option">
+                <input id="bing" type="radio" name="search_engine" value="bing"><label class="radio_label" for="bing"> Bing</label>
+              </span>
+            </div>
+          </form><!--simple search-->
+          <form action="/find_related_action_words" method="POST">
+            <div class="search_option">
+              <input type="search" name="action_word" value placeholder="Action" />
+              <input type="search" name="hint_word" value placeholder="Hint" />
+              <input type="submit" value="find_related_action_words" class="btn btn-primary btn-large"/>
+            </div>
+          </form>
+          {% block results %}
+          {% endblock %}
+        </div><!--col-lg-->
+      </div><!--row-->
+    </div> <!-- /container -->
+  </body>
+  </html>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ app.config.from_object(constants)
 
 @app.route("/")
 def index(name=None):
-    return render_template("base.html", name=name, a=app.config["AA"])
+    return render_template("base.html", name=name)
 
 @app.route("/search", methods=["post"])
 def search():
@@ -23,8 +23,15 @@ def find_related_action_words():
     search_engine.hint_word = request.form['hint_word']
     search_engine.find_related_action_words()
     search_engine.count_action_words()
-    search_engine.sort_action_words_count()
+    search_engine.sort_action_words_count
     return render_template('find_related_action_words.tmpl', items=search_engine.result_pages, sorted_action_words=search_engine.sorted_action_words, found_pages=search_engine.material_pages, query=search_engine.actual_query)
+
+@app.route('/find_related_action_words_from_clueweb', methods=['post'])
+def find_related_action_words_from_clueweb():
+    search_engine = SearchEngine()
+    search_engine.action_word = request.form['action_word']
+    search_engine.hint_word = request.form['hint_word']
+    search_engine.find_related_action_words_from_clueweb()
 
 if __name__ == "__main__":
     app.run(debug=True)

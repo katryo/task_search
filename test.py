@@ -8,10 +8,22 @@ class TestSearchEngine(unittest.TestCase):
     def setUp(self):
         pass
 
-    def text_clueweb_search(self):
+    def test_clueweb_search(self):
         se = SearchEngine()
         se.hint_word = '大学'
         se.action_word = '入学'
+        se.set_solr_query()
+        texts = se.clue_web_search(se.solr_query)
+        self.assertEqual(len(texts), 50)
+        self.assertEqual('大学' and '入学' in texts[0], True)
+
+    def test_find_related_action_words_from_clueweb(self):
+        se = SearchEngine()
+        se.hint_word = '大学'
+        se.action_word = '入学'
+        se.set_solr_query()
+        se.find_related_action_words_from_clueweb()
+        self.assertEqual(se.result_pages, 10)
 
     def test_find_pages(self):
         page_1 = WebPage('http://tradein.nissan.co.jp/')

@@ -49,6 +49,13 @@
               <input type="submit" value="find_related_action_words" class="btn btn-primary btn-large"/>
             </div>
           </form>
+          <form action="/find_related_action_words_from_clueweb" method="POST">
+            <div class="search_option">
+              <input type="search" name="action_word" value placeholder="Action" />
+              <input type="search" name="hint_word" value placeholder="Hint" />
+              <input type="submit" value="cluewebからaction_word検索" class="btn btn-primary btn-large"/>
+            </div>
+          </form>
           {% block results %}
           {% endblock %}
         </div><!--col-lg-->

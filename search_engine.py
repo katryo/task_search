@@ -34,7 +34,10 @@ class SearchEngine:
     def find_related_action_words_from_clueweb(self):
         self.set_solr_query()
         texts = self.clue_web_search(self.solr_query)
+        # texts => ['大学入学', 'aaaa', ... ] 20
         for text in texts:
+            page = WebPage('unknown')
+            pdb.set_trace()
             self.add_to_results_if_key_phrase_present(text, page)
 
 
@@ -52,13 +55,9 @@ class SearchEngine:
 
     def append_to_result_pages_if_sahen(self, m_words, page):
         if m_words[0].subtype == 'サ変接続' or m_words[0].type == '名詞':
-            if len(m_words) > 1:
-                if m_words[1].type == '名詞':
-                    page.action_word = m_words[0].name + m_words[1].name
-                    self.result_pages.append(page)
-                else:
-                    page.action_word = m_words[0].name
-                    self.result_pages.append(page)
+            if len(m_words) > 1 and m_words[1].type == '名詞':
+                page.action_word = m_words[0].name + m_words[1].name
+                self.result_pages.append(page)
             else:
                 page.action_word = m_words[0].name
                 self.result_pages.append(page)

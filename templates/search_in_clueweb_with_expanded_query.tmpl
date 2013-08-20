@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block results %}
+<ul class="unstyled">
+  <!--viewで分岐は気持ち悪いけど直すのめんどい-->
+  {% for result in results %}
+  <p>{{ result.expanded_query }}</p>
+  <li>
+    {% for text in result.texts %}
+    <ul>
+      <li>
+        <p>
+        {{ text }}
+        </p>
+      </li>
+    </ul>
+    {% endfor %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

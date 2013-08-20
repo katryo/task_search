@@ -23,7 +23,7 @@ class SearchEngine:
 
     def find_related_action_words(self):
         self.set_actual_query()
-        self.material_pages = self.google_search(self.actual_query, 5)
+        self.material_pages = self.google_search(self.actual_query, 10)
         self.find_pages_including_related_words()
 
     def find_pages_including_related_words(self):
@@ -56,20 +56,21 @@ class SearchEngine:
     def append_to_result_pages_if_sahen(self, m_words, page):
         if m_words[0].subtype == 'サ変接続' or m_words[0].type == '名詞':
             if len(m_words) > 1 and m_words[1].type == '名詞':
-                page.action_word = m_words[0].name + m_words[1].name
+                page.found_action_word = m_words[0].name + m_words[1].name
+                page.expanded_query = self.action_word + self.hint_word
                 self.result_pages.append(page)
             else:
-                page.action_word = m_words[0].name
+                page.found_action_word = m_words[0].name
                 self.result_pages.append(page)
 
     def count_action_words(self):
         pages = self.result_pages
         self.action_words_count = {}
         for page in pages:
-            if page.action_word in self.action_words_count:
-                self.action_words_count[page.action_word] += 1
+            if page.found_action_word in self.action_words_count:
+                self.action_words_count[page.found_action_word] += 1
             else:
-                self.action_words_count[page.action_word] = 1
+                self.action_words_count[page.found_action_word] = 1
         # self.action_words_count => {'廃車': 3, '買い取り': 5}
 
     def sort_action_words_count(self):
@@ -77,8 +78,20 @@ class SearchEngine:
         for key, value in sorted(self.action_words_count.items(), key=lambda x:x[1], reverse=True):
             self.sorted_action_words.append({'word': key, 'count': value})
 
+    def pick_sorted_action_words_more_than_1_count(self):
+        self.sorted_action_words_more_than_1_count = []
+        for elem in self.sorted_action_words:
+            if elem['count'] > 1:
+                self.sorted_action_words_more_than_1_count.append(elem) 
+
+
     def clue_web_search(self, query):
-        options = '&rows=20'
+        """
+        検索するだけ。
+        rows=50の値を変えることで検索結果件数を変えられる。
+        返り値にlistでtextsを渡す
+        """
+        options = '&rows=50'
         url = constants.CLUE_WEB_URL_HEAD + query + options + constants.CLUE_WEB_URL_TAIL
         clue_web_result_page = WebPage(url)
         clue_web_result_page.fetch_xml()

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import constants
 from search_engine import SearchEngine
+from web_page import WebPage
 import pdb
 app = Flask(__name__)
 app.config.from_object(constants)
@@ -23,15 +24,32 @@ def find_related_action_words():
     search_engine.hint_word = request.form['hint_word']
     search_engine.find_related_action_words()
     search_engine.count_action_words()
-    search_engine.sort_action_words_count
+    search_engine.sort_action_words_count()
+    for elem in search_engine.sorted_action_words:
+        elem['expanded_query'] = search_engine.action_word + ' ' + search_engine.hint_word + ' ' + elem['word']
     return render_template('find_related_action_words.tmpl', items=search_engine.result_pages, sorted_action_words=search_engine.sorted_action_words, found_pages=search_engine.material_pages, query=search_engine.actual_query)
 
-@app.route('/find_related_action_words_from_clueweb', methods=['post'])
-def find_related_action_words_from_clueweb():
+@app.route('/search_in_clueweb_with_expanded_query', methods=['post'])
+def search_in_clueweb_with_expanded_query():
     search_engine = SearchEngine()
     search_engine.action_word = request.form['action_word']
     search_engine.hint_word = request.form['hint_word']
-    search_engine.find_related_action_words_from_clueweb()
+    search_engine.find_related_action_words()
+    search_engine.count_action_words()
+    search_engine.sort_action_words_count()
+    search_engine.pick_sorted_action_words_more_than_1_count()
+    results = []
+    for elem in search_engine.sorted_action_words_more_than_1_count:
+        elem['expanded_query'] = search_engine.action_word + ' ' + search_engine.hint_word + ' ' + elem['word']
+        url = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q=' + elem['expanded_query'] + '&wt=xml'
+        web_page = WebPage(url)
+        web_page.fetch_xml()
+        web_page.pick_texts()
+        results.append({'texts': web_page.texts, 'expanded_query': elem['expanded_query']})
+    return render_template('search_in_clueweb_with_expanded_query.tmpl',
+        results=results)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

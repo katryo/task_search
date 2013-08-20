@@ -5,7 +5,7 @@
   <!--viewで分岐は気持ち悪いけど直すのめんどい-->
   {% for item in sorted_action_words %}
   <li>
-    <p>{{ item.word }}: {{ item.count }}</p>
+    <p>{{ item.word }}: {{ item.count }} <a href="https://www.google.com/search?q={{ item.expanded_query }}&sourceid=chrome&ie=UTF-8">Google検索結果ページ</a> <a href="http://karen.dl.local:8983/solr/ClueWeb09ja/select?q={{ item.expanded_query }}&wt=xml">Google検索結果ページ</a></p>
   </li>
   {% endfor %}
 </ul>

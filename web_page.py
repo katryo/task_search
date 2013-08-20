@@ -29,7 +29,6 @@ class WebPage(WebItem):
 
     def pick_texts(self):
         self.texts = []
-        #多目的用途。研究には使わない。自由に書きかえて大丈夫
         text_elements = pq(self.xml_body.encode('utf-8')).find('str[name="text"]')
         for elem in text_elements:
             self.texts.append(elem.text)

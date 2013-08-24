@@ -1,8 +1,10 @@
 from mecabed_word import MecabedWord
+from pyquery import PyQuery as pq
 import MeCab
 
 
 class WebItem:
+
     def pick_words_by_types(self, str, types):
         keywords = []
         m_words = self.to_m_words(str)
@@ -11,6 +13,7 @@ class WebItem:
                 if m_word.type == type:
                     keywords.append(m_word.name)
         return keywords
+
 
     def pick_words_by_type(self, str, type):
         types = [type]

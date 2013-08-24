@@ -3,14 +3,22 @@
 <ul class="unstyled">
   <!--viewで分岐は気持ち悪いけど直すのめんどい-->
   {% for result in results %}
-  <p>{{ result.expanded_query }}</p>
+  <h4>{{ result.expanded_query }}</h4>
   <li>
-    {% for text in result.texts %}
+    {% for result_page in result.pages %}
     <ul>
       <li>
-        <p>
-        {{ text }}
-        </p>
+        {% for line_cluster in result_page.line_clusters_around_action_word %}
+        <ul>
+          {% for line in line_cluster %}
+          <li>
+            <p>
+            {{ line }}
+            </p>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endfor %}
       </li>
     </ul>
     {% endfor %}

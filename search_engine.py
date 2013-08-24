@@ -15,6 +15,7 @@ class SearchEngine:
         self.google_api_key = my_keys.GOOGLE_API_KEY
         self.result_pages = []
 
+
     def set_actual_query(self):
         self.actual_query = '%s "%sと" -%sとは' % (self.hint_word, self.action_word, self.action_word)
 
@@ -37,7 +38,6 @@ class SearchEngine:
         # texts => ['大学入学', 'aaaa', ... ] 20
         for text in texts:
             page = WebPage('unknown')
-            pdb.set_trace()
             self.add_to_results_if_key_phrase_present(text, page)
 
 

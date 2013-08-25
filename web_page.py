@@ -37,9 +37,6 @@ class WebPage(WebItem):
                 nugget_lines = []
                 continue
 
-
-
-
     def find_lines_with_action_word_from_result_page(self, action_word):
         for result_page in self.result_pages:
             # result_pageはWebPageオブジェクト
@@ -56,6 +53,9 @@ class WebPage(WebItem):
         for num in self.line_nums_with_action_word:
             if num == 0: #最初の行にaction_wordがあるとき
                 self.line_nums_around_action_word.add(num)
+                if len(self.line_nums_with_action_word) is 1:
+                    # 1行だけの文章のとき
+                    break
                 self.line_nums_around_action_word.add(num + 1)
                 continue
             elif num == len(self.lines) - 1:
@@ -67,10 +67,6 @@ class WebPage(WebItem):
                 self.line_nums_around_action_word.add(num)
                 self.line_nums_around_action_word.add(num + 1)
 
-
-
-
-
     def set_line_nums_with_word(self, word):
         #1つのwebページであるresult_pageが実行する。
         self.line_nums_with_action_word = set([])
@@ -78,14 +74,13 @@ class WebPage(WebItem):
             if word in line:
                 self.line_nums_with_action_word.add(index)
 
-    def pick_texts(self):
+    def pick_texts_to_result_pages(self):
         self.result_pages = set([])
         text_elements = pq(self.xml_body.encode('utf-8')).find('str[name="text"]')
         for elem in text_elements:
             result_page = WebPage('unknown')
             result_page.text_body = elem.text
             self.result_pages.add(result_page)
-
 
     def find_action_word(self, action_word):
         snippet_and_title = [self.snippet, self.title]

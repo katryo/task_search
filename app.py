@@ -44,11 +44,16 @@ def search_in_clueweb_with_expanded_query():
         url = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q=' + elem['expanded_query'] + '&wt=xml'
         web_page = WebPage(url)
         web_page.fetch_xml()
-        web_page.pick_texts()
-        web_page.set_lines_from_texts()
-        web_page.set_line_nums_with_word(search_engine.action_word)
-        web_page.set_line_nums_around_action_word()
-        web_page.set_line_clusters_around_action_word()
+        web_page.pick_texts_to_result_pages()
+        # クエリ1つごとに結果xmlページがある
+        # 結果xmlページの内容を1ページずつWebPageオブジェクトにしてresult_pagesとして1クエリに対応する結果ページに持たせる
+        for result_page in web_page.result_pages:
+            # result_page.text_body
+            result_page.set_lines_from_texts()
+            result_page.set_line_nums_with_word(search_engine.action_word)
+            result_page.set_line_nums_around_action_word()
+            result_page.set_line_clusters_around_action_word()
+        # web_page.result_pages[0].line_clusters_around_action_word
         results.append({'pages': web_page.result_pages, 'expanded_query': elem['expanded_query']})
     return render_template('search_in_clueweb_with_expanded_query.tmpl',
         results=results)

@@ -18,3 +18,10 @@ input[type="radio"] {
 li{
 margin: 4% 0;
 }
+
+
+.block_for_item {
+	margin: 5px;
+	padding: 5px;
+	background: #ddd;
+}

@@ -3,24 +3,21 @@
 <ul class="unstyled">
   <!--viewで分岐は気持ち悪いけど直すのめんどい-->
   {% for result in results %}
-  <h4>{{ result.expanded_query }}</h4>
+  <h3>変換クエリ：{{ result.expanded_query }}</h3>
+  <p>{{ len(result['pages']) }}ページ</p>
   <li>
-    {% for result_page in result.pages %}
-    <ul>
-      <li>
-        {% for line_cluster in result_page.line_clusters_around_action_word %}
-        <ul>
+    {% for result_page in result['pages'] %}
+    <div class="panel">
+      {% for line_cluster in result_page.line_clusters_around_action_word %}
+      <div class="block_for_item">
+        <p>
           {% for line in line_cluster %}
-          <li>
-            <p>
-            {{ line }}
-            </p>
-          </li>
+          {{ line }}。
           {% endfor %}
-        </ul>
-        {% endfor %}
-      </li>
-    </ul>
+        </p>
+      </div>
+      {% endfor %}
+    </div>
     {% endfor %}
   </li>
   {% endfor %}

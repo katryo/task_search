@@ -13,8 +13,15 @@ class SearchEngine:
     def __init__(self):
         self.microsoft_api_key = my_keys.MICROSOFT_API_KEY
         self.google_api_key = my_keys.GOOGLE_API_KEY
+        self.yahoo_japan_app_id = my_keys.YAHOO_JAPAN_APP_ID
         self.result_pages = []
 
+    def yahoo_key_phrase(self, text):
+        url = 'http://jlp.yahooapis.jp/KeyphraseService/V1/extract?appid=%s&sentence=%s' % (self.yahoo_japan_app_id, text)
+        result_page = WebPage(url)
+        result_page.fetch_xml()
+        key_phrases = result_page.pick_key_phrases()
+        return key_phrases
 
     def set_actual_query(self):
         self.actual_query = '%s "%sと" -%sとは' % (self.hint_word, self.action_word, self.action_word)
@@ -22,9 +29,14 @@ class SearchEngine:
     def set_solr_query(self):
         self.solr_query = '%s+%sと-%sとは' % (self.hint_word, self.action_word, self.action_word)
 
-    def find_related_action_words(self):
+    def find_related_action_words_with_google(self):
         self.set_actual_query()
         self.material_pages = self.google_search(self.actual_query, 10)
+        self.find_pages_including_related_words()
+
+    def find_related_action_words_with_bing(self):
+        self.set_actual_query()
+        self.material_pages = self.bing_search(self.actual_query, 10)
         self.find_pages_including_related_words()
 
     def find_pages_including_related_words(self):
@@ -134,16 +146,15 @@ class SearchEngine:
         return pages 
 
     def bing_search(self, query, num):
-        NUM = num
         key = self.microsoft_api_key
         url = 'https://api.datamarket.azure.com/Bing/Search/Web?'
         json_param = '&$format=json'
         param = {
-            'Query': "'" + query + "'",
+            'Query': query
         }
         req_url = url + urllib.parse.urlencode(param)
         items = []
-        for i in range(0, NUM):
+        for i in range(0, num):
             try:
                 json_body = requests.get(req_url + json_param, auth=(key, key)).json()
                 items.extend(json_body['d']['results'])

@@ -1,24 +1,28 @@
 {% extends "base.html" %}
 {% block results %}
-<ul class="unstyled">
+<ul class="list-unstyled">
   <!--viewで分岐は気持ち悪いけど直すのめんどい-->
   {% for result in results %}
-  <h3>変換クエリ：{{ result.expanded_query }}</h3>
-  <p>{{ len(result['pages']) }}ページ</p>
-  <li>
-    {% for result_page in result['pages'] %}
-    <div class="panel">
-      {% for line_cluster in result_page.line_clusters_around_action_word %}
-      <div class="block_for_item">
-        <p>
-          {% for line in line_cluster %}
-          {{ line }}。
-          {% endfor %}
-        </p>
-      </div>
-      {% endfor %}
+  <li class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">変換クエリ：{{ result.expanded_query }}</h3>
     </div>
-    {% endfor %}
+    <p>{{ result['pages'].__len__() }}ページ</p>
+    <ul class="list-unstyled">
+      {% for result_page in result['pages'] %}
+      <li class="panel">
+        {% for line_cluster in result_page.line_clusters_around_action_word %}
+        <div class="block_for_item">
+          <p>
+            {% for line in line_cluster %}
+            {{ line }}。
+            {% endfor %}
+          </p>
+        </div>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
   </li>
   {% endfor %}
 </ul>

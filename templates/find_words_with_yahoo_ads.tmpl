@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block results %}
+<ul class="unstyled">
+  {% for item in items %}
+  <li>
+    {{ item['name'] }}| {{item['count']}}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -11,7 +11,7 @@ class WebPage(WebItem):
 
     def fetch_html(self):
         response = requests.get(self.url)
-        self.html = response.text
+        self.html_body = response.text
 
     def fetch_xml(self):
         response = requests.get(self.url)
@@ -118,16 +118,25 @@ class WebPage(WebItem):
             normalized_words.append(word)
         return normalized_words
 
+    def pick_key_phrases(self):
+        results = pq(self.xml_body.encode('utf-8')).children()
+        if not results:
+            return []
+        key_phrases = []
+        for result in results:
+            key_phrase = result[0].text
+            key_phrases.append(key_phrase)
+        return key_phrases
+
     def fetch_ads(self):
-        nlist = pq(self.html).find('.nlist')
-        lis = nlist.children().children()
-        ads = []
+        listWrap = pq(self.html_body).find('.listWrap')
+        lis = listWrap.children().children()
+        self.ads = []
         for li in lis:
             pq_li = pq(li)
             title = pq_li.find('a').text()
             link = pq_li.find('a').attr('href')
-            snippet = pq_li.find('.yschabstr').text()
+            snippet = pq_li.find('.smr').text()
             ad_info = {'title': title, 'snippet': snippet, 'link': link}
             ad = Ad(ad_info)
-            ads.append(ad)
-        return ads
+            self.ads.append(ad)

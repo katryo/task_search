@@ -85,7 +85,25 @@ def yahoo_sponsored_results():
     return render_template('find_words_with_yahoo_ads.tmpl',
         items=results)
 
-
+@app.route('/find_mached_words_from_yahoo_ads', methods=['post'])
+def find_mached_words_from_yahoo_ads():
+    query = request.form['query']
+    #yahooスポンサードサーチは単語ごとに区切るより一文にしたほうが広告出やすい
+    head = 'http://search.yahoo.co.jp/search/ss?p='
+    tail = '&ei=UTF-8&fr=top_ga1_sa&type=websearch&x=drt'
+    url = head + query + tail
+    y_ad_page = WebPage(url)
+    y_ad_page.fetch_html()
+    y_ad_page.fetch_ads()
+    results = []
+    for ad in y_ad_page.ads:
+        ad.fetch_link_title()
+        results.append(ad)
+    # m_items => [m_title, m_snippet, m_title, m_snippet]
+    # => [m_words, m_words, ...]
+    # => [m_word, m_word, m_word, ...] appendでなくextendだから
+    # m_word.name => "なら", m_word.type => "助動詞"
+    return render_template('ads_title_link.tmpl', items=results)
 
 def to_ranked_items(items):
     rank_dict = {}

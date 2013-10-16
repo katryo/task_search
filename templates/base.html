@@ -65,7 +65,14 @@
               <input type="submit" value="Yahooスポンサード検索から単語とってくる" class="btn btn-primary btn-large"/>
             </div>
           </form>
-          
+
+          <form action="/find_mached_words_from_yahoo_ads" method="POST">
+            <div class="search_option">
+              <input type="search" name="query" value placeholder="Query" />
+              <input type="submit" value="Yahooスポンサード検索の広告内でタスクらしいパターンにマッチする部分を取ってくる" class="btn btn-primary btn-large"/>
+            </div>
+          </form>
+
           {% block results %}
           {% endblock %}
         </div><!--col-lg-->

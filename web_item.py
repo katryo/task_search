@@ -1,9 +1,20 @@
 from mecabed_word import MecabedWord
 from pyquery import PyQuery as pq
+import requests
+import pdb
 import MeCab
 
 
 class WebItem:
+
+    def fetch_html(self):
+        response = requests.get(self.url)
+        self.fetch_html_with_response(response)
+
+    def fetch_html_with_response(self, response):
+        self.encoding = response.encoding
+        self.html_body = response.text
+
 
     def pick_words_by_types(self, str, types):
         keywords = []
@@ -73,3 +84,4 @@ class WebItem:
         types = ['名詞', '動詞']
         keywords = self.pick_words_by_types(str, types)
         return keywords
+

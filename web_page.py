@@ -1,4 +1,5 @@
 import requests
+import cchardet
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
@@ -9,9 +10,6 @@ class WebPage(WebItem):
     def __init__(self, url='unknown'):
         self.url = url
 
-    def fetch_html(self):
-        response = requests.get(self.url)
-        self.html_body = response.text
 
     def fetch_xml(self):
         response = requests.get(self.url)

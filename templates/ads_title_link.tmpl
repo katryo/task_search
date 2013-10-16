@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block results %}
+<ul class="unstyled">
+  {% for item in items %}
+  <li>
+    広告タイトル：{{ item['title'] }}<br/>
+    広告スニペット：{{ item['snippet'] }}<br/>
+    リンク：<a href="{{item['link']}}">{{ item['link_page_title']}}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

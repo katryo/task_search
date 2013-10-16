@@ -15,3 +15,12 @@ class MecabedWord:
 
     def __str__(self):
         return self.name
+
+    def is_characteristic_word(self):
+        if self.name == "なら" and self.type == "助動詞":
+            return True
+        if self.name == "で" and self.type == "助詞" and self.subtype == "格助詞":
+            return True
+        if self.name == "は" and self.type == "助詞" and self.subtype == "係助詞":
+            return True
+        return False

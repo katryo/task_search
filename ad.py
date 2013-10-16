@@ -41,13 +41,23 @@ class Ad(WebItem):
             self.nara_phrase(m_words)
    # good_phrases => ["ドッグフードなら楽天へ", "マンガならマンガ館", ...]
 
-    def three_words_before_and_after(self, mecabed_words):
-        for i, m_word in enumerate(mecabed_words):
+    def three_words_before_and_after(self, m_words):
+        results = {}
+        for i, m_word in enumerate(m_words):
             for characteristic_word in ['なら', 'で', 'は']:
-                if m_word.name == characteristic_word:
-                    three_words_before = self.till_three_words_before(mecabed_words, i)
-                    three_words_after = self.till_three_words_after(mecabed_words, i)
-        return three_words_before + three_words_after
+                # results['なら']['before'] => ['極東', 'アニメーション']
+                results[characteristic_word] = self.before_and_after_words_per_characteristic_word(m_words, characteristic_word, i)
+        # results => {'なら': {'before': [], 'after': []}, 'で': {'before': [], 'after': []}, 'は': {'before': [], 'after': []}}
+        return results
+
+    def before_and_after_words_per_characteristic_word(self, m_words, characteristic_word, i):
+        before_and_after = {'before': [], 'after': []}
+        if m_words[i].name == characteristic_word:
+            before_and_after['before'] = self.till_three_words_before(m_words, i)
+            before_and_after['after'] = self.till_three_words_after(m_words, i)
+        # before_and_after => {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
+        return before_and_after
+
 
     def till_three_words_before(self, mecabed_words, keyword_index):
         words_before_keyword_index = []

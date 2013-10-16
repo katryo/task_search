@@ -32,10 +32,11 @@ class TestAd(unittest.TestCase):
         snippet_m_words = ad.to_m_words(ad.snippet)
         self.assertEqual(ad.till_three_words_after(snippet_m_words, 2), ['アニメ', 'を', '作ろ'])
 
-    def test_three_words_before_and_after(self):
-        ad = Ad({'title': '健康を気にするなら', 'snippet': '京アニでアニメを作ろう', 'link': 'http://www.pref.nara.jp/item/83513.htm'})
-        snippet_m_words = ad.to_m_words(ad.snippet)
-        self.assertEqual(ad.till_three_words_after(snippet_m_words, 2), ['アニメ', 'を', '作ろ'])
+    def test_before_and_after_word_per_characteristic_word(self):
+        ad = Ad({'title': '健康を気にするなら', 'snippet': '極東アニメーションで素敵な作品を描こう', 'link': 'http://www.pref.nara.jp/item/83513.htm'})
+        m_words = ad.to_m_words(ad.snippet)
+        before_and_after = ad.before_and_after_words_per_characteristic_word(m_words, 'で', 2)
+        self.assertEqual(before_and_after, {'before': ['極東', 'アニメーション'] , 'after': ['素敵', 'な', '作品']})
 
 if __name__ == '__main__':
     unittest.main()

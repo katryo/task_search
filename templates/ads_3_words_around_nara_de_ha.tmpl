@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block results %}
+<ul class="unstyled">
+  <!-- items => [{'なら': {'before': ['。', 'あの', '今石洋之']}, 'で': ...}] -->
+  {% for item in items %}
+    <!-- item => {'なら': {'before': ['。', 'あの', '今石洋之']}, 'で': ...} -->
+    <!-- item => {'なら': {'before': []}, 'で':...} -->
+    <!-- item['なら']['before'] => ['。', 'あの', ] or [] -->
+
+    {% for nara_de_ha in ['nara', 'de', 'ha'] %}
+
+    {% for key in ['before', 'after'] %}
+    {% if item[nara_de_ha][key] %}
+  <li>
+    {{ ''.join(item[nara_de_ha][key]) }}
+  </li>
+  {% endif %}
+  {% endfor %}<!--before, after-->
+
+{% endfor %}<!-- nara_de_ha -->
+
+  {% endfor %}
+</ul>
+
+<ul class="unstyled">
+  {% for word in words %}
+  <li>
+  {{ word }}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

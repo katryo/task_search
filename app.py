@@ -85,8 +85,8 @@ def yahoo_sponsored_results():
     return render_template('find_words_with_yahoo_ads.tmpl',
         items=results)
 
-@app.route('/find_mached_words_from_yahoo_ads', methods=['post'])
-def find_mached_words_from_yahoo_ads():
+@app.route('/find_matched_words_from_yahoo_ads', methods=['post'])
+def find_matched_words_from_yahoo_ads():
     query = request.form['query']
     #yahooスポンサードサーチは単語ごとに区切るより一文にしたほうが広告出やすい
     head = 'http://search.yahoo.co.jp/search/ss?p='
@@ -95,15 +95,50 @@ def find_mached_words_from_yahoo_ads():
     y_ad_page = WebPage(url)
     y_ad_page.fetch_html()
     y_ad_page.fetch_ads()
-    results = []
+    naradeha_results = []
+    bracket_words = []
     for ad in y_ad_page.ads:
         ad.fetch_link_title()
-        results.append(ad)
-    # m_items => [m_title, m_snippet, m_title, m_snippet]
-    # => [m_words, m_words, ...]
-    # => [m_word, m_word, m_word, ...] appendでなくextendだから
-    # m_word.name => "なら", m_word.type => "助動詞"
-    return render_template('ads_title_link.tmpl', items=results)
+        naradeha_results.extend(ad.pick_characteristic_words())
+        bracket_words.extend(ad.pick_bracket_words())
+    # naradeharesults => [{'なら': {'before': ['。', 'あの', '今石洋之']}}]
+    # bracket_words => ['アスコルビン酸', 'メルトダウン']
+
+    stop_words = ['公式', '楽天', '当日', 'お急ぎ便', 'ココ', 'ここ', 'これ', 'コレ', 'こちら', '公式', '購入', '人気', '詳細', '送料無料', '配送無料', '価格', '激安', '無料', 'アマゾン', 'ヤフオク', '０', '１', '２', '３']
+    for num in range(0, 10):
+        stop_words.append(str(num))
+    results = naradeha_words_to_results(naradeha_results, stop_words)
+
+    for bracket_word in bracket_words:
+        is_including_stop_word = False
+        for stop_word in stop_words:
+            if stop_word in bracket_word:
+                is_including_stop_word = True
+                break
+        if is_including_stop_word:
+            continue
+        results.append(bracket_word)
+
+    return render_template('words.tmpl', words=results)
+
+def naradeha_words_to_results(naradeha_results, stop_words):
+    results = []
+    for result in naradeha_results:
+        for nara_de_ha in ['nara', 'de', 'ha']:
+            for key in ['before', 'after']:
+                if not result[nara_de_ha][key]:
+                    continue
+                answer = ''.join(result[nara_de_ha][key])
+                # beforeやafterが空白のとき
+                is_including_stop_word = False
+                for stop_word in stop_words:
+                    if stop_word in answer:
+                        is_including_stop_word = True
+                        break
+                if is_including_stop_word:
+                    continue
+                results.append(answer)
+    return results
 
 def to_ranked_items(items):
     rank_dict = {}

@@ -9,6 +9,7 @@ class TestAd(unittest.TestCase):
         self.chuni_snippet_ad = Ad({'title': 'a', 'snippet': '夢ならたくさん見た', 'link': 'http://www.pref.nara.jp/item/83513.htm'})
         self.health_title_ad = Ad({'title': '健康を気にするなら', 'snippet': 's', 'link': 'http://www.pref.nara.jp/item/83513.htm'})
         self.trigger_snippet_ad = Ad({'title': 'TRIGGERのキルラキルでアニメの新世界を見よう。あの今石洋之なら世界を変えられる！', 'snippet': 'TRIGGERのキルラキルでアニメの新世界を見よう。あの今石洋之なら世界を変えられる！', 'link': 'http://www.pref.nara.jp/item/83513.htm'})
+        self.sakuga_snippet_ad = Ad({'title': 't', 'snippet': 'あのグレートウルトラアニメなら銀河特急新幹線を超えられる', 'link': 'http://www.pref.nara.jp/item/83513.htm'})
 
     def test_nara_phrase_normal(self):
         ad = self.health_title_ad
@@ -65,7 +66,7 @@ class TestAd(unittest.TestCase):
         result = ad.three_words_by_func(m_words, ad.nara_before_and_after)
         self.assertEqual(result,
             {
-            'before': ['。', 'あの', '今石洋之'],
+            'before': ['今石洋之'],
             'after': ['世界', 'を', '変え']
             }
         )
@@ -76,19 +77,19 @@ class TestAd(unittest.TestCase):
         result = ad.three_words_of_nara_de_ha(m_words)
         self.assertEqual(result,
             {
-                'なら': 
+                'nara': 
                     {
-                    'before': ['。', 'あの', '今石洋之'],
+                    'before': ['今石洋之'],
                     'after': ['世界', 'を', '変え']
                     }
                 ,
-                'で': 
+                'de': 
                     {
                     'before': ['TRIGGER', 'の', 'キルラキル'],
                     'after': ['アニメ', 'の', '新']
                     }
                 ,
-                'は':
+                'ha':
                     {
                     'before': [],
                     'after': []
@@ -101,19 +102,19 @@ class TestAd(unittest.TestCase):
         ad.link_page_title = ad.title
         results = ad.pick_characteristic_words()
         expectation = {
-            'なら': 
+            'nara': 
                 {
-                'before': ['。', 'あの', '今石洋之'],
+                'before': ['今石洋之'],
                 'after': ['世界', 'を', '変え']
                 }
             ,
-            'で': 
+            'de': 
                 {
                 'before': ['TRIGGER', 'の', 'キルラキル'],
                 'after': ['アニメ', 'の', '新']
                 }
             ,
-            'は':
+            'ha':
                 {
                 'before': [],
                 'after': []
@@ -122,6 +123,41 @@ class TestAd(unittest.TestCase):
         self.assertEqual(results[0], expectation)
         self.assertEqual(results[1], expectation)
         self.assertEqual(results[2], expectation)
+
+    def test_pick_bracket_words(self):
+        ad = self.trigger_snippet_ad
+        text = '《アスコルビン酸》で健康になろう'
+        results = ad.pick_bracket_words_from_text(text)
+        expectation = 'アスコルビン酸'
+        self.assertEqual(results[0], expectation)
+
+    def test_pick_double_bracket_words(self):
+        ad = self.trigger_snippet_ad
+        text = '<<すごい薬>>で健康になろう'
+        results = ad.pick_bracket_words_from_text(text)
+        expectation = 'すごい薬'
+        self.assertEqual(results[0], expectation)
+
+    def test_pick_single_bracket_words(self):
+        ad = self.trigger_snippet_ad
+        text = '<<すごい薬で健康になろう'
+        results = ad.pick_bracket_words_from_text(text)
+        expectation = []
+        self.assertEqual(results, expectation)
+
+    def test_up_to_three_words_before(self):
+        ad = self.sakuga_snippet_ad
+        m_words = ad.to_m_words(ad.snippet)
+        words = ad.up_to_three_words_before(m_words, 4)
+        expectation = ['グレート', 'ウルトラ', 'アニメ']
+        self.assertEqual(words, expectation)
+
+    def test_up_to_three_words_after(self):
+        ad = self.sakuga_snippet_ad
+        m_words = ad.to_m_words(ad.snippet)
+        words = ad.up_to_three_words_after(m_words, 4)
+        expectation = ['銀河', '特急', '新幹線']
+        self.assertEqual(words, expectation)
 
 if __name__ == '__main__':
     unittest.main()

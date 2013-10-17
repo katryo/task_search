@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block results %}
+        <ul class="unstyled">
+          <!--viewで分岐は気持ち悪いけど直すのめんどい-->
+        {% for word in words %}
+        <li>
+          {{ word }}
+        </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

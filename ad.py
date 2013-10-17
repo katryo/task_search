@@ -35,28 +35,67 @@ class Ad(WebItem):
 
 
     def pick_characteristic_words(self):
-        self.fetch_link_title()
+        if not self.link_page_title: self.fetch_link_title()
+        results = []
         for item in [self.title, self.snippet, self.link_page_title]:
             m_words = self.to_m_words(item)
-            self.nara_phrase(m_words)
-   # good_phrases => ["ドッグフードなら楽天へ", "マンガならマンガ館", ...]
-
-    def three_words_before_and_after(self, m_words):
-        results = {}
-        for i, m_word in enumerate(m_words):
-            for characteristic_word in ['なら', 'で', 'は']:
-                # results['なら']['before'] => ['極東', 'アニメーション']
-                results[characteristic_word] = self.before_and_after_words_per_characteristic_word(m_words, characteristic_word, i)
-        # results => {'なら': {'before': [], 'after': []}, 'で': {'before': [], 'after': []}, 'は': {'before': [], 'after': []}}
+            results.append(self.three_words_of_nara_de_ha(m_words))
+            # results => [{'なら': {'before': ['。', 'あの', '今石洋之']}, 'で'}]
         return results
 
-    def before_and_after_words_per_characteristic_word(self, m_words, characteristic_word, i):
-        before_and_after = {'before': [], 'after': []}
-        if m_words[i].name == characteristic_word:
-            before_and_after['before'] = self.till_three_words_before(m_words, i)
-            before_and_after['after'] = self.till_three_words_after(m_words, i)
-        # before_and_after => {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
-        return before_and_after
+    def three_words_of_nara_de_ha(self, m_words):
+        results = {}
+        # なら => m_word.type == 助動詞
+        # で => m_word.type == 助詞
+        # は => type == 助詞 subtype == 係助詞
+        # results['なら']['before'] => ['極東', 'アニメーション']
+        results['なら'] = self.three_words_by_func(m_words, self.nara_before_and_after)
+        results['で'] = self.three_words_by_func(m_words, self.de_before_and_after)
+        results['は'] = self.three_words_by_func(m_words, self.ha_before_and_after)
+        # results => {'なら': {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}, 'で': None, 'は': None}
+        return results
+
+    def three_words_by_func(self, m_words, func):
+        # example: ad.three_words_by_func(m_words, ad.nara_before_and_after)
+        # funcにはself.ha_before_and_afterなどが入る
+        result = {}
+        for i, m_word in enumerate(m_words):
+            result_words = func(m_words, i)
+            if result_words:
+                result = result_words
+                # 1つでも見つけたらそれで終わり。「…なら…なら……」広告は希少
+                break
+        # {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
+        if result == {}:
+            result = {'before': [], 'after': []}
+        return result
+
+
+    def ha_before_and_after(self, m_words, i):
+        # もっと複雑なm_wordsパターンマッチングも可能
+        if m_words[i].name == "は" and m_words[i].type == "助詞" and m_words[i].subtype == "係助詞":
+            return self.get_3_words_before_and_after(m_words, i)
+        # return {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
+        return None
+
+    def de_before_and_after(self, m_words, i):
+        if m_words[i].name == "で" and m_words[i].type == "助詞":
+            return self.get_3_words_before_and_after(m_words, i)
+        # return {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
+        return None
+
+    def nara_before_and_after(self, m_words, i):
+        if m_words[i].name == "なら" and m_words[i].type == "助動詞":
+            return self.get_3_words_before_and_after(m_words, i)
+        # return {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
+        return None
+
+    def get_3_words_before_and_after(self, m_words, i):
+        result = {'before': [], 'after': []}
+        # result => {'before': ['極東', 'アニメーション'], 'after': ['素敵', 'な', '作品']}
+        result['before'] = self.till_three_words_before(m_words, i)
+        result['after'] = self.till_three_words_after(m_words, i)
+        return result
 
 
     def till_three_words_before(self, mecabed_words, keyword_index):

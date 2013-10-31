@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block results %}
+<ul class="list-unstyled">
+    <!-- list => [['step1', 'step2'], ['right', 'left', 'right again']] -->
+  {% for ordered_items in list %}
+  <li>
+    <ul>
+        <!-- ordered_items => ['step1', 'step2'] -->
+        {% for item in ordered_items %}
+        <li>
+            {{ item }}
+        </li>
+        {% endfor %}     
+    </ul>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -12,14 +12,30 @@ def index(name=None):
 
 @app.route("/search", methods=["post"])
 def search():
+    pages = search_by_google_or_bing(request)
+    return render_template("results.tmpl", items=pages)
+
+@app.route("/search_and_fetch_headers", methods=["post"])
+def search_and_fetch_headers():
+    pages = search_by_google_or_bing(request)
+    trees = []
+    for page in pages:
+        html = page.fetch_html()
+        page.build_header_tree()
+        tree = page.header_tree()
+        trees.append(tree)
+    return render_template("results.tmpl", trees=trees)
+
+def search_by_google_or_bing(request):
     query = request.form["query"]
     search_engine_name = request.form['search_engine']
     search_engine = SearchEngine()
-    if search_engine_name is 'google':
+    if search_engine_name == 'google':
         pages = search_engine.google_search(query, 1)
     else:
         pages = search_engine.bing_search(query, 1)
-    return render_template("results.tmpl", items=pages)
+    return pages
+
 
 @app.route('/find_related_action_words', methods=['post'])
 def find_related_action_words():
@@ -120,6 +136,34 @@ def find_matched_words_from_yahoo_ads():
         results.append(bracket_word)
 
     return render_template('words.tmpl', words=results)
+
+
+@app.route('/scrape_from_nanapi', methods=['post'])
+def scrape_from_nanapi():
+    query = request.form['query']
+    #yahooスポンサードサーチは単語ごとに区切るより一文にしたほうが広告出やすい
+    head = 'http://nanapi.jp/search/q:'
+    query_url = head + query
+    nanapi_search_result_page = WebPage(query_url)
+    nanapi_search_result_page.fetch_html()
+    urls = nanapi_search_result_page.find_urls_from_nanapi_search_result()
+    tasks = []
+    for url in urls:
+        # result_pageはnanapiの1記事
+        result_page = WebPage(url)
+        result_page.fetch_html()
+        # task_steps => [task_step, task_step, ...]
+        task = result_page.find_task_from_nanapi_with_headings()
+        # task_steps[0].h2 => 'はじめに'
+        # task_steps[0].h3s[0] => 'はじめに'
+        tasks.append(task)
+    # tasks => [task, task, ...]
+    # tasks[0][0].h2 => 'はじめに'
+    return render_template('nanapi_tasks.tmpl', tasks=tasks)
+
+
+#https://www.google.com/search?as_q=flamenco&as_epq=&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=&cr=&as_qdr=all&as_sitesearch=www.wikihow.com&as_occt=any&safe=images&as_filetype=&as_rights=
+
 
 def naradeha_words_to_results(naradeha_results, stop_words):
     results = []

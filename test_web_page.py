@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 from web_page import WebPage
 import pdb
@@ -5,23 +6,21 @@ import pdb
 class TestWebPage(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.nanapi_article_page = WebPage()
+        nanapi_file = open('test_support/nanapi.html', encoding='utf-8')
+        nanapi_html = nanapi_file.read()
+        nanapi_file.close()
+        self.nanapi_article_page.html_body = nanapi_html
+        self.nanapi_article_page.url = 'http://nanapi.jp'
 
-    def test_set_lines_from_texts(self):
-        result_xml_page = WebPage()
-        f = open('swimming.xml')
-        result_xml_page.xml_body = f.read()
-        f.close()
-        result_xml_page.pick_texts()
-        # result_xml_page.result_pages => result_page
-        for result_page in result_xml_page.result_pages:
-            result_page.set_lines_from_texts()
-            result_page.set_line_nums_with_word('上達')
-            result_page.set_line_nums_around_action_word()
-            result_page.set_line_clusters_around_action_word()
-        for result_page in result_xml_page.result_pages:
-            self.assertIn('上達', result_page.line_clusters_around_action_word[0][2])
-        #TODO: テスト
+    def test_find_task_from_nanapi_with_headings(self):
+        task = self.nanapi_article_page.find_task_from_nanapi_with_headings()
+        self.assertEqual(task.title, '三万円以下で買えるハイテクアウターまとめ | nanapi [ナナピ]')
+        self.assertEqual(task.url, 'http://nanapi.jp')
+        self.assertEqual(task.steps[1].h2, '買う前に知っておきたい用語')
+        self.assertEqual(task.steps[1].h3s[0], '耐水圧')
+        self.assertEqual(task.steps[1].h3s[1], '透湿性')
+        self.assertEqual(task.steps[1].h3s[2], 'DWR（Durable Water Repellent）')
 
     def test_set_clusters_around_action_word(self):
         result_page = WebPage()
@@ -43,6 +42,10 @@ class TestWebPage(unittest.TestCase):
         result_page.set_line_nums_with_word('a')
         result_page.set_line_nums_around_action_word()
         self.assertEqual(result_page.line_nums_around_action_word, set([0, 1, 3, 4, 5]))
+
+    def test_build_header_tree(self):
+        self.nanapi_article_page.fetch_html()
+        self.nanapi_article_page.build_header_tree()
 
 if __name__ == '__main__':
     unittest.main()

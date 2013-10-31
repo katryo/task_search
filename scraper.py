@@ -1,54 +1,18 @@
-# -*- coding: utf-8 -*-
 import requests
-import cchardet
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
-from task import Task
-from node import Node
-import re
 import pdb
 
 
-class WebPage(WebItem):
+class Scraper:
     def __init__(self, url='unknown'):
         self.url = url
+
 
     def fetch_xml(self):
         response = requests.get(self.url)
         self.xml_body = response.text
-
-    # page.build_header_tree() でツリーを作る。すでにself.htmlはfetchずみ
-    def build_header_tree(self):
-        """
-        h1
-        ul>li
-        h2
-        h2
-        の場合は、……。
-        TODO:実物を見る。
-
-        """
-        html_texts_divided_by_h1s = pq(self.html).find('h1')
-        h1_pattern = re.compile('<h1>.*?</h1>')
-        html_texts_divided_by_h1s = h1_pattern.split(self.html_body)
-        h1_headers = h1_pattern.findall(self.html_body)
-        # html_texts_divides_by_h1s[0] => 無視
-        # html_texts_divides_by_h1s[1]
-        nodes = []
-        for i, h1_header in enumerate(h1_headers):
-            node = Node(html_texts_divided_by_h1s[i + 1])
-            node.set_header_title(h1_header, 'h1')
-            node.set_descendants()
-            nodes.append(node)
-        # h1で分けた場合、トップが1つとは限らない。なのでtop_header_nodesとしている
-        # self.top_header_nodes == root; root.header_title = 'nanapi!!'; root.children == [node1, node2, ...]
-        # Node
-        pdb.set_trace()
-
-    # tree = page.header_tree()
-    def header_tree(self):
-        pass
 
     def set_lines_from_texts(self):
         #result_page単体が実行する
@@ -129,29 +93,12 @@ class WebPage(WebItem):
 
     def find_urls_from_nanapi_search_result(self):
         link_elems = pq(self.html_body.encode('utf-8')).find('.item-title a')
-        urls = []
+        results = []
         for link_elem in link_elems:
-            url = pq(link_elem).attr('href')
-            urls.append(url)
-        return urls
-
-    def find_task_from_nanapi_with_headings(self):
-        # h2 has_many h3 s
-        # self.html_bodyのうち、recipe-bodyを取ってくる
-        recipe_body = pq(self.html_body.encode('utf-8')).find('.recipe-body').html()
-        # splitして
-        steps_texts = recipe_body.split('<h2>')[1:]
-        task_steps = []
-        for step_text in steps_texts:
-            task_step = TaskStep()
-            task_step.set_headings_from_text(step_text)
-            task_steps.append(task_step)
-            # step_text => h2からh2まで
-        task = Task()
-        task.set_title_with_html(self.html_body)
-        task.set_url(self.url)
-        task.set_steps(task_steps)
-        return task # task.steps => [task_step, task_step, ...]
+            pdb.set_trace()
+            result = pq(link_elem).attr('href')
+            results.append(result)
+        return results
 
 
 

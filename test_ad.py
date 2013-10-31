@@ -40,19 +40,19 @@ class TestAd(unittest.TestCase):
         ad = self.kyokuto_anime_snippet_ad
         m_words = ad.to_m_words(ad.snippet)
         before_and_after = ad.get_3_words_before_and_after(m_words, 2) # "で"は2
-        self.assertEqual(before_and_after, {'before': ['極東', 'アニメーション'] , 'after': ['素敵', 'な', '作品']})
+        self.assertEqual(before_and_after, {'before': ['極東', 'アニメーション'] , 'after': ['素敵']})
 
     def test_nara_before_and_after(self):
         ad = self.chuni_snippet_ad
         m_words = ad.to_m_words(ad.snippet)
         before_and_after = ad.nara_before_and_after(m_words, 1) # "で"は2
-        self.assertEqual(before_and_after, {'before': ['夢'] , 'after': ['たくさん', '見', 'た']})
+        self.assertEqual(before_and_after, {'before': ['夢'] , 'after': ['たくさん']})
 
     def test_nara_three_words(self):
         ad = self.chuni_snippet_ad
         m_words = ad.to_m_words(ad.snippet)
         before_and_after = ad.three_words_by_func(m_words, ad.nara_before_and_after)
-        self.assertEqual(before_and_after, {'before': ['夢'] , 'after': ['たくさん', '見', 'た']})
+        self.assertEqual(before_and_after, {'before': ['夢'] , 'after': ['たくさん']})
 
     def test_nara_three_words_if_no_nara(self):
         ad = self.kyokuto_anime_snippet_ad
@@ -67,7 +67,7 @@ class TestAd(unittest.TestCase):
         self.assertEqual(result,
             {
             'before': ['今石洋之'],
-            'after': ['世界', 'を', '変え']
+            'after': ['世界']
             }
         )
 
@@ -80,13 +80,13 @@ class TestAd(unittest.TestCase):
                 'nara': 
                     {
                     'before': ['今石洋之'],
-                    'after': ['世界', 'を', '変え']
+                    'after': ['世界']
                     }
                 ,
                 'de': 
                     {
                     'before': ['TRIGGER', 'の', 'キルラキル'],
-                    'after': ['アニメ', 'の', '新']
+                    'after': ['アニメ', 'の']
                     }
                 ,
                 'ha':
@@ -105,13 +105,13 @@ class TestAd(unittest.TestCase):
             'nara': 
                 {
                 'before': ['今石洋之'],
-                'after': ['世界', 'を', '変え']
+                'after': ['世界']
                 }
             ,
             'de': 
                 {
                 'before': ['TRIGGER', 'の', 'キルラキル'],
-                'after': ['アニメ', 'の', '新']
+                'after': ['アニメ', 'の']
                 }
             ,
             'ha':

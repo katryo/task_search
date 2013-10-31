@@ -73,6 +73,19 @@
             </div>
           </form>
 
+          <form action="/scrape_from_wikihow" method="POST">
+            <div class="search_option">
+              <input type="search" name="query" value placeholder="Query" />
+              <input type="submit" value="WikiHowからスクレイピング" class="btn btn-primary btn-large"/>
+            </div>
+          </form>
+
+          <form action="/scrape_from_nanapi" method="POST">
+            <div class="search_option">
+              <input type="search" name="query" value placeholder="Query" />
+              <input type="submit" value="nanapiからスクレイピング" class="btn btn-primary btn-large"/>
+            </div>
+          </form>
           {% block results %}
           {% endblock %}
         </div><!--col-lg-->

@@ -16,24 +16,24 @@ class WebItem:
         self.html_body = response.text
 
 
-    def pick_words_by_types(self, str, types):
+    def pick_words_by_types(self, string, types):
         keywords = []
-        m_words = self.to_m_words(str)
+        m_words = self.to_m_words(string)
         for m_word in m_words:
-            for type in types:
-                if m_word.type == type:
+            for word_type in types:
+                if m_word.type == word_type:
                     keywords.append(m_word.name)
         return keywords
 
 
-    def pick_words_by_type(self, str, type):
+    def pick_words_by_type(self, string, type):
         types = [type]
-        keywords = self.pick_words_by_types(str, types)
+        keywords = self.pick_words_by_types(string, types)
         return keywords
 
-    def pick_sahens(self, str):
+    def pick_sahens(self, string):
         keywords = []
-        m_words = self.to_m_words(str)
+        m_words = self.to_m_words(string)
         for m_word in m_words:
             if m_word.subtype == 'サ変接続':
                 item = m_word.name

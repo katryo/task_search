@@ -112,7 +112,6 @@ class SearchEngine:
 
 
     def google_search(self, query, num):
-        NUM = num
         url = 'https://www.googleapis.com/customsearch/v1?'
         params = {
             'key': self.google_api_key,
@@ -124,7 +123,7 @@ class SearchEngine:
         start = 1
         items = []
 
-        for i in range(0, NUM):
+        for i in range(0, num):
             params['start'] = start
             request_url = url + urllib.parse.urlencode(params)
             try:
@@ -143,7 +142,10 @@ class SearchEngine:
             page.title = item['title']
             page.snippet = item['snippet']
             pages.append(page)
-        return pages 
+        # pages[0].link => 'http://...'
+        # pages[0].title => 'ブログです'
+        # pages[0].snippet => 'あたしは...'
+        return pages
 
     def bing_search(self, query, num):
         key = self.microsoft_api_key

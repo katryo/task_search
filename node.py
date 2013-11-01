@@ -28,11 +28,11 @@ class Node():
             return
         # まずliを見つけてセットする
         self.set_li_texts()
+        # h6ノードはその下位ノードを作る必要ない
         if self.heading_type == 'h6':
             return
-        # headingsがないとき、さらに下位を探る
-        heading_type = self.heading_type
 
+        heading_type = self.heading_type
         while True:
             children_heading_type, html_texts_divided_by_heading, headings = \
                 self.children_heading_info(heading_type)
@@ -64,8 +64,12 @@ class Node():
         return [children_heading_type, html_texts_divided_by_heading, headings]
 
     def set_li_texts(self):
+        if self.this_html_body == '':
+            return
         # http://stackoverflow.com/questions/10165756/html-parsing-with-lxml-when-theres-no-root-tag
-        fragments = html.fragments_fromstring(self.this_html_body)
+        fragments = html.fromstring(self.this_html_body)
+        if len(fragments) == 0:
+            return
         if isinstance(fragments[0], str):
             return
         li_elements = fragments[0].xpath('//li')

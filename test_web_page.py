@@ -48,6 +48,7 @@ class TestWebPage(unittest.TestCase):
         page = copy.deepcopy(self.nanapi_article_page)
         page.build_heading_tree()
         self.assertEqual(page.top_nodes[0].children[0].heading_title, 'はじめに')
+        self.assertEqual(page.top_nodes[0].children[0].li_texts[0], '三万円以下で買える')
         self.assertEqual(page.top_nodes[0].children[1].heading_title, '買う前に知っておきたい用語')
         self.assertEqual(page.top_nodes[0].children[1].children[0].heading_title, '耐水圧')
         self.assertEqual(page.top_nodes[0].children[1].children[1].heading_title, '透湿性')

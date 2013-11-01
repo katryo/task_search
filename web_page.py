@@ -30,6 +30,8 @@ class WebPage(WebItem):
         node.lisにセットする
         h1で分けた場合、トップが1つとは限らない。なのでtop_nodesとしている
         self.top_heading_nodes == root; root.heading_title = 'nanapi!!'; root.children == [node1, node2, ...]
+        self.top_nodes[0].children[0].li_texts => 'まずやること', 'つぎに'
+        self.top_nodes[0].children[0].children[0].heading_title => 服を洗濯する
         """
         root_node = Node(self.html_body, 'h0')
         root_node.set_descendants()

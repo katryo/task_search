@@ -67,7 +67,6 @@ class TestNode(unittest.TestCase):
     def test_set_li_texts_when_html_is_complicated(self):
         node = Node('<h1>heading1</h1><ul><li>a</li><li>b</li><li>c</li></ul>\
             <h2>heading2</h2><ul><li>d</li><li>e</li><li>f</li></ul>', 'h0')
-        # pdb.set_trace()
         node.set_li_texts()
         self.assertEqual(node.li_texts, ['a', 'b', 'c'])
 

@@ -2,25 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_factory.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node.py" afterPath="$PROJECT_DIR$/node.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_node.py" afterPath="$PROJECT_DIR$/test_node.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_web_page.py" afterPath="$PROJECT_DIR$/test_web_page.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_page.py" afterPath="$PROJECT_DIR$/web_page.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383293907415" ignored="false" />
-    <file path="/node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383296701510" ignored="false" />
+    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383297322552" ignored="false" />
+    <file path="/node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383298068100" ignored="false" />
     <file path="/test_node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383295664222" ignored="false" />
     <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383282489522" ignored="false" />
     <file path="/node_factory.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383285188286" ignored="false" />
     <file path="/node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383284525157" ignored="false" />
     <file path="/test_node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383283384141" ignored="false" />
-    <file path="/test_web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383294043432" ignored="false" />
+    <file path="/test_web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383297510212" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,10 +79,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="test_node.py" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="test_node.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test_node.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="66" column="33" selection-start="3144" selection-end="3144" vertical-scroll-proportion="0.70711297">
+                <state line="69" column="0" selection-start="3325" selection-end="3325" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#24#39#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="test_web_page.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test_web_page.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="48" column="32" selection-start="2133" selection-end="2133" vertical-scroll-proportion="0.6443515">
                   <folding>
                     <element signature="e#24#39#0" expanded="true" />
                   </folding>
@@ -101,7 +108,7 @@
           <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web_page.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="35" column="43" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+                <state line="33" column="29" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="e#24#39#0" expanded="true" />
                   </folding>
@@ -112,7 +119,7 @@
           <file leaf-file-name="node.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="33" column="37" selection-start="951" selection-end="951" vertical-scroll-proportion="0.016736401">
+                <state line="66" column="26" selection-start="2444" selection-end="2444" vertical-scroll-proportion="0.62343097">
                   <folding>
                     <element signature="e#24#33#0" expanded="true" />
                   </folding>
@@ -143,9 +150,9 @@
         <option value="$PROJECT_DIR$/node_factory.py" />
         <option value="$PROJECT_DIR$/node_finder.py" />
         <option value="$PROJECT_DIR$/test_node_finder.py" />
+        <option value="$PROJECT_DIR$/test_node.py" />
         <option value="$PROJECT_DIR$/web_page.py" />
         <option value="$PROJECT_DIR$/test_web_page.py" />
-        <option value="$PROJECT_DIR$/test_node.py" />
         <option value="$PROJECT_DIR$/node.py" />
       </list>
     </option>
@@ -462,15 +469,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_web_page.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="94" selection-start="2572" selection-end="2572" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_search_engine.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -482,7 +480,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="33" selection-start="3144" selection-end="3144" vertical-scroll-proportion="0.70711297">
+        <state line="69" column="0" selection-start="3325" selection-end="3325" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#24#39#0" expanded="true" />
           </folding>
@@ -491,7 +489,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web_page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="43" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+        <state line="33" column="29" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_web_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="32" selection-start="2133" selection-end="2133" vertical-scroll-proportion="0.6443515">
           <folding>
             <element signature="e#24#39#0" expanded="true" />
           </folding>
@@ -500,7 +507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="37" selection-start="951" selection-end="951" vertical-scroll-proportion="0.016736401">
+        <state line="66" column="26" selection-start="2444" selection-end="2444" vertical-scroll-proportion="0.62343097">
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>

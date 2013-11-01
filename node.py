@@ -1,51 +1,75 @@
 # -*- coding: utf-8 -*-
 import re
+from lxml import html
 import pdb
 
-class Node():
-    def __init__(self, text, header_type):
-        self.html_body = text  # ノード内のすべてのhtml
-        self.header_type = header_type  # 'h1' or 'h2' or ...
 
-    def set_header_title(self, title):
-        self.header_title = title
+class Node():
+    def __init__(self, text, heading_type):
+        self.html_body = text  # ノード内のすべてのhtml
+        self.heading_type = heading_type  # 'h1' or 'h2' or ...
+        splited_texts = re.split('<h', text)
+        if len(splited_texts) > 1:
+            self.this_html_body = '<h' + splited_texts[1]
+            return
+        self.this_html_body = text
+
+    def set_heading_title(self, title):
+        self.heading_title = title
 
     # いきなりh3,h5となるときは、page.h1_nodes.children[0] => いきなりh3が入っている
     def set_descendants(self):
         """
-        # self.textとself.header_title, self.header_typeはある
+        # self.textとself.heading_title, self.heading_typeはある
         # 再帰的にself.childrenを作る
 
         """
-        if self.header_type == 'h6':
+        if self.html_body == '':
             return
-        else:
-            # headersがないとき、さらに下位を探る
-            header_type = self.header_type
+        # まずliを見つけてセットする
+        self.set_li_texts()
+        if self.heading_type == 'h6':
+            return
+        # headingsがないとき、さらに下位を探る
+        heading_type = self.heading_type
 
-            while True:
-                children_header_type, html_texts_divided_by_header, headers = \
-                    self.calc_header_info(header_type)
-                if not headers == []:
-                    break
-                if header_type == 'h5':  # h5の子供h6。最後。あとはない
-                    break
-                # self.childrenの準備をheader_type上げておこなう
-                header_type = 'h' + str(int(header_type[1]) + 1)
-            # header_typeはもう使わない
+        while True:
+            children_heading_type, html_texts_divided_by_heading, headings = \
+                self.children_heading_info(heading_type)
+            if not headings == []:
+                break
+            if heading_type == 'h5':  # h5の子供h6。最後。あとはない
+                break
+            # self.childrenの準備をheading_type上げておこなう
+            heading_type = 'h' + str(int(heading_type[1]) + 1)
+        # heading_typeはもう使わない
 
-            # self.childrenを作る
-            nodes = []
-            for i, header in enumerate(headers):
-                node = Node(html_texts_divided_by_header[i + 1], children_header_type)
-                node.set_header_title(header[4:-5])  # <h2>..</h2>のタグ除去
-                node.set_descendants()
-                nodes.append(node)
-            self.children = nodes
+        # self.childrenを作る
+        self.children = self.build_children(headings, html_texts_divided_by_heading, children_heading_type)
 
-    def calc_header_info(self, header_type):
-        children_header_type = 'h' + str(int(header_type[1]) + 1)
-        header_pattern = re.compile('<%s>.*?</%s>' % (children_header_type, children_header_type))
-        html_texts_divided_by_header = header_pattern.split(self.html_body)
-        headers = header_pattern.findall(self.html_body)
-        return [children_header_type, html_texts_divided_by_header, headers]
+    def build_children(self, headings, html_texts_divided_by_heading, children_heading_type):
+        nodes = []
+        for i, heading in enumerate(headings):
+            node = Node(html_texts_divided_by_heading[i], children_heading_type)
+            node.set_heading_title(heading[4:-5].strip())  # <h2>..</h2>のタグ除去
+            node.set_descendants()  # 再帰的に子供を作る
+            nodes.append(node)
+        return nodes
+
+    def children_heading_info(self, heading_type):
+        children_heading_type = 'h' + str(int(heading_type[1]) + 1)
+        heading_pattern = re.compile('<%s>.*?</%s>' % (children_heading_type, children_heading_type))
+        html_texts_divided_by_heading = heading_pattern.split(self.html_body)[1:]
+        headings = heading_pattern.findall(self.html_body)
+        return [children_heading_type, html_texts_divided_by_heading, headings]
+
+    def set_li_texts(self):
+        # http://stackoverflow.com/questions/10165756/html-parsing-with-lxml-when-theres-no-root-tag
+        fragments = html.fragments_fromstring(self.this_html_body)
+        if isinstance(fragments[0], str):
+            return
+        li_elements = fragments[0].xpath('//li')
+        li_texts = []
+        for li_elem in li_elements:
+            li_texts.append(li_elem.text)
+        self.li_texts = li_texts

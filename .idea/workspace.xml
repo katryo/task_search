@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90b7173d-c0b3-419d-908a-8443223c24b1" name="Default" comment="" />
+    <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_factory.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node.py" afterPath="$PROJECT_DIR$/node.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_node.py" afterPath="$PROJECT_DIR$/test_node.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_web_page.py" afterPath="$PROJECT_DIR$/test_web_page.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_page.py" afterPath="$PROJECT_DIR$/web_page.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/web_item.py" changelist="90b7173d-c0b3-419d-908a-8443223c24b1" time="1383214932608" ignored="false" />
-    <file path="/node.py" changelist="90b7173d-c0b3-419d-908a-8443223c24b1" time="1383220682023" ignored="false" />
-    <file path="/test_node.py" changelist="90b7173d-c0b3-419d-908a-8443223c24b1" time="1383220709896" ignored="false" />
-    <file path="/web_page.py" changelist="90b7173d-c0b3-419d-908a-8443223c24b1" time="1383229740006" ignored="false" />
+    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383293907415" ignored="false" />
+    <file path="/node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383296701510" ignored="false" />
+    <file path="/test_node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383295664222" ignored="false" />
+    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383282489522" ignored="false" />
+    <file path="/node_factory.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383285188286" ignored="false" />
+    <file path="/node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383284525157" ignored="false" />
+    <file path="/test_node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383283384141" ignored="false" />
+    <file path="/test_web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383294043432" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,23 +80,16 @@
     <favorites_list name="task_search" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3285985">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="test_node.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="test_node.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test_node.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="49" column="0" selection-start="2325" selection-end="2325" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web_page.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="13" selection-start="579" selection-end="579" vertical-scroll-proportion="0.21338913">
-                  <folding />
+                <state line="66" column="33" selection-start="3144" selection-end="3144" vertical-scroll-proportion="0.70711297">
+                  <folding>
+                    <element signature="e#24#39#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -92,10 +98,21 @@
       </split-first>
       <split-second>
         <leaf>
+          <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/web_page.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="35" column="43" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#24#39#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="node.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="0" selection-start="485" selection-end="485" vertical-scroll-proportion="0.28870293">
+                <state line="33" column="37" selection-start="951" selection-end="951" vertical-scroll-proportion="0.016736401">
                   <folding>
                     <element signature="e#24#33#0" expanded="true" />
                   </folding>
@@ -112,22 +129,34 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web_item.py" />
-        <option value="$PROJECT_DIR$/test_node.py" />
+        <option value="$PROJECT_DIR$/node_factory.py" />
+        <option value="$PROJECT_DIR$/node_finder.py" />
+        <option value="$PROJECT_DIR$/test_node_finder.py" />
         <option value="$PROJECT_DIR$/web_page.py" />
+        <option value="$PROJECT_DIR$/test_web_page.py" />
+        <option value="$PROJECT_DIR$/test_node.py" />
         <option value="$PROJECT_DIR$/node.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="4" />
     <option name="y" value="22" />
-    <option name="width" value="1440" />
+    <option name="width" value="1436" />
     <option name="height" value="878" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -155,8 +184,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -167,16 +194,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="reference.idesettings.emmet" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -219,19 +251,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -258,6 +277,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -322,14 +354,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="90b7173d-c0b3-419d-908a-8443223c24b1" name="Default" comment="" />
-      <created>1383214094598</created>
-      <updated>1383214094598</updated>
+      <changelist id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="" />
+      <created>1383281394333</created>
+      <updated>1383281394333</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="878" extended-state="6" />
+    <frame x="4" y="22" width="1436" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -339,7 +371,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -349,7 +381,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24246772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964029" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -423,32 +455,52 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web_item.py">
+    <entry file="file://$PROJECT_DIR$/node_factory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="30" selection-start="964" selection-end="964" vertical-scroll-proportion="-0.19246861">
+        <state line="16" column="20" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_web_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="94" selection-start="2572" selection-end="2572" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_search_engine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="2325" selection-end="2325" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="66" column="33" selection-start="3144" selection-end="3144" vertical-scroll-proportion="0.70711297">
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web_page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="13" selection-start="579" selection-end="579" vertical-scroll-proportion="0.21338913">
-          <folding />
+        <state line="35" column="43" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="485" selection-end="485" vertical-scroll-proportion="0.28870293">
+        <state line="33" column="37" selection-start="951" selection-end="951" vertical-scroll-proportion="0.016736401">
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>

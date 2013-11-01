@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
+import copy
 from web_page import WebPage
 import pdb
 
@@ -44,8 +45,15 @@ class TestWebPage(unittest.TestCase):
         self.assertEqual(result_page.line_nums_around_action_word, set([0, 1, 3, 4, 5]))
 
     def test_build_header_tree(self):
-        self.nanapi_article_page.fetch_html()
-        self.nanapi_article_page.build_header_tree()
+        page = copy.deepcopy(self.nanapi_article_page)
+        page.build_heading_tree()
+        self.assertEqual(page.top_nodes[0].children[0].heading_title, 'はじめに')
+        self.assertEqual(page.top_nodes[0].children[1].heading_title, '買う前に知っておきたい用語')
+        self.assertEqual(page.top_nodes[0].children[1].children[0].heading_title, '耐水圧')
+        self.assertEqual(page.top_nodes[0].children[1].children[1].heading_title, '透湿性')
+        self.assertEqual(page.top_nodes[0].children[1].children[3].heading_title, 'ベンチレーションポケット')
+
+
 
 if __name__ == '__main__':
     unittest.main()

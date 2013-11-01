@@ -5,6 +5,7 @@ from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
 from task import Task
+from task_step import TaskStep
 from node import Node
 import re
 import pdb
@@ -18,36 +19,25 @@ class WebPage(WebItem):
         response = requests.get(self.url)
         self.xml_body = response.text
 
-    # page.build_header_tree() でツリーを作る。すでにself.htmlはfetchずみ
-    def build_header_tree(self):
+    # page.build_heading_tree() でツリーを作る。すでにself.htmlはfetchずみ
+    def build_heading_tree(self):
         """
         h1
         ul>li
         h2
         h2
         の場合は、……。
-        TODO:実物を見る。
-
+        node.lisにセットする
+        h1で分けた場合、トップが1つとは限らない。なのでtop_nodesとしている
+        self.top_heading_nodes == root; root.heading_title = 'nanapi!!'; root.children == [node1, node2, ...]
         """
-        html_texts_divided_by_h1s = pq(self.html).find('h1')
-        h1_pattern = re.compile('<h1>.*?</h1>')
-        html_texts_divided_by_h1s = h1_pattern.split(self.html_body)
-        h1_headers = h1_pattern.findall(self.html_body)
-        # html_texts_divides_by_h1s[0] => 無視
-        # html_texts_divides_by_h1s[1]
-        nodes = []
-        for i, h1_header in enumerate(h1_headers):
-            node = Node(html_texts_divided_by_h1s[i + 1])
-            node.set_header_title(h1_header, 'h1')
-            node.set_descendants()
-            nodes.append(node)
-        # h1で分けた場合、トップが1つとは限らない。なのでtop_header_nodesとしている
-        # self.top_header_nodes == root; root.header_title = 'nanapi!!'; root.children == [node1, node2, ...]
-        # Node
-        pdb.set_trace()
+        root_node = Node(self.html_body, 'h0')
+        root_node.set_descendants()
+        self.top_nodes = root_node.children
 
-    # tree = page.header_tree()
-    def header_tree(self):
+
+    # tree = page.heading_tree()
+    def heading_tree(self):
         pass
 
     def set_lines_from_texts(self):

@@ -157,6 +157,10 @@ class WebPage(WebItem):
                     verbs.append(m_word)
         return verbs
 
+    def set_title(self):
+        title = pq(self.html_body).find('title').text()
+        self.title = title
+
 
     def pick_something(self):
         #多目的用途。研究には使わない。自由に書きかえて大丈夫

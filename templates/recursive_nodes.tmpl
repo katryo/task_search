@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block recursive_nodes %}
+{% for node in nodes %}
+{{ node.heading_title }}
+{% if hasattr(node, li_texts) %}
+{{ node.li_texts }}
+{% endif %}
+{% if hasattr(node, children) %}
+nodes = node.children
+{% block recursive_nodes %}
+{% endblock %}
+{% endif %}
+{% endfor %}
+{% endblock %}

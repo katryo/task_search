@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block results %}
+<ul class="list-unstyled">
+  <!--viewで分岐は気持ち悪いけど直すのめんどい-->
+  {% for page in results %}
+    <li><!--page-->
+      <h1>
+        <a href="{{ page['url'] }}">
+          {{ page['title'] }}
+        </a>
+      </h1>
+      {% if 'nodes' in page %}<!--pageのトップノーズの有無-->
+        {% for node in page['nodes'] %}<!--pageのトップノーズ-->
+          <h2>{{ node.heading_title }}</h2>
+          {% if node.hasattr('li_texts') %}
+            <ul><!--h2のtexts-->
+              {% for text in node.li_texts %}
+                <li>
+                  {{ text }}
+                </li>
+              {% endfor %}
+            </ul><!--h2のtexts-->
+          {% endif %}<!--h2のtextsの有無-->
+        {% if node.hasattr('children') %}<!--h2のchildrenの有無-->
+          <ul><!--h2のchildren-->
+            {% for node in node.children %}<!--h2のchildren-->
+              <li>
+                <h3>{{ node.heading_title }}</h3>
+                {% if node.hasattr('li_texts') %}<!--h3のtextsの有無-->
+                  <ul><!--h3のtexts-->
+                    {% for text in node.li_texts %}<!--h3のtexts-->
+                      <li>
+                        {{ text }}
+                      </li>
+                    {% endfor %}<!--h3のtexts-->
+                  </ul><!--h3のtexts-->
+                {% endif %}<!--h3のtextsの有無--> 
+              </li>
+            {% endfor %}<!--h2のchildren-->
+          </ul><!--h2のchildren-->
+        {% endif %}<!--h2のchildrenの有無-->
+        {% endfor %}<!--pageのトップノーズのfor-->
+      {% endif %}<!--pageのトップノーズの有無-->
+    </li><!--1page item-->
+  {% endfor %}<!-- page-->
+</ul><!--1page list-->
+{% endblock %}

@@ -2,6 +2,7 @@ from mecabed_word import MecabedWord
 from pyquery import PyQuery as pq
 import requests
 import pdb
+import cchardet
 import MeCab
 
 
@@ -12,7 +13,8 @@ class WebItem:
         self.fetch_html_with_response(response)
 
     def fetch_html_with_response(self, response):
-        self.encoding = response.encoding
+        encoding_detected_by_cchardet = cchardet.detect(response.content)['encoding']
+        response.encoding = encoding_detected_by_cchardet
         self.html_body = response.text
 
 

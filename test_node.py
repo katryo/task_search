@@ -16,6 +16,7 @@ class TestNode(unittest.TestCase):
         self.assertEqual(h1_node.children[0].heading_type, 'h2')
         self.assertEqual(h1_node.children[0].heading_title, 'cccc')
         self.assertEqual(len(h1_node.children), 1)
+        self.naver_hay_fever_page = WebPage('http://matome.naver.jp/topic/1LzuV')
 
     def test_set_descendants_with_h1_and_h2(self):
         h1_node = Node('<html>a<h2>heading1</h2>b<h2>heading2</h2>c</html>', 'h1')

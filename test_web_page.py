@@ -14,6 +14,12 @@ class TestWebPage(unittest.TestCase):
         self.nanapi_article_page.html_body = nanapi_html
         self.nanapi_article_page.url = 'http://nanapi.jp'
 
+        self.nanapi_hay_fever_page = WebPage('http://nanapi.jp')
+        nanapi_hay_fever_file = open('test_support/nanapi_hay_fever.html', encoding='utf-8')
+        nanapi_hay_fever_html = nanapi_hay_fever_file.read()
+        nanapi_hay_fever_file.close()
+        self.nanapi_hay_fever_page.html_body = nanapi_hay_fever_html
+
     def test_find_task_from_nanapi_with_headings(self):
         task = self.nanapi_article_page.find_task_from_nanapi_with_headings()
         self.assertEqual(task.title, '三万円以下で買えるハイテクアウターまとめ | nanapi [ナナピ]')
@@ -54,7 +60,11 @@ class TestWebPage(unittest.TestCase):
         self.assertEqual(page.top_nodes[0].children[1].children[1].heading_title, '透湿性')
         self.assertEqual(page.top_nodes[0].children[1].children[3].heading_title, 'ベンチレーションポケット')
 
-
+    def test_nanapi_hay_fever_page_build_heading_tree(self):
+        page = self.nanapi_hay_fever_page
+        page.build_heading_tree()
+        pdb.set_trace()
+        self.assertEqual(page.top_nodes[0].children[0].heading_title, 'はじめに')
 
 if __name__ == '__main__':
     unittest.main()

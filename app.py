@@ -15,16 +15,43 @@ def search():
     pages = search_by_google_or_bing(request)
     return render_template("results.tmpl", items=pages)
 
-@app.route("/search_and_fetch_headers", methods=["post"])
+@app.route("/search_and_fetch_headings_and_li_texts", methods=["post"])
 def search_and_fetch_headers():
     pages = search_by_google_or_bing(request)
-    trees = []
+    # 元ページほしい
+    results = []
     for page in pages:
-        html = page.fetch_html()
-        page.build_header_tree()
-        tree = page.header_tree()
-        trees.append(tree)
-    return render_template("results.tmpl", trees=trees)
+        page.fetch_html()
+        page.build_heading_tree()
+
+        # result[0] => top_nodes
+        # result[0][0] => Node
+        result = {'title': page.title, 'nodes': page.top_nodes, 'url': page.url}
+        results.append(result)
+    # results[0]['title'] => page.title
+    return render_template("headings_and_li_texts.tmpl", results=results)
+
+
+@app.route('/scrape_from_nanapiand_build_heading_tree', methods=['post'])
+def scrape_from_nanapi_and_build_heading_tree():
+    query = request.form['query']
+    head = 'http://nanapi.jp/search/q:'
+    query_url = head + query
+    nanapi_search_result_page = WebPage(query_url)
+    nanapi_search_result_page.fetch_html()
+    urls = nanapi_search_result_page.find_urls_from_nanapi_search_result()
+    results = []
+    for url in urls:
+        # result_pageはnanapiの1記事
+        result_page = WebPage(url)
+        result_page.fetch_html()
+        result_page.set_title()
+        # task_steps => [task_step, task_step, ...]
+        result_page.build_heading_tree()
+        result = {'title': result_page.title, 'nodes': result_page.top_nodes, 'url': result_page.url}
+        results.append(result)
+    return render_template('headings_and_li_texts.tmpl', results=results)
+
 
 def search_by_google_or_bing(request):
     query = request.form["query"]
@@ -141,7 +168,6 @@ def find_matched_words_from_yahoo_ads():
 @app.route('/scrape_from_nanapi', methods=['post'])
 def scrape_from_nanapi():
     query = request.form['query']
-    #yahooスポンサードサーチは単語ごとに区切るより一文にしたほうが広告出やすい
     head = 'http://nanapi.jp/search/q:'
     query_url = head + query
     nanapi_search_result_page = WebPage(query_url)

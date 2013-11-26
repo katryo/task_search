@@ -12,7 +12,7 @@
       {% if 'nodes' in page %}<!--pageのトップノーズの有無-->
         {% for node in page['nodes'] %}<!--pageのトップノーズ-->
           <h2>{{ node.heading_title }}</h2>
-          <p>{{ node.this_html_body}}</p>
+          <p>{{ node.block }}</p>
           {% if node.hasattr('li_texts') %}
             <ul><!--h2のtexts-->
               {% for text in node.li_texts %}
@@ -27,7 +27,7 @@
             {% for node in node.children %}<!--h2のchildren-->
               <li>
                 <h3>{{ node.heading_title }}</h3>
-                <p>{{ node.this_html_body}}</p>
+                <p>{{ node.block }}</p>
                 {% if node.hasattr('li_texts') %}<!--h3のtextsの有無-->
                   <ul><!--h3のtexts-->
                     {% for text in node.li_texts %}<!--h3のtexts-->

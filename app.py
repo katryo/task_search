@@ -29,7 +29,7 @@ def search_and_fetch_headers():
         result = {'title': page.title, 'nodes': page.top_nodes, 'url': page.url}
         results.append(result)
     # results[0]['title'] => page.title
-    return render_template("headings_and_li_texts.tmpl", results=results)
+    return render_template("heading_blocks.tmpl", results=results)
 
 
 @app.route('/scrape_from_nanapiand_build_heading_tree', methods=['post'])

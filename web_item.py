@@ -4,18 +4,25 @@ import requests
 import pdb
 import cchardet
 import MeCab
-
+import re
+import sys
 
 class WebItem:
 
     def fetch_html(self):
-        response = requests.get(self.url)
-        self.fetch_html_with_response(response)
+        try:
+            response = requests.get(self.url)
+            self.fetch_html_with_response(response)
+        except ConnectionError:
+            self.html_body = ''
 
     def fetch_html_with_response(self, response):
         encoding_detected_by_cchardet = cchardet.detect(response.content)['encoding']
         response.encoding = encoding_detected_by_cchardet
-        self.html_body = response.text
+        html_body = response.text
+
+        script_pattern = re.compile('<script.*?<\/script>')
+        self.html_body = script_pattern.sub('', html_body)
 
 
     def pick_words_by_types(self, string, types):

@@ -4,6 +4,7 @@ from node import Node
 from web_page import WebPage
 import pdb
 
+
 class TestNode(unittest.TestCase):
 
     def setUp(self):
@@ -70,6 +71,18 @@ class TestNode(unittest.TestCase):
             <h2>heading2</h2><ul><li>d</li><li>e</li><li>f</li></ul>', 'h0')
         node.set_li_texts()
         self.assertEqual(node.li_texts, ['a', 'b', 'c'])
+
+    def test_set_heading_title(self):
+        title = '<img alt="花粉だいすき">'
+        node = Node('a', 'h1')
+        node.set_heading_title(title)
+        self.assertEqual(node.heading_title, '花粉だいすき')
+
+    def test_set_heading_title_when_no_alt(self):
+        title = '<img href="http://image.jpg">'
+        node = Node('a', 'h1')
+        node.set_heading_title(title)
+        self.assertEqual(node.heading_title, 'image')
 
 if __name__ == '__main__':
     unittest.main()

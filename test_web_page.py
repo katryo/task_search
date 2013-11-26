@@ -20,6 +20,26 @@ class TestWebPage(unittest.TestCase):
         nanapi_hay_fever_file.close()
         self.nanapi_hay_fever_page.html_body = nanapi_hay_fever_html
 
+        self.gow_marriage_page = WebPage()
+        gow_file = open('test_support/gow.html', encoding='utf-8')
+        gow_html = gow_file.read()
+        gow_file.close()
+        self.gow_marriage_page.html_body = gow_html
+        self.gow_marriage_page.url = 'http://magazine.gow.asia/love/column_details.php?column_uid=00000082'
+
+        self.kanemoti_page = WebPage()
+        kanemoti_file = open('test_support/kanemotilevel.html', encoding='utf-8')
+        kanemoti_html = kanemoti_file.read()
+        kanemoti_file.close()
+        self.kanemoti_page.html_body = kanemoti_html
+
+    def test_kanemoti_page(self):
+        page = copy.deepcopy(self.kanemoti_page)
+        page.build_heading_tree()
+        pdb.set_trace()
+        self.assertEqual(page.top_nodes[0].heading_title, '耐水圧')
+
+
     def test_find_task_from_nanapi_with_headings(self):
         task = self.nanapi_article_page.find_task_from_nanapi_with_headings()
         self.assertEqual(task.title, '三万円以下で買えるハイテクアウターまとめ | nanapi [ナナピ]')
@@ -53,18 +73,15 @@ class TestWebPage(unittest.TestCase):
     def test_build_header_tree(self):
         page = copy.deepcopy(self.nanapi_article_page)
         page.build_heading_tree()
-        self.assertEqual(page.top_nodes[0].children[0].heading_title, 'はじめに')
-        self.assertEqual(page.top_nodes[0].children[0].li_texts[0], '三万円以下で買える')
-        self.assertEqual(page.top_nodes[0].children[1].heading_title, '買う前に知っておきたい用語')
-        self.assertEqual(page.top_nodes[0].children[1].children[0].heading_title, '耐水圧')
-        self.assertEqual(page.top_nodes[0].children[1].children[1].heading_title, '透湿性')
-        self.assertEqual(page.top_nodes[0].children[1].children[3].heading_title, 'ベンチレーションポケット')
+        self.assertEqual(page.top_nodes[0].children[0].heading_title, '買う前に知っておきたい用語')
+        self.assertEqual(page.top_nodes[0].children[0].children[0].heading_title, '耐水圧')
+        self.assertEqual(page.top_nodes[0].children[0].children[1].heading_title, '透湿性')
+        self.assertEqual(page.top_nodes[0].children[0].children[3].heading_title, 'ベンチレーションポケット')
 
     def test_nanapi_hay_fever_page_build_heading_tree(self):
         page = self.nanapi_hay_fever_page
         page.build_heading_tree()
-        pdb.set_trace()
-        self.assertEqual(page.top_nodes[0].children[0].heading_title, 'はじめに')
+        self.assertEqual(page.top_nodes[0].children[0].heading_title, '花粉が多く飛ぶ日')
 
 if __name__ == '__main__':
     unittest.main()

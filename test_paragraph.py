@@ -24,7 +24,7 @@ class TestParagraph(unittest.TestCase):
         html_items = p.split_by_dots('abc')
         self.assertEqual(html_items, ['abc'])
 
-        html_items2 = p.split_by_dots('a.bc')
+        html_items2 = p.split_by_dots('a！bc')
         self.assertEqual(html_items2, ['a', 'bc'])
 
         html_items2 = p.split_by_dots('a。bc')

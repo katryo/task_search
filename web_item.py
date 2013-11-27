@@ -7,7 +7,8 @@ import MeCab
 import re
 import sys
 
-class WebItem:
+
+class WebItem():
 
     def fetch_html(self):
         try:
@@ -94,3 +95,19 @@ class WebItem:
         keywords = self.pick_words_by_types(str, types)
         return keywords
 
+    def remove_tags(self, noisy_sentence):
+        '''
+        '/>aaaa'や<bold>などタグの入ったnoisy_sentenceからタグを消す。
+        タグの部分、 /> や < もあるかもしれないので消す。
+        '''
+        # まず完全なタグが入っている場合
+        tag_pattern = re.compile('<.*?>')
+        noisy_sentence = tag_pattern.sub('', noisy_sentence)
+
+        tag_tail_pattern = re.compile('.*>')
+        noisy_sentence = tag_tail_pattern.sub('', noisy_sentence)
+
+        tag_head_pattern = re.compile('<.*')
+        noisy_sentence = tag_head_pattern.sub('', noisy_sentence)
+
+        return noisy_sentence

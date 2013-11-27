@@ -17,7 +17,8 @@ class Block():
         paragraph_htmls = []
         for html_part in splitted_by_p:
             splitted_by_br = self.split_by_br(html_part)
-            paragraph_htmls.extend(splitted_by_br)
+            if not splitted_by_br == '':
+                paragraph_htmls.extend(splitted_by_br)
         return paragraph_htmls
 
     # pやbrがあるにせよないにせよlistを返す

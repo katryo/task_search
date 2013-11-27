@@ -1,7 +1,8 @@
 import re
+from web_item import WebItem
 
 
-class Paragraph():
+class Paragraph(WebItem):
     '''
     <p>か<br/>で囲まれた部分。self.sentencesを持つ
     '''
@@ -30,19 +31,3 @@ class Paragraph():
             html_items = html_results
         return html_items
 
-    def remove_tags(self, noisy_sentence):
-        '''
-        '/>aaaa'や<bold>などタグの入ったnoisy_sentenceからタグを消す。
-        タグの部分、 /> や < もあるかもしれないので消す。
-        '''
-        # まず完全なタグが入っている場合
-        tag_pattern = re.compile('<.*?>')
-        noisy_sentence = tag_pattern.sub('', noisy_sentence)
-
-        tag_tail_pattern = re.compile('.*>')
-        noisy_sentence = tag_tail_pattern.sub('', noisy_sentence)
-
-        tag_head_pattern = re.compile('<.*')
-        noisy_sentence = tag_head_pattern.sub('', noisy_sentence)
-
-        return noisy_sentence

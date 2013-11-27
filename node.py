@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import re
 from block import Block
+from web_item import WebItem
 import pdb
 
 
-class Node():
+class Node(WebItem):
     def __init__(self, text, heading_type):
         self.html_body = text  # ノード内のすべてのhtml
         self.heading_type = heading_type  # 'h1' or 'h2' or ...
@@ -22,12 +23,13 @@ class Node():
             alt_pattern = re.compile('alt=".*?"')
             alt_match = alt_pattern.search(title)
             if alt_match:
-                self.heading_title = alt_match.group()[5:-1]  # alt="と"を削除
+                heading_title = alt_match.group()[5:-1]  # alt="と"を削除
+                self.heading_title = self.remove_tags(heading_title)
                 return
             else:
                 self.heading_title = 'image'
                 return
-        self.heading_title = title
+        self.heading_title = self.remove_tags(title)
 
     def hasattr(self, string):
         if hasattr(self, string):
@@ -88,7 +90,7 @@ class Node():
         return [children_heading_type, html_texts_divided_by_heading, headings]
 
     def set_li_texts(self):
-        li_pattern = re.compile('<li>.*?</li>')
+        li_pattern = re.compile('<li.*?</li>')
         li_texts_with_tags = li_pattern.findall(self.this_html_body)
         li_texts = []
         for li_text_with_tag in li_texts_with_tags:
@@ -98,10 +100,8 @@ class Node():
                 continue
             if '&nbsp' in li_text_with_tag:
                 continue
+            if li_text_with_tag == '':
+                continue
             li_texts.append(self.remove_tags(li_text_with_tag[4:-5]))
         self.li_texts = li_texts
 
-    def remove_tags(self, text):
-        tag_pattern = re.compile('<.*?>')
-        result = tag_pattern.sub('', text)
-        return result

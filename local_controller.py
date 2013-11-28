@@ -1,7 +1,9 @@
 from search_engine import SearchEngine
 import pickle
+import os
 
 QUERY = '家庭菜園　始める　方法'
+DIR = 'gardening'
 
 
 class LocalController():
@@ -29,7 +31,14 @@ class LocalController():
 if __name__ == '__main__':
     lc = LocalController()
     results = lc.search_and_fetch_headers()
-    for result in results:
-        f = open(result['title'], 'wb', encoding='UTF-8')
+    # いまいるディレクトリにgardeningディテクトリ作って移動
+    if not os.path.exists('fetched_pages'):
+        os.mkdir('fetched_pages')
+    os.chdir('fetched_pages')
+    if not os.path.exists(DIR):
+        os.mkdir(DIR)
+    os.chdir(DIR)
+    for i, result in enumerate(results):
+        f = open(DIR + '_obj_' + i, 'wb')
         pickle.dump(result, f)
         f.close()

@@ -19,11 +19,7 @@ class Ad(WebItem):
 
     def set_page_title(self):
         # Widows-31Jはムリ
-        e = self.encoding
-        if e == 'Windows-31J' or e == 'Shift_JIS':
-            self.link_page_title = self.encoding
-            return
-        self.link_page_title = pq(self.html_body.encode(self.encoding)).find('title').text()
+        self.link_page_title = pq(self.html_body.encode(self.response.encoding)).find('title').text()
 
     def fetch_html(self):
         # WebItemのメソッドをオーバーライド

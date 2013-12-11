@@ -21,10 +21,10 @@ class WebItem():
         encoding_detected_by_cchardet = cchardet.detect(response.content)['encoding']
         response.encoding = encoding_detected_by_cchardet
         html_body = response.text
+        self.response = response  # Adのために作った
 
         script_pattern = re.compile('<script.*?<\/script>')
         self.html_body = script_pattern.sub('', html_body)
-
 
     def pick_words_by_types(self, string, types):
         keywords = []
@@ -34,7 +34,6 @@ class WebItem():
                 if m_word.type == word_type:
                     keywords.append(m_word.name)
         return keywords
-
 
     def pick_words_by_type(self, string, type):
         types = [type]

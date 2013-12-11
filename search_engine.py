@@ -9,7 +9,7 @@ import constants
 from web_page import WebPage
 
 
-class SearchEngine:
+class SearchEngine():
     def __init__(self):
         self.microsoft_api_key = my_keys.MICROSOFT_API_KEY
         self.google_api_key = my_keys.GOOGLE_API_KEY
@@ -110,7 +110,6 @@ class SearchEngine:
         clue_web_result_page.pick_texts()
         return clue_web_result_page.texts
 
-
     def google_search(self, query, num):
         url = 'https://www.googleapis.com/customsearch/v1?'
         params = {
@@ -138,6 +137,9 @@ class SearchEngine:
                  #items => [{'link': 'http://...', 'title': 'ページは'}, {...}...]
         pages = []
         for item in items:
+            #
+            if type(item) == str:
+                continue
             page = WebPage(item['link'])
             page.title = item['title']
             page.snippet = item['snippet']

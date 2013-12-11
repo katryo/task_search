@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import constants
 from search_engine import SearchEngine
 from web_page import WebPage
+from pattern_matcher import PatternMatcher
+from suggester import Suggester
 import pdb
 app = Flask(__name__)
 app.config.from_object(constants)
@@ -14,6 +16,42 @@ def index(name=None):
 def search():
     pages = search_by_google_or_bing(request)
     return render_template("results.tmpl", items=pages)
+
+@app.route("/search_with_patterns", methods=["post"])
+def search_with_patterns():
+    query_present = request.form["query_present"]
+    query_past = request.form['query_past']
+    query_words = request.form['query_words']
+    pages = []
+    #  query_present => '骨折を治す', '猫を預ける'
+    pages.extend(with_patterns_to_pages(query_present, 'で'))
+    pages.extend(with_patterns_to_pages(query_present, 'に'))
+    pages.extend(with_patterns_to_pages(query_present, 'から'))
+    #  query_past => '骨折が治った', '猫を預けた'
+    pages.extend(with_patterns_to_pages(query_past, 'たら'))
+    pages.extend(with_patterns_to_pages(query_past, 'で'))
+    pages.extend(with_patterns_to_pages(query_past, 'て'))
+    pages.extend(with_patterns_to_pages(query_past, 'に'))
+    suggested_words = suggestions(query_words)
+    return render_template("results_with_patterns.tmpl", items=pages, suggestions=suggested_words)
+
+
+def with_patterns_to_pages(query, word):
+    # ""で厳密なマッチャで検索する。
+    # word => "で", "に" など
+    pm = PatternMatcher('"' + word + query + '"')
+    pages = pm.google_search()
+    for page in pages:
+        page.build_keyword(word + query)
+        page.pattern_word = word
+    # page.keywordが''だったら最後に返すpageに入れない
+    return [page for page in pages if page.keyword]
+
+
+def suggestions(query):
+    suggester = Suggester()
+    suggester.suggest_with_query(query)
+    return suggester.suggestions
 
 @app.route("/search_and_fetch_headings_and_li_texts", methods=["post"])
 def search_and_fetch_headers():

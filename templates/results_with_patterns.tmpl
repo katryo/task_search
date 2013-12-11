@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block results %}
+        <ul class="unstyled">
+          <!--viewで分岐は気持ち悪いけど直すのめんどい-->
+        {% for item in items %}
+        <li>
+          <h4>
+          <a href="{{ item['url'] }}">
+            {{ item['title'] }}
+          </a>
+        </h4>
+        <h5>{{ item.keyword }} + {{ item.pattern_word }} </h5>
+        <p>
+          {{ item['snippet'] }}
+        </p>
+        </li>
+    {% endfor %}
+  </ul>
+  <ul class="unstyled">
+    <h3>Googleクエリ推薦</h3>
+    {% for suggestion in suggestions %}
+    <li>
+      {{ suggestion }}
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

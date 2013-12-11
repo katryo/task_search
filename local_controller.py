@@ -8,7 +8,7 @@ DIR = 'gardening'
 
 class LocalController():
     def search_and_fetch_headers(self):
-        pages = self.search_10_pages()
+        pages = self.search_30_pages()
         results = []
         for page in pages:
             page.fetch_html()
@@ -22,9 +22,9 @@ class LocalController():
         # results[0]['title'] => page.title
         return results
 
-    def search_10_pages(self):
+    def search_30_pages(self):
         search_engine = SearchEngine()
-        pages = search_engine.google_search(QUERY, 1)
+        pages = search_engine.google_search(QUERY, 3)
         return pages
 
 
@@ -39,6 +39,6 @@ if __name__ == '__main__':
         os.mkdir(DIR)
     os.chdir(DIR)
     for i, result in enumerate(results):
-        f = open(DIR + '_obj_' + i, 'wb')
+        f = open(DIR + '_obj_' + str(i), 'wb')
         pickle.dump(result, f)
         f.close()

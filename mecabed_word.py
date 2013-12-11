@@ -1,5 +1,6 @@
 import pdb
 
+
 class MecabedWord:
     def __init__(self, word_info):
         tips = word_info.split(',')

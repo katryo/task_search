@@ -4,6 +4,7 @@ import cchardet
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
+from mecabed_noun import MecabedNoun
 from task import Task
 from task_step import TaskStep
 from node import Node
@@ -18,6 +19,112 @@ class WebPage(WebItem):
     def fetch_xml(self):
         response = requests.get(self.url)
         self.xml_body = response.text
+
+    def build_keyword(self, query):
+        self.keyword = self.from_snippet_to_keyword(query)
+
+    def from_snippet_to_keyword(self, query):
+        if query in self.snippet:
+            return self.keyword_from_text(self.snippet, query)
+        if query in self.title:
+            return self.keyword_from_text(self.title, query)
+        return ''
+
+    def keyword_from_text(self, text, query):
+        suspicious_string_size = 15
+        i = text.index(query)
+        if i < suspicious_string_size:
+            suspicious_string = text[:i]
+        else:
+            suspicious_string = text[i-suspicious_string_size:i]
+        #TODO:仮にreturnしているがあとで外す
+        return suspicious_string
+        keyword = self.from_suspicious_string_to_task_sentence(suspicious_string)
+
+    def prepare_task_sentence(self, string):
+        string = self.remove_parentheses(string)
+        string = self.slice_after_dots(string)
+        m_words = self.to_m_words(string)
+        m_words = self.combine_nouns(m_words)
+        return m_words
+
+    def combine_nouns(self, m_words):
+        """
+        再帰的に合体させる
+        :param m_words:
+        :return:
+        """
+        new_m_words = self.try_combine_nouns(m_words)
+        # 合致するまで=変化しなくなるまで繰り返す
+        if new_m_words == m_words:
+            return m_words
+        else:
+            return self.combine_nouns(new_m_words)
+
+    def try_combine_nouns(self, m_words):
+        for i, m_word in enumerate(m_words):
+            # 最後の単語は次がないので連続しない
+            # m_words == [m_word]のとき i == 0, len(m_words) == 1
+            if i + 1 == len(m_words):
+                break
+            # 名詞を見つけたら、その次の単語が名詞か調べる
+            if m_word.type == '名詞':
+                if m_words[i + 1].type == '名詞':
+                    # やった！ 見つけたぞ！
+                    # 名詞、名詞のコンボがあれば、m_wordsを再構成する
+                    new_m_words = self.combine_to_one_noun(m_words, i)
+                    return new_m_words
+        return m_words
+
+    def combine_to_one_noun(self, m_words, i):
+        left_m = m_words[i]
+        right_m = m_words[i + 1]
+        combined_m = MecabedNoun(left_m.name + right_m.name)
+        if i == 0 and len(m_words) == i + 2:
+            return [combined_m]
+        if i == 0 and len(m_words) != i + 2:
+            m_words_after_combine = [combined_m] + m_words[i + 2:]
+            return m_words_after_combine
+        if i != 0 and len(m_words) == i + 2:
+            m_words_after_combine = m_words[:i] + [combined_m]
+            return m_words_after_combine
+        m_words_after_combine = m_words[:i] + [combined_m] + m_words[i + 2:]
+        return m_words_after_combine
+
+    def remove_parentheses(self, string):
+        parentheses = [
+            '「', '」',
+            '『', '』',
+            '《', '》',
+            '【', '】',
+            '“', '”',
+            '〈', '〉',
+            ' ']
+        for parenthesis in parentheses:
+            if parenthesis in string:
+                string = string.replace(parenthesis, '')
+        return string
+
+    def slice_after_dots(self, string):
+        for dot in ['、', '。', '，',
+                    '．', '.', ',', '…']:
+            if dot in string:
+                # 、や。のあとの部分だけを選ぶ
+                string = string.split(dot)[-1]
+        return string
+
+    def from_suspicious_string_to_task_sentence(self, suspicious_string):
+        m_suspicious_words = self.to_m_words(suspicious_string)
+        if m_suspicious_words is []:
+            return ''
+        if len(m_suspicious_words) == 1:
+            task_sentence = m_suspicious_words[-1].name
+            return task_sentence
+        task_sentence = self.from_m_words_to_task_sentence(m_suspicious_words)
+        return task_sentence
+
+    def from_m_words_to_task_sentence(self, m_words):
+        pass
 
     # page.build_heading_tree() でツリーを作る。すでにself.htmlはfetchずみ
     def build_heading_tree(self):

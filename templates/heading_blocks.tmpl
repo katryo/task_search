@@ -12,12 +12,14 @@
       {% if 'nodes' in page %}<!--pageのトップノーズの有無-->
         {% for node in page['nodes'] %}<!--pageのトップノーズ-->
           <h2>{{ node.heading_title }}</h2>
+          <!-- 本文はいったん見せずに試す
           {% for paragraph in node.block.paragraphs %}
             <p><strong>ブロック1のパラグラフ</strong></p>
             {% for sentence in paragraph.sentences %}
               <p>{{ sentence }}</p>
             {% endfor %}
           {% endfor %}
+          -->
           {% if node.hasattr('li_texts') %}
           <p><strong>ブロック1のリスト</strong></p>
           <ul><!--h2のtexts-->
@@ -33,12 +35,14 @@
             {% for node in node.children %}<!--h2のchildren-->
               <li>
                 <h3>{{ node.heading_title }}</h3>
+                <!-- 本文は見せないようにしてみる
                 {% for paragraph in node.block.paragraphs %}
                   <p><strong>ブロック2のパラグラフ</strong></p>
                   {% for sentence in paragraph.sentences %}
                     <p>{{ sentence }}</p>
                   {% endfor %}
                 {% endfor %}
+                -->
                 {% if node.hasattr('li_texts') %}<!--h3のtextsの有無-->
                   <p><strong>ブロック2のリスト</strong></p>
                   <ul><!--h3のtexts-->
@@ -56,12 +60,14 @@
                   {% for node in node.children %}<!--h3のchildren-->
                     <li>
                       <h4>{{ node.heading_title }}</h4>
+                      <!-- 本文はいまは見せない
                       {% for paragraph in node.block.paragraphs %}
                         <p><strong>ブロック3のパラグラフ</strong></p>
                         {% for sentence in paragraph.sentences %}
                           <p>{{ sentence }}</p>
                         {% endfor %}
                       {% endfor %}
+                      -->
                       {% if node.hasattr('li_texts') %}<!--h4のli_textsの有無-->
                         <p><strong>ブロック3のリスト</strong></p>
                         <ul><!--h4のtexts-->

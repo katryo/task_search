@@ -109,7 +109,16 @@
               <input type="search" name="query" value placeholder="Query" />
               <input type="submit" value="nanapiからh1〜h6を取ってくる" class="btn btn-primary btn-large"/>
             </div>
+          </form>
 
+
+          <form action="/search_with_patterns" method="POST">
+            <div class="search_option">
+              <input type="search" name="query_present" value placeholder="骨折を治す" />
+              <input type="search" name="query_past" value placeholder="骨折が治った" />
+              <input type="search" name="query_words" value placeholder="骨折 治す" />
+              <input type="submit" value="search_with_patterns" class="btn btn-primary btn-large"/>
+            </div>
           </form>
           
           {% block results %}

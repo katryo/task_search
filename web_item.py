@@ -6,6 +6,7 @@ import cchardet
 import MeCab
 import re
 import sys
+import utils
 
 
 class WebItem():
@@ -14,7 +15,7 @@ class WebItem():
         try:
             response = requests.get(self.url)
             self.fetch_html_with_response(response)
-        except ConnectionError:
+        except requests.exceptions.ConnectionError:
             self.html_body = ''
 
     def fetch_html_with_response(self, response):
@@ -25,6 +26,9 @@ class WebItem():
 
         script_pattern = re.compile('<script.*?<\/script>')
         self.html_body = script_pattern.sub('', html_body)
+
+    def set_m_words_from_html_body(self):
+        self.m_words_of_html_body = utils.m_words(self.html_body)
 
     def pick_words_by_types(self, string, types):
         keywords = []
@@ -94,6 +98,17 @@ class WebItem():
         keywords = self.pick_words_by_types(str, types)
         return keywords
 
+    def remove_html_tags(self):
+        tag_pattern = re.compile('<.*?>')
+        self.html_body = tag_pattern.sub('', self.html_body)
+
+        tag_tail_pattern = re.compile('.*>')
+        self.html_body = tag_tail_pattern.sub('', self.html_body)
+
+        tag_head_pattern = re.compile('<.*')
+        self.html_body = tag_head_pattern.sub('', self.html_body)
+
+
     def remove_tags(self, noisy_sentence):
         '''
         '/>aaaa'や<bold>などタグの入ったnoisy_sentenceからタグを消す。
@@ -110,3 +125,13 @@ class WebItem():
         noisy_sentence = tag_head_pattern.sub('', noisy_sentence)
 
         return noisy_sentence
+
+    def noun_before_query(self, sentence, query):
+        # ValueErrorが出るかも
+        i = sentence.index(query)
+        # IndexErrorが出るかも
+        suspicious_sentence = sentence[i-20:i]
+        m_words = self.to_m_words(suspicious_sentence)
+        m_words = self.combine_nouns(m_words)
+        if m_words[-1].type == '名詞':
+            return m_words[-1].name

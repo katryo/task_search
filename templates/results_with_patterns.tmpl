@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block results %}
+<div>
+  <h2>タスク文</h2>
+<ul>
+      {% for item in items %}
+  <li>
+{{ item.keyword }} + {{ item.pattern_word }} + {{ item.query }}
+  </li>
+  {% endfor %}
+</ul>
+</div>
         <ul class="unstyled">
           <!--viewで分岐は気持ち悪いけど直すのめんどい-->
         {% for item in items %}
@@ -9,7 +19,7 @@
             {{ item['title'] }}
           </a>
         </h4>
-        <h5>{{ item.keyword }} + {{ item.pattern_word }} </h5>
+        <h5>{{ item.keyword }}{{ item.pattern_word }}{{ item.query }}</h5>
         <p>
           {{ item['snippet'] }}
         </p>

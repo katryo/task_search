@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build_nodes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fetch_html.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pattern_matcher.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ad.py" afterPath="$PROJECT_DIR$/ad.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bing.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/load_fetched_pages_and_search.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/heading_blocks.tmpl" afterPath="$PROJECT_DIR$/templates/heading_blocks.tmpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/headings_and_li_texts.tmpl" afterPath="$PROJECT_DIR$/templates/headings_and_li_texts.tmpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local_controller.py" afterPath="$PROJECT_DIR$/local_controller.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mecabed_word.py" afterPath="$PROJECT_DIR$/mecabed_word.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mecabed_noun.py" afterPath="$PROJECT_DIR$/mecabed_noun.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern_matcher.py" afterPath="$PROJECT_DIR$/pattern_matcher.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/results_with_patterns.tmpl" afterPath="$PROJECT_DIR$/templates/results_with_patterns.tmpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search_engine.py" afterPath="$PROJECT_DIR$/search_engine.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/suggester.py" afterPath="$PROJECT_DIR$/suggester.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_web_page.py" afterPath="$PROJECT_DIR$/test_web_page.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_item.py" afterPath="$PROJECT_DIR$/web_item.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_page.py" afterPath="$PROJECT_DIR$/web_page.py" />
@@ -20,20 +18,20 @@
     </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386756117998" ignored="false" />
+    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386762399107" ignored="false" />
     <file path="/node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533897721" ignored="false" />
     <file path="/test_node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385468389773" ignored="false" />
-    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386742166009" ignored="false" />
+    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387531511784" ignored="false" />
     <file path="/node_factory.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383285188286" ignored="false" />
     <file path="/node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383284525157" ignored="false" />
     <file path="/test_node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383283384141" ignored="false" />
-    <file path="/test_web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386756236223" ignored="false" />
-    <file path="/app.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386576308248" ignored="false" />
+    <file path="/test_web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386762121699" ignored="false" />
+    <file path="/app.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386834210071" ignored="false" />
     <file path="/headings_and_li_texts.tmpl" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383305099006" ignored="false" />
     <file path="/try_scikitlearn.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383566225785" ignored="false" />
     <file path="/precision_recall.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383548628776" ignored="false" />
     <file path="/topic_model_in_narou.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383557243452" ignored="false" />
-    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386750190534" ignored="false" />
+    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387532163441" ignored="false" />
     <file path="/html_part.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385279577826" ignored="false" />
     <file path="/block.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533503545" ignored="false" />
     <file path="/paragraph.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533523318" ignored="false" />
@@ -48,10 +46,16 @@
     <file path="$PROJECT_DIR$/fetch_html/py/__init__.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636823615" ignored="false" />
     <file path="/fetch_html.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385638265364" ignored="false" />
     <file path="/build_nodes.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385707550978" ignored="false" />
-    <file path="/pattern_matcher.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386317285738" ignored="false" />
-    <file path="/search_engine.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386402186317" ignored="false" />
-    <file path="/suggester.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386576703844" ignored="false" />
+    <file path="/pattern_matcher.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386834481164" ignored="false" />
+    <file path="/search_engine.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386833861847" ignored="false" />
+    <file path="/suggester.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386841483172" ignored="false" />
     <file path="/combined_mecabed_word.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386750103900" ignored="false" />
+    <file path="/mecabed_noun.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386759789316" ignored="false" />
+    <file path="/load_fetched_pages_and_search.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387185821975" ignored="false" />
+    <file path="/fetch_web_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387179689266" ignored="false" />
+    <file path="/constants.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387185810376" ignored="false" />
+    <file path="/collect_past_words_from_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387532245039" ignored="false" />
+    <file path="/utils.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387532055710" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +70,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -103,6 +106,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -114,55 +118,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="scraper.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scraper.py">
+          <file leaf-file-name="my_keys.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/my_keys.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="0" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="node_factory.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/node_factory.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="html_part.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/html_part.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="search_engine.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/search_engine.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="162" column="26" selection-start="6232" selection-end="6232" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="29" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="suggester.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/suggester.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="3" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
+                <state line="8" column="0" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -171,19 +130,39 @@
           <file leaf-file-name="web_item.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web_item.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+                <state line="80" column="0" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#0#36#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="utils.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/utils.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="28" column="22" selection-start="779" selection-end="779" vertical-scroll-proportion="0.31034482">
+                  <folding>
+                    <element signature="e#0#16#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/web_page.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="35" column="28" selection-start="965" selection-end="965" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web_page.py">
+          <file leaf-file-name="load_fetched_pages_and_search.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/load_fetched_pages_and_search.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="47" column="26" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.1724138">
-                  <folding>
-                    <element signature="e#24#39#0" expanded="true" />
-                  </folding>
+                <state line="8" column="31" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -195,26 +174,46 @@
           <file leaf-file-name="pattern_matcher.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pattern_matcher.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="19" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
+                <state line="11" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="test_web_page.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="test_web_page.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test_web_page.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="125" column="46" selection-start="5376" selection-end="5376" vertical-scroll-proportion="0.87482613">
+                <state line="113" column="0" selection-start="4880" selection-end="4880" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="mecabed_word.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mecabed_word.py">
+          <file leaf-file-name="fetch_web_pages.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/fetch_web_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="0" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0">
+                <state line="17" column="23" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="constants.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/constants.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="13" column="12" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="collect_past_words_from_fetched_pages.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/collect_past_words_from_fetched_pages.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="15" column="19" selection-start="357" selection-end="357" vertical-scroll-proportion="0.3173484">
+                  <folding>
+                    <element signature="e#0#16#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -239,22 +238,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lablable.py" />
-        <option value="$PROJECT_DIR$/labelable.py" />
-        <option value="$PROJECT_DIR$/sentence.py" />
-        <option value="$PROJECT_DIR$/heading.py" />
-        <option value="$PROJECT_DIR$/local_controller.py" />
-        <option value="$PROJECT_DIR$/fetch_html.py" />
-        <option value="$PROJECT_DIR$/build_nodes.py" />
-        <option value="$PROJECT_DIR$/search_engine.py" />
-        <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/suggester.py" />
-        <option value="$PROJECT_DIR$/pattern_matcher.py" />
         <option value="$PROJECT_DIR$/mecabed_word.py" />
         <option value="$PROJECT_DIR$/combined_mecabed_word.py" />
-        <option value="$PROJECT_DIR$/web_item.py" />
-        <option value="$PROJECT_DIR$/web_page.py" />
+        <option value="$PROJECT_DIR$/mecabed_noun.py" />
         <option value="$PROJECT_DIR$/test_web_page.py" />
+        <option value="$PROJECT_DIR$/bing.py" />
+        <option value="$PROJECT_DIR$/search_engine.py" />
+        <option value="$PROJECT_DIR$/pattern_matcher.py" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/suggester.py" />
+        <option value="$PROJECT_DIR$/web_page.py" />
+        <option value="$PROJECT_DIR$/fetch_web_pages.py" />
+        <option value="$PROJECT_DIR$/load_fetched_pages_and_search.py" />
+        <option value="$PROJECT_DIR$/constants.py" />
+        <option value="$PROJECT_DIR$/web_item.py" />
+        <option value="$PROJECT_DIR$/collect_past_words_from_fetched_pages.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
       </list>
     </option>
   </component>
@@ -291,6 +290,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="All" />
       </pane>
@@ -304,7 +304,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -342,14 +341,6 @@
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -367,17 +358,12 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -408,6 +394,19 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -421,6 +420,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -442,13 +448,6 @@
       </option>
       <envs />
       <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <list size="0" />
@@ -504,7 +503,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.110473454" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1097561" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -578,102 +577,109 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node.py">
+    <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="36" selection-start="248" selection-end="248" vertical-scroll-proportion="0.02086231" />
+        <state line="57" column="21" selection-start="2024" selection-end="2024" vertical-scroll-proportion="0.625" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_html.py">
+    <entry file="file://$PROJECT_DIR$/bing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="8" selection-start="437" selection-end="437" vertical-scroll-proportion="0.38934427" />
+        <state line="16" column="18" selection-start="345" selection-end="345" vertical-scroll-proportion="0.021551725" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/paragraph.py">
+    <entry file="file://$PROJECT_DIR$/search_engine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="44" selection-start="433" selection-end="433" vertical-scroll-proportion="0.34836066" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/block.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="39" selection-start="579" selection-end="579" vertical-scroll-proportion="0.38934427" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_factory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="171" column="0" selection-start="6661" selection-end="6661" vertical-scroll-proportion="0.69827586" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html_part.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/suggester.py">
+    <entry file="file://$PROJECT_DIR$/node_factory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="3" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
+    <entry file="file://$PROJECT_DIR$/scraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="29" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
+        <state line="40" column="0" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.02086231" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_keys.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pattern_matcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
+        <state line="11" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper.py">
+    <entry file="file://$PROJECT_DIR$/test_web_page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
+        <state line="113" column="0" selection-start="4880" selection-end="4880" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search_engine.py">
+    <entry file="file://$PROJECT_DIR$/load_fetched_pages_and_search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="26" selection-start="6232" selection-end="6232" vertical-scroll-proportion="0.0">
+        <state line="8" column="31" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mecabed_word.py">
+    <entry file="file://$PROJECT_DIR$/constants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web_item.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+        <state line="13" column="12" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web_page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="26" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.1724138">
+        <state line="35" column="28" selection-start="965" selection-end="965" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_web_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="23" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collect_past_words_from_fetched_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="19" selection-start="357" selection-end="357" vertical-scroll-proportion="0.3173484">
           <folding>
-            <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_web_page.py">
+    <entry file="file://$PROJECT_DIR$/web_item.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="46" selection-start="5376" selection-end="5376" vertical-scroll-proportion="0.87482613">
-          <folding />
+        <state line="80" column="0" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="22" selection-start="779" selection-end="779" vertical-scroll-proportion="0.31034482">
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

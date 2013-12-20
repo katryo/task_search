@@ -3,6 +3,7 @@ import urllib.request
 import urllib.parse
 import json
 import pdb
+from bing import Bing
 import my_keys
 import requests
 import constants
@@ -51,7 +52,6 @@ class SearchEngine():
         for text in texts:
             page = WebPage('unknown')
             self.add_to_results_if_key_phrase_present(text, page)
-
 
     def add_to_results_if_key_phrase_present(self, text, page):
         start_index = text.find(self.action_word + 'と')
@@ -147,6 +147,7 @@ class SearchEngine():
         # pages[0].link => 'http://...'
         # pages[0].title => 'ブログです'
         # pages[0].snippet => 'あたしは...'
+
         return pages
 
     def bing_search(self, query, num):
@@ -156,17 +157,21 @@ class SearchEngine():
         param = {
             'Query': query
         }
-        req_url = url + urllib.parse.urlencode(param)
+        request_url = url + urllib.parse.urlencode(param) + json_param
         items = []
         for i in range(0, num):
             try:
-                json_body = requests.get(req_url + json_param, auth=(key, key)).json()
+                json_body = requests.get(request_url,
+                                         auth=(key, key),
+                                         headers={'User-Agent': 'My API Robot'}).json()
                 items.extend(json_body['d']['results'])
-                req_url = json_body['d']['__next']
+                request_url = json_body['d']['__next']
             except:
                 items.extend({'Url': '#', 'Title': '検索できませんでした'})
         pages = []
         for item in items:
+            if type(item) == str:
+                continue
             page = WebPage(item['Url'])
             #googleの書き方に統一
             page.title = item['Title']

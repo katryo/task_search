@@ -129,5 +129,15 @@ class TestWebPage(unittest.TestCase):
         self.assertEqual(m_words[4].name, 'まし')
         self.assertEqual(m_words[5].name, 'た')
 
+    def test_keyword_from_text(self):
+        page = WebPage()
+        string = 'しかしこの市販の薬を飲んで'
+        task = page.from_suspicious_string_to_task_sentence(string)
+        self.assertEqual(task, '市販の薬を飲んで')
+
+        string = '医師や薬剤師は薬を飲まずに風邪を治す'
+        task = page.from_suspicious_string_to_task_sentence(string)
+        self.assertEqual(task, '薬を飲まずに風邪を治す')
+
 if __name__ == '__main__':
     unittest.main()

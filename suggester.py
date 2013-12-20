@@ -23,8 +23,7 @@ class Suggester():
         self.create_tree()
         suggestions = []
         for suggestion in self.root:
-            value = suggestion[0].values()[0]
-            new_word = value[len(self.query):].strip()
+            new_word = suggestion[0].values()[0]
             if new_word:
                 suggestions.append(new_word)
         self.suggestions = suggestions

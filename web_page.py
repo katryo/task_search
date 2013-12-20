@@ -30,16 +30,16 @@ class WebPage(WebItem):
             return self.keyword_from_text(self.title, query)
         return ''
 
+    # keywordなのでm_wordsではなくstringにして返す
     def keyword_from_text(self, text, query):
-        suspicious_string_size = 15
+        suspicious_string_size = 20
         i = text.index(query)
         if i < suspicious_string_size:
             suspicious_string = text[:i]
         else:
             suspicious_string = text[i-suspicious_string_size:i]
-        #TODO:仮にreturnしているがあとで外す
-        return suspicious_string
         keyword = self.from_suspicious_string_to_task_sentence(suspicious_string)
+        return keyword
 
     def prepare_task_sentence(self, string):
         string = self.remove_parentheses(string)
@@ -47,6 +47,58 @@ class WebPage(WebItem):
         m_words = self.to_m_words(string)
         m_words = self.combine_nouns(m_words)
         return m_words
+
+    def find_task_sentence_by_grammar(self, m_words):
+        """
+        メカブオブジェクトのリストにした文から、センテンスとして
+        正しいところで区切ったメカブオブジェクトのリストの文を返す。
+        文の最後から、名詞→格助詞のパターンを探す。
+        :param m_words:
+        """
+        # 名詞→格助詞のパターン！
+        m_result_words = self.with_pattern_from_m_words(m_words, self.index_of_noun_casemarking_particle)
+        if m_result_words:
+            return m_result_words
+
+        # 名詞→動詞のパターン！
+        m_result_words = self.with_pattern_from_m_words(m_words, self.index_of_noun_verb)
+        if m_result_words:
+            return m_result_words
+
+        # タスクのパターンを発見できなかったorz 失敗だ。これはタスクではなさそう……。
+        return None
+
+    def with_pattern_from_m_words(self, m_words, method):
+        # 名詞→格助詞のパターンが見つかったときの名詞のインデックス位置
+        i = method(m_words)
+
+        # パターンが見つかっていなかったときiはNoneになる
+        if i is None:
+            return None
+
+        # パターンで見つけていたときは、名詞→格助詞の名詞から後を返す
+        return m_words[i:]
+
+    def index_of_noun_casemarking_particle(self, m_words):
+        for i, m_word in enumerate(m_words):
+            # 文の最後まできて見つからなかったら失敗
+            if i + 1 == len(m_words):
+                return None
+            # まず名詞を見つける
+            if m_word.type == '名詞':
+                subtype = m_words[i + 1].subtype
+                if subtype == '格助詞' or subtype == '連体化':
+                    return i
+
+    def index_of_noun_verb(self, m_words):
+        for i, m_word in enumerate(m_words):
+            # 文の最後まできて見つからなかったら失敗
+            if i + 1 == len(m_words):
+                return None
+                # まず名詞を見つける
+            if m_word.type == '名詞':
+                if m_words[i + 1].type == '動詞':
+                    return i
 
     def combine_nouns(self, m_words):
         """
@@ -99,6 +151,8 @@ class WebPage(WebItem):
             '【', '】',
             '“', '”',
             '〈', '〉',
+            '（', '）',
+            '(', ')',
             ' ']
         for parenthesis in parentheses:
             if parenthesis in string:
@@ -106,25 +160,29 @@ class WebPage(WebItem):
         return string
 
     def slice_after_dots(self, string):
-        for dot in ['、', '。', '，',
-                    '．', '.', ',', '…']:
+        for dot in ['、', '。', '，', '〜', '～',
+                    '．', '.', ',', '…', '?', '？', '!', '！']:
             if dot in string:
                 # 、や。のあとの部分だけを選ぶ
                 string = string.split(dot)[-1]
         return string
 
     def from_suspicious_string_to_task_sentence(self, suspicious_string):
-        m_suspicious_words = self.to_m_words(suspicious_string)
+        m_suspicious_words = self.prepare_task_sentence(suspicious_string)
+        if m_suspicious_words is None:
+            return ''
         if m_suspicious_words is []:
             return ''
         if len(m_suspicious_words) == 1:
             task_sentence = m_suspicious_words[-1].name
             return task_sentence
-        task_sentence = self.from_m_words_to_task_sentence(m_suspicious_words)
-        return task_sentence
-
-    def from_m_words_to_task_sentence(self, m_words):
-        pass
+        m_task_words = self.find_task_sentence_by_grammar(m_suspicious_words)
+        if m_task_words:
+            words = [m_task_word.name for m_task_word in m_task_words]
+            task_sentence = ''.join(words)
+            return task_sentence
+        else:
+            return None
 
     # page.build_heading_tree() でツリーを作る。すでにself.htmlはfetchずみ
     def build_heading_tree(self):
@@ -143,7 +201,6 @@ class WebPage(WebItem):
         root_node = Node(self.html_body, 'h0')
         root_node.set_descendants()
         self.top_nodes = root_node.children
-
 
     # tree = page.heading_tree()
     def heading_tree(self):
@@ -225,7 +282,6 @@ class WebPage(WebItem):
                     if m_words[0].subtype == 'サ変接続':
                         self.action_word = m_words[0]
 
-
     def find_urls_from_nanapi_search_result(self):
         link_elems = pq(self.html_body.encode('utf-8')).find('.item-title a')
         urls = []
@@ -251,8 +307,6 @@ class WebPage(WebItem):
         task.set_url(self.url)
         task.set_steps(task_steps)
         return task # task.steps => [task_step, task_step, ...]
-
-
 
     def find_tasks_from_texts(self):
         verbs = []

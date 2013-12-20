@@ -32,18 +32,33 @@ def search_with_patterns():
     pages.extend(with_patterns_to_pages(query_past, 'で'))
     pages.extend(with_patterns_to_pages(query_past, 'て'))
     pages.extend(with_patterns_to_pages(query_past, 'に'))
+    # result_pages = remove_same_keyword_tasks(pages)
     suggested_words = suggestions(query_words)
     return render_template("results_with_patterns.tmpl", items=pages, suggestions=suggested_words)
+
+
+def remove_same_keyword_tasks(pages):
+    result_pages = pages
+    for page in pages:
+        for i in range(len(pages) - 2):
+            # 自分自身と比較はしない
+            if page.title == pages[i].title:
+                continue
+            # 自分自身以外と比較をして、同じキーワードならはじく
+            if page.keyword == pages[i].keyword:
+                result_pages.pop(i)
+    return result_pages
 
 
 def with_patterns_to_pages(query, word):
     # ""で厳密なマッチャで検索する。
     # word => "で", "に" など
     pm = PatternMatcher('"' + word + query + '"')
-    pages = pm.google_search()
+    pages = pm.bing_search()
     for page in pages:
         page.build_keyword(word + query)
         page.pattern_word = word
+        page.query = query
     # page.keywordが''だったら最後に返すpageに入れない
     return [page for page in pages if page.keyword]
 

@@ -3,7 +3,8 @@ ACTION_WORD_IN_QUERY = 'を使う'
 SO_CALLED = 'という'
 QUERY = '部屋　掃除'
 # FINAL_QUERY = QUERY + '　"' + ACTION_WORD_IN_QUERY + '"'
-FINAL_QUERY = '掃除　方法'
+FINAL_QUERY = '花粉症 体験談'
+DOTS = '. ! ? 。 ！ ？'.split(' ')
 PICKLE_RESULT_DICT_NAME = 'hay_fever_result_dic.pkl'
 NUM_OF_FETCHED_PAGES = 50
 CLUE_WEB_URL_HEAD = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q='

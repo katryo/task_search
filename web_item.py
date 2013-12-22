@@ -27,9 +27,6 @@ class WebItem():
         script_pattern = re.compile('<script.*?<\/script>')
         self.html_body = script_pattern.sub('', html_body)
 
-    def set_m_words_from_html_body(self):
-        self.m_words_of_html_body = utils.m_words(self.html_body)
-
     def pick_words_by_types(self, string, types):
         keywords = []
         m_words = self.to_m_words(string)

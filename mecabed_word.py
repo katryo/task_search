@@ -5,7 +5,12 @@ class MecabedWord:
         tips = word_info.split(',')
         name_and_type = tips[0].split('\t')
         if len(name_and_type) == 1:
-            pdb.set_trace()
+            # nameに,が入っているとここに来る。
+            self.name = ''
+            self.type = '記号'
+            self.subtype = '記号'
+            self.word_info = word_info
+            return
         name = name_and_type[0]
         type = name_and_type[1]
         self.name = name

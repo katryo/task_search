@@ -14,5 +14,5 @@ if __name__ == '__main__':
     os.chdir(constants.FINAL_QUERY)
     pages = pm.bing_search()
     for i, page in enumerate(pages):
-        with open('%s_%s.pkl' % (constants.FINAL_QUERY, str(i)), 'wb') as f:
+        with open('%s_%i.pkl' % (constants.FINAL_QUERY, i), 'wb') as f:
             pickle.dump(page, f)

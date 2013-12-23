@@ -27,6 +27,45 @@ class WebItem():
         script_pattern = re.compile('<script.*?<\/script>')
         self.html_body = script_pattern.sub('', html_body)
 
+    def past_text(self, i, m_word, m_words):
+        """
+        - 「た」があって、その直前が「サ変・スル」じゃなかったら、その前 + た
+- もし「た」の直前が「サ変・スル」だったら、さらに前の語 + した
+- 「た」の直前が「サ変・スル」で、その直前が「を」だったら
+        """
+        if m_word.word_info == 'た\t助動詞,*,*,*,特殊・タ,基本形,た,タ,タ':
+            if 'サ変・スル' in m_words[i-1].word_info:
+                if 'を' in m_words[i-2].word_info:
+                    return m_words[i-3].name + 'をした'  #運動をした
+                return m_words[i-2].name + 'した'  # 運動した
+            return m_words[i-1].name + 'た'  # 動いた
+        return False
+
+    def set_past_word_count(self):
+        # self.sentencesはすでにある前提
+        self.past_word_count = self.past_word_count or {}
+        for sentence_index, sentence in enumerate(self.sentences):
+            m_words = utils.m_words(sentence)
+            for i, m_word in enumerate(m_words):
+                # iはm_wordに分けたあとの順番
+                past_text = self.past_text(i, m_word, m_words)
+                if past_text:
+                    self.past_word_count_up(past_text)
+
+    def past_word_count_up(self, text):
+        if text in self.past_word_count:
+            self.past_word_count[text] += 1
+            return
+        self.past_word_count[text] = 0
+
+'''
+        def word_count_up(self, word, category):
+            self.word_count.setdefault(category, {})
+            self.word_count[category].setdefault(word, 0)
+            self.word_count[category][word] += 1
+            self.vocabularies.add(word)
+'''
+
     def pick_words_by_types(self, string, types):
         keywords = []
         m_words = self.to_m_words(string)

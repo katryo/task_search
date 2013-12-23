@@ -17,6 +17,7 @@ class MecabedWord:
         self.type = type
         self.subtype = tips[1]
         self.word_info = word_info
+        self.stem = tips[6]
 
     def __str__(self):
         return self.name

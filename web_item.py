@@ -29,21 +29,58 @@ class WebItem():
 
     def past_text(self, i, m_word, m_words):
         """
-        - 「た」があって、その直前が「サ変・スル」じゃなかったら、その前 + た
 - もし「た」の直前が「サ変・スル」だったら、さらに前の語 + した
-- 「た」の直前が「サ変・スル」で、その直前が「を」だったら
+- 「た」の直前が「サ変・スル」で、その直前が「を」だったら、さらにさらに前の語 + をした
         """
         if m_word.word_info == 'た\t助動詞,*,*,*,特殊・タ,基本形,た,タ,タ':
             if 'サ変・スル' in m_words[i-1].word_info:
                 if 'を' in m_words[i-2].word_info:
-                    return m_words[i-3].name + 'をした'  #運動をした
-                return m_words[i-2].name + 'した'  # 運動した
-            return m_words[i-1].name + 'た'  # 動いた
+                    return m_words[i-3].stem  #運動をした
+                return m_words[i-2].stem # 運動した
+
+            # もし「なった」ならその前の「綺麗」から使う
+            if 'なる,ナッ,ナッ' in m_words[i-1].word_info:
+                return m_words[i-3].stem + m_words[i-2].stem
+
+            # '噛まれた'
+            if '動詞,接尾,*,*,一段,連用形,れる,レ,レ' in m_words[i-1].word_info:
+                return m_words[i-2].stem
+
+            if '助動詞,*,*,*,特殊・マス,連用形,ます,マシ,マシ' in m_words[i-1].word_info:
+                if 'サ変・スル' in m_words[i-2].word_info:
+                    if 'を' in m_words[i-3].word_info:
+                        return m_words[i-4].stem #クリアをしました
+
+                # あっぱれでございました
+                if m_words[i-2].name == 'ござい':
+                    return False
+
+                # なりました
+                if m_words[i-2].name == 'なり':
+                    return m_words[i-4].stem + m_words[i-3].stem
+
+                return m_words[i-2].stem  # 噛みました
+
+            # 「た」があって、その直前が「サ変・スル」じゃなかったら、その前 + た
+            return m_words[i-1].stem  # 動いた
         return False
+
+    def set_verb_count(self):
+        if not hasattr(self, 'verb_count'):
+            self.verb_count = {}
+        for verb in self.verbs:
+            self.verb_count_up(verb)
+
+    def verb_count_up(self, word):
+        if word in self.verb_count:
+            self.verb_count[word] += 1
+            return
+        self.verb_count[word] = 1
 
     def set_past_word_count(self):
         # self.sentencesはすでにある前提
-        self.past_word_count = self.past_word_count or {}
+        if not hasattr(self, 'past_word_count'):
+            self.past_word_count = {}
         for sentence_index, sentence in enumerate(self.sentences):
             m_words = utils.m_words(sentence)
             for i, m_word in enumerate(m_words):
@@ -56,15 +93,7 @@ class WebItem():
         if text in self.past_word_count:
             self.past_word_count[text] += 1
             return
-        self.past_word_count[text] = 0
-
-'''
-        def word_count_up(self, word, category):
-            self.word_count.setdefault(category, {})
-            self.word_count[category].setdefault(word, 0)
-            self.word_count[category][word] += 1
-            self.vocabularies.add(word)
-'''
+        self.past_word_count[text] = 1
 
     def pick_words_by_types(self, string, types):
         keywords = []

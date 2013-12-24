@@ -2,62 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/set_verb_count_to_fetched_pages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_0.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_0.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_1.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_1.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_10.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_10.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_11.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_11.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_12.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_12.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_13.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_13.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_14.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_14.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_15.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_15.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_16.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_16.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_17.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_17.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_18.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_18.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_19.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_19.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_2.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_2.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_20.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_20.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_21.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_21.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_22.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_22.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_23.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_23.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_24.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_24.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_25.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_25.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_26.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_26.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_27.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_27.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_28.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_28.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_29.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_29.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_3.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_3.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_30.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_30.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_31.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_31.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_32.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_32.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_33.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_33.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_34.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_34.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_35.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_35.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_36.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_36.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_37.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_37.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_38.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_38.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_39.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_39.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_4.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_4.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_40.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_40.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_41.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_41.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_42.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_42.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_43.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_43.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_44.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_44.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_45.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_45.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_46.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_46.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_47.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_47.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_48.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_48.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_49.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_49.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_5.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_5.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_6.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_6.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_7.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_7.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_8.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_8.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_9.pkl" afterPath="$PROJECT_DIR$/fetched_pages/家庭菜園　始める/家庭菜園　始める_9.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mecabed_word.py" afterPath="$PROJECT_DIR$/mecabed_word.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/set_past_word_count_to_fetched_pages.py" afterPath="$PROJECT_DIR$/set_past_word_count_to_fetched_pages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_item.py" afterPath="$PROJECT_DIR$/web_item.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/collect_nouns_from_fetched_pages.py" afterPath="" />
     </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />

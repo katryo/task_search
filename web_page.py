@@ -344,7 +344,7 @@ class WebPage(WebItem):
             key_phrases.append(key_phrase)
         return key_phrases
 
-    def fetch_ads(self):
+    def set_ads_with_html_body(self):
         listWrap = pq(self.html_body).find('.listWrap')
         lis = listWrap.children().children()
         self.ads = []

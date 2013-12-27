@@ -1,9 +1,15 @@
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
+FETCHED_ADS_DIR_NAME = 'fetched_ads'
 ACTION_WORD_IN_QUERY = 'を使う'
 SO_CALLED = 'という'
 QUERY = '部屋　掃除'
+QUERIES = '花粉症対策,掃除　方法,クレー射撃　体験,家庭菜園　始める,犬　育てる,胃もたれ　防止,保育園　入園,クレー射撃　体験,骨折　治療'.split(',')
 # FINAL_QUERY = QUERY + '　"' + ACTION_WORD_IN_QUERY + '"'
-FINAL_QUERY = '花粉症対策'
+FINAL_QUERY = '掃除　方法'
+MIN_TFIDF = 0.1
+TFIDF_RESULT_PKL_FILENAME = 'tfidf_result.pkl'
+TFIDF_VECTORIZER_PKL_FILENAME = 'tfidf_vectorizer.pkl'
+
 DOTS = '. ! ? 。 ！ ？'.split(' ')
 PICKLE_RESULT_DICT_NAME = 'hay_fever_result_dic.pkl'
 NUM_OF_FETCHED_PAGES = 50

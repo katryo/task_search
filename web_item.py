@@ -15,7 +15,8 @@ class WebItem():
         try:
             response = requests.get(self.url)
             self.fetch_html_with_response(response)
-        except requests.exceptions.ConnectionError:
+        except (requests.exceptions.ConnectionError,
+                requests.exceptions.TooManyRedirects):
             self.html_body = ''
 
     def fetch_html_with_response(self, response):
@@ -40,7 +41,7 @@ class WebItem():
 
             # もし「なった」ならその前の「綺麗」から使う
             if 'なる,ナッ,ナッ' in m_words[i-1].word_info:
-                return m_words[i-3].stem + m_words[i-2].stem
+                return m_words[i-3].name + m_words[i-2].name + 'なった'
 
             # '噛まれた'
             if '動詞,接尾,*,*,一段,連用形,れる,レ,レ' in m_words[i-1].word_info:
@@ -64,6 +65,18 @@ class WebItem():
             # 「た」があって、その直前が「サ変・スル」じゃなかったら、その前 + た
             return m_words[i-1].stem  # 動いた
         return False
+
+    def set_sahen_count(self):
+        if not hasattr(self, 'sahen_count'):
+            self.sahen_count = {}
+        for verb in self.sahens:
+            self.sahen_count_up(verb)
+
+    def sahen_count_up(self, word):
+        if word in self.sahen_count:
+            self.sahen_count[word] += 1
+            return
+        self.sahen_count[word] = 1
 
     def set_verb_count(self):
         if not hasattr(self, 'verb_count'):
@@ -163,6 +176,8 @@ class WebItem():
         keywords = self.pick_words_by_types(str, types)
         return keywords
 
+
+
     def remove_html_tags(self):
         tag_pattern = re.compile('<.*?>')
         self.html_body = tag_pattern.sub('', self.html_body)
@@ -190,6 +205,29 @@ class WebItem():
         noisy_sentence = tag_head_pattern.sub('', noisy_sentence)
 
         return noisy_sentence
+
+    def set_text_from_html_body(self):
+        html_tag_pattern = re.compile('<.*?>')
+        tab_pattern = re.compile('\t')
+        break_pattern = re.compile('\n')
+        break_pattern_r = re.compile('\r')
+        semicolon_pattern = re.compile(';\n')
+        script_tag_pattern = re.compile('<script.*?</script>')
+        brace_pattern = re.compile('\{.*?\}')
+        text = semicolon_pattern.sub('', self.html_body)
+        text = script_tag_pattern.sub('', text)
+        text = tab_pattern.sub('', text)
+        text = break_pattern.sub('', text)
+        text = break_pattern_r.sub('', text)
+        text = brace_pattern.sub('', text)
+        text = text.replace(' ', '').replace('　', '')
+        self.text = html_tag_pattern.sub('', text)
+
+    def set_verbs_from_text(self):
+        self.verbs = utils.verbs(self.text)
+
+    def set_sahens_from_text(self):
+        self.sahens = utils.sahens(self.text)
 
     def noun_before_query(self, sentence, query):
         # ValueErrorが出るかも

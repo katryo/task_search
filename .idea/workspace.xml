@@ -2,14 +2,177 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/collect_nouns_from_fetched_pages.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/calc_and_save_tfidf.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fetch_ads_with_suggested_query.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/patterns.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/play_with_fetched_pages.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/play_with_saved_tfidf.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_0.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_0.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_1.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_1.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_10.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_10.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_11.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_11.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_12.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_12.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_13.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_13.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_14.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_14.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_15.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_15.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_16.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_16.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_17.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_17.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_18.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_18.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_19.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_19.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_2.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_2.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_20.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_20.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_21.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_21.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_22.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_22.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_23.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_23.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_24.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_24.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_25.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_25.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_26.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_26.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_27.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_27.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_28.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_28.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_29.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_29.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_3.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_3.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_30.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_30.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_31.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_31.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_32.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_32.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_33.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_33.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_34.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_34.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_35.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_35.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_36.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_36.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_37.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_37.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_38.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_38.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_39.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_39.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_4.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_4.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_40.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_40.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_41.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_41.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_42.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_42.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_43.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_43.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_44.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_44.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_45.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_45.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_46.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_46.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_47.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_47.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_48.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_48.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_49.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_49.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_5.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_5.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_6.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_6.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_7.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_7.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_8.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_8.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_9.pkl" afterPath="$PROJECT_DIR$/fetched_pages/掃除　方法/掃除　方法_9.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_0.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_0.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_1.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_1.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_10.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_10.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_11.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_11.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_12.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_12.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_13.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_13.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_14.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_14.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_15.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_15.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_16.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_16.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_17.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_17.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_18.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_18.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_19.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_19.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_2.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_2.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_20.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_20.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_21.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_21.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_22.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_22.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_23.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_23.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_24.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_24.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_25.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_25.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_26.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_26.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_27.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_27.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_28.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_28.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_29.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_29.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_3.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_3.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_30.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_30.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_31.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_31.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_32.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_32.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_33.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_33.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_34.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_34.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_35.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_35.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_36.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_36.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_37.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_37.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_38.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_38.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_39.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_39.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_4.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_4.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_40.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_40.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_41.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_41.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_42.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_42.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_43.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_43.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_44.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_44.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_45.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_45.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_46.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_46.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_47.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_47.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_48.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_48.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_49.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_49.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_5.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_5.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_6.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_6.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_7.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_7.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_8.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_8.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_9.pkl" afterPath="$PROJECT_DIR$/fetched_pages/犬　育てる/犬　育てる_9.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_0.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_0.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_1.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_1.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_10.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_10.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_11.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_11.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_12.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_12.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_13.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_13.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_14.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_14.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_15.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_15.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_16.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_16.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_17.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_17.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_18.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_18.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_19.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_19.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_2.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_2.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_20.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_20.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_21.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_21.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_22.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_22.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_23.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_23.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_24.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_24.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_25.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_25.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_26.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_26.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_27.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_27.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_28.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_28.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_29.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_29.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_3.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_3.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_30.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_30.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_31.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_31.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_32.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_32.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_33.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_33.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_34.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_34.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_35.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_35.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_36.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_36.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_37.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_37.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_38.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_38.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_39.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_39.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_4.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_4.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_40.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_40.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_41.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_41.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_42.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_42.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_43.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_43.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_44.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_44.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_45.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_45.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_46.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_46.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_47.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_47.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_48.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_48.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_49.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_49.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_5.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_5.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_6.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_6.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_7.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_7.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_8.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_8.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_9.pkl" afterPath="$PROJECT_DIR$/fetched_pages/花粉症対策/花粉症対策_9.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ad.py" afterPath="$PROJECT_DIR$/ad.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/collect_verbs_from_fetched_pages.py" afterPath="$PROJECT_DIR$/collect_verbs_from_fetched_pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" afterPath="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/set_verb_count_to_fetched_pages.py" afterPath="$PROJECT_DIR$/set_verb_count_to_fetched_pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils.py" afterPath="$PROJECT_DIR$/utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_item.py" afterPath="$PROJECT_DIR$/web_item.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_page.py" afterPath="$PROJECT_DIR$/web_page.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386762399107" ignored="false" />
+    <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387865895404" ignored="false" />
     <file path="/node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533897721" ignored="false" />
     <file path="/test_node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385468389773" ignored="false" />
-    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387803415302" ignored="false" />
+    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388114100837" ignored="false" />
     <file path="/node_factory.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383285188286" ignored="false" />
     <file path="/node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383284525157" ignored="false" />
     <file path="/test_node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383283384141" ignored="false" />
@@ -19,7 +182,7 @@
     <file path="/try_scikitlearn.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383566225785" ignored="false" />
     <file path="/precision_recall.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383548628776" ignored="false" />
     <file path="/topic_model_in_narou.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383557243452" ignored="false" />
-    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387804055618" ignored="false" />
+    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388117046444" ignored="false" />
     <file path="/html_part.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385279577826" ignored="false" />
     <file path="/block.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533503545" ignored="false" />
     <file path="/paragraph.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533523318" ignored="false" />
@@ -41,16 +204,23 @@
     <file path="/mecabed_noun.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1386759789316" ignored="false" />
     <file path="/load_fetched_pages_and_search.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387185821975" ignored="false" />
     <file path="/fetch_web_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387179689266" ignored="false" />
-    <file path="/constants.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387804191324" ignored="false" />
+    <file path="/constants.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388055923669" ignored="false" />
     <file path="/collect_past_words_from_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387706179403" ignored="false" />
-    <file path="/utils.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387701384700" ignored="false" />
+    <file path="/utils.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388055274899" ignored="false" />
     <file path="/mecabed_word.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387802019672" ignored="false" />
     <file path="/test_utils.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387700178305" ignored="false" />
-    <file path="/fetch_and_set_sentences_to_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387701616930" ignored="false" />
+    <file path="/fetch_and_set_sentences_to_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388116536709" ignored="false" />
     <file path="/set_past_word_count_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387802695248" ignored="false" />
     <file path="/collect_nouns_from_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387803519568" ignored="false" />
-    <file path="/collect_verbs_from_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387803645628" ignored="false" />
-    <file path="/set_verb_count_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387804085442" ignored="false" />
+    <file path="/collect_verbs_from_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387860351242" ignored="false" />
+    <file path="/set_verb_count_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388051623877" ignored="false" />
+    <file path="/fetch_ads_with_suggested_query.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387945755851" ignored="false" />
+    <file path="/ad.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387865541588" ignored="false" />
+    <file path="/calc_and_save_tfidf.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388055972356" ignored="false" />
+    <file path="/play_with_saved_tfidf.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388056321617" ignored="false" />
+    <file path="/set_tfidf_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388115409778" ignored="false" />
+    <file path="/patterns.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388116151265" ignored="false" />
+    <file path="/play_with_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388116339973" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,16 +286,16 @@
           <file leaf-file-name="utils.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/utils.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="50" column="16" selection-start="1203" selection-end="1203" vertical-scroll-proportion="0.0">
+                <state line="74" column="13" selection-start="1956" selection-end="1956" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="set_past_word_count_to_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/set_past_word_count_to_fetched_pages.py">
+          <file leaf-file-name="patterns.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/patterns.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="0" selection-start="503" selection-end="503" vertical-scroll-proportion="0.0">
+                <state line="12" column="10" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -134,36 +304,74 @@
           <file leaf-file-name="set_verb_count_to_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/set_verb_count_to_fetched_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="25" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0">
+                <state line="20" column="36" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="suggester.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/suggester.py">
+          <file leaf-file-name="play_with_saved_tfidf.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/play_with_saved_tfidf.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
+                <state line="29" column="0" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="play_with_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="5" column="23" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
                   <folding>
-                    <element signature="e#0#15#0" expanded="true" />
+                    <element signature="e#0#12#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="constants.py" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="set_tfidf_to_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/set_tfidf_to_fetched_pages.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="36" column="7" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#0#12#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="constants.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/constants.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="20" selection-start="182" selection-end="182" vertical-scroll-proportion="0.022288261">
+                <state line="8" column="14" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="fetch_web_pages.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="fetch_web_pages.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/fetch_web_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="32" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
+                <state line="17" column="31" selection-start="614" selection-end="614" vertical-scroll-proportion="0.3167421">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="162" column="0" selection-start="6542" selection-end="6542" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="fetch_ads_with_suggested_query.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/fetch_ads_with_suggested_query.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="46" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -194,10 +402,8 @@
           <file leaf-file-name="collect_verbs_from_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/collect_verbs_from_fetched_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="30" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="e#0#16#0" expanded="true" />
-                  </folding>
+                <state line="24" column="41" selection-start="625" selection-end="625" vertical-scroll-proportion="0.0">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -205,7 +411,7 @@
           <file leaf-file-name="fetch_and_set_sentences_to_pages.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+                <state line="13" column="20" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -214,7 +420,25 @@
           <file leaf-file-name="web_item.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/web_item.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="87" column="24" selection-start="2868" selection-end="2868" vertical-scroll-proportion="0.5769231">
+                <state line="220" column="29" selection-start="7228" selection-end="7228" vertical-scroll-proportion="0.5833333">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ad.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ad.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="28" column="22" selection-start="776" selection-end="777" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/web_page.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="50" column="26" selection-start="1503" selection-end="1511" vertical-scroll-proportion="-15.24">
                   <folding />
                 </state>
               </provider>
@@ -249,22 +473,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/suggester.py" />
-        <option value="$PROJECT_DIR$/web_page.py" />
-        <option value="$PROJECT_DIR$/fetch_web_pages.py" />
-        <option value="$PROJECT_DIR$/load_fetched_pages_and_search.py" />
-        <option value="$PROJECT_DIR$/test_utils.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
-        <option value="$PROJECT_DIR$/collect_past_words_from_fetched_pages.py" />
-        <option value="$PROJECT_DIR$/mecabed_word.py" />
         <option value="$PROJECT_DIR$/set_past_word_count_to_fetched_pages.py" />
         <option value="$PROJECT_DIR$/collect_nouns_from_fetched_pages.py" />
         <option value="$PROJECT_DIR$/collect_verbs_from_fetched_pages.py" />
-        <option value="$PROJECT_DIR$/web_item.py" />
+        <option value="$PROJECT_DIR$/ad.py" />
+        <option value="$PROJECT_DIR$/web_page.py" />
+        <option value="$PROJECT_DIR$/fetch_ads_with_suggested_query.py" />
         <option value="$PROJECT_DIR$/set_verb_count_to_fetched_pages.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/calc_and_save_tfidf.py" />
         <option value="$PROJECT_DIR$/constants.py" />
+        <option value="$PROJECT_DIR$/play_with_saved_tfidf.py" />
+        <option value="$PROJECT_DIR$/set_tfidf_to_fetched_pages.py" />
+        <option value="$PROJECT_DIR$/patterns.py" />
+        <option value="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
+        <option value="$PROJECT_DIR$/play_with_fetched_pages.py" />
+        <option value="$PROJECT_DIR$/web_item.py" />
       </list>
     </option>
   </component>
@@ -302,9 +526,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope">
-        <subPane subId="All" />
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -314,6 +535,9 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="All" />
       </pane>
     </panes>
   </component>
@@ -352,14 +576,6 @@
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -377,17 +593,12 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -418,6 +629,19 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -431,6 +655,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -452,13 +683,6 @@
       </option>
       <envs />
       <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <list size="0" />
@@ -514,7 +738,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1097561" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10903874" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -588,50 +812,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test_ad.py">
+    <entry file="file://$PROJECT_DIR$/ad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_web_page.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="0" selection-start="4880" selection-end="4880" vertical-scroll-proportion="0.24568966" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="45" selection-start="405" selection-end="405" vertical-scroll-proportion="0.30172414" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/load_fetched_pages_and_search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="31" selection-start="167" selection-end="167" vertical-scroll-proportion="0.06465517" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pattern_matcher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_web_pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="32" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="16" selection-start="1203" selection-end="1203" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+        <state line="28" column="22" selection-start="776" selection-end="777" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -643,55 +826,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/suggester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collect_past_words_from_fetched_pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="0" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collect_verbs_from_fetched_pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="30" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/set_past_word_count_to_fetched_pages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="503" selection-end="503" vertical-scroll-proportion="0.0">
+        <state line="17" column="29" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calc_and_save_tfidf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1522" selection-end="1522" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="13" selection-start="1956" selection-end="1956" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/patterns.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="10" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/suggester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="24" selection-start="1019" selection-end="1019" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/set_tfidf_to_fetched_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="7" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/set_verb_count_to_fetched_pages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="25" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0">
+        <state line="20" column="36" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/constants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="182" selection-end="182" vertical-scroll-proportion="0.022288261">
+        <state line="8" column="14" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/play_with_saved_tfidf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="23" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="20" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_web_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="31" selection-start="614" selection-end="614" vertical-scroll-proportion="0.3167421">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="26" selection-start="1503" selection-end="1511" vertical-scroll-proportion="-15.24">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web_item.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="24" selection-start="2868" selection-end="2868" vertical-scroll-proportion="0.5769231">
+        <state line="220" column="29" selection-start="7228" selection-end="7228" vertical-scroll-proportion="0.5833333">
           <folding />
         </state>
       </provider>

@@ -55,7 +55,7 @@ class Ad(WebItem):
         return results
 
     def pick_bracket_words_from_text(self, text):
-        brackets = []
+        brackets = list()
         brackets.append({'head': '「', 'tail': '」'})
         brackets.append({'head': '『', 'tail': '』'})
         brackets.append({'head': '"', 'tail': '"'})

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pdb
 
 class MecabedWord:
@@ -10,6 +11,8 @@ class MecabedWord:
             self.type = '記号'
             self.subtype = '記号'
             self.word_info = word_info
+            self.stem = ''
+            self.c_form = ''
             return
         name = name_and_type[0]
         type = name_and_type[1]
@@ -18,6 +21,7 @@ class MecabedWord:
         self.subtype = tips[1]
         self.word_info = word_info
         self.stem = tips[6]
+        self.c_form = tips[5]  #活用形 conjugated form
 
     def __str__(self):
         return self.name

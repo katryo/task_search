@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from mecabed_word import MecabedWord
-from pyquery import PyQuery as pq
 import requests
 import pdb
 import cchardet
 import MeCab
 import re
 import sys
-import utils
-
+from sentence_separator import SentenceSeparator
+from mecabed_noun import MecabedNoun
 
 class WebItem():
 
@@ -96,7 +95,7 @@ class WebItem():
         if not hasattr(self, 'past_word_count'):
             self.past_word_count = {}
         for sentence_index, sentence in enumerate(self.sentences):
-            m_words = utils.m_words(sentence)
+            m_words = SentenceSeparator.m_words(sentence)
             for i, m_word in enumerate(m_words):
                 # iはm_wordに分けたあとの順番
                 past_text = self.past_text(i, m_word, m_words)
@@ -189,6 +188,48 @@ class WebItem():
         tag_head_pattern = re.compile('<.*')
         self.html_body = tag_head_pattern.sub('', self.html_body)
 
+    def combine_nouns(self, m_words):
+        """
+        再帰的に合体させる
+        :param m_words:
+        :return:
+        """
+        new_m_words = self.try_combine_nouns(m_words)
+        # 合致するまで=変化しなくなるまで繰り返す
+        if new_m_words == m_words:
+            return m_words
+        else:
+            return self.combine_nouns(new_m_words)
+
+    def try_combine_nouns(self, m_words):
+        for i, m_word in enumerate(m_words):
+            # 最後の単語は次がないので連続しない
+            # m_words == [m_word]のとき i == 0, len(m_words) == 1
+            if i + 1 == len(m_words):
+                break
+                # 名詞を見つけたら、その次の単語が名詞か調べる
+            if m_word.type == '名詞':
+                if m_words[i + 1].type == '名詞':
+                    # やった！ 見つけたぞ！
+                    # 名詞、名詞のコンボがあれば、m_wordsを再構成する
+                    new_m_words = self.combine_to_one_noun(m_words, i)
+                    return new_m_words
+        return m_words
+
+    def combine_to_one_noun(self, m_words, i):
+        left_m = m_words[i]
+        right_m = m_words[i + 1]
+        combined_m = MecabedNoun(left_m.name + right_m.name)
+        if i == 0 and len(m_words) == i + 2:
+            return [combined_m]
+        if i == 0 and len(m_words) != i + 2:
+            m_words_after_combine = [combined_m] + m_words[i + 2:]
+            return m_words_after_combine
+        if i != 0 and len(m_words) == i + 2:
+            m_words_after_combine = m_words[:i] + [combined_m]
+            return m_words_after_combine
+        m_words_after_combine = m_words[:i] + [combined_m] + m_words[i + 2:]
+        return m_words_after_combine
 
     def remove_tags(self, noisy_sentence):
         '''
@@ -225,10 +266,10 @@ class WebItem():
         self.text = html_tag_pattern.sub('', text)
 
     def set_verbs_from_text(self):
-        self.verbs = utils.verbs(self.text)
+        self.verbs = SentenceSeparator.verbs(self.text)
 
     def set_sahens_from_text(self):
-        self.sahens = utils.sahens(self.text)
+        self.sahens = SentenceSeparator.sahens(self.text)
 
     def noun_before_query(self, sentence, query):
         # ValueErrorが出るかも
@@ -244,14 +285,14 @@ class WebItem():
         results = []
         for sentence in self.sentences:
             if 'を' in sentence:
-                m_words = utils.m_words(sentence)
+                m_words = SentenceSeparator.m_words(sentence)
                 for i, m_word in enumerate(m_words):
                     if m_word.word_info == 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ':
                         wo_i = i
                         break
                 try:
-                    target = utils.target_from_m_words_and_wo_i(m_words, wo_i)
-                    action = utils.action_from_m_words_and_wo_i(m_words, wo_i)
+                    target = SentenceSeparator.target_from_m_words_and_wo_i(m_words, wo_i)
+                    action = SentenceSeparator.action_from_m_words_and_wo_i(m_words, wo_i)
                 except NameError:
                     target, action = '?', '?'
                 results.append(target + 'を' + action)

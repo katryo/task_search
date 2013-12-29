@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from web_item import WebItem
+from sentence_separator import SentenceSeparator
 
 STEP_WORDS = 'ステップ 手順 その'.split(' ')
 
@@ -7,9 +9,10 @@ class Labelable(WebItem):
     '''
     HeadingやSentenceが継承する
     '''
-    def __init__(self, string):
-        self.body = string.strip()
-        self.m_body_words = self.to_m_words(self.body)
+    def __init__(self, text):
+        self.body = text
+        sp = SentenceSeparator()
+        self.m_body_words = sp.m_words(self.body)
 
     def label_ends_with_verb(self):
         if self.m_body_words[-1].type == '動詞':

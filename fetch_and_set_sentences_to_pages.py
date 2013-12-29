@@ -8,6 +8,7 @@ if __name__ == '__main__':
     for page in pages:
         try:
             page.fetch_html()
+            print('フェッチ完了!')
             page.set_text_from_html_body()
             page.sentences = utils.split_by_dots(page.text)
         except (ValueError, IndexError):

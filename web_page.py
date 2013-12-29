@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import requests
-import cchardet
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
@@ -8,8 +7,7 @@ from mecabed_noun import MecabedNoun
 from task import Task
 from task_step import TaskStep
 from node import Node
-import re
-import pdb
+import utils
 
 
 class WebPage(WebItem):
@@ -356,3 +354,6 @@ class WebPage(WebItem):
             ad_info = {'title': title, 'snippet': snippet, 'link': link}
             ad = Ad(ad_info)
             self.ads.append(ad)
+
+    def set_sentences_from_text(self):
+        self.sentences = utils.split_by_dots(self.text)

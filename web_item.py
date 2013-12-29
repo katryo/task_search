@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from mecabed_word import MecabedWord
 from pyquery import PyQuery as pq
 import requests
@@ -238,3 +239,20 @@ class WebItem():
         m_words = self.combine_nouns(m_words)
         if m_words[-1].type == '名詞':
             return m_words[-1].name
+
+    def target_and_action_by_wo_from_sentences(self):
+        results = []
+        for sentence in self.sentences:
+            if 'を' in sentence:
+                m_words = utils.m_words(sentence)
+                for i, m_word in enumerate(m_words):
+                    if m_word.word_info == 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ':
+                        wo_i = i
+                        break
+                try:
+                    target = utils.target_from_m_words_and_wo_i(m_words, wo_i)
+                    action = utils.action_from_m_words_and_wo_i(m_words, wo_i)
+                except NameError:
+                    target, action = '?', '?'
+                results.append(target + 'を' + action)
+        return results

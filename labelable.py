@@ -1,8 +1,4 @@
 from web_item import WebItem
-ascii_nums = '0 1 2 3 4 5 6 7 8 9'.split(' ')
-jp_nums = '０ １ ２ ３ ４ ５ ６ ７ ８ ９'.split(' ')
-kanji_nums = '〇 一 二 三 四 五 六 七 八 九 十'.split(' ')
-NUM_LIKE_THINGS = ascii_nums.extend(jp_nums).extend(kanji_nums)
 
 STEP_WORDS = 'ステップ 手順 その'.split(' ')
 
@@ -35,8 +31,7 @@ class Labelable(WebItem):
             # 初期値がFalseなのでFalseのときset不要
 
     def is_starting_with_num(self):
-        for n in NUM_LIKE_THINGS:
-            if self.body.startswith(n):
-                return True
+        if self.body[0].isnumeric():
+            return True
         return False
 

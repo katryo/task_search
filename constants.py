@@ -1,5 +1,7 @@
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
+ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
+ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv'.split(' ')
 ACTION_WORD_IN_QUERY = 'を使う'
 SO_CALLED = 'という'
 QUERY = '部屋　掃除'
@@ -15,6 +17,8 @@ PICKLE_RESULT_DICT_NAME = 'hay_fever_result_dic.pkl'
 NUM_OF_FETCHED_PAGES = 50
 CLUE_WEB_URL_HEAD = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q='
 CLUE_WEB_URL_TAIL = '&wt=xml'
+
+
 TASK_WORDS = [
     'を使う', 'しましょう', 'てください', 'でください', 'で下さい', 'て下さい',
     'がおすすめ', 'がオススメ', '有効',

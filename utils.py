@@ -8,15 +8,6 @@ from web_page import WebPage
 import pdb
 
 
-def flatten(items_in_list):
-
-    """
-
-    :param items_in_list: ['あいう', ['えお', 'かき'], 'くけこ']
-    """
-    return chain.from_iterable(items_in_list)
-
-
 def split_by_dots(text):
     """
     再帰的にsplitして1つのlistにする
@@ -44,6 +35,12 @@ def visit_query_dir():
         os.mkdir(constants.FINAL_QUERY)
     os.chdir(constants.FINAL_QUERY)
 
+
+def go_to_entailment_dictionaries_dir():
+    os.chdir(constants.ENTAILMENT_DICTIONARIES_DIR_NAME)
+
+
+
 def split_and_flatten_by_a_certain_dot(texts, dot):
     """
     listを入れてlistを返す
@@ -60,12 +57,22 @@ def split_and_flatten_by_a_certain_dot(texts, dot):
     return results
 
 
+def load_entailment_dictionaries():
+    os.chdir(constants.ENTAILMENT_DICTIONARIES_DIR_NAME)
+    dictionaries = dict()
+    for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
+        with open('%s.pkl' % filename, 'rb') as f:
+            d = pickle.load(f)
+            dictionaries[filename] = d
+    os.chdir('..')
+    return dictionaries
+
 def load_fetched_pages():
-    path = os.path.join(constants.FETCHED_PAGES_DIR_NAME, constants.FINAL_QUERY)
+    path = os.path.join(constants.fetched_pages_dir_name, constants.final_query)
     os.chdir(path)
     pages = []
-    for i in range(constants.NUM_OF_FETCHED_PAGES):
-        with open('%s_%s.pkl' % (constants.FINAL_QUERY, str(i)), 'rb') as f:
+    for i in range(constants.num_of_fetched_pages):
+        with open('%s_%s.pkl' % (constants.final_query, str(i)), 'rb') as f:
             page = pickle.load(f)
             pages.append(page)
     return pages

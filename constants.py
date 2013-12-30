@@ -9,7 +9,7 @@ FINAL_QUERY = '掃除　方法'
 MIN_TFIDF = 0.1
 TFIDF_RESULT_PKL_FILENAME = 'tfidf_result.pkl'
 TFIDF_VECTORIZER_PKL_FILENAME = 'tfidf_vectorizer.pkl'
-
+PRONOUNS = 'それ あれ これ こちら そちら これら それら あれら'.split(' ')
 DOTS = '. ! ? 。 ！ ？'.split(' ')
 PICKLE_RESULT_DICT_NAME = 'hay_fever_result_dic.pkl'
 NUM_OF_FETCHED_PAGES = 50

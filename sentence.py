@@ -2,10 +2,16 @@
 from labelable import Labelable
 from mecabed_noun import MecabedNoun
 import patterns
+import constants
 import pdb
 
 
 class Sentence(Labelable):
+    def __init__(self, text):
+        super().__init__(text)
+        self.set_m_body_words_by_combine_nouns()
+
+
     def includes_wo(self):
         for m_body_word in self.m_body_words:
             if 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ' in m_body_word.word_info:
@@ -41,6 +47,9 @@ class Sentence(Labelable):
     def core_object(self):
         before_wo = self.m_words_before_wo()
         last_m = before_wo[-1]
+        for pronoun in constants.PRONOUNS:
+            if last_m.name == pronoun:
+                return 'pronoun'
         try:  # before_woが少ないかも
             before_last_m = before_wo[-2]
             if before_last_m.name == 'の':
@@ -60,9 +69,23 @@ class Sentence(Labelable):
     def core_verb(self):
         m_words_after_wo = self.m_words_after_wo()
         for i, m_word in enumerate(m_words_after_wo):
-            if m_word.type == '動詞' and m_word.c_form != '連用形':
+            if m_word.type == '動詞':
+                # 例 '運動しましょう'
                 if 'サ変' in m_word.word_info and m_words_after_wo[i-1].type == '名詞':
                     return m_words_after_wo[i-1].name + m_word.stem
+                if m_word.stem == 'くださる' or m_word.stem == '下さる':
+                    # 例 'ご遠慮ください'
+                    if m_words_after_wo[i-1].subtype == 'サ変接続':
+                        return m_words_after_wo[i-1].name + 'する'
+
+                    # 例 ご覧ください
+                    if m_words_after_wo[i-1].subtype == '動詞非自立的':
+                        return '見る'
+
+                    # 例 ドライヤーを当ててください
+                    if m_words_after_wo[i-1].name == 'て' and m_words_after_wo[i-2].type == '動詞':
+                        return m_words_after_wo[i-2].stem
+
                 return m_word.stem
         return '?'
 

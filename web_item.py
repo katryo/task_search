@@ -293,6 +293,7 @@ class WebItem():
             if type(sentence) == builtins.str:
                 # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
                 sentence = Sentence(sentence)
+                # sentence.set_m_body_words_by_combine_nouns()
             if not sentence.includes_wo():  # 'を'がなかったらダメ。次の人。
                 continue
             if not sentence.includes_directions():  # をしなさい がなかったらダメ

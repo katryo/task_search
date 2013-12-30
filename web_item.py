@@ -5,9 +5,11 @@ import pdb
 import cchardet
 import MeCab
 import re
+import builtins
 import sys
 from sentence_separator import SentenceSeparator
 from mecabed_noun import MecabedNoun
+from sentence import Sentence
 
 class WebItem():
 
@@ -281,19 +283,20 @@ class WebItem():
         if m_words[-1].type == '名詞':
             return m_words[-1].name
 
-    def target_and_action_by_wo_from_sentences(self):
+    def obj_and_verb_list_by_wo_from_sentences(self):
+        """
+        self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
+        """
         results = []
+        # sentenceはただのstrかもしれない。
         for sentence in self.sentences:
-            if 'を' in sentence:
-                m_words = SentenceSeparator.m_words(sentence)
-                for i, m_word in enumerate(m_words):
-                    if m_word.word_info == 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ':
-                        wo_i = i
-                        break
-                try:
-                    target = SentenceSeparator.target_from_m_words_and_wo_i(m_words, wo_i)
-                    action = SentenceSeparator.action_from_m_words_and_wo_i(m_words, wo_i)
-                except NameError:
-                    target, action = '?', '?'
-                results.append(target + 'を' + action)
+            if type(sentence) == builtins.str:
+                # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
+                sentence = Sentence(sentence)
+            if not sentence.includes_wo():  # 'を'がなかったらダメ。次の人。
+                continue
+            if not sentence.includes_directions():  # をしなさい がなかったらダメ
+                continue
+            results.append(sentence.core_obj_and_verb())
         return results
+

@@ -10,6 +10,9 @@ class TestSentence(unittest.TestCase):
         self.sentence_1 = Sentence('夏野菜へのシフトをスタートさせましょう')
         self.sentence_1.set_m_body_words_by_combine_nouns()
 
+        self.sentence_2 = Sentence('クワなどは体格や体力に応じたものを、吟味して選ぶようにしましょう')
+        self.sentence_2.set_m_body_words_by_combine_nouns()
+
     def test_includes_wo(self):
         result = self.sentence_1.includes_wo()
         self.assertEqual(result, True)
@@ -28,9 +31,13 @@ class TestSentence(unittest.TestCase):
         result = self.sentence_1.core_object()
         self.assertEqual(result, '夏野菜へのシフト')
 
+        self.assertEqual(self.sentence_2.core_object(), 'もの')
+
     def test_core_verb(self):
         result = self.sentence_1.core_verb()
         self.assertEqual(result, 'スタートする')
+
+        self.assertEqual(self.sentence_2.core_verb(), '選ぶ')
 
 if __name__ == '__main__':
     unittest.main()

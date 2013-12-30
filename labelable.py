@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from web_item import WebItem
 from sentence_separator import SentenceSeparator
-
 STEP_WORDS = 'ステップ 手順 その'.split(' ')
 
 
-class Labelable(WebItem):
+class Labelable():
     '''
     HeadingやSentenceが継承する
     '''

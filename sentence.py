@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from labelable import Labelable
 from mecabed_noun import MecabedNoun
+import patterns
 import pdb
 
 
@@ -10,6 +11,15 @@ class Sentence(Labelable):
             if 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ' in m_body_word.word_info:
                 return True
         return False
+
+    def includes_directions(self):
+        for direction in patterns.directions:
+            if direction in self.body:
+                return True
+        return False
+
+    def core_obj_and_verb(self):
+        return self.core_object() + 'を' + self.core_verb()
 
     def wo_i(self):
         for i, m_body_word in enumerate(self.m_body_words):
@@ -53,9 +63,8 @@ class Sentence(Labelable):
             if m_word.type == '動詞' and m_word.c_form != '連用形':
                 if 'サ変' in m_word.word_info and m_words_after_wo[i-1].type == '名詞':
                     return m_words_after_wo[i-1].name + m_word.stem
-                return m_word.name
+                return m_word.stem
         return '?'
-
 
     def set_m_body_words_by_combine_nouns(self):
         self.m_body_words = self.combine_nouns(self.m_body_words)
@@ -102,3 +111,4 @@ class Sentence(Labelable):
             return m_words_after_combine
         m_words_after_combine = m_words[:i] + [combined_m] + m_words[i + 2:]
         return m_words_after_combine
+

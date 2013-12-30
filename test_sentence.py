@@ -41,8 +41,16 @@ class TestSentence(unittest.TestCase):
         result = self.sentence_1.core_verb()
         self.assertEqual(result, 'スタートする')
 
-        self.assertEqual(self.sentence_2.core_verb(), '選ぶ')
+        self.assertEqual(self.sentence_2.core_verb(), '吟味する')
         self.assertEqual(self.sentence_3.core_verb(), '解説する')
+
+    def test_direction_i(self):
+        result_1 = self.sentence_1.direction_i()
+        self.assertEqual(result_1, 8)
+
+    def test_includes_wo_before_direction(self):
+        result_1 = self.sentence_1.includes_wo_before_direction()
+        self.assertEqual(result_1, True)
 
 if __name__ == '__main__':
     unittest.main()

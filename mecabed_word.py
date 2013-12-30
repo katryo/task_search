@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import constants
 import pdb
 
 class MecabedWord:
@@ -33,4 +34,10 @@ class MecabedWord:
             return True
         if self.name == "は" and self.type == "助詞" and self.subtype == "係助詞":
             return True
+        return False
+
+    def is_pronoun(self):
+        for pronoun in constants.PRONOUNS:
+            if self.name == pronoun:
+                return True
         return False

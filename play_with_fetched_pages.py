@@ -10,4 +10,4 @@ if __name__ == '__main__':
         results = page.obj_and_verb_list_by_wo_from_sentences()
         if results:
             print(results)
-            print('%i番目のWebPage' % i)
+            # print('%i番目のWebPage' % i)

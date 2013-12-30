@@ -4,12 +4,22 @@ from mecabed_noun import MecabedNoun
 import patterns
 import constants
 import pdb
+from sentence_classifier import SentenceClassifier
 
 
 class Sentence(Labelable):
     def __init__(self, text):
         super().__init__(text)
         self.set_m_body_words_by_combine_nouns()
+
+    def includes_wo_before_direction(self):
+        if not self.includes_wo():  # 'を'がなかったらダメ。次の人。
+            return False
+        if not self.includes_directions():  # をしなさい がなかったらダメ
+            return False
+        if self.wo_i() < self.direction_i():
+            return True
+        return False
 
 
     def includes_wo(self):
@@ -33,6 +43,11 @@ class Sentence(Labelable):
                 return i
         raise ValueError
 
+    def direction_i(self):
+        sc = SentenceClassifier(self)
+        return sc.direction_i()
+        # directionは文字列、woはm_wordでやってたからちょい面倒
+
     def m_words_before_wo(self):
         """
         include_woでをがあることを確認してから使ってくれ
@@ -47,9 +62,8 @@ class Sentence(Labelable):
     def core_object(self):
         before_wo = self.m_words_before_wo()
         last_m = before_wo[-1]
-        for pronoun in constants.PRONOUNS:
-            if last_m.name == pronoun:
-                return 'pronoun'
+        if last_m.is_pronoun():
+            return 'pronoun'
         try:  # before_woが少ないかも
             before_last_m = before_wo[-2]
             if before_last_m.name == 'の':

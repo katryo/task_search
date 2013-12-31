@@ -23,9 +23,17 @@ class Sentence(Labelable):
         return False
 
     def includes_wo(self):
+        # TODO:あとでけす
         for m_body_word in self.m_body_words:
             if 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ' in m_body_word.word_info:
                 return True
+        return False
+
+    def includes_cmp(self):
+        for m_body_word in self.m_body_words:
+            for cmp_info in constants.CMP_INFO_LIST:
+                if cmp_info in m_body_word.word_info:
+                    return True
         return False
 
     def includes_directions(self):
@@ -34,13 +42,17 @@ class Sentence(Labelable):
                 return True
         return False
 
-    def core_obj_and_predicate(self):
-        return self.core_object() + 'を' + self.core_predicate()
-
     def wo_i(self):
         for i, m_body_word in enumerate(self.m_body_words):
             if 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ' in m_body_word.word_info:
                 return i
+        raise ValueError
+
+    def cmp_i(self):
+        for i, m_body_word in enumerate(self.m_body_words):
+            for cmp_info in constants.CMP_INFO_LIST:
+                if cmp_info == m_body_word.word_info:
+                    return i
         raise ValueError
 
     def direction_i(self):

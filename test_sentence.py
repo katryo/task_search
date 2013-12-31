@@ -12,6 +12,12 @@ class TestSentence(unittest.TestCase):
         self.sentence_3 = Sentence('トイレ掃除方法を、解説していきましょう')
         self.sentence_4 = Sentence('地面を掘り上げていきましょう')
 
+        self.sentence_5 = Sentence('右に移動してください')
+
+    def test_includes_cmp(self):
+        result = self.sentence_5.includes_cmp()
+        self.assertEqual(result, True)
+
     def test_set_m_body_words_by_combine_words(self):
         result = self.sentence_4.m_body_words[2].name
         self.assertEqual(result, '掘り上げ')

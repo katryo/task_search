@@ -2,6 +2,7 @@ my_keys.py
 entailment_dictionaries/
 *.py[cod]
 .idea/
+.idea/*
 # C extensions
 *.so
 

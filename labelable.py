@@ -46,7 +46,7 @@ class Labelable():
                 return True
         return False
 
-    def starts_with_num(self):
+    def start_with_num(self):
         if self.body[0].isnumeric():
             return True
         return False

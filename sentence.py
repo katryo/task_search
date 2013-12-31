@@ -13,12 +13,12 @@ class Sentence(Labelable):
         super().__init__(text)
         self.set_m_body_words_by_combine_words()
 
-    def includes_wo_before_direction(self):
-        if not self.includes_wo():  # 'を'がなかったらダメ。次の人。
+    def includes_cmp_before_direction(self):
+        if not self.includes_cmp():  # 'を'などがなかったらダメ。次の人。
             return False
         if not self.includes_directions():  # をしなさい がなかったらダメ
             return False
-        if self.wo_i() < self.direction_i():
+        if self.cmp_i() < self.direction_i():
             return True
         return False
 
@@ -29,6 +29,7 @@ class Sentence(Labelable):
                 return True
         return False
 
+    # 最初にcmpを見つけたらそのindexを返す。
     def includes_cmp(self):
         for m_body_word in self.m_body_words:
             for cmp_info in constants.CMP_INFO_LIST:
@@ -60,34 +61,34 @@ class Sentence(Labelable):
         return sc.direction_i()
         # directionは文字列、woはm_wordでやってたからちょい面倒
 
-    def m_words_before_wo(self):
+    def m_words_before_cmp(self):
         """
-        include_woでをがあることを確認してから使ってくれ
+        include_cmpでをがあることを確認してから使ってくれ
         """
-        results = self.m_body_words[:self.wo_i()]
+        results = self.m_body_words[:self.cmp_i()]
         return results
 
-    def m_words_after_wo(self):
-        results = self.m_body_words[self.wo_i()+1:]
+    def m_words_after_cmp(self):
+        results = self.m_body_words[self.cmp_i()+1:]
         return results
 
     def core_object(self):
-        before_wo = self.m_words_before_wo()
+        before_cmp = self.m_words_before_cmp()
         try:
-            last_m = before_wo[-1]
+            last_m = before_cmp[-1]
         # を理解していきましょう のように、をの前がないとき
         except IndexError:
             return ''
         if last_m.is_pronoun():
             return 'pronoun'
         try:  # before_woが少ないかも
-            before_last_m = before_wo[-2]
+            before_last_m = before_cmp[-2]
             if before_last_m.name == 'の':
                 #  'その階で金の剣を売ってください'は「金の剣を売る」になるべき
-                before_no = before_wo[-3].name
+                before_no = before_cmp[-3].name
                 #  '夏野菜へのシフトをスタートさせましょう'は「夏野菜へのシフトをスタート」になるべき
                 if before_no == 'へ':
-                    before_before_no = before_wo[-4].name
+                    before_before_no = before_cmp[-4].name
                     return before_before_no + 'への' + last_m.name
 
                 #  'その階で金の剣を売ってください'はここに来る
@@ -97,24 +98,24 @@ class Sentence(Labelable):
             return last_m.name
 
     def core_predicate(self):
-        m_words_after_wo = self.m_words_after_wo()
-        for i, m_word in enumerate(m_words_after_wo):
+        m_words_after_cmp = self.m_words_after_cmp()
+        for i, m_word in enumerate(m_words_after_cmp):
             if m_word.type == '動詞':
                 # 例 '運動しましょう'
-                if 'サ変' in m_word.word_info and m_words_after_wo[i-1].type == '名詞':
-                    return m_words_after_wo[i-1].name + m_word.stem
+                if 'サ変' in m_word.word_info and m_words_after_cmp[i-1].type == '名詞':
+                    return m_words_after_cmp[i-1].name + m_word.stem
                 if m_word.stem == 'くださる' or m_word.stem == '下さる':
                     # 例 'ご遠慮ください'
-                    if m_words_after_wo[i-1].subtype == 'サ変接続':
-                        return m_words_after_wo[i-1].name + 'する'
+                    if m_words_after_cmp[i-1].subtype == 'サ変接続':
+                        return m_words_after_cmp[i-1].name + 'する'
 
                     # 例 ご覧ください
-                    if m_words_after_wo[i-1].subtype == '動詞非自立的':
+                    if m_words_after_cmp[i-1].subtype == '動詞非自立的':
                         return '見る'
 
                     # 例 ドライヤーを当ててください
-                    if m_words_after_wo[i-1].name == 'て' and m_words_after_wo[i-2].type == '動詞':
-                        return m_words_after_wo[i-2].stem
+                    if m_words_after_cmp[i-1].name == 'て' and m_words_after_cmp[i-2].type == '動詞':
+                        return m_words_after_cmp[i-2].stem
 
                 return m_word.stem
         return '?'

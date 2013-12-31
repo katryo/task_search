@@ -293,7 +293,7 @@ class WebItem():
             if type(sentence) == builtins.str:
                 # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
                 sentence = Sentence(sentence)
-            if not sentence.includes_wo_before_direction():
+            if not sentence.includes_cmp_before_direction():
                 continue
             if sentence.core_object() == 'pronoun':
                 continue

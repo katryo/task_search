@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labelable.py" afterPath="$PROJECT_DIR$/labelable.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_item.py" afterPath="$PROJECT_DIR$/web_item.py" />
     </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -20,7 +19,7 @@
     <file path="/try_scikitlearn.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383566225785" ignored="false" />
     <file path="/precision_recall.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383548628776" ignored="false" />
     <file path="/topic_model_in_narou.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383557243452" ignored="false" />
-    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388476624663" ignored="false" />
+    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388482353170" ignored="false" />
     <file path="/html_part.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385279577826" ignored="false" />
     <file path="/block.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533503545" ignored="false" />
     <file path="/paragraph.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533523318" ignored="false" />
@@ -276,10 +275,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="labelable.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="labelable.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/labelable.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="7" selection-start="368" selection-end="368" vertical-scroll-proportion="0.3343239">
+                <state line="15" column="24" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="e#24#72#0" expanded="true" />
                   </folding>
@@ -305,10 +304,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="web_item.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="web_item.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/web_item.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="292" column="29" selection-start="9894" selection-end="9894" vertical-scroll-proportion="0.0">
+                <state line="309" column="52" selection-start="10644" selection-end="10644" vertical-scroll-proportion="0.6433878">
                   <folding />
                 </state>
               </provider>
@@ -344,12 +343,12 @@
         <option value="$PROJECT_DIR$/mecabed_verb.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
-        <option value="$PROJECT_DIR$/web_item.py" />
         <option value="$PROJECT_DIR$/sentence.py" />
         <option value="$PROJECT_DIR$/test_sentence.py" />
         <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/play_with_fetched_pages.py" />
         <option value="$PROJECT_DIR$/labelable.py" />
+        <option value="$PROJECT_DIR$/web_item.py" />
       </list>
     </option>
   </component>
@@ -762,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web_item.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="292" column="29" selection-start="9894" selection-end="9894" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_sentence.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="59" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0">
@@ -806,10 +798,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/labelable.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="368" selection-end="368" vertical-scroll-proportion="0.3343239">
+        <state line="15" column="24" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#24#72#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_item.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="309" column="52" selection-start="10644" selection-end="10644" vertical-scroll-proportion="0.6433878">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -295,10 +295,25 @@ class WebItem():
                 sentence = Sentence(sentence)
             if not sentence.includes_cmp_before_direction():
                 continue
-            if sentence.core_object() == 'pronoun':
-                continue
             # を理解していきましょう のように、をの前がないとき
             if not sentence.core_object():
+                continue
+            # varで始まるのはたいていJavaScript
+            if sentence.core_object().startswith('var'):
+                continue
+            if sentence.core_object().startswith('listli'):
+                continue
+            if sentence.core_object().startswith('ビューワソフト'):
+                continue
+            if sentence.core_object().startswith('JavaScript対応'):
+                continue
+            if sentence.core_object().startswith('goo'):
+                continue
+            if sentence.core_object().startswith('ヤフーGoogle'):
+                continue
+            if sentence.core_object().startswith('className'):
+                continue
+            if sentence.core_object() == 'pronoun':
                 continue
             results.append(
                 {'object': sentence.core_object(),

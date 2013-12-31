@@ -22,32 +22,29 @@ class TestSentence(unittest.TestCase):
         result = self.sentence_4.m_body_words[2].name
         self.assertEqual(result, '掘り上げ')
 
-    def test_includes_wo(self):
-        result = self.sentence_1.includes_wo()
-        self.assertEqual(result, True)
 
     def test_m_words_before_wo(self):
-        m_words = self.sentence_1.m_words_before_wo()
+        m_words = self.sentence_1.m_words_before_cmp()
         results = [m.name for m in m_words]
-        self.assertEqual(results, ['夏野菜', 'へ', 'の', 'シフト'])
+        self.assertEqual(results, ['夏野菜'])
 
     def test_m_words_after_wo(self):
-        m_words = self.sentence_1.m_words_after_wo()
+        m_words = self.sentence_1.m_words_after_cmp()
         results = [m.name for m in m_words]
-        self.assertEqual(results, ['スタート', 'さ', 'せ', 'ましょ', 'う'])
+        self.assertEqual(results, ['の', 'シフト', 'を', 'スタート', 'さ', 'せ', 'ましょ', 'う'])
 
     def test_core_object(self):
         result = self.sentence_1.core_object()
-        self.assertEqual(result, '夏野菜へのシフト')
+        self.assertEqual(result, '夏野菜')
 
-        self.assertEqual(self.sentence_2.core_object(), 'もの')
+        self.assertEqual(self.sentence_2.core_object(), '体力')
         self.assertEqual(self.sentence_3.core_object(), 'トイレ掃除方法')
 
     def test_core_verb(self):
         result = self.sentence_1.core_predicate()
         self.assertEqual(result, 'スタートする')
 
-        self.assertEqual(self.sentence_2.core_predicate(), '吟味する')
+        self.assertEqual(self.sentence_2.core_predicate(), '応じる')
         self.assertEqual(self.sentence_3.core_predicate(), '解説する')
 
     def test_direction_i(self):
@@ -55,7 +52,7 @@ class TestSentence(unittest.TestCase):
         self.assertEqual(result_1, 8)
 
     def test_includes_wo_before_direction(self):
-        result_1 = self.sentence_1.includes_wo_before_direction()
+        result_1 = self.sentence_1.includes_cmp_before_direction()
         self.assertEqual(result_1, True)
 
 if __name__ == '__main__':

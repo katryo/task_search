@@ -19,7 +19,7 @@ NUM_OF_FETCHED_PAGES = 50
 CLUE_WEB_URL_HEAD = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q='
 CLUE_WEB_URL_TAIL = '&wt=xml'
 
-PARENTHESIS = '( ) { } [ ] < > 「 」 《 》 〈 〉 『 』 【 】 （ ） \' ’ \" ” "'.split(' ')
+PARENTHESIS = '{ } [ ] < > 「 」 《 》 〈 〉 『 』 【 】 \' ’ \" ” "'.split(' ')
 ROUND_PARENTHESIS = '( ) （ ）'.split(' ')
 
 # を|に|へ|で|から

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from sentence_separator import SentenceSeparator
 import constants
+import pdb
 import re
 STEP_WORDS = 'ステップ 手順 その'.split(' ')
 
@@ -10,17 +11,32 @@ class Labelable():
     HeadingやSentenceが継承する
     '''
     def __init__(self, text):
-        text = self.remove_parenthesis(text)
-        self.body = self.remove_inside_round_parenthesis(text)
+        self.body = self.remove_parenthesis(text)
+        self.set_blank_if_not_includes_hiragana_or_karakana()
+        self.body = self.remove_inside_round_parenthesis(self.body)
         sp = SentenceSeparator()
         self.m_body_words = sp.m_words(self.body)
+
+    def set_blank_if_not_includes_hiragana_or_karakana(self):
+        if not self.includes_hiragana_or_katakana():
+            self.body = ''
+
+    def includes_hiragana_or_katakana(self):
+        katakana_pattern = re.compile('[ァ-ヾ]')
+        hiragana_pattern = re.compile('[ぁ-ゞ]')
+        if katakana_pattern.match(self.body) or hiragana_pattern.match(self.body):
+            return True
+        return False
 
     def remove_inside_round_parenthesis(self, text):
         for parentheses in constants.ROUND_PARENTHESIS:
             if parentheses in text:
                 pattern_1 = re.compile('（.*?）')
                 pattern_2 = re.compile('\(.*?\)')
-                text = pattern_1.sub(text, '')
+                try:
+                    text = pattern_1.sub(text, '')
+                except:
+                    pdb.set_trace()
                 text = pattern_2.sub(text, '')
         return text
 

@@ -22,12 +22,6 @@ class Sentence(Labelable):
             return True
         return False
 
-    def includes_wo(self):
-        # TODO:あとでけす
-        for m_body_word in self.m_body_words:
-            if 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ' in m_body_word.word_info:
-                return True
-        return False
 
     # 最初にcmpを見つけたらそのindexを返す。
     def includes_cmp(self):
@@ -42,12 +36,6 @@ class Sentence(Labelable):
             if direction in self.body:
                 return True
         return False
-
-    def wo_i(self):
-        for i, m_body_word in enumerate(self.m_body_words):
-            if 'を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ' in m_body_word.word_info:
-                return i
-        raise ValueError
 
     def cmp_i(self):
         for i, m_body_word in enumerate(self.m_body_words):

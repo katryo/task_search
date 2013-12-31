@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from labelable import Labelable
 from mecabed_noun import MecabedNoun
+from mecabed_verb import MecabedVerb
 import patterns
 import constants
 import pdb
@@ -10,7 +11,7 @@ from sentence_classifier import SentenceClassifier
 class Sentence(Labelable):
     def __init__(self, text):
         super().__init__(text)
-        self.set_m_body_words_by_combine_nouns()
+        self.set_m_body_words_by_combine_words()
 
     def includes_wo_before_direction(self):
         if not self.includes_wo():  # 'を'がなかったらダメ。次の人。
@@ -20,7 +21,6 @@ class Sentence(Labelable):
         if self.wo_i() < self.direction_i():
             return True
         return False
-
 
     def includes_wo(self):
         for m_body_word in self.m_body_words:
@@ -34,8 +34,8 @@ class Sentence(Labelable):
                 return True
         return False
 
-    def core_obj_and_verb(self):
-        return self.core_object() + 'を' + self.core_verb()
+    def core_obj_and_predicate(self):
+        return self.core_object() + 'を' + self.core_predicate()
 
     def wo_i(self):
         for i, m_body_word in enumerate(self.m_body_words):
@@ -61,7 +61,11 @@ class Sentence(Labelable):
 
     def core_object(self):
         before_wo = self.m_words_before_wo()
-        last_m = before_wo[-1]
+        try:
+            last_m = before_wo[-1]
+        # を理解していきましょう のように、をの前がないとき
+        except IndexError:
+            return ''
         if last_m.is_pronoun():
             return 'pronoun'
         try:  # before_woが少ないかも
@@ -80,7 +84,7 @@ class Sentence(Labelable):
         except IndexError:  # len(before_wo)が小さいときはここに来る
             return last_m.name
 
-    def core_verb(self):
+    def core_predicate(self):
         m_words_after_wo = self.m_words_after_wo()
         for i, m_word in enumerate(m_words_after_wo):
             if m_word.type == '動詞':
@@ -103,8 +107,31 @@ class Sentence(Labelable):
                 return m_word.stem
         return '?'
 
-    def set_m_body_words_by_combine_nouns(self):
+    def set_m_body_words_by_combine_words(self):
         self.m_body_words = self.combine_nouns(self.m_body_words)
+        self.m_body_words = self.combine_verbs(self.m_body_words)
+
+    def combine_verbs(self, m_words):
+        new_m_words = self._try_combine_verbs(m_words)
+        # 合致するまで=変化しなくなるまで繰り返す
+        if new_m_words == m_words:
+            return m_words
+        else:
+            return self.combine_verbs(new_m_words)
+
+    def _try_combine_verbs(self, m_words):
+        for i, m_word in enumerate(m_words):
+            # 最後の単語は次がないので連続しない
+            # m_words == [m_word]のとき i == 0, len(m_words) == 1
+            if i + 1 == len(m_words):
+                break
+                # 名詞を見つけたら、その次の単語が名詞か調べる
+            if m_word.subtype == '自立':
+                if m_words[i + 1].subtype == '自立':
+                    # やった！ 見つけたぞ！
+                    # 名詞、名詞のコンボがあれば、m_wordsを再構成する
+                    return self._combine_to_one_word(m_words, i, pos='動詞')
+        return m_words
 
     def combine_nouns(self, m_words):
         """
@@ -125,19 +152,23 @@ class Sentence(Labelable):
             # m_words == [m_word]のとき i == 0, len(m_words) == 1
             if i + 1 == len(m_words):
                 break
-                # 名詞を見つけたら、その次の単語が名詞か調べる
+            # 名詞を見つけたら、その次の単語が名詞か調べる
             if m_word.type == '名詞':
                 if m_words[i + 1].type == '名詞':
                     # やった！ 見つけたぞ！
                     # 名詞、名詞のコンボがあれば、m_wordsを再構成する
-                    new_m_words = self._combine_to_one_noun(m_words, i)
-                    return new_m_words
+                    return self._combine_to_one_word(m_words, i, pos='名詞')
         return m_words
 
-    def _combine_to_one_noun(self, m_words, i):
+
+    # nounでもverbでも使う
+    def _combine_to_one_word(self, m_words, i, pos):
         left_m = m_words[i]
         right_m = m_words[i + 1]
-        combined_m = MecabedNoun(left_m.name + right_m.name)
+        if pos == '名詞':
+            combined_m = MecabedNoun(left_m.name + right_m.name)
+        else:
+            combined_m = MecabedVerb(left_m.name + right_m.name)
         if i == 0 and len(m_words) == i + 2:
             return [combined_m]
         if i == 0 and len(m_words) != i + 2:

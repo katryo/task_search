@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mecabed_verb.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" afterPath="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labelable.py" afterPath="$PROJECT_DIR$/labelable.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/play_with_fetched_pages.py" afterPath="$PROJECT_DIR$/play_with_fetched_pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentence.py" afterPath="$PROJECT_DIR$/sentence.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_sentence.py" afterPath="$PROJECT_DIR$/test_sentence.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils.py" afterPath="$PROJECT_DIR$/utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_item.py" afterPath="$PROJECT_DIR$/web_item.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="task_search.iws" />
@@ -19,7 +28,7 @@
     <file path="/try_scikitlearn.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383566225785" ignored="false" />
     <file path="/precision_recall.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383548628776" ignored="false" />
     <file path="/topic_model_in_narou.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383557243452" ignored="false" />
-    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388397518913" ignored="false" />
+    <file path="/web_item.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388474184390" ignored="false" />
     <file path="/html_part.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385279577826" ignored="false" />
     <file path="/block.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533503545" ignored="false" />
     <file path="/paragraph.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533523318" ignored="false" />
@@ -28,8 +37,8 @@
     <file path="/controller.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385622187188" ignored="false" />
     <file path="/local_controller.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636345093" ignored="false" />
     <file path="/heading.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385633988638" ignored="false" />
-    <file path="/labelable.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388314701709" ignored="false" />
-    <file path="/sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388397097364" ignored="false" />
+    <file path="/labelable.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388474099343" ignored="false" />
+    <file path="/sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388472555045" ignored="false" />
     <file path="$PROJECT_DIR$/fetch_html/__init__.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636823615" ignored="false" />
     <file path="$PROJECT_DIR$/fetch_html/py/__init__.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636823615" ignored="false" />
     <file path="/fetch_html.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385638265364" ignored="false" />
@@ -41,7 +50,7 @@
     <file path="/mecabed_noun.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388318196666" ignored="false" />
     <file path="/load_fetched_pages_and_search.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387185821975" ignored="false" />
     <file path="/fetch_web_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387179689266" ignored="false" />
-    <file path="/constants.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388417226177" ignored="false" />
+    <file path="/constants.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388473351583" ignored="false" />
     <file path="/collect_past_words_from_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1387706179403" ignored="false" />
     <file path="/utils.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388418032521" ignored="false" />
     <file path="/mecabed_word.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388390663795" ignored="false" />
@@ -57,10 +66,10 @@
     <file path="/play_with_saved_tfidf.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388056321617" ignored="false" />
     <file path="/set_tfidf_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388115409778" ignored="false" />
     <file path="/patterns.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388391617263" ignored="false" />
-    <file path="/play_with_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388386993604" ignored="false" />
+    <file path="/play_with_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388471731309" ignored="false" />
     <file path="/set_sentences_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388121759296" ignored="false" />
     <file path="/set_sentences_to_all_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388121952435" ignored="false" />
-    <file path="/test_sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388397413364" ignored="false" />
+    <file path="/test_sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388471679818" ignored="false" />
     <file path="/sentence_separater.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388312684399" ignored="false" />
     <file path="/sentence_separator.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388314552658" ignored="false" />
     <file path="/a.dummy" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388384941966" ignored="false" />
@@ -68,6 +77,7 @@
     <file path="/test_sentence_classifier.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388397030053" ignored="false" />
     <file path="/build_entailment_dictionaries.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388417960297" ignored="false" />
     <file path="/play_with_entailment_dictionaries.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388418098396" ignored="false" />
+    <file path="/mecabed_verb.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388471542783" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +90,11 @@
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
+  </component>
+  <component name="DatabaseView">
+    <flatten value="false" />
+    <groupTables value="false" />
+    <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
@@ -133,16 +148,16 @@
           <file leaf-file-name="utils.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/utils.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="66" column="0" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.0">
+                <state line="41" column="0" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="play_with_entailment_dictionaries.py" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="play_with_entailment_dictionaries.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/play_with_entailment_dictionaries.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.20361991">
+                <state line="6" column="0" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="e#24#36#0" expanded="true" />
                   </folding>
@@ -162,8 +177,10 @@
           <file leaf-file-name="play_with_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="0" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
-                  <folding />
+                <state line="13" column="34" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#24#36#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -180,7 +197,7 @@
           <file leaf-file-name="constants.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/constants.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="34" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
+                <state line="22" column="40" selection-start="988" selection-end="988" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -195,11 +212,13 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sentence.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="sentence.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sentence.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="8" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0">
-                  <folding />
+                <state line="67" column="20" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.5794948">
+                  <folding>
+                    <element signature="e#24#55#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -208,15 +227,6 @@
             <entry file="file://$PROJECT_DIR$/patterns.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="10" column="10" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="web_item.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web_item.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="0" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -235,28 +245,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="test_sentence.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="test_sentence.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test_sentence.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="web_page.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web_page.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="313" column="20" selection-start="11030" selection-end="11033" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mecabed_word.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mecabed_word.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="20" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.0">
+                <state line="16" column="37" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -265,7 +257,16 @@
           <file leaf-file-name="sentence_separator.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sentence_separator.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="124" column="40" selection-start="3812" selection-end="3812" vertical-scroll-proportion="0.0">
+                <state line="115" column="8" selection-start="3521" selection-end="3521" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sentence_classifier.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/sentence_classifier.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="52" column="0" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -274,7 +275,16 @@
           <file leaf-file-name="mecabed_noun.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mecabed_noun.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="15" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0">
+                <state line="9" column="26" selection-start="0" selection-end="233" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mecabed_verb.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mecabed_verb.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -283,8 +293,21 @@
           <file leaf-file-name="labelable.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/labelable.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.0">
-                  <folding />
+                <state line="13" column="62" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#24#72#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="fetch_and_set_sentences_to_pages.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#24#40#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -293,6 +316,15 @@
             <entry file="file://$PROJECT_DIR$/test_sentence_classifier.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="41" column="35" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="web_item.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/web_item.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="302" column="0" selection-start="10286" selection-end="10286" vertical-scroll-proportion="0.7548291">
                   <folding />
                 </state>
               </provider>
@@ -318,22 +350,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/sentence_separator.py" />
-        <option value="$PROJECT_DIR$/web_page.py" />
         <option value="$PROJECT_DIR$/mecabed_noun.py" />
-        <option value="$PROJECT_DIR$/labelable.py" />
         <option value="$PROJECT_DIR$/mecabed_word.py" />
         <option value="$PROJECT_DIR$/patterns.py" />
         <option value="$PROJECT_DIR$/sentence_classifier.py" />
         <option value="$PROJECT_DIR$/test_sentence_classifier.py" />
-        <option value="$PROJECT_DIR$/sentence.py" />
-        <option value="$PROJECT_DIR$/test_sentence.py" />
-        <option value="$PROJECT_DIR$/web_item.py" />
-        <option value="$PROJECT_DIR$/play_with_fetched_pages.py" />
-        <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/build_entailment_dictionaries.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/play_with_entailment_dictionaries.py" />
+        <option value="$PROJECT_DIR$/mecabed_verb.py" />
+        <option value="$PROJECT_DIR$/test_sentence.py" />
+        <option value="$PROJECT_DIR$/play_with_fetched_pages.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/sentence.py" />
+        <option value="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
+        <option value="$PROJECT_DIR$/constants.py" />
+        <option value="$PROJECT_DIR$/labelable.py" />
+        <option value="$PROJECT_DIR$/web_item.py" />
       </list>
     </option>
   </component>
@@ -592,13 +624,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="22" width="1436" height="878" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -611,7 +643,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.107913665" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.107913665" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -685,100 +717,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/labelable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_sentence_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="35" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_web_pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="31" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web_item.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sentence.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="8" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="34" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="0" selection-start="6542" selection-end="6542" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_ads_with_suggested_query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="46" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sentence_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_html.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build_entailment_dictionaries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/play_with_entailment_dictionaries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.20361991">
-          <folding>
-            <element signature="e#24#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pattern_matcher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
@@ -786,10 +724,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/play_with_entailment_dictionaries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentence_separator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="8" selection-start="3521" selection-end="3521" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentence_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mecabed_noun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="26" selection-start="0" selection-end="233" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="313" column="20" selection-start="11030" selection-end="11033" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_sentence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="37" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mecabed_word.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="20" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="0" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="34" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mecabed_verb.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="40" selection-start="988" selection-end="988" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labelable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="62" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_item.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="302" column="0" selection-start="10286" selection-end="10286" vertical-scroll-proportion="0.7548291">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="20" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.5794948">
+          <folding>
+            <element signature="e#24#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

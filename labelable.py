@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from sentence_separator import SentenceSeparator
+import constants
+import re
 STEP_WORDS = 'ステップ 手順 その'.split(' ')
 
 
@@ -8,9 +10,27 @@ class Labelable():
     HeadingやSentenceが継承する
     '''
     def __init__(self, text):
-        self.body = text
+        text = self.remove_parenthesis(text)
+        self.body = self.remove_inside_round_parenthesis(text)
         sp = SentenceSeparator()
         self.m_body_words = sp.m_words(self.body)
+
+    def remove_inside_round_parenthesis(self, text):
+        for parentheses in constants.ROUND_PARENTHESIS:
+            if parentheses in text:
+                pattern_1 = re.compile('（.*?）')
+                pattern_2 = re.compile('\(.*?\)')
+                text = pattern_1.sub(text, '')
+                text = pattern_2.sub(text, '')
+        return text
+
+
+
+    def remove_parenthesis(self, text):
+        for parentheses in constants.PARENTHESIS:
+            text = text.replace(parentheses, '')
+        return text
+
 
     def label_ends_with_verb(self):
         if self.m_body_words[-1].type == '動詞':
@@ -26,12 +46,7 @@ class Labelable():
                 return True
         return False
 
-    def label_starts_with_num(self):
-        if self.is_starting_with_num():
-            self.features['starts_with_num'] = True
-            # 初期値がFalseなのでFalseのときset不要
-
-    def is_starting_with_num(self):
+    def starts_with_num(self):
         if self.body[0].isnumeric():
             return True
         return False

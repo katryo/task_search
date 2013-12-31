@@ -40,7 +40,6 @@ def go_to_entailment_dictionaries_dir():
     os.chdir(constants.ENTAILMENT_DICTIONARIES_DIR_NAME)
 
 
-
 def split_and_flatten_by_a_certain_dot(texts, dot):
     """
     listを入れてlistを返す
@@ -66,6 +65,7 @@ def load_entailment_dictionaries():
             dictionaries[filename] = d
     os.chdir('..')
     return dictionaries
+
 
 def load_fetched_pages():
     path = os.path.join(constants.fetched_pages_dir_name, constants.final_query)
@@ -189,33 +189,6 @@ def words(text):
 def stems(text):
     stems = _split_to_words(text, to_stem=True)
     return stems
-
-
-def load_all_html_files():
-    pages = []
-    for query in constants.QUERIES:
-        os.chdir(query)
-        pages.extend(load_html_files_with_query(query))
-        os.chdir('..')
-    return pages
-
-
-def load_html_files_with_query(query):
-    pages = []
-    for i in range(constants.NUM_OF_FETCHED_PAGES):
-        with open('%s_%s.html' % (query, str(i)), 'r') as f:
-            page = WebPage()
-            page.html_body = f.read()
-        page.remove_html_tags()
-        pages.append(page)
-    return pages
-
-def load_html_files():
-    """
-    HTMLファイルがあるディレクトリにいる前提で使う
-    """
-    pages = load_html_files_with_query(constants.FINAL_QUERY)
-    return pages
 
 
 def go_to_fetched_pages_dir():

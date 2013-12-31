@@ -8,13 +8,13 @@ class TestSentence(unittest.TestCase):
 
     def setUp(self):
         self.sentence_1 = Sentence('夏野菜へのシフトをスタートさせましょう')
-        self.sentence_1.set_m_body_words_by_combine_nouns()
-
         self.sentence_2 = Sentence('クワなどは体格や体力に応じたものを、吟味して選ぶようにしましょう')
-        self.sentence_2.set_m_body_words_by_combine_nouns()
-
         self.sentence_3 = Sentence('トイレ掃除方法を、解説していきましょう')
-        self.sentence_3.set_m_body_words_by_combine_nouns()
+        self.sentence_4 = Sentence('地面を掘り上げていきましょう')
+
+    def test_set_m_body_words_by_combine_words(self):
+        result = self.sentence_4.m_body_words[2].name
+        self.assertEqual(result, '掘り上げ')
 
     def test_includes_wo(self):
         result = self.sentence_1.includes_wo()
@@ -38,11 +38,11 @@ class TestSentence(unittest.TestCase):
         self.assertEqual(self.sentence_3.core_object(), 'トイレ掃除方法')
 
     def test_core_verb(self):
-        result = self.sentence_1.core_verb()
+        result = self.sentence_1.core_predicate()
         self.assertEqual(result, 'スタートする')
 
-        self.assertEqual(self.sentence_2.core_verb(), '吟味する')
-        self.assertEqual(self.sentence_3.core_verb(), '解説する')
+        self.assertEqual(self.sentence_2.core_predicate(), '吟味する')
+        self.assertEqual(self.sentence_3.core_predicate(), '解説する')
 
     def test_direction_i(self):
         result_1 = self.sentence_1.direction_i()

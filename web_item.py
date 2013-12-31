@@ -283,7 +283,7 @@ class WebItem():
         if m_words[-1].type == '名詞':
             return m_words[-1].name
 
-    def obj_and_verb_list_by_wo_from_sentences(self):
+    def obj_and_predicate_dict_by_wo_from_sentences(self):
         """
         self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
         """
@@ -293,12 +293,16 @@ class WebItem():
             if type(sentence) == builtins.str:
                 # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
                 sentence = Sentence(sentence)
-            if not sentence.includes_wo():  # 'を'がなかったらダメ。次の人。
-                continue
-            if not sentence.includes_directions():  # をしなさい がなかったらダメ
-                continue
             if not sentence.includes_wo_before_direction():
                 continue
-            results.append(sentence.core_obj_and_verb())
+            if sentence.core_object() == 'pronoun':
+                continue
+            # を理解していきましょう のように、をの前がないとき
+            if not sentence.core_object():
+                continue
+            results.append(
+                {'object': sentence.core_object(),
+                 'verb': sentence.core_predicate()}
+            )
         return results
 

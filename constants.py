@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
@@ -18,6 +19,8 @@ NUM_OF_FETCHED_PAGES = 50
 CLUE_WEB_URL_HEAD = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q='
 CLUE_WEB_URL_TAIL = '&wt=xml'
 
+PARENTHESIS = '( ) { } [ ] < > 「 」 《 》 〈 〉 『 』 【 】 （ ） \' ’ \" ” "'.split(' ')
+ROUND_PARENTHESIS = '( ) （ ）'.split(' ')
 
 TASK_WORDS = [
     'を使う', 'しましょう', 'てください', 'でください', 'で下さい', 'て下さい',

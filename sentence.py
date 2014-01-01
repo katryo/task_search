@@ -24,7 +24,7 @@ class Sentence(Labelable):
         return False
 
     def includes_directions(self):
-        for direction in patterns.directions:
+        for direction in constants.DIRECTIONS:
             if direction in self.body:
                 return True
         return False
@@ -41,10 +41,12 @@ class Sentence(Labelable):
         for i, m_body_word in enumerate(reversed(self.m_body_words)):
             for cmp_info in constants.CMP_INFO_LIST:
                 if cmp_info == m_body_word.word_info:
+                    self.cmp = cmp_info.split(',')[0][0]  # 「を」や「で」
                     return i
             if m_body_word.word_info == constants.CMP_INFO_NI:
                 # お早めにお知らせください のときにもここに来る。つまりobjectがない場合。
                 if not self.m_body_words[-i-2].word_info == constants.CMP_INFO_YO:
+                    self.cmp = 'に'
                     return i
                 # 例 選ぶようにしましょうのときは、その前に「AをB」のようなパターンがあるか探す
         # 塗れた畳は劣化しやすいので水が残らないようにしましょう

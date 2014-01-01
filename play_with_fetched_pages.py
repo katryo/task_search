@@ -14,9 +14,10 @@ if __name__ == '__main__':
             for result in results:
                 object = result['object']
                 verb = result['verb']
+                cmp = result['cmp']
                 dictionaries = utils.load_entailment_dictionaries()
                 for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
                     if verb in dictionaries[filename].keys():
                         a = dictionaries[filename][verb]
-                        print('%s %s entails %s %s %s %s' % (object, verb, object, a, filename, page.url))
+                        print('%s %s %s entails %s %s %s %s %s' % (object, cmp, verb, object, cmp, a, filename, page.url))
             # print('%i番目のWebPage' % i)

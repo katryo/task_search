@@ -317,7 +317,8 @@ class WebItem():
                 continue
             results.append(
                 {'object': sentence.core_object(),
-                 'verb': sentence.core_predicate()}
+                 'verb': sentence.core_predicate(),
+                 'cmp': sentence.cmp}
             )
         return results
 

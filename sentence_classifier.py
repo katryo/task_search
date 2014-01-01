@@ -43,11 +43,11 @@ class SentenceClassifier():
         """
         self.m_body_words = sentence.m_body_words
 
-    def direction_i(self):
-        result_1 = self.cleared_one_hurdle_problem_i()
+    def direction_r_i(self):
+        result_1 = self.cleared_one_hurdle_problem_r_i()
         if result_1:
             return result_1
-        result_2 = self.cleared_two_hurdle_problem_i()
+        result_2 = self.cleared_two_hurdle_problem_r_i()
         if result_2:
             return result_2
         return False
@@ -89,25 +89,26 @@ class SentenceClassifier():
                 [prob_6_1, prob_6_2],
                 [prob_7_1, prob_7_2]]
 
-    def cleared_one_hurdle_problem_i(self):
+    def cleared_one_hurdle_problem_r_i(self):
         """
         self.m_body_wordsを見て、1つハードルの問題を突破できるか調べる。
         突破できればそのindexを、できなければFalseを返す
+        こっちはreversedが楽。
         """
-        for i, m_word in enumerate(self.m_body_words):
+        for i, m_word in enumerate(reversed(self.m_body_words)):
             for direction_info in self.one_hurdle_problem_word_infos():
                 if m_word.word_info == direction_info:
                     return i
         return False
 
-    def cleared_two_hurdle_problem_i(self):
+    def cleared_two_hurdle_problem_r_i(self):
         """
         2つハードルの問題をクリアできたらその前半のindexを、
         クリアできなかったらFalseを返す
         """
-        for i, m_word in enumerate(self.m_body_words):
+        for i, m_word in enumerate(reversed(self.m_body_words)):
             for direction_infos in self.two_hurdle_problem_word_infos():
                 if m_word.word_info == direction_infos[0]:
-                    if self.m_body_words[i+1].word_info == direction_infos[1]:
+                    if self.m_body_words[-i].word_info == direction_infos[1]:
                         return i
         return False

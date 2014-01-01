@@ -18,7 +18,7 @@ class Sentence(Labelable):
             return False
         if not self.includes_directions():  # をしなさい がなかったらダメ
             return False
-        if self.cmp_i() < self.direction_i():
+        if self.cmp_r_i() > self.direction_r_i():
             return True
         return False
 
@@ -46,7 +46,7 @@ class Sentence(Labelable):
         raise ValueError
 
     def cmp_r_i(self):
-        for i, m_body_word in reversed(enumerate(self.m_body_words)):
+        for i, m_body_word in enumerate(reversed(self.m_body_words)):
             for cmp_info in constants.CMP_INFO_LIST:
                 if cmp_info == m_body_word.word_info:
                     return i
@@ -59,10 +59,11 @@ class Sentence(Labelable):
 
     def direction_i(self):
         sc = SentenceClassifier(self)
-        return sc.direction_i()
+        # return sc.direction_i()
         # directionは文字列、woはm_wordでやってたからちょい面倒
 
     def m_words_before_cmp(self):
+        # TODO:r対応にする
         """
         include_cmpでをがあることを確認してから使ってくれ
         """

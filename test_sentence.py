@@ -48,8 +48,8 @@ class TestSentence(unittest.TestCase):
         self.assertEqual(self.sentence_3.core_predicate(), '解説する')
 
     def test_direction_i(self):
-        result_1 = self.sentence_1.direction_i()
-        self.assertEqual(result_1, 8)
+        result_1 = self.sentence_1.direction_r_i()
+        self.assertEqual(result_1, 1)
 
     def test_includes_wo_before_direction(self):
         result_1 = self.sentence_1.includes_cmp_before_direction()

@@ -41,3 +41,11 @@ class MecabedWord:
             if self.name == pronoun:
                 return True
         return False
+
+    def is_mono_kotoba_etc(self):
+        if self.name == '言葉':
+            return True
+        if self.name == 'もの':
+            return True
+        if self.name == 'の':
+            return True

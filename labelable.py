@@ -3,10 +3,13 @@ from sentence_separator import SentenceSeparator
 import constants
 import pdb
 import re
-STEP_WORDS = 'ステップ 手順 その'.split(' ')
+from text_combiner import TextCombiner
+from mecabed_noun import MecabedNoun
+from mecabed_verb import MecabedVerb
+# STEP_WORDS = 'ステップ 手順 その'.split(' ')
 
 
-class Labelable():
+class Labelable(TextCombiner):
     '''
     HeadingやSentenceが継承する
     '''
@@ -28,24 +31,6 @@ class Labelable():
             return True
         return False
 
-    def remove_inside_round_parenthesis(self, text):
-        for parentheses in constants.ROUND_PARENTHESIS:
-            if parentheses in text:
-                pattern_1 = re.compile('（.*?）')
-                pattern_2 = re.compile('\(.*?\)')
-                try:
-                    text = pattern_1.sub(text, '')
-                except:
-                    pdb.set_trace()
-                text = pattern_2.sub(text, '')
-        return text
-
-
-
-    def remove_parenthesis(self, text):
-        for parentheses in constants.PARENTHESIS:
-            text = text.replace(parentheses, '')
-        return text
 
 
     def label_ends_with_verb(self):
@@ -66,4 +51,8 @@ class Labelable():
         if self.body[0].isnumeric():
             return True
         return False
+
+    def set_m_body_words_by_combine_words(self):
+        self.m_body_words = self.combine_nouns(self.m_body_words)
+        self.m_body_words = self.combine_verbs(self.m_body_words)
 

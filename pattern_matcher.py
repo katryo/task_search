@@ -8,7 +8,7 @@ import pdb
 class PatternMatcher():
     def __init__(self, query):
         self.query = query
-        self.search_num = 2
+        self.search_num = 1
 
     def google_search(self):
         engine = SearchEngine()

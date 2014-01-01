@@ -31,6 +31,7 @@ CLUE_WEB_URL_TAIL = '&wt=xml'
 
 PARENTHESIS = '{ } [ ] < > 「 」 《 》 〈 〉 『 』 【 】 \' ’ \" ” "'.split(' ')
 ROUND_PARENTHESIS = '( ) （ ）'.split(' ')
+ALL_PARENTHESIS = PARENTHESIS + ROUND_PARENTHESIS
 
 # を|に|へ|で|から
 CMP_INFO_LIST = ['を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ',

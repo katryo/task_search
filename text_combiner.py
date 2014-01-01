@@ -80,8 +80,7 @@ class TextCombiner(object):
             if parentheses in text:
                 pattern_1 = re.compile('（.*?）')
                 pattern_2 = re.compile('\(.*?\)')
-                try:
-                    text = pattern_1.sub(text, '')
+                text = pattern_1.sub(text, '')
                 text = pattern_2.sub(text, '')
         return text
 

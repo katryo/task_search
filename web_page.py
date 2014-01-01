@@ -7,7 +7,6 @@ from mecabed_noun import MecabedNoun
 from task import Task
 from task_step import TaskStep
 from node import Node
-import utils
 
 
 class WebPage(WebItem):
@@ -314,5 +313,3 @@ class WebPage(WebItem):
             ad = Ad(ad_info)
             self.ads.append(ad)
 
-    def set_sentences_from_text(self):
-        self.sentences = utils.split_by_dots(self.text)

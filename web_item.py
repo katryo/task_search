@@ -305,7 +305,7 @@ class WebItem():
                 continue
             if sentence.core_object().startswith('ビューワソフト'):
                 continue
-            if sentence.core_object().startswith('JavaScript対応'):
+            if sentence.core_object().startswith('JavaScript'):
                 continue
             if sentence.core_object().startswith('goo'):
                 continue

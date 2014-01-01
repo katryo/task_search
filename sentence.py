@@ -15,25 +15,12 @@ class Sentence(Labelable):
         self.set_m_body_words_by_combine_words()
 
     def includes_cmp_before_direction(self):
-        if self.cmp_r_i() is False:  # 'を'などがなかったらダメ。次の人。
-            return False
         if not self.includes_directions():  # をしなさい がなかったらダメ
+            return False
+        if self.cmp_r_i() is False:  # 'を'などがなかったらダメ。次の人。
             return False
         if self.cmp_r_i() > self.direction_r_i():
             return True
-        return False
-
-
-    # cmpがあればTrue
-    def includes_cmp(self):
-        # 使わないほうがいい？
-        for m_body_word in self.m_body_words:
-            cmp_info_list = copy.deepcopy(constants.CMP_INFO_LIST)
-            cmp_info_list.append(constants.CMP_INFO_NI)
-            # pdb.set_trace()
-            for cmp_info in cmp_info_list:
-                if cmp_info in m_body_word.word_info:
-                    return True
         return False
 
     def includes_directions(self):
@@ -74,7 +61,6 @@ class Sentence(Labelable):
         # directionは文字列、woはm_wordでやってたからちょい面倒
 
     def m_words_before_cmp(self):
-        # TODO:r対応にする
         """
         include_cmpでをがあることを確認してから使ってくれ
         """

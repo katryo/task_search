@@ -283,6 +283,10 @@ class WebItem():
         if m_words[-1].type == '名詞':
             return m_words[-1].name
 
+    def set_tasks_from_sentences(self):
+        tasks = set(self.obj_and_predicate_dict_by_wo_from_sentences())
+        self.tasks = tasks
+
     def obj_and_predicate_dict_by_wo_from_sentences(self):
         """
         self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
@@ -317,7 +321,7 @@ class WebItem():
                 continue
             results.append(
                 {'object': sentence.core_object(),
-                 'verb': sentence.core_predicate(),
+                 'predicate': sentence.core_predicate(),
                  'cmp': sentence.cmp}
             )
         return results

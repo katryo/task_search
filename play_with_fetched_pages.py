@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import utils
 import constants
-import patterns
 import pdb
 
 
@@ -13,11 +12,11 @@ if __name__ == '__main__':
         if results:
             for result in results:
                 object = result['object']
-                verb = result['verb']
+                predicate = result['predicate']
                 cmp = result['cmp']
                 dictionaries = utils.load_entailment_dictionaries()
                 for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
-                    if verb in dictionaries[filename].keys():
-                        a = dictionaries[filename][verb]
+                    if predicate in dictionaries[filename].keys():
+                        a = dictionaries[filename][predicate]
                         print('%s %s %s entails %s %s %s %s %s' % (object, cmp, verb, object, cmp, a, filename, page.url))
             # print('%i番目のWebPage' % i)

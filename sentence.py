@@ -5,6 +5,7 @@ from mecabed_verb import MecabedVerb
 import patterns
 import constants
 import pdb
+import copy
 from sentence_classifier import SentenceClassifier
 
 
@@ -14,7 +15,7 @@ class Sentence(Labelable):
         self.set_m_body_words_by_combine_words()
 
     def includes_cmp_before_direction(self):
-        if not self.includes_cmp():  # 'を'などがなかったらダメ。次の人。
+        if self.cmp_r_i() is False:  # 'を'などがなかったらダメ。次の人。
             return False
         if not self.includes_directions():  # をしなさい がなかったらダメ
             return False
@@ -23,10 +24,14 @@ class Sentence(Labelable):
         return False
 
 
-    # 最初にcmpを見つけたらそのindexを返す。
+    # cmpがあればTrue
     def includes_cmp(self):
+        # 使わないほうがいい？
         for m_body_word in self.m_body_words:
-            for cmp_info in constants.CMP_INFO_LIST:
+            cmp_info_list = copy.deepcopy(constants.CMP_INFO_LIST)
+            cmp_info_list.append(constants.CMP_INFO_NI)
+            # pdb.set_trace()
+            for cmp_info in cmp_info_list:
                 if cmp_info in m_body_word.word_info:
                     return True
         return False
@@ -50,7 +55,13 @@ class Sentence(Labelable):
             for cmp_info in constants.CMP_INFO_LIST:
                 if cmp_info == m_body_word.word_info:
                     return i
-        raise ValueError
+            if m_body_word.word_info == constants.CMP_INFO_NI:
+                # お早めにお知らせください のときにもここに来る。つまりobjectがない場合。
+                if not self.m_body_words[-i-2].word_info == constants.CMP_INFO_YO:
+                    return i
+                # 例 選ぶようにしましょうのときは、その前に「AをB」のようなパターンがあるか探す
+        # 塗れた畳は劣化しやすいので水が残らないようにしましょう
+        return False
 
     def direction_r_i(self):
         sc = SentenceClassifier(self)
@@ -67,11 +78,11 @@ class Sentence(Labelable):
         """
         include_cmpでをがあることを確認してから使ってくれ
         """
-        results = self.m_body_words[:self.cmp_i()]
+        results = self.m_body_words[:-self.cmp_r_i()-1]
         return results
 
     def m_words_after_cmp(self):
-        results = self.m_body_words[self.cmp_i()+1:]
+        results = self.m_body_words[-self.cmp_r_i():]
         return results
 
     def core_object(self):
@@ -118,6 +129,18 @@ class Sentence(Labelable):
                     # 例 ドライヤーを当ててください
                     if m_words_after_cmp[i-1].name == 'て' and m_words_after_cmp[i-2].type == '動詞':
                         return m_words_after_cmp[i-2].stem
+
+                # 吟味して選ぶようにしましょう => 吟味する
+                if m_words_after_cmp[i-1].stem == 'に':
+                    if m_words_after_cmp[i-2].stem == 'よう':
+                        # 吟味して選ぶようにしましょう => 吟味する
+                        if m_words_after_cmp[i-3].type == '動詞':
+                            return m_words_after_cmp[i-3].stem
+                        if m_words_after_cmp[i-3].stem == 'ない':
+                            # 慌てて選ばないようにしましょう
+                            if m_words_after_cmp[i-4].type == '動詞':
+                                return m_words_after_cmp[i-4].name + 'ない'
+
 
                 return m_word.stem
         return '?'

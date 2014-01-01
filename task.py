@@ -1,12 +1,10 @@
-from web_item import WebItem
-from pyquery import PyQuery as pq
+# -*- coding: utf-8 -*-
 
-class Task(WebItem):
-    def set_title_with_html(self, html):
-        self.title = pq(html.encode('utf-8')).find('title').text()
 
-    def set_url(self, url):
-        self.url = url
+class Task(object):
+    def __init__(self, object='', cmp='', predicate=''):
+        self.object = object
+        self.cmp = cmp
+        self.predicate = predicate
 
-    def set_steps(self, steps):
-        self.steps = steps
+

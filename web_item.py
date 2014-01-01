@@ -10,6 +10,7 @@ import sys
 from sentence_separator import SentenceSeparator
 from mecabed_noun import MecabedNoun
 from sentence import Sentence
+from task import Task
 
 class WebItem():
 
@@ -284,7 +285,7 @@ class WebItem():
             return m_words[-1].name
 
     def set_tasks_from_sentences(self):
-        tasks = set(self.obj_and_predicate_dict_by_wo_from_sentences())
+        tasks = self.obj_and_predicate_dict_by_wo_from_sentences()
         self.tasks = tasks
 
     def obj_and_predicate_dict_by_wo_from_sentences(self):
@@ -319,10 +320,9 @@ class WebItem():
                 continue
             if sentence.core_object() == 'pronoun':
                 continue
-            results.append(
-                {'object': sentence.core_object(),
-                 'predicate': sentence.core_predicate(),
-                 'cmp': sentence.cmp}
-            )
+            task = Task(object=sentence.core_object(),
+                        cmp=sentence.cmp,
+                        predicate=sentence.core_predicate())
+            results.append(task)
         return results
 

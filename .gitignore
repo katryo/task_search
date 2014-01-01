@@ -1,7 +1,7 @@
 my_keys.py
 entailment_dictionaries/
 *.py[cod]
-.idea/workspace.xml
+workspace.xml
 .idea/
 .idea/*
 .idea

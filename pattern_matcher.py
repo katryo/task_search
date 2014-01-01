@@ -24,8 +24,10 @@ class PatternMatcher():
             if type(item) == str:
                 continue
             page = WebPage(item['Url'])
+            page.query = self.query
             #googleの書き方に統一
             page.title = item['Title']
             page.snippet = item['Description']
             pages.append(page)
         return pages
+

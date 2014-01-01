@@ -5,12 +5,11 @@ import pdb
 import cchardet
 import MeCab
 import re
-import builtins
 import sys
 from sentence_separator import SentenceSeparator
 from mecabed_noun import MecabedNoun
-from sentence import Sentence
 from task import Task
+from object_term_dictionary import ObjectTermDictionary
 
 class WebItem():
 
@@ -283,46 +282,4 @@ class WebItem():
         m_words = self.combine_nouns(m_words)
         if m_words[-1].type == '名詞':
             return m_words[-1].name
-
-    def set_tasks_from_sentences(self):
-        tasks = self.obj_and_predicate_dict_by_wo_from_sentences()
-        self.tasks = tasks
-
-    def obj_and_predicate_dict_by_wo_from_sentences(self):
-        """
-        self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
-        """
-        results = []
-        # sentenceはただのstrかもしれない。
-        for sentence in self.sentences:
-            if type(sentence) == builtins.str:
-                # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
-                sentence = Sentence(sentence)
-            if not sentence.includes_cmp_before_direction():
-                continue
-            # を理解していきましょう のように、をの前がないとき
-            if not sentence.core_object():
-                continue
-            # varで始まるのはたいていJavaScript
-            if sentence.core_object().startswith('var'):
-                continue
-            if sentence.core_object().startswith('listli'):
-                continue
-            if sentence.core_object().startswith('ビューワソフト'):
-                continue
-            if sentence.core_object().startswith('JavaScript'):
-                continue
-            if sentence.core_object().startswith('goo'):
-                continue
-            if sentence.core_object().startswith('ヤフーGoogle'):
-                continue
-            if sentence.core_object().startswith('className'):
-                continue
-            if sentence.core_object() == 'pronoun':
-                continue
-            task = Task(object=sentence.core_object(),
-                        cmp=sentence.cmp,
-                        predicate=sentence.core_predicate())
-            results.append(task)
-        return results
 

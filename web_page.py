@@ -3,6 +3,8 @@ import requests
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
+import builtins
+from sentence import Sentence
 from mecabed_noun import MecabedNoun
 from task import Task
 from task_step import TaskStep
@@ -10,8 +12,9 @@ from node import Node
 
 
 class WebPage(WebItem):
-    def __init__(self, url='unknown'):
+    def __init__(self, url='unknown', query=''):
         self.url = url
+        self.query = query
 
     def fetch_xml(self):
         response = requests.get(self.url)
@@ -312,4 +315,51 @@ class WebPage(WebItem):
             ad_info = {'title': title, 'snippet': snippet, 'link': link}
             ad = Ad(ad_info)
             self.ads.append(ad)
+
+    def add_object_terms_to_dictionary(self, dictionary):
+        for task in self.tasks:
+            dictionary.add(task.object)
+
+    def set_tasks_from_sentences(self):
+        tasks = self.obj_and_predicate_dict_by_wo_from_sentences()
+        self.tasks = tasks
+
+    def obj_and_predicate_dict_by_wo_from_sentences(self):
+        """
+        self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
+        """
+        results = []
+        # sentenceはただのstrかもしれない。
+        for sentence in self.sentences:
+            if type(sentence) == builtins.str:
+                # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
+                sentence = Sentence(sentence)
+            if not sentence.includes_cmp_before_direction():
+                continue
+                # を理解していきましょう のように、をの前がないとき
+            if not sentence.core_object():
+                continue
+                # varで始まるのはたいていJavaScript
+            if sentence.core_object().startswith('var'):
+                continue
+            if sentence.core_object().startswith('listli'):
+                continue
+            if sentence.core_object().startswith('ビューワソフト'):
+                continue
+            if sentence.core_object().startswith('JavaScript'):
+                continue
+            if sentence.core_object().startswith('goo'):
+                continue
+            if sentence.core_object().startswith('ヤフーGoogle'):
+                continue
+            if sentence.core_object().startswith('className'):
+                continue
+            if sentence.core_object() == 'pronoun':
+                continue
+            task = Task(object_term=sentence.core_object(),
+                        cmp=sentence.cmp,
+                        predicate_term=sentence.core_predicate(),
+                        context=self.query)
+            results.append(task)
+        return results
 

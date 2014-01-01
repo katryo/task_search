@@ -6,7 +6,10 @@ import pdb
 
 if __name__ == '__main__':
     pages = utils.load_all_fetched_pages()
-    # pdb.set_trace()
+    for page in pages:
+        for task in page.tasks:
+            print('%s, %s' % (task.object_term.name, task.object_term.context))
+    """
     for i, page in enumerate(pages):
         tasks = page.obj_and_predicate_dict_by_wo_from_sentences()
         if tasks:
@@ -20,3 +23,5 @@ if __name__ == '__main__':
                         a = dictionaries[filename][predicate]
                         print('%s %s %s entails %s %s %s %s %s' % (object, cmp, predicate, object, cmp, a, filename, page.url))
             # print('%i番目のWebPage' % i)
+
+"""

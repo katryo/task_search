@@ -85,6 +85,8 @@ def load_all_fetched_pages():
         for i in range(constants.NUM_OF_FETCHED_PAGES):
             with open('%s_%s.pkl' % (query, str(i)), 'rb') as f:
                 page = pickle.load(f)
+                if not hasattr(page, 'query'):
+                    page.query = query
                 page.set_text_from_html_body()
                 pages.append(page)
         os.chdir('..')

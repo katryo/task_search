@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_item.py" afterPath="$PROJECT_DIR$/web_item.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/play_with_fetched_pages.py" afterPath="$PROJECT_DIR$/play_with_fetched_pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentence.py" afterPath="$PROJECT_DIR$/sentence.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="task_search.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/web_page.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388121732218" ignored="false" />
     <file path="/node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385533897721" ignored="false" />
     <file path="/test_node.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385468389773" ignored="false" />
-    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388480653838" ignored="false" />
+    <file path="/Dummy.txt" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388559122118" ignored="false" />
     <file path="/node_factory.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383285188286" ignored="false" />
     <file path="/node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383284525157" ignored="false" />
     <file path="/test_node_finder.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1383283384141" ignored="false" />
@@ -29,7 +31,7 @@
     <file path="/local_controller.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636345093" ignored="false" />
     <file path="/heading.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385633988638" ignored="false" />
     <file path="/labelable.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388481645737" ignored="false" />
-    <file path="/sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388476900477" ignored="false" />
+    <file path="/sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388561007648" ignored="false" />
     <file path="$PROJECT_DIR$/fetch_html/__init__.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636823615" ignored="false" />
     <file path="$PROJECT_DIR$/fetch_html/py/__init__.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385636823615" ignored="false" />
     <file path="/fetch_html.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1385638265364" ignored="false" />
@@ -57,7 +59,7 @@
     <file path="/play_with_saved_tfidf.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388056321617" ignored="false" />
     <file path="/set_tfidf_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388115409778" ignored="false" />
     <file path="/patterns.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388391617263" ignored="false" />
-    <file path="/play_with_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388471731309" ignored="false" />
+    <file path="/play_with_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388560446821" ignored="false" />
     <file path="/set_sentences_to_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388121759296" ignored="false" />
     <file path="/set_sentences_to_all_fetched_pages.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388121952435" ignored="false" />
     <file path="/test_sentence.py" changelist="e39d0974-7adb-4c09-b62b-344c7a7c4dcd" time="1388478572237" ignored="false" />
@@ -88,6 +90,7 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -124,7 +127,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -163,10 +165,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="play_with_fetched_pages.py" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="play_with_fetched_pages.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="23" selection-start="697" selection-end="697" vertical-scroll-proportion="0.37890044">
+                <state line="20" column="104" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -199,10 +201,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sentence.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="sentence.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sentence.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="0" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
+                <state line="56" column="32" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.6686478">
                   <folding />
                 </state>
               </provider>
@@ -248,10 +250,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sentence_classifier.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="sentence_classifier.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sentence_classifier.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="52" column="0" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
+                <state line="51" column="26" selection-start="1220" selection-end="1220" vertical-scroll-proportion="-0.17830609">
                   <folding />
                 </state>
               </provider>
@@ -279,9 +281,7 @@
             <entry file="file://$PROJECT_DIR$/labelable.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="15" column="24" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="e#24#72#0" expanded="true" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -304,10 +304,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="web_item.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="web_item.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web_item.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="309" column="52" selection-start="10644" selection-end="10644" vertical-scroll-proportion="0.6433878">
+                <state line="297" column="19" selection-start="10121" selection-end="10121" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -343,12 +343,12 @@
         <option value="$PROJECT_DIR$/mecabed_verb.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/fetch_and_set_sentences_to_pages.py" />
-        <option value="$PROJECT_DIR$/sentence.py" />
         <option value="$PROJECT_DIR$/test_sentence.py" />
         <option value="$PROJECT_DIR$/constants.py" />
-        <option value="$PROJECT_DIR$/play_with_fetched_pages.py" />
         <option value="$PROJECT_DIR$/labelable.py" />
         <option value="$PROJECT_DIR$/web_item.py" />
+        <option value="$PROJECT_DIR$/play_with_fetched_pages.py" />
+        <option value="$PROJECT_DIR$/sentence.py" />
       </list>
     </option>
   </component>
@@ -386,7 +386,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -400,6 +399,7 @@
       <pane id="Scope">
         <subPane subId="All" />
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -415,8 +415,8 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -457,14 +457,6 @@
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -482,17 +474,12 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -523,6 +510,19 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -536,6 +536,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -557,13 +564,6 @@
       </option>
       <envs />
       <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <list size="1">
@@ -606,7 +606,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1436" height="878" extended-state="0" />
+    <frame x="4" y="22" width="1436" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -700,13 +700,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mecabed_noun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="26" selection-start="0" selection-end="233" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web_page.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="313" column="20" selection-start="11030" selection-end="11033" vertical-scroll-proportion="0.0" />
@@ -747,13 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sentence_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sentence_separator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="114" column="19" selection-start="3511" selection-end="3511" vertical-scroll-proportion="0.0">
@@ -764,13 +750,6 @@
     <entry file="file://$PROJECT_DIR$/test_sentence.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="59" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sentence.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -789,25 +768,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
+    <entry file="file://$PROJECT_DIR$/labelable.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="23" selection-start="697" selection-end="697" vertical-scroll-proportion="0.37890044">
+        <state line="15" column="24" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labelable.py">
+    <entry file="file://$PROJECT_DIR$/pattern_matcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#72#0" expanded="true" />
-          </folding>
+        <state line="11" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web_item.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="309" column="52" selection-start="10644" selection-end="10644" vertical-scroll-proportion="0.6433878">
+        <state line="297" column="19" selection-start="10121" selection-end="10121" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/play_with_fetched_pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="104" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="32" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.6686478">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentence_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="26" selection-start="1220" selection-end="1220" vertical-scroll-proportion="-0.17830609">
           <folding />
         </state>
       </provider>

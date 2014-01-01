@@ -37,12 +37,25 @@ class Sentence(Labelable):
                 return True
         return False
 
+    # 日本語の語順傾向よりreversed()にしてみる
     def cmp_i(self):
         for i, m_body_word in enumerate(self.m_body_words):
             for cmp_info in constants.CMP_INFO_LIST:
                 if cmp_info == m_body_word.word_info:
                     return i
         raise ValueError
+
+    def cmp_r_i(self):
+        for i, m_body_word in reversed(enumerate(self.m_body_words)):
+            for cmp_info in constants.CMP_INFO_LIST:
+                if cmp_info == m_body_word.word_info:
+                    return i
+        raise ValueError
+
+    def direction_r_i(self):
+        sc = SentenceClassifier(self)
+        return sc.direction_r_i()
+        # directionは文字列、woはm_wordでやってたからちょい面倒
 
     def direction_i(self):
         sc = SentenceClassifier(self)

@@ -18,5 +18,5 @@ if __name__ == '__main__':
                 for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
                     if verb in dictionaries[filename].keys():
                         a = dictionaries[filename][verb]
-                        print('%s %s entails %s %s %s' % (object, verb, object, a, filename))
+                        print('%s %s entails %s %s %s %s' % (object, verb, object, a, filename, page.url))
             # print('%i番目のWebPage' % i)

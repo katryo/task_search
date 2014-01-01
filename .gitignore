@@ -3,6 +3,7 @@ entailment_dictionaries/
 *.py[cod]
 .idea/
 .idea/*
+.idea
 # C extensions
 *.so
 

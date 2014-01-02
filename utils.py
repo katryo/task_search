@@ -212,7 +212,7 @@ def save_all_pages(pages):
         os.chdir('..')
 
 
-def load_term_dictionary():
+def load_object_term_dictionary():
     os.chdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
     with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME, 'rb') as f:
         object_term_dictionary = pickle.load(f)
@@ -223,6 +223,8 @@ def load_term_dictionary():
 
 def save_term_dictionary(object_term_dictionary):
     # fetched_pagesのひとつ上のディレクトリからfetched_pagesに降りる
+    if not os.path.exists(constants.OBJECT_TERM_DICTIONARY_DIR_NAME):
+        os.mkdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
     os.chdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
     with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME, 'wb') as f:
         pickle.dump(object_term_dictionary, f)

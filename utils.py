@@ -212,6 +212,24 @@ def save_all_pages(pages):
         os.chdir('..')
 
 
+def load_term_dictionary():
+    os.chdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
+    with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME, 'rb') as f:
+        object_term_dictionary = pickle.load(f)
+        print('%sのロード完了!' % constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME)
+    os.chdir('..')
+    return object_term_dictionary
+
+
+def save_term_dictionary(object_term_dictionary):
+    # fetched_pagesのひとつ上のディレクトリからfetched_pagesに降りる
+    os.chdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
+    with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME, 'wb') as f:
+        pickle.dump(object_term_dictionary, f)
+        print('%sの保存完了!' % constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME)
+    os.chdir('..')
+
+
 def target_from_m_words_and_wo_i(m_words, wo_i):
     targets = m_words[:wo_i]
     for m_word in reversed(targets):

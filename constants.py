@@ -13,6 +13,9 @@ MIN_TFIDF = 0.1
 TFIDF_RESULT_PKL_FILENAME = 'tfidf_result.pkl'
 TFIDF_VECTORIZER_PKL_FILENAME = 'tfidf_vectorizer.pkl'
 
+OBJECT_TERM_DICTIONARY_DIR_NAME = 'object_term_dictionary'
+OBJECT_TERM_DICTIONARY_PICKLE_FILENAME = 'object_term_dictionary.pkl'
+
 DIRECTIONS = ['ください','下さい', \
               'ましょう', \
               'なさい', \

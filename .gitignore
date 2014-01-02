@@ -6,6 +6,8 @@ workspace.xml
 .idea/
 .idea/*
 .idea
+.idea/workspace.xml
+
 # C extensions
 *.so
 

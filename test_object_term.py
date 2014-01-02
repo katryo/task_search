@@ -8,11 +8,11 @@ import pdb
 class TestObjectTerm(unittest.TestCase):
 
     def setUp(self):
-        self.ot = ObjectTerm('薬')
+        self.ot = ObjectTerm(text='医師の診断', context='治療')
 
-    def test_embodied_term_by_search(self):
-        result_1 = self.ot.embodied_term_by_search('花粉症対策')
-        self.assertIn('アレグラ', result_1)
+    def test_set_core_noun_from_name(self):
+        self.ot.set_core_noun_from_name()
+        self.assertEqual(self.ot.core_noun, '診断')
 
 if __name__ == '__main__':
     unittest.main()

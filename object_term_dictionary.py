@@ -11,8 +11,10 @@ class ObjectTermDictionary(object):
         self.object_terms = []
 
     def contains(self, term):
-        if term in self.object_terms:
-            return True
+        for object_term in self.object_terms:
+            if term.name == object_term.name:
+                if term.context == object_term.context:
+                    return True
         return False
 
     def add(self, term):

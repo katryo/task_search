@@ -13,7 +13,19 @@ class ObjectTerm():
         self.name = text
         self.context = context  # contextはたいてい検索クエリが入る。
 
-    def embodied_term_by_search(self, pages):
+    def set_core_noun_from_name(self):
+        sp = SentenceSeparator()
+        m_words = sp.m_words(self.name)
+        for i, m_word in enumerate(m_words):
+            if m_word.word_info == 'の\t助詞,連体化,*,*,*,*,の,ノ,ノ':
+                m_words_after_no = m_words[i+1:]
+                names = [m.name for m in m_words_after_no]
+                result = ''.join(names)
+                self.core_noun = result
+                return
+        self.core_noun = self.name
+
+    def embodied_term_by_search_result_pages(self, pages):
         """
         という検索で、「具体化した語」を求める
         """
@@ -42,7 +54,8 @@ class ObjectTerm():
         m_words = tc.combine_verbs(m_words)
         return m_words
 
-    def set_embodied_terms_to_term_by_search(self, term):
-        terms = self.embodied_term_by_search()
+    # あらかじめどこかでsearchしておいてから結果pagesを使う
+    def set_embodied_terms_to_term_by_search_result_pages(self, term, pages):
+        terms = self.embodied_term_by_search_result_pages(pages)
         term.embodied_terms = terms
 

@@ -7,4 +7,4 @@ if __name__ == '__main__':
     for page in pages:
         for task in page.tasks:
             object_term_dictionary.add(task.object_term)
-    pdb.set_trace()
+    utils.save_term_dictionary(object_term_dictionary)

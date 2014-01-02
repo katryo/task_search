@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 import constants
 import os
 import pickle
 import MeCab
 from mecabed_word import MecabedWord
+from pattern_matcher import PatternMatcher
 from itertools import chain
 from web_page import WebPage
 import pdb
@@ -38,6 +40,27 @@ def visit_query_dir():
 
 def go_to_entailment_dictionaries_dir():
     os.chdir(constants.ENTAILMENT_DICTIONARIES_DIR_NAME)
+
+
+def search_web_pages(query):
+    pm = PatternMatcher(query)
+    pages = pm.bing_search()
+    return pages
+
+
+def search_and_save_web_pages(query):
+    if not os.path.exists(constants.FETCHED_PAGES_DIR_NAME):
+        os.mkdir(constants.FETCHED_PAGES_DIR_NAME)
+    os.chdir(constants.FETCHED_PAGES_DIR_NAME)
+    if not os.path.exists(query):
+        os.mkdir(query)
+    os.chdir(query)
+    pages = search_web_pages(query)
+    for i, page in enumerate(pages):
+        with open('%s_%i.pkl' % (query, i), 'wb') as f:
+            pickle.dump(page, f)
+    os.chdir('../..')
+
 
 
 def split_and_flatten_by_a_certain_dot(texts, dot):
@@ -199,6 +222,21 @@ def go_to_fetched_pages_dir():
     os.chdir(constants.FETCHED_PAGES_DIR_NAME)
 
 
+def save_pages_with_dir_name(pages, dir_name):
+    os.chdir(constants.FETCHED_PAGES_DIR_NAME)
+    os.chdir(dir_name)
+    for i in range(constants.NUM_OF_FETCHED_PAGES):
+        with open('%s_%i.pkl' % (dir_name, i), 'wb') as f:
+            try:
+                pickle.dump(pages[i], f)
+            except TypeError:
+                pdb.set_trace()
+            print('%s_%i.pklの保存完了!' % (dir_name, i))
+    os.chdir('..')
+
+
+
+# constants.QUERIES依存なのでちょっと危険。
 def save_all_pages(pages):
     # fetched_pagesのひとつ上のディレクトリからfetched_pagesに降りる
     os.chdir(constants.FETCHED_PAGES_DIR_NAME)

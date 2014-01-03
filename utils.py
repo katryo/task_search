@@ -243,7 +243,6 @@ def save_pages_with_dir_name(pages, dir_name):
     os.chdir('..')
 
 
-
 # constants.QUERIES依存なのでちょっと危険。
 def save_all_pages(pages):
     # fetched_pagesのひとつ上のディレクトリからfetched_pagesに降りる

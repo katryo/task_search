@@ -90,9 +90,10 @@ def load_entailment_dictionaries():
     os.chdir(constants.ENTAILMENT_DICTIONARIES_DIR_NAME)
     dictionaries = dict()
     for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
-        with open('%s.pkl' % filename, 'rb') as f:
-            d = pickle.load(f)
-            dictionaries[filename] = d
+        for entailment_type in constants.ENTAILMENT_DICTIONARY_TYPES:
+            with open('%s_%s.pkl' % (filename, entailment_type), 'rb') as f:
+                d = pickle.load(f)
+                dictionaries[filename + '_' + entailment_type] = d
     os.chdir('..')
     return dictionaries
 

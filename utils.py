@@ -29,13 +29,10 @@ def split_texts_by_dots(texts):
     return texts
 
 
+# FINAL_QUERY依存
 def visit_query_dir():
-    if not os.path.exists(constants.FETCHED_PAGES_DIR_NAME):
-        os.mkdir(constants.FETCHED_PAGES_DIR_NAME)
-    os.chdir(constants.FETCHED_PAGES_DIR_NAME)
-    if not os.path.exists(constants.FINAL_QUERY):
-        os.mkdir(constants.FINAL_QUERY)
-    os.chdir(constants.FINAL_QUERY)
+    go_to_fetched_pages_dir()
+    mkdir_or_chdir(constants.FINAL_QUERY)
 
 
 def go_to_entailment_dictionaries_dir():
@@ -48,13 +45,23 @@ def search_web_pages(query):
     return pages
 
 
-def search_and_save_web_pages(query):
-    if not os.path.exists(constants.FETCHED_PAGES_DIR_NAME):
-        os.mkdir(constants.FETCHED_PAGES_DIR_NAME)
-    os.chdir(constants.FETCHED_PAGES_DIR_NAME)
-    if not os.path.exists(query):
-        os.mkdir(query)
-    os.chdir(query)
+def mkdir_or_chdir(name):
+    if not os.path.exists(name):
+        os.mkdir(name)
+    os.chdir(name)
+
+
+def go_to_fetched_pages_dir():
+    mkdir_or_chdir(constants.FETCHED_PAGES_DIR_NAME)
+
+
+def search_and_save_web_pages(query, toiu=False):
+    go_to_fetched_pages_dir()
+    if toiu:
+        mkdir_or_chdir('という')
+        mkdir_or_chdir(query)
+    if not toiu:
+        mkdir_or_chdir(query)
     pages = search_web_pages(query)
     for i, page in enumerate(pages):
         with open('%s_%i.pkl' % (query, i), 'wb') as f:

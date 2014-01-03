@@ -19,6 +19,7 @@ if __name__ == '__main__':
                 cmp = task.cmp
                 dictionaries = utils.load_entailment_dictionaries()
                 for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
+                    # まってまって。1辞書にも複数のentails可能性があるよ！
                     if predicate in dictionaries[filename].keys():
                         a = dictionaries[filename][predicate]
                         print('%s %s %s entails %s %s %s %s %s' % (object, cmp, predicate, object, cmp, a, filename, page.url))

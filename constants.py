@@ -2,7 +2,7 @@
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
-ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv'.split(' ')
+ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
 ACTION_WORD_IN_QUERY = 'を使う'
 SO_CALLED = 'という'
 QUERY = '部屋　掃除'

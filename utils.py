@@ -281,8 +281,8 @@ def save_term_dictionary_with_protocol_2(object_term_dictionary):
     if not os.path.exists(constants.OBJECT_TERM_DICTIONARY_DIR_NAME):
         os.mkdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
     os.chdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
-    with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME, 'wb') as f:
-        pickle.dump(object_term_dictionary, f, protocol=2)
+    with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME + '_2', 'wb') as f:
+        pickle.dump(object_term_dictionary, f, protocol=0)
         print('%sの保存完了!' % constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME + '_2')
     os.chdir('..')
 

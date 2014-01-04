@@ -99,11 +99,11 @@ def load_entailment_dictionaries():
 
 
 def load_fetched_pages():
-    path = os.path.join(constants.fetched_pages_dir_name, constants.final_query)
+    path = os.path.join(constants.FETCHED_PAGES_DIR_NAME, constants.FINAL_QUERY)
     os.chdir(path)
     pages = []
-    for i in range(constants.num_of_fetched_pages):
-        with open('%s_%s.pkl' % (constants.final_query, str(i)), 'rb') as f:
+    for i in range(constants.NUM_OF_FETCHED_PAGES):
+        with open('%s_%s.pkl' % (constants.FINAL_QUERY, str(i)), 'rb') as f:
             page = pickle.load(f)
             pages.append(page)
     return pages
@@ -276,6 +276,15 @@ def save_term_dictionary(object_term_dictionary):
         print('%sの保存完了!' % constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME)
     os.chdir('..')
 
+def save_term_dictionary_with_protocol_2(object_term_dictionary):
+    # fetched_pagesのひとつ上のディレクトリからfetched_pagesに降りる
+    if not os.path.exists(constants.OBJECT_TERM_DICTIONARY_DIR_NAME):
+        os.mkdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
+    os.chdir(constants.OBJECT_TERM_DICTIONARY_DIR_NAME)
+    with open(constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME, 'wb') as f:
+        pickle.dump(object_term_dictionary, f, protocol=2)
+        print('%sの保存完了!' % constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME + '_2')
+    os.chdir('..')
 
 def target_from_m_words_and_wo_i(m_words, wo_i):
     targets = m_words[:wo_i]

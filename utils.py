@@ -106,6 +106,7 @@ def load_fetched_pages():
         with open('%s_%s.pkl' % (constants.FINAL_QUERY, str(i)), 'rb') as f:
             page = pickle.load(f)
             pages.append(page)
+    os.chdir('../..')
     return pages
 
 def load_all_fetched_pages():

@@ -10,7 +10,7 @@ BIG_INT = 10000
 MIDDLE_INT = 20
 
 if __name__ == '__main__':
-    g = nx.Graph()
+    g = nx.DiGraph()
     pages = utils.load_fetched_pages()
     sqldl = SQLiteDataLoader()
     entailment_dictionaries = utils.load_entailment_dictionaries()
@@ -34,17 +34,21 @@ if __name__ == '__main__':
                 if task.predicate_term in entailment_dictionaries[filename + '_entailed']:
                     entailed_predicates.append(entailment_dictionaries[filename + '_entailed'][task.predicate_term])
 
-
+            # 4種類の上位語・下位語が揃った。
             for hype_or_hype_or_original in (hypes + hypos + task.object_term.name):
-                for entailing_or_entailed_or_original in (entailing_predicates + entailed_predicates + task.predicate_term):
+                for entailing_or_entailed_or_original in (entailing_predicates
+                                                          + entailed_predicates + task.predicate_term):
                     g.add_node('%s_%s' % (hype_or_hype_or_original, entailing_or_entailed_or_original))
-
-
-                    g.add_edge(i, i+j+1)
-            print('added edges!')
+                    # オリジナルのノードから、上位・下位に貼る。自分自身にも貼ってる。
+                    g.add_edge('%s_%s' %
+                               (task.object_term.name, task.predicate_term),
+                               '%s_%s' %
+                               (hype_or_hype_or_original, entailing_or_entailed_or_original))
+            print('added all edges!')
             # 1エッジで4.1秒
             # 1ノードにつき10エッジで16秒
             # 20エッジで32秒。線形ぽい。
             # おそらく200エッジで300秒ほど。つまり5分。
             # 1000エッジで1500秒 = 25分。まあいけそう。いざとなったらEC2借りよう。
-            pr = nx.pagerank_numpy(g)
+            result = g.degree()
+            print(result)

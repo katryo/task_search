@@ -12,15 +12,15 @@ class SQLiteDataLoader(object):
         self.conn.close()
 
     def select_hypes_with_hypo(self, hypo):
-        sql = 'select hypernym from object_terms where hyponym = "%s"' % hypo
+        sql = 'select hypernym, score from object_terms where hyponym = "%s"' % hypo
         self.cur.execute(sql)
-        results = [tpl[0] for tpl in self.cur.fetchall()]
+        results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
         return results
 
     def select_hypos_with_hype(self, hype):
-        sql = 'select hyponym from object_terms where hypernym = "%s"' % hype
+        sql = 'select hyponym, score from object_terms where hypernym = "%s"' % hype
         self.cur.execute(sql)
-        results = [tpl[0] for tpl in self.cur.fetchall()]
+        results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
         return results
 
     def has(self, hypernym, hyponym):

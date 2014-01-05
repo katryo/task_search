@@ -12,12 +12,12 @@ class SQLiteDataLoader(object):
         self.conn.close()
 
     def select_hypes_with_hypo(self, hypo):
-        sql = 'select * from object_terms where hyponym = "%s"' % hypo
+        sql = 'select hypernym from object_terms where hyponym = "%s"' % hypo
         self.cur.execute(sql)
         return self.cur.fetchall()
 
     def select_hypos_with_hype(self, hype):
-        sql = 'select * from object_terms where hypernym = "%s"' % hype
+        sql = 'select hyponym from object_terms where hypernym = "%s"' % hype
         self.cur.execute(sql)
         return self.cur.fetchall()
 

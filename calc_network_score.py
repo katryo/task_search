@@ -15,7 +15,7 @@ if __name__ == '__main__':
     sqldl = SQLiteDataLoader()
     entailment_dictionaries = utils.load_entailment_dictionaries()
 
-    for page in pages[:5]:
+    for page in pages[:40]:
         for task in page.tasks:
             # まずオリジナルのノードを追加
             g.add_node('%s_%s' % (task.object_term.name, task.predicate_term))
@@ -41,7 +41,7 @@ if __name__ == '__main__':
                 for entailing_or_entailed_or_original in (entailing_predicates
                                                           + entailed_predicates + [task.predicate_term]):
                     g.add_node('%s_%s' % (hype_or_hype_or_original, entailing_or_entailed_or_original))
-                    # オリジナルのノードから、上位・下位に貼る。自分自身にも貼ってる。
+                    # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
                     g.add_edge('%s_%s' %
                                (task.object_term.name, task.predicate_term),
                                '%s_%s' %
@@ -52,5 +52,5 @@ if __name__ == '__main__':
     # 20エッジで32秒。線形ぽい。
     # おそらく200エッジで300秒ほど。つまり5分。
     # 1000エッジで1500秒 = 25分。まあいけそう。いざとなったらEC2借りよう。
-    results = g.degree()
-    print([result for result in results if results[result] > 1])
+    # results = g.degree()
+    # print([(result + str(results[result])) for result in results if results[result] > 20])

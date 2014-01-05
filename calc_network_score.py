@@ -15,7 +15,7 @@ if __name__ == '__main__':
     sqldl = SQLiteDataLoader()
     entailment_dictionaries = utils.load_entailment_dictionaries()
 
-    for page in pages:
+    for page in pages[:5]:
         for task in page.tasks:
             # まずオリジナルのノードを追加
             g.add_node('%s_%s' % (task.object_term.name, task.predicate_term))
@@ -27,12 +27,14 @@ if __name__ == '__main__':
             entailing_predicates = []
             for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
                 if task.predicate_term in entailment_dictionaries[filename + '_entailing']:
-                    entailing_predicates.append(entailment_dictionaries[filename + '_entailing'][task.predicate_term])
+                    entailings = entailment_dictionaries[filename + '_entailing'][task.predicate_term]
+                    entailing_predicates.extend(list(entailings))
 
             entailed_predicates = []
             for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
                 if task.predicate_term in entailment_dictionaries[filename + '_entailed']:
-                    entailed_predicates.append(entailment_dictionaries[filename + '_entailed'][task.predicate_term])
+                    entaileds = entailment_dictionaries[filename + '_entailed'][task.predicate_term]
+                    entailed_predicates.extend(list(entaileds))
 
             # 4種類の上位語・下位語が揃った。
             for hype_or_hype_or_original in (hypes + hypos + [task.object_term.name]):

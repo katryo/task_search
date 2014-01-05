@@ -14,12 +14,14 @@ class SQLiteDataLoader(object):
     def select_hypes_with_hypo(self, hypo):
         sql = 'select hypernym from object_terms where hyponym = "%s"' % hypo
         self.cur.execute(sql)
-        return self.cur.fetchall()
+        results = [tpl[0] for tpl in self.cur.fetchall()]
+        return results
 
     def select_hypos_with_hype(self, hype):
         sql = 'select hyponym from object_terms where hypernym = "%s"' % hype
         self.cur.execute(sql)
-        return self.cur.fetchall()
+        results = [tpl[0] for tpl in self.cur.fetchall()]
+        return results
 
     def has(self, hypernym, hyponym):
         sql = 'select * from object_terms where exists(' \

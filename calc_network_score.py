@@ -15,7 +15,7 @@ if __name__ == '__main__':
     sqldl = SQLiteDataLoader()
     entailment_dictionaries = utils.load_entailment_dictionaries()
 
-    for page in pages[:40]:
+    for page in pages[:15]:
         for task in page.tasks:
             # まずオリジナルのノードを追加
             g.add_node('%s_%s' % (task.object_term.name, task.predicate_term))
@@ -47,10 +47,20 @@ if __name__ == '__main__':
                                '%s_%s' %
                                (hype_or_hype_or_original, entailing_or_entailed_or_original))
     print('added all edges!')
+    results = g.degree()
+    print([(result + str(results[result])) for result in results if results[result] > 20])
+
+'''
+    results = nx.pagerank(g)
+    for result in results:
+        #print(result + str(results[result]))
+        if results[result] > 9.6e-06:
+            print(result + str(results[result]))
+            '''
+    # print([(result + str(results[result]) for result in results if results[result] > 0.1)])
     # 1エッジで4.1秒
     # 1ノードにつき10エッジで16秒
     # 20エッジで32秒。線形ぽい。
     # おそらく200エッジで300秒ほど。つまり5分。
     # 1000エッジで1500秒 = 25分。まあいけそう。いざとなったらEC2借りよう。
-    # results = g.degree()
-    # print([(result + str(results[result])) for result in results if results[result] > 20])
+

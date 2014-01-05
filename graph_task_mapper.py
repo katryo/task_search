@@ -74,6 +74,8 @@ class GraphTaskMapper():
     def broader_nodes_with_higher_in_degree_score(self):
         high_score_nodes = self.nodes_with_higher_in_degree_score()
         results = set()
-        for node in high_score_nodes:
-            results.add(self.graph.predecessors(node))
+        for high_score_node in high_score_nodes:
+            narrower_nodes = self.graph.predecessors(high_score_node)
+            for narrower_node in narrower_nodes:
+                results.add(narrower_node)
         return results

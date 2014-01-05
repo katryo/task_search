@@ -61,8 +61,8 @@ class GraphTaskMapper():
             for entailing_or_entailed_or_original in (entailing_predicates +
                                                       entailed_predicates +
                                                       [task.predicate_term]):
-                if hype_or_original == '収録曲':
-                    continue
+                #if hype_or_original == '収録曲':
+                #    continue
                 self.add_new_node(hype_or_original, entailing_or_entailed_or_original)
                 self.add_new_edge(task, hype_or_original, entailing_or_entailed_or_original)
 

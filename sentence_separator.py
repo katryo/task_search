@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import constants
 import MeCab
-from mecabed_word import MecabedWord
+from m_words_factory import MWordsFactory
 
 
 class SentenceSeparator():
@@ -27,9 +27,10 @@ class SentenceSeparator():
         v_list = self.verbs(text)
         return s_list + v_list
 
-    def sahens(self, string):
+    def sahens(self, text):
         keywords = []
-        mwords = self.m_words(string)
+        m_words_factory = MWordsFactory()
+        mwords = m_words_factory.build_from(text)
         for m_word in mwords:
             if m_word.subtype == 'サ変接続':
                 item = m_word.name
@@ -38,7 +39,8 @@ class SentenceSeparator():
 
     def verbs(self, text):
         keywords = []
-        mwords = self.m_words(text)
+        m_words_factory = MWordsFactory()
+        mwords = m_words_factory.build_from(text)
         for m_word in mwords:
             if m_word.type == '動詞':
                 item = m_word.stem
@@ -74,51 +76,13 @@ class SentenceSeparator():
             words.append(info_elems[0][:-3])
         return words
 
-
     def words(self, text):
         words = self._split_to_words(text, to_stem=False)
         return words
 
-
     def stems(self, text):
         stems = self._split_to_words(text, to_stem=True)
         return stems
-
-    def m_words(self, text):
-        tagger = MeCab.Tagger('mecabrc')
-        result = tagger.parse(text)
-        word_info_collection = result.split('\n')
-        m_words = []
-        for info in word_info_collection:
-            #infoが',\t名詞,サ変接続,*,*,*,*,*'のようなときはbreakする
-            if info == 'EOS' or info == '':
-                break
-            else:
-                invalid = self.includes_invalid_word(info)
-                if invalid is True:
-                    break
-                else:
-                    mw = MecabedWord(info)
-                    #mw.name => '希望'
-                    #mw.type => '名詞'
-                    #mw.subtype => 'サ変接続'
-                    m_words.append(mw)
-        return m_words
-
-    def includes_invalid_word(self, info):
-        head = info[0:4]
-        invalid = False
-        invalid_words = [
-            ',', '.', '…', '(', ')', '-',
-            '/', ':', ';', '&', '%', '％',
-            '~', '〜', '≪', '≫', '[', ']',
-            '|', '"'
-        ]
-        for invalid_word in invalid_words:
-            if invalid_word in head:
-                invalid = True
-                break
-        return invalid
 
     def target_from_m_words_and_wo_i(self, m_words, wo_i):
         targets = m_words[:wo_i]
@@ -136,15 +100,3 @@ class SentenceSeparator():
                 return m_word.stem
         return '?'
 
-    def combine_nouns(self, m_words):
-        """
-        再帰的に合体させる
-        :param m_words:
-        :return:
-        """
-        new_m_words = self.try_combine_nouns(m_words)
-        # 合致するまで=変化しなくなるまで繰り返す
-        if new_m_words == m_words:
-            return m_words
-        else:
-            return self.combine_nouns(new_m_words)

@@ -7,6 +7,7 @@ import constants
 import pdb
 import copy
 from sentence_classifier import SentenceClassifier
+from text_combiner import TextCombiner
 
 
 class Sentence(Labelable):
@@ -35,7 +36,7 @@ class Sentence(Labelable):
             for cmp_info in constants.CMP_INFO_LIST:
                 if cmp_info == m_body_word.word_info:
                     return i
-        raise VaｗlueError
+        raise ValueError
 
     def cmp_r_i(self):
         for i, m_body_word in enumerate(reversed(self.m_body_words)):
@@ -135,5 +136,6 @@ class Sentence(Labelable):
 
 
     def set_m_body_words_by_combine_words(self):
-        self.m_body_words = self.combine_nouns(self.m_body_words)
-        self.m_body_words = self.combine_verbs(self.m_body_words)
+        tc = TextCombiner()
+        self.m_body_words = tc.combine_nouns(self.m_body_words)
+        self.m_body_words = tc.combine_verbs(self.m_body_words)

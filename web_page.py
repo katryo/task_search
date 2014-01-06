@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
 import requests
+import builtins
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
-import builtins
+from parenthesis_remover import Parenthesis_remover
 from sentence import Sentence
-from mecabed_noun import MecabedNoun
 from task import Task
 from task_step import TaskStep
 from node import Node
 
 
 class WebPage(WebItem):
-    def __init__(self, url='unknown', query=''):
+    def __init__(self, url='unknown', query='', snippet=''):
         self.url = url
         self.query = query
+        self.snippet = snippet
+        self.sentences = []
+
+    def snippet_without_parenthesis(self):
+        pr = Parenthesis_remover()
+        snippet = pr.remove_inside_round_parenthesis(self.snippet)
+        snippet = pr.remove_parenthesis(snippet)
+        return snippet
 
     def fetch_xml(self):
         response = requests.get(self.url)

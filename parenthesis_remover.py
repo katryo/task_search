@@ -5,9 +5,6 @@ import constants
 
 
 class Parenthesis_remover(object):
-    """
-    interface的なクラス
-    """
     def remove_inside_round_parenthesis(self, text):
         for parentheses in constants.ROUND_PARENTHESIS:
             if parentheses in text:

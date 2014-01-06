@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import pdb
-import utils
+from bing_searcher import BingSearcher
+
 
 class ToiuSearcher():
-    def embody_search(self, term, context):
+    def result_pages(self, term, context):
         query = '"という%s" %s' % (term, context)
-        pages = utils.search_web_pages(query)
+        bs = BingSearcher(query)
+        pages = bs.result_pages()
         return pages
 
 

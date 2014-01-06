@@ -11,11 +11,6 @@ class GraphTaskMapper():
         self.graph = nx.DiGraph()
         self.entailment_dictionaries = utils.load_entailment_dictionaries()
 
-    def add_original_node(self, task):
-        # まずオリジナルのノードを追加
-        self.graph.add_node('%s_%s' % (task.object_term.name, task.predicate_term))
-        # print('%s_%s' % (task.object_term.name, task.predicate_term))
-
     def hypes(self, task):
     # object_term.core_nounのhypohypeを探る
         sqldl = SQLiteDataLoader()
@@ -38,11 +33,21 @@ class GraphTaskMapper():
                 entailed_predicates.extend(list(entaileds))
         return entailed_predicates
 
+    def has_stop_object_term(self, object_term):
+        stop_words = ['こと', 'もの', 'など']
+        if object_term in stop_words:
+            return True
+        return False
+
     def add_new_node(self, object_term, predicate_term):
+        if self.has_stop_object_term(object_term):
+            return False
         self.graph.add_node('%s_%s' % (object_term, predicate_term))
             # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
 
     def add_new_edge(self, task, object_term, predicate_term):
+        if self.has_stop_object_term(object_term):
+            return False
         self.graph.add_edge('%s_%s' %
                             (task.object_term.name, task.predicate_term),
                             '%s_%s' %
@@ -61,10 +66,11 @@ class GraphTaskMapper():
             for entailing_or_entailed_or_original in (entailing_predicates +
                                                       entailed_predicates +
                                                       [task.predicate_term]):
-                #if hype_or_original == '収録曲':
-                #    continue
                 self.add_new_node(hype_or_original, entailing_or_entailed_or_original)
                 self.add_new_edge(task, hype_or_original, entailing_or_entailed_or_original)
+        #narrower_nodes = self.graph.predecessors('女性語_くしゃみ連発する')
+        #if 'こと_忘れる' in narrower_nodes:
+        #    pdb.set_trace()
 
     def nodes_with_higher_in_degree_score(self):
         scores = self.in_degree()
@@ -73,9 +79,20 @@ class GraphTaskMapper():
 
     def broader_nodes_with_higher_in_degree_score(self):
         high_score_nodes = self.nodes_with_higher_in_degree_score()
-        results = set()
+        results = dict()
         for high_score_node in high_score_nodes:
             narrower_nodes = self.graph.predecessors(high_score_node)
             for narrower_node in narrower_nodes:
-                results.add(narrower_node)
-        return results
+                if narrower_node.startswith('とき_'):
+                    continue
+                if narrower_node.startswith('など_'):
+                    continue
+                if narrower_node.startswith('こと_'):
+                    continue
+                if narrower_node.startswith('もの_'):
+                    continue
+                if high_score_node in results:
+                    results[high_score_node].append(narrower_node)
+                    continue
+                results[high_score_node] = [narrower_node]
+        return results  # dict型にする

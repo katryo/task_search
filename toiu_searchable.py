@@ -3,7 +3,7 @@ import pdb
 from bing_searcher import BingSearcher
 
 
-class ToiuSearcher():
+class ToiuSearchable():
     def result_pages(self, term, context):
         query = '"という%s" %s' % (term, context)
         bs = BingSearcher(query)

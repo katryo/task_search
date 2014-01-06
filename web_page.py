@@ -100,24 +100,6 @@ class WebPage(WebItem):
                 if m_words[i + 1].type == '動詞':
                     return i
 
-
-
-    def remove_parentheses(self, string):
-        parentheses = [
-            '「', '」',
-            '『', '』',
-            '《', '》',
-            '【', '】',
-            '“', '”',
-            '〈', '〉',
-            '（', '）',
-            '(', ')',
-            ' ']
-        for parenthesis in parentheses:
-            if parenthesis in string:
-                string = string.replace(parenthesis, '')
-        return string
-
     def slice_after_dots(self, string):
         for dot in ['、', '。', '，', '〜', '～',
                     '．', '.', ',', '…', '?', '？', '!', '！']:

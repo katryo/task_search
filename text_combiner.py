@@ -3,10 +3,10 @@ import re
 import constants
 from mecabed_noun import MecabedNoun
 from mecabed_verb import MecabedVerb
+from parenthesis_remover import Parenthesis_remover
 
 
-class TextCombiner(object):
-
+class TextCombiner(Parenthesis_remover):
     def combine_verbs(self, m_words):
         new_m_words = self._try_combine_verbs(m_words)
         # 合致するまで=変化しなくなるまで繰り返す
@@ -75,21 +75,3 @@ class TextCombiner(object):
         m_words_after_combine = m_words[:i] + [combined_m] + m_words[i + 2:]
         return m_words_after_combine
 
-    def remove_inside_round_parenthesis(self, text):
-        for parentheses in constants.ROUND_PARENTHESIS:
-            if parentheses in text:
-                pattern_1 = re.compile('（.*?）')
-                pattern_2 = re.compile('\(.*?\)')
-                text = pattern_1.sub(text, '')
-                text = pattern_2.sub(text, '')
-        return text
-
-    def remove_parenthesis(self, text):
-        for parentheses in constants.PARENTHESIS:
-            text = text.replace(parentheses, '')
-        return text
-
-    def remove_all_parenthesis(self, text):
-        for parentheses in constants.ALL_PARENTHESIS:
-            text = text.replace(parentheses, '')
-        return text

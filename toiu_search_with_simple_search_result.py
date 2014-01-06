@@ -12,14 +12,14 @@ if __name__ == '__main__':
     results_dic = pfl.load_simple_task_search_result()
     results_set = set()
     for result_broader in results_dic:
-        results_set.add(results_dic[result_broader])
+        for pair in results_dic[result_broader]:
+            results_set.add(pair)
 
     ts = ToiuSearcher()
     concrete_terms = dict()
-    pdb.set_trace()
-    for simple_result in results_set:
+    for simple_pair in results_set:
         concrete_object_terms = set()  # 1つのsimple_resultにつき複数のconcrete_otがある
-        object_term, predicate_term = simple_result.split('_')
+        object_term, predicate_term = simple_pair.split('_')
         result_pages = ts.result_pages(object_term, constants.FINAL_QUERY)
         for page in result_pages:
             # snippetの括弧を除去して、（）内を除去して、メカブして、
@@ -34,5 +34,5 @@ if __name__ == '__main__':
                             if m_words_of_snippet[i-2].name in STOP_WORDS:
                                 continue
                             concrete_object_terms.add(m_words_of_snippet[i-2].name + '_' + predicate_term)
-        concrete_terms[simple_result] = concrete_object_terms
+        concrete_terms[simple_pair] = concrete_object_terms
     print(concrete_terms)

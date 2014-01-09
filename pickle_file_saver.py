@@ -6,11 +6,11 @@ import pdb
 
 
 class PickleFileSaver(object):
-    def save_simple_task_search_result(self, results_dic):
+    def save_simple_task_search_result_with_query(self, results_dic, query):
         if not os.path.exists(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME):
             os.mkdir(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME)
         os.chdir(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME)
-        with open('%s.pkl' % constants.FINAL_QUERY, 'wb') as f:
+        with open('%s.pkl' % query, 'wb') as f:
             pickle.dump(obj=results_dic, file=f)
         os.chdir('..')
 

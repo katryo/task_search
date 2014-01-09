@@ -59,12 +59,11 @@ class GraphTaskMapper():
     def add_node_and_edge_with_task(self, task):
         hypes = self.hypes(task)
         entailing_predicates = self.entailing_preds(task)
-        entailed_predicates = self.entailed_preds(task)
+        #entailed_predicates = self.entailed_preds(task)
 
         # 上位語・下位語が揃った。
         for hype_or_original in (hypes + [task.object_term.name]):
             for entailing_or_entailed_or_original in (entailing_predicates +
-                                                      entailed_predicates +
                                                       [task.predicate_term]):
                 self.add_new_node(hype_or_original, entailing_or_entailed_or_original)
                 self.add_new_edge(task, hype_or_original, entailing_or_entailed_or_original)

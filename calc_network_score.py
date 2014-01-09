@@ -18,4 +18,4 @@ if __name__ == '__main__':
     print('added all edges!')
     results_dic = gtm.broader_nodes_with_higher_in_degree_score()
     pfs = PickleFileSaver()
-    pfs.save_simple_task_search_result(results_dic)
+    pfs.save_simple_task_search_result_with_query(results_dic, constants.QUERY)

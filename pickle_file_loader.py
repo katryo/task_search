@@ -4,10 +4,11 @@ import os
 import pickle
 import pdb
 
+
 class PickleFileLoader(object):
-    def load_simple_task_search_result(self):
+    def load_simple_task_search_result_with_query(self, query):
         os.chdir(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME)
-        with open('%s.pkl' % constants.FINAL_QUERY, 'rb') as f:
+        with open('%s.pkl' % query, 'rb') as f:
             results_dic = pickle.load(f)
         os.chdir('..')
         return results_dic

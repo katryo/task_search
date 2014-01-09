@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
 import constants
-import utils
-import pdb
-import pickle
+from pickle_file_loader import PickleFileLoader
+from pickle_file_saver import PickleFileSaver
+from sentence_separator import SentenceSeparator
 
 if __name__ == '__main__':
-    pages = utils.load_fetched_pages()
+    loader = PickleFileLoader()
+    pages = loader.load_fetched_pages()
+    sp = SentenceSeparator()
     for page in pages:
         try:
             page.fetch_html()
-            print('フェッチ完了!')
+            print('%sのフェッチ完了!' % page.title)
             page.set_text_from_html_body()
-            page.sentences = utils.split_by_dots(page.text)
+            page.sentences = sp.split_by_dots(page.text)
         except (ValueError, IndexError):
             continue
 
-    for i, page in enumerate(pages):
-        with open('%s_%s.pkl' % (constants.FINAL_QUERY, str(i)), 'wb') as f:
-            pickle.dump(page, f)
+    saver = PickleFileSaver()
+    saver.save_pages_with_dir_name(pages, constants.QUERY)
+

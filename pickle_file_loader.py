@@ -19,3 +19,14 @@ class PickleFileLoader(object):
             print('%sのロード完了!' % constants.OBJECT_TERM_DICTIONARY_PICKLE_FILENAME)
         os.chdir('..')
         return object_term_dictionary
+
+    def load_fetched_pages(self):
+        path = os.path.join(constants.FETCHED_PAGES_DIR_NAME, constants.FINAL_QUERY)
+        os.chdir(path)
+        pages = []
+        for i in range(constants.NUM_OF_FETCHED_PAGES):
+            with open('%s_%s.pkl' % (constants.QUERY, str(i)), 'rb') as f:
+                page = pickle.load(f)
+                pages.append(page)
+        os.chdir('../..')
+        return pages

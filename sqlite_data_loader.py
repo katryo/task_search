@@ -12,13 +12,14 @@ class SQLiteDataLoader(object):
         self.conn.close()
 
     def select_hypes_with_hypo(self, hypo):
-        sql = 'select hypernym, score from all_hyponymy where hyponym = "%s"' % hypo
+        sql = 'select hypernym, score from all_hyponymy where hyponym = "%s" limit 100' % hypo
         self.cur.execute(sql)
+        print('%sを実行！' % sql)
         results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
         return results
 
     def select_hypos_with_hype(self, hype):
-        sql = 'select hyponym, score from  all_hyponymy where hypernym = "%s"' % hype
+        sql = 'select hyponym, score from  all_hyponymy where hypernym = "%s" limit 100' % hype
         self.cur.execute(sql)
         results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
         return results

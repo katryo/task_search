@@ -1,4 +1,7 @@
 my_keys.py
+
+hyponym_hypernym.sqlite
+
 entailment_dictionaries/
 *.py[cod]
 workspace.xml

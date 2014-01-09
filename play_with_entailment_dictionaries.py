@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-import utils
 import pdb
 import constants
+from pickle_file_loader import PickleFileLoader
 
 if __name__ == '__main__':
-    dictionaries = utils.load_entailment_dictionaries()
-    pages = utils.load_fetched_pages()
+    pfl = PickleFileLoader()
+    dictionaries = pfl.load_entailment_dictionaries()
+    pages = pfl.load_fetched_pages_with_query(constants.QUERY)
     for dictionary_type in constants.ENTAILMENT_DICTIONARY_TYPES:
         for filename in constants.ENTAILMENT_DICTIONARY_NAMES:
             for page in pages:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from sentence_separator import SentenceSeparator
 import pdb
 import re
 from text_combiner import TextCombiner
+from m_words_factory import MWordsFactory
 
 
 class Labelable(object):
@@ -14,8 +14,8 @@ class Labelable(object):
         self.body = tc.remove_parenthesis(text)
         self.set_blank_to_body_if_not_includes_hiragana_or_karakana()
         self.body = tc.remove_inside_round_parenthesis(self.body)
-        sp = SentenceSeparator()
-        self.m_body_words = sp.m_words(self.body)
+        m_factory = MWordsFactory()
+        self.m_body_words = m_factory.build_from(self.body)
 
     def set_blank_to_body_if_not_includes_hiragana_or_karakana(self):
         if not self.includes_hiragana_or_katakana():

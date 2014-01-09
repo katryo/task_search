@@ -22,6 +22,21 @@ class SentenceSeparator():
             texts = self.split_and_flatten_by_a_certain_dot(texts, dot)
         return texts
 
+    def split_and_flatten_by_a_certain_dot(self, texts, dot):
+        """
+        listを入れてlistを返す
+        """
+        # 最初は['あいう。えお！かき。くけこ']
+        results = []
+        for text in texts:
+            # まず。がある
+            splitted_texts = text.split(dot)
+            for splitted_text in splitted_texts:
+                if splitted_text:
+                    # splitted_textsは['あいう', 'えお！かき', 'くけこ']
+                    results.append(splitted_text)
+        return results
+
     def sahens_or_verbs(self, text):
         s_list = self.sahens(text)
         v_list = self.verbs(text)

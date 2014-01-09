@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-import utils
 import pdb
+import constants
 from graph_task_mapper import GraphTaskMapper
 from pickle_file_saver import PickleFileSaver
+from pickle_file_loader import PickleFileLoader
 
 
 if __name__ == '__main__':
-    pages = utils.load_fetched_pages()
+    pfl = PickleFileLoader()
+    pages = pfl.load_fetched_pages_with_query(constants.QUERY)
     gtm = GraphTaskMapper()
 
     for page in pages:

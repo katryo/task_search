@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 import pdb
+from base_sqlite_manager import BaseSQLiteManager
+from sqlite_data_loadable import SQLiteDataLoadable
 
-
-class SQLiteDataLoader(object):
-    def __init__(self):
-        self.conn = sqlite3.connect('hyponym_hypernym.sqlite')
-        self.cur = self.conn.cursor()
-
-    def __del__(self):
-        self.conn.close()
-
+class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
     def select_hypes_with_hypo(self, hypo):
         sql = 'select hypernym, score from all_hyponymy where hyponym = "%s" limit 100' % hypo
         self.cur.execute(sql)
@@ -52,7 +46,7 @@ class SQLiteDataLoader(object):
         self.conn.commit()
 
     def show_all(self):
-        sql = 'select * from all_hyponymy'
+        sql = 'select * from %s' % self.table_name
         self.cur.execute(sql)
         for row in self.cur:
             print(row)

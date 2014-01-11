@@ -3,6 +3,7 @@ FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
 ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
+ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment_presu entailment_triv nonentailment_anton nonentailment_ntriv nonentailment_predi nonentailment_triv'.split(' ')
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
 SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'

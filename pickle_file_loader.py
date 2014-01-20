@@ -7,6 +7,11 @@ import pdb
 
 
 class PickleFileLoader(object):
+    def load_file(self, filename):
+        with open(filename, 'rb') as f:
+            obj = pickle.load(f)
+        return obj
+
     def load_queries(self):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.QUERIES_DIR_NAME)

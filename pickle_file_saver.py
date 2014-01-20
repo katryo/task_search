@@ -7,6 +7,11 @@ from path_mover import PathMover
 
 
 class PickleFileSaver(object):
+    def save_file(self, obj, filename):
+        with open(filename, 'wb') as f:
+            pickle.dump(obj, f)
+        return obj
+
     def save_pages_with_query_expansion(self, pages_dict, original_query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)

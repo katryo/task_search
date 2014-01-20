@@ -14,6 +14,7 @@ if __name__ == '__main__':
             print('%sのフェッチ完了!' % page.title)
             page.set_text_from_html_body()
             page.sentences = sp.split_by_dots(page.text)
+            pfs.save_pages_with_query_expansion()
         except (ValueError, IndexError):
             continue
 

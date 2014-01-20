@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from m_words_factory import MWordsFactory
 
+
 class WordPicker(object):
-    def __init__(self, body)
+    def __init__(self, body):
         self.body = body
 
     def pick_nouns_and_verbs(self):
@@ -20,8 +21,8 @@ class WordPicker(object):
                     keywords.append(m_word.name)
         return keywords
 
-    def pick_words_by_type(self, type):
-        types = [type]
+    def pick_words_by_type(self, typ):
+        types = [typ]
         keywords = self.pick_words_by_types(types)
         return keywords
 

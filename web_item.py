@@ -68,30 +68,6 @@ class WebItem():
             return m_words[i-1].stem  # 動いた
         return False
 
-    def set_sahen_count(self):
-        if not hasattr(self, 'sahen_count'):
-            self.sahen_count = {}
-        for verb in self.sahens:
-            self.sahen_count_up(verb)
-
-    def sahen_count_up(self, word):
-        if word in self.sahen_count:
-            self.sahen_count[word] += 1
-            return
-        self.sahen_count[word] = 1
-
-    def set_verb_count(self):
-        if not hasattr(self, 'verb_count'):
-            self.verb_count = {}
-        for verb in self.verbs:
-            self.verb_count_up(verb)
-
-    def verb_count_up(self, word):
-        if word in self.verb_count:
-            self.verb_count[word] += 1
-            return
-        self.verb_count[word] = 1
-
     def set_past_word_count(self):
         # self.sentencesはすでにある前提
         if not hasattr(self, 'past_word_count'):

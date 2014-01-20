@@ -9,7 +9,9 @@ SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'
 SO_CALLED = 'という'
 QUERY = 'ビリヤード　プロ　なるには'
-QUERIES = '花粉症対策,掃除　方法,クレー射撃　体験,家庭菜園　始める,犬　育てる,胃もたれ　防止,保育園　入園,骨折　治療'.split(',')
+QUERIES = '花粉症　対策する,部屋　掃除する,クレー射撃　体験する,' \
+          '家庭菜園　始める,犬　育てる,胃もたれ　防止する,' \
+          '保育園　入園させる,骨折　治療する,ビリヤード　優勝する,ノベルゲーム　完成させる'.split(',')
 # FINAL_QUERY = QUERY + '　"' + ACTION_WORD_IN_QUERY + '"'
 FINAL_QUERY = '家庭菜園　始める'
 MIN_TFIDF = 0.1

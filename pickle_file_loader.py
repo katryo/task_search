@@ -16,9 +16,14 @@ class PickleFileLoader(object):
         for filename in filenames:
             if filename == '.DS_Store':
                 continue
-            with open(filename, 'rb') as f:
-                ad = pickle.load(f)
-                ads.append(ad)
+            try:
+                with open(filename, 'rb') as f:
+                    ad = pickle.load(f)
+                    ads.append(ad)
+            except IsADirectoryError:
+                pdb.set_trace()
+        pm.go_up()
+        pm.go_up()
         return ads
 
 

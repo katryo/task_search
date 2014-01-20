@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pdb
-
+import constants
 
 class TermCounter(object):
     def __init__(self):
@@ -17,3 +17,12 @@ class TermCounter(object):
             return
         self.term_count[word] = 1
 
+    def frequent_terms(self):
+        threshold = 1
+        results = []
+        for word in self.term_count:
+            if word in constants.STOPWORDS:
+                continue
+            if self.term_count[word] > threshold:
+                results.append(word)
+        return results

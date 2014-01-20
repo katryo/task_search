@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
+QUERIES_DIR_NAME = 'queries'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
 ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
 ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment_presu entailment_triv nonentailment_anton nonentailment_ntriv nonentailment_predi nonentailment_triv'.split(' ')
@@ -56,9 +57,8 @@ TASK_WORDS = [
     'がおすすめ', 'がオススメ', '有効',
     'を選ぶ', 'してみては', 'するのがいい', 'するのがよい', 'するのが良い'
 ]
-STOP_WORDS = [
-    'する', 'しよ', '思う', 'やっ', 'やめ', '〜', 'し',
-    '？', 'い', 'れ', 'し'
+STOPWORDS = [
+    '？', '?', '！', '!', '検索'
 ]
 
 BLACK_WORDS = [

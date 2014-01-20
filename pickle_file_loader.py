@@ -22,7 +22,6 @@ class PickleFileLoader(object):
             except IsADirectoryError:
                 pdb.set_trace()
         pm.go_up()
-        pm.go_up()
         return queries
 
     def load_ads_with_query(self, query):

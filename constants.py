@@ -35,6 +35,7 @@ PRONOUNS = 'それ あれ これ こちら そちら これら それら あれ�
 DOTS = '. ! ? 。 ！ ？'.split(' ')
 PICKLE_RESULT_DICT_NAME = 'hay_fever_result_dic.pkl'
 NUM_OF_FETCHED_PAGES = 50
+NUM_OF_TOTAL_FETCHED_PAGES = 50
 CLUE_WEB_URL_HEAD = 'http://karen.dl.local:8983/solr/ClueWeb09ja/select?q='
 CLUE_WEB_URL_TAIL = '&wt=xml'
 

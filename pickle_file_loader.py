@@ -79,7 +79,10 @@ class PickleFileLoader(object):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
         pm.go_or_create_and_go_to(query)
-        pm.go_or_create_and_go_to(query + '　' + expansion_word)
+        if expansion_word == '':
+            pm.go_or_create_and_go_to(query)
+        else:
+            pm.go_or_create_and_go_to(query + '　' + expansion_word)
 
         filenames = os.listdir()
         pages = []

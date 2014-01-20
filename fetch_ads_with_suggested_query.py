@@ -1,9 +1,9 @@
-__author__ = 'katouryou'
 import os
 import constants
 import pickle
 from web_page import WebPage
-from pattern_matcher import PatternMatcher
+from path_mover import PathMover
+
 
 def fetch_ads():
     query = constants.FINAL_QUERY
@@ -20,9 +20,13 @@ def fetch_ads():
 
 
 if __name__ == '__main__':
-    if not os.path.exists(constants.FETCHED_ADS_DIR_NAME):
-        os.mkdir(constants.FETCHED_AdS_DIR_NAME)
-    os.chdir(constants.FETCHED_AdS_DIR_NAME)
+    mover = PathMover()
+    mover.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
+    for query in constants.QUERIES:
+        mover.go_or_create_and_go_to(query)
+
+        mover.go_up()
+
     if not os.path.exists(constants.FINAL_QUERY):
         os.mkdir(constants.FINAL_QUERY)
     os.chdir(constants.FINAL_QUERY)

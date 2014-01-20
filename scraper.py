@@ -1,19 +1,11 @@
-import requests
+# -*- coding: utf-8 -*-
 from pyquery import PyQuery as pq
 from ad import Ad
 from web_item import WebItem
 import pdb
 
 
-class Scraper:
-    def __init__(self, url='unknown'):
-        self.url = url
-
-
-    def fetch_xml(self):
-        response = requests.get(self.url)
-        self.xml_body = response.text
-
+class Scraper(object):
     def set_lines_from_texts(self):
         #result_page単体が実行する
         self.lines = self.text_body.split('。')
@@ -90,7 +82,6 @@ class Scraper:
                     if m_words[0].subtype == 'サ変接続':
                         self.action_word = m_words[0]
 
-
     def find_urls_from_nanapi_search_result(self):
         link_elems = pq(self.html_body.encode('utf-8')).find('.item-title a')
         results = []
@@ -99,8 +90,6 @@ class Scraper:
             result = pq(link_elem).attr('href')
             results.append(result)
         return results
-
-
 
     def find_tasks_from_texts(self):
         verbs = []
@@ -111,7 +100,6 @@ class Scraper:
                 if m_word.type == '動詞':
                     verbs.append(m_word)
         return verbs
-
 
     def pick_something(self):
         #多目的用途。研究には使わない。自由に書きかえて大丈夫

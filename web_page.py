@@ -2,12 +2,10 @@
 import requests
 import builtins
 from pyquery import PyQuery as pq
-from ad import Ad
 from web_item import WebItem
 from parenthesis_remover import Parenthesis_remover
 from sentence import Sentence
 from task import Task
-from task_step import TaskStep
 from node import Node
 
 
@@ -231,31 +229,6 @@ class WebPage(WebItem):
                     if m_words[0].subtype == 'サ変接続':
                         self.action_word = m_words[0]
 
-    def find_urls_from_nanapi_search_result(self):
-        link_elems = pq(self.html_body.encode('utf-8')).find('.item-title a')
-        urls = []
-        for link_elem in link_elems:
-            url = pq(link_elem).attr('href')
-            urls.append(url)
-        return urls
-
-    def find_task_from_nanapi_with_headings(self):
-        # h2 has_many h3 s
-        # self.html_bodyのうち、recipe-bodyを取ってくる
-        recipe_body = pq(self.html_body.encode('utf-8')).find('.recipe-body').html()
-        # splitして
-        steps_texts = recipe_body.split('<h2>')[1:]
-        task_steps = []
-        for step_text in steps_texts:
-            task_step = TaskStep()
-            task_step.set_headings_from_text(step_text)
-            task_steps.append(task_step)
-            # step_text => h2からh2まで
-        task = Task()
-        task.set_title_with_html(self.html_body)
-        task.set_url(self.url)
-        task.set_steps(task_steps)
-        return task # task.steps => [task_step, task_step, ...]
 
     def find_tasks_from_texts(self):
         verbs = []
@@ -292,19 +265,6 @@ class WebPage(WebItem):
             key_phrase = result[0].text
             key_phrases.append(key_phrase)
         return key_phrases
-
-    def set_ads_with_html_body(self):
-        listWrap = pq(self.html_body).find('.listWrap')
-        lis = listWrap.children().children()
-        self.ads = []
-        for li in lis:
-            pq_li = pq(li)
-            title = pq_li.find('a').text()
-            link = pq_li.find('a').attr('href')
-            snippet = pq_li.find('.smr').text()
-            ad_info = {'title': title, 'snippet': snippet, 'link': link}
-            ad = Ad(ad_info)
-            self.ads.append(ad)
 
     def add_object_terms_to_dictionary(self, dictionary):
         for task in self.tasks:

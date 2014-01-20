@@ -15,4 +15,4 @@ class EntailmentLibrarian(object):
 
 if __name__ == '__main__':
     librarian = EntailmentLibrarian()
-    print(librarian.entailed_verbs_with_entailing_with_all_dictionaries('体験する'))
+    print(librarian.entailed_verbs_with_entailing_with_all_dictionaries('受診する'))

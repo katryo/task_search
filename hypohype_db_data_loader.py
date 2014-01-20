@@ -51,3 +51,6 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
         for row in self.cur:
             print(row)
 
+if __name__ == '__main__':
+    loader = HypoHypeDBDataLoader(db_name='hyponym_hypernym.sqlite', table_name='all_hyponymy')
+    print(loader.select_hypes_with_hypo('耳鼻咽喉科'))

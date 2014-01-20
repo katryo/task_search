@@ -7,6 +7,24 @@ import pdb
 
 
 class PickleFileLoader(object):
+    def load_queries(self):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.QUERIES_DIR_NAME)
+        filenames = os.listdir()
+        queries = []
+        for filename in filenames:
+            if filename == '.DS_Store':
+                continue
+            try:
+                with open(filename, 'rb') as f:
+                    query = pickle.load(f)
+                    queries.append(query)
+            except IsADirectoryError:
+                pdb.set_trace()
+        pm.go_up()
+        pm.go_up()
+        return queries
+
     def load_ads_with_query(self, query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_ADS_DIR_NAME)

@@ -23,6 +23,6 @@ if __name__ == '__main__':
             adding_terms.append(term)
 
         q = Query(query)
-        q.set_expantion_words(adding_terms)
+        q.set_expansion_words(adding_terms)
         pfs = PickleFileSaver()
         pfs.save_query(q)

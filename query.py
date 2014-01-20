@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import constants
 from bing_searcher import BingSearcher
 import math
 import pdb
+
 
 class Query:
     def __init__(self, body):
@@ -12,18 +14,18 @@ class Query:
 
     def search_with_expansion_words(self):
         total_page_num = constants.NUM_OF_TOTAL_FETCHED_PAGES
-        try:
-            page_num_per_query = math.floor(total_page_num / (len(self.expansion_words) + 1))
-        except ZeroDivisionError:
-            pdb.set_trace()
+        page_num_per_query = math.floor(total_page_num / len(self.queries()))
 
-        pages = []
+        pages = dict()
         for query in self.queries():
             bs = BingSearcher(query)
-            pages.extend(bs.result_pages(page_num_per_query))
-        return pages
+            result_pages = bs.result_pages(page_num_per_query)
+            pages[query] = result_pages
+        return pages  # {'犬　育てる': [Page, Page,...], '犬　育てる　教育': [Page,...]}
 
     def queries(self):
-        queries = self.expansion_words
+        queries = []
+        for word in self.expansion_words:
+            queries.append(self.body + '　' + word)
         queries.append(self.body)
         return queries

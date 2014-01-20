@@ -7,19 +7,22 @@ from path_mover import PathMover
 
 
 class PickleFileSaver(object):
-    def save_pages_with_query_expansion(self, pages, query_obj):
+    def save_pages_with_query_expansion(self, pages_dict, original_query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
-        pm.go_or_create_and_go_to(query_obj.body)
-        for q_word in query_obj.queries():
-            pm.go_or_create_and_go_to(q_word)
-            for i, page in enumerate(pages):
-                with open('%s_%i.pkl' % (q_word, i), 'wb') as f:
+        pm.go_or_create_and_go_to(original_query)
+        for query in pages_dict:
+            # query => '犬　育てる　教育'
+            pm.go_or_create_and_go_to(query)
+
+            #page_dict[query] => [Page, Page, ...]
+            for i, page in enumerate(pages_dict[query]):
+                with open('%s_%i.pkl' % (query, i), 'wb') as f:
                     try:
                         pickle.dump(page, f)
                     except TypeError:
                         pdb.set_trace()
-                    print('%s_%i.pklの保存完了!' % (q_word, i))
+                    print('%s_%i.pklの保存完了!' % (query, i))
             pm.go_up()
         pm.go_up()
         pm.go_up()

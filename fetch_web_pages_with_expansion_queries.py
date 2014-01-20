@@ -11,4 +11,5 @@ if __name__ == '__main__':
     pfs = PickleFileSaver()
     for query in queries:
         pages = query.search_with_expansion_words()
-        pfs.save_pages_with_query_expansion(pages=pages, query_obj=query)
+        pfs.save_pages_with_query_expansion(pages_dict=pages,
+                                            original_query=query.body)

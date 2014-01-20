@@ -110,32 +110,6 @@ class WebItem():
             return
         self.past_word_count[text] = 1
 
-    def pick_words_by_types(self, string, types):
-        keywords = []
-        m_words = self.to_m_words(string)
-        for m_word in m_words:
-            for word_type in types:
-                if m_word.type == word_type:
-                    keywords.append(m_word.name)
-        return keywords
-
-    def pick_words_by_type(self, string, type):
-        types = [type]
-        keywords = self.pick_words_by_types(string, types)
-        return keywords
-
-    def pick_sahens(self, string):
-        keywords = []
-        m_words = self.to_m_words(string)
-        for m_word in m_words:
-            if m_word.subtype == 'サ変接続':
-                item = m_word.name
-                keywords.append(item)
-        return keywords
-
-    def pick_verbs(self, str):
-        keywords = self.pick_words_by_type(str, '動詞')
-        return keywords
 
     def to_m_words(self, str):
         tagger = MeCab.Tagger('mecabrc')
@@ -172,11 +146,6 @@ class WebItem():
                 invalid = True
                 break
         return invalid
-
-    def pick_nouns_and_verbs(self, str):
-        types = ['名詞', '動詞']
-        keywords = self.pick_words_by_types(str, types)
-        return keywords
 
 
 

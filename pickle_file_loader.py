@@ -2,10 +2,26 @@
 import constants
 import os
 import pickle
+from path_mover import PathMover
 import pdb
 
 
 class PickleFileLoader(object):
+    def load_ads_with_query(self, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_ADS_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        filenames = os.listdir()
+        ads = []
+        for filename in filenames:
+            if filename == '.DS_Store':
+                continue
+            with open(filename, 'rb') as f:
+                ad = pickle.load(f)
+                ads.append(ad)
+        return ads
+
+
     def load_simple_task_search_result_with_query(self, query):
         os.chdir(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME)
         with open('%s.pkl' % query, 'rb') as f:

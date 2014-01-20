@@ -32,8 +32,6 @@ class Ad(WebItem):
         self.texts = self.find_words(words, self.link)
         #texts => ['水がおすすめ', '気をつけてください']
 
-
-
     def pick_characteristic_words(self):
         if not self.link_page_title: self.fetch_link_title()
         results = []
@@ -90,7 +88,6 @@ class Ad(WebItem):
             stripped_word = word.strip(bracket_head).strip(bracket_tail)
             stripped_words.append(stripped_word)
         return stripped_words
-
 
 
     def three_words_of_nara_de_ha(self, m_words):
@@ -230,7 +227,6 @@ class Ad(WebItem):
             return False
         return m_word
 
-
     def is_over_or_m_word(self, m_words, i, count, type):
         # count => 0, 1, 2
         if i == count:
@@ -242,7 +238,6 @@ class Ad(WebItem):
         # ['で', '働く', 'なら']のような場合
             return False
         return first_m_word
-
 
     def till_three_words_before(self, mecabed_words, keyword_index):
         words_before_keyword_index = []

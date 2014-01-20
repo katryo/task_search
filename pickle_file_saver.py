@@ -14,6 +14,7 @@ class PickleFileSaver(object):
         for i, ad in enumerate(ads):
             with open('%s_%i.pkl' % (ad.title, i), 'wb') as f:
                 pickle.dump(obj=ad, file=f)
+                print('%sの保存完了' % ad.title)
         pm.go_up()
         pm.go_up()
 

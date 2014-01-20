@@ -3,9 +3,20 @@ import constants
 import os
 import pickle
 import pdb
+from path_mover import PathMover
 
 
 class PickleFileSaver(object):
+    def save_ads_with_query(self, ads, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_ADS_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        for i, ad in enumerate(ads):
+            with open('%s_%i.pkl' % (ad.title, i), 'wb') as f:
+                pickle.dump(obj=ad, file=f)
+        pm.go_up()
+        pm.go_up()
+
     def save_simple_task_search_result_with_query(self, results_dic, query):
         if not os.path.exists(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME):
             os.mkdir(constants.SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import constants
 import re
@@ -7,10 +8,10 @@ from pyquery import PyQuery as pq
 
 
 class Ad(WebItem):
-    def __init__(self, args={'title': '', 'snippet': '', 'link': ''}):
-        self.title = args['title']
-        self.snippet = args['snippet']
-        self.link = args['link']
+    def __init__(self, title='', snippet='', link=''):
+        self.title = title
+        self.snippet = snippet
+        self.link = link
         #linkは広告のWebページURLではなくyahooのURLを経由
 
     def fetch_link_title(self):

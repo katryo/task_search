@@ -1,6 +1,9 @@
 my_keys.py
 entailment.sqlite
 hyponym_hypernym.sqlite
+fetched_pages/
+fetched_pages/*
+fetched_pages/~
 
 entailment_dictionaries/
 *.py[cod]

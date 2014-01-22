@@ -11,7 +11,7 @@ class Task(object):
             pdb.set_trace()
         self.cmp = cmp
         self.predicate_term = predicate_term
-        self.context = context
+        self.context = context  # いらないのでは
         self.order = order
         self.url = url
 

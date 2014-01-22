@@ -28,7 +28,7 @@ class GraphTaskMapper():
         self.graph.add_node('%s_%s' % (object_term, predicate_term), order=order, url=url, is_original=is_original)
             # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
 
-    def _add_new_edge(self, task, noun, verb, entailment_type, from_original_task=False):
+    def _add_new_edge(self, task, noun, verb, entailment_type, hype_type, from_original_task=False):
         if self.has_stop_object_term(noun):
             return False
         if type(noun) == list or type(task.object_term.core_noun) == list:
@@ -38,6 +38,7 @@ class GraphTaskMapper():
                             '%s_%s' %
                             (noun, verb),
                             entailment_type=entailment_type,
+                            hype_type=hype_type,
                             from_original_task=from_original_task)
 
     def in_degree(self):
@@ -47,38 +48,36 @@ class GraphTaskMapper():
         """
         もし1ページ内に順序があればorder=1から始まる値を与える。
         """
-        nouns = self._hypes(task)
+        hypes = self._hypes(task)
+        nouns = {'hypes': hypes}
         # hypesのときには、edgeにhypeエッジを与える必要ある？　subtype-ofを発見するために。
         original_noun = task.object_term.core_noun
-        nouns.append(original_noun)
+        nouns['original'] = original_noun
 
         original_verb = task.predicate_term
         verbs = self._entailing_preds(task)
         verbs['original'] = tuple([original_verb])
 
         # 上位語・下位語が揃った。
-        for noun in nouns:
-            for entailment_type in verbs:  # verbsはdict
-                for verb in verbs[entailment_type]:
-
-                    if noun == original_noun and verb == original_verb:
+        for hype_type in nouns:
+            for noun in nouns[hype_type]:
+                for entailment_type in verbs:  # verbsはdict
+                    for verb in verbs[entailment_type]:
+                        if noun == original_noun and verb == original_verb:
+                            is_original = True
+                        else:
+                            is_original = False
                         self._add_new_node(object_term=noun,
                                            predicate_term=verb,
                                            order=task.order,
                                            url=task.url,
-                                           is_original=True)
+                                           is_original=is_original)
                         self._add_new_edge(task=task,
                                            noun=noun,
                                            verb=verb,
                                            entailment_type=entailment_type,
-                                           from_original_task=True)
-                        continue
-
-
-                    # originalかどうかのattrがいるのでは？？？
-                    self._add_new_node(noun, verb, task.order, task.url)
-                    # あとでhypo関係を調べる必要あり……？
-                    self._add_new_edge(task, noun, verb, entailment_type)
+                                           hype_type=hype_type,
+                                           from_original_task=is_original)
 
     def _hypes(self, task):
     # object_term.core_nounのhypohypeを探る

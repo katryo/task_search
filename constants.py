@@ -8,7 +8,7 @@ ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment
 STOPWORDS_OF_HYPOHYPE = 'シングル 作品 収録曲 日本のテレビドラマ ' \
                         '短編 登場 キャラクター 掲載作家 ' \
                         '投稿戦士 現在所属 敵以外 人物 種類 ジャンル ' \
-                        '収録曲 アルバム 出演舞台 番組 出演'.split(' ')
+                        '収録曲 アルバム 舞台 番組 出演'.split(' ')
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
 SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'

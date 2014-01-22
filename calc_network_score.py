@@ -12,7 +12,7 @@ if __name__ == '__main__':
     pages = pfl.load_fetched_pages_with_query(query)
     gtm = GraphTaskMapper()
 
-    for page in pages:
+    for page in pages[2:3]:
         for task in page.tasks:
             # ここでpart_of関係に繋がるorder=1のエッジを与えたい
             # ノードに与える？ エッジに与える？
@@ -23,6 +23,7 @@ if __name__ == '__main__':
             gtm.add_node_and_edge_with_task(task)
         print('Tasks on %s are added!' % page.title)
     print('added all edges!')
+    pdb.set_trace()
     #pfs = PickleFileSaver()
     #pfs.save_graph_with_query(obj=gtm.graph, query=query)
     results_dic = gtm.frequent_tasks_by_generalized_tasks()

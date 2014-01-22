@@ -9,8 +9,8 @@ STOPWORDS_OF_HYPOHYPE = 'シングル 作品 収録曲 日本のテレビドラ�
                         '短編 登場 キャラクター 掲載作家 ' \
                         '投稿戦士 現在所属 敵以外 人物 種類 ジャンル ' \
                         '収録曲 アルバム 舞台 番組 出演'.split(' ')
-STOPWORDS_OF_WEBPAGE_NOUN = 'サイト画像 ｗｅｂサイト 当店 ボタン'.split(' ')
-STOPWORDS_OF_WEBPAGE_VERB = 'クリックする 押す'.split(' ')
+STOPWORDS_OF_WEBPAGE_NOUN = 'goo メールアドレス サイト画像 ｗｅｂサイト 当店 ボタン ブラウザ ポイント'.split(' ')
+STOPWORDS_OF_WEBPAGE_VERB = 'クリックする 押す 入力する'.split(' ')
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
 SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'

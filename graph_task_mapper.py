@@ -103,6 +103,9 @@ class GraphTaskMapper():
         entailing_predicates = librarian.genaral_from_all_except_for_nonent_ntriv_with_special(task.predicate_term)
         return entailing_predicates  # dict
 
+    # 同じgeneralized_taskにエッジを伸ばす2つのタスク。
+    # これらを統合させる必要がある！ g_nodeの名前そのままではなく、
+    # 重ね合わせ、集合体として。
     def frequent_tasks_by_generalized_tasks(self):
         scores = self.in_degree()  # {'調味料_ばらまく': 1, ...}
         results = dict()
@@ -116,5 +119,6 @@ class GraphTaskMapper():
                 task_attr_dict['name'] = task_name
                 good_original_tasks.append(task_attr_dict)
 
+            # もうここにfreqを淹れればよいのでは
             results[generalized_task] = good_original_tasks  # 一見重複しているように見えるタスクかも
         return results  # {'調味料_まく': {name:'塩_ばらまく', url:'http...', 'order': 5 }}

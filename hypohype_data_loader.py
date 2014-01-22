@@ -21,6 +21,8 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
                 if stopword in hype:
                     hypes.remove(hype)
                     break  # もうhypoはhypesにないからstopwordsから探す必要なし
+        if 'オリジナルアルバム' in hypes:
+            pdb.set_trace()
         return hypes
 
     def select_hypos_with_hype(self, hype):

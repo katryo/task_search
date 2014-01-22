@@ -291,7 +291,12 @@ class WebPage(WebItem):
                 sentence = Sentence(sentence)
             if sentence.is_invalid_for_task():
                 continue
-            task = Task(object_term=sentence.core_object(),
+
+            core_object = sentence.core_object()
+            if core_object.startswith('っ'):
+                continue
+
+            task = Task(object_term=core_object,
                         cmp=sentence.cmp,
                         predicate_term=sentence.core_predicate(),
                         context=self.query,

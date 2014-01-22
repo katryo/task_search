@@ -12,7 +12,7 @@ if __name__ == '__main__':
     pages = pfl.load_fetched_pages_with_query(query)
     gtm = GraphTaskMapper()
 
-    for page in pages[1:3]:
+    for page in pages:
         for task in page.tasks:
             # ここでpart_of関係に繋がるorder=1のエッジを与えたい
             # ノードに与える？ エッジに与える？

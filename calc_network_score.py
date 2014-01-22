@@ -15,16 +15,20 @@ if __name__ == '__main__':
             entailment_type = edges[generalized_task].get('entailment_type')
             if entailment_type == 'nonent_predi' or entailment_type == 'ent_presu':
                 if g.node[generalized_task]['is_original']:
-                    print('%s is a subtype-of %s because of entailment' % (node, generalized_task))
+                    print('%s is a part-of %s because of entailment' % (node, generalized_task))
                     continue
-                print('%s is a subtype-of %s, but the later is...' % (node, generalized_task))
+                print('%s is a part-of %s, but the later is not a original task' % (node, generalized_task))
+                # 次はorderでpart-ofを発見
+                # 貢献度があり、同じurlで、
+                # 汎化は1.頻度を調べて、2.part-of3subtype-ofを調べている。
+                # urlが同じであればそれはある上位タスク（おそらくクエリ）のpart-ofであることを意味する
 
             is_hype = edges[generalized_task].get('is_hype')
             if is_hype:
                 if g.node[generalized_task]['is_original']:
                     print('%s is a subtype-of %s' % (node, generalized_task))
                     continue
-                print('%s is a subtype-of %s, but the later is...' % (node, generalized_task))
+                print('%s is a subtype-of %s, but the later is not a original task' % (node, generalized_task))
 
     pdb.set_trace()
     pages = pfl.load_fetched_pages_with_query(query)

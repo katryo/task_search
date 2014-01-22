@@ -28,7 +28,7 @@ class GraphTaskMapper():
         self.graph.add_node('%s_%s' % (object_term, predicate_term), order=order, url=url, is_original=is_original)
             # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
 
-    def _add_new_edge(self, task, noun, verb, entailment_type, hype_type, from_original_task=False):
+    def _add_new_edge(self, task, noun, verb, entailment_type, is_hype):
         if self.has_stop_object_term(noun):
             return False
         if type(noun) == list or type(task.object_term.core_noun) == list:
@@ -38,8 +38,7 @@ class GraphTaskMapper():
                             '%s_%s' %
                             (noun, verb),
                             entailment_type=entailment_type,
-                            hype_type=hype_type,
-                            from_original_task=from_original_task)
+                            is_hype=is_hype)
 
     def in_degree(self):
         return self.graph.in_degree()
@@ -72,12 +71,16 @@ class GraphTaskMapper():
                                            order=task.order,
                                            url=task.url,
                                            is_original=is_original)
+
+                        if hype_type == 'hypes':
+                            is_hype = True
+                        else:
+                            is_hype = False
                         self._add_new_edge(task=task,
                                            noun=noun,
                                            verb=verb,
                                            entailment_type=entailment_type,
-                                           hype_type=hype_type,
-                                           from_original_task=is_original)
+                                           is_hype=is_hype)
 
     def _hypes(self, task):
     # object_term.core_nounのhypohypeを探る

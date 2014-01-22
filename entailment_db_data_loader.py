@@ -6,8 +6,14 @@ class EntailmentDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
     def __init__(self, table_name='entailment_ntriv'):
         super().__init__(db_name='entailment.sqlite', table_name=table_name)
 
-    def entailed_verbs_with_entailing(self, entailing):
+    def entailed_with_entailing(self, entailing):
         sql = 'select entailed from %s where entailing = "%s"' % (self.table_name, entailing)
+        self.cur.execute(sql)
+        results = self.cur.fetchall()
+        return results
+
+    def entailing_with_entailed(self, entailed):
+        sql = 'select entailing from %s where entailed = "%s"' % (self.table_name, entailed)
         self.cur.execute(sql)
         results = self.cur.fetchall()
         return results

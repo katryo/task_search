@@ -271,15 +271,20 @@ class WebPage(WebItem):
             dictionary.add(task.object)
 
     def set_tasks_from_sentences(self):
-        tasks = self.obj_and_predicate_dict_by_wo_from_sentences()
+        tasks = self._obj_and_predicate_dict_by_wo_from_sentences()
+
+        # ここでもし1ページ内に複数のtaskがあったら、各タスクにbeforeとafterの
+        # エッジを与える
         self.tasks = tasks
 
-    def obj_and_predicate_dict_by_wo_from_sentences(self):
+    def _obj_and_predicate_dict_by_wo_from_sentences(self):
         """
         self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
+        最後に計算する際、同じページでの登場番号の前後で。part-ofを判断する
         """
         results = []
         # sentenceはただのstrかもしれない。
+        order = 0
         for sentence in self.sentences:
             if type(sentence) == builtins.str:
                 # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
@@ -309,7 +314,10 @@ class WebPage(WebItem):
             task = Task(object_term=sentence.core_object(),
                         cmp=sentence.cmp,
                         predicate_term=sentence.core_predicate(),
-                        context=self.query)
+                        context=self.query,
+                        order=order,
+                        url=self.url)
             results.append(task)
+            order += 1 # 登場の順番
         return results
 

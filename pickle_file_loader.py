@@ -9,7 +9,10 @@ import pdb
 class PickleFileLoader(object):
     def load_file(self, filename):
         with open(filename, 'rb') as f:
-            obj = pickle.load(f)
+            try:
+                obj = pickle.load(f)
+            except EOFError:
+                pdb.set_trace()
         return obj
 
     def load_queries(self):

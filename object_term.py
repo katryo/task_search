@@ -2,6 +2,7 @@
 import pdb
 from sentence_separator import SentenceSeparator
 from text_combiner import TextCombiner
+from m_words_factory import MWordsFactory
 
 
 class ObjectTerm():
@@ -14,8 +15,8 @@ class ObjectTerm():
         self.context = context  # contextはたいてい検索クエリが入る。
 
     def set_core_noun_from_name(self):
-        sp = SentenceSeparator()
-        m_words = sp.m_words(self.name)
+        mwf = MWordsFactory()
+        m_words = mwf.build_from(self.name)
         for i, m_word in enumerate(m_words):
             if m_word.word_info == 'の\t助詞,連体化,*,*,*,*,の,ノ,ノ':
                 m_words_after_no = m_words[i+1:]
@@ -47,9 +48,9 @@ class ObjectTerm():
 
     def prepare_m_words(self, page):
         tc = TextCombiner()
-        sp = SentenceSeparator()
         snippet = tc.remove_all_parenthesis(page.snippet)
-        m_words = sp.m_words(snippet)
+        mwf = MWordsFactory()
+        m_words = mwf.build_from(snippet)
         m_words = tc.combine_nouns(m_words)
         m_words = tc.combine_verbs(m_words)
         return m_words

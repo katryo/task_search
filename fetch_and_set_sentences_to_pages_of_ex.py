@@ -17,10 +17,16 @@ if __name__ == '__main__':
         pm.go_or_create_and_go_to(original_query)
         expanded_queries = os.listdir()
         for expanded_query in expanded_queries:
+            if expanded_query == '.DS_Store':
+                continue
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
             for filename in filenames:
+                if filename == '.DS_Store':
+                    continue
                 page = pfl.load_file(filename)
+                if hasattr(page, 'text'):
+                    continue
                 try:
                     page.fetch_html()
                     print('%sのフェッチ完了!' % page.title)
@@ -28,7 +34,7 @@ if __name__ == '__main__':
                     page.sentences = sp.split_by_dots(page.text)
                     pfs.save_file(obj=page, filename=filename)
                     print('%sの保存完了!' % page.title)
-                except (ValueError, IndexError):
+                except:
                     print('%sの処理に失敗！' % page.title)
                     continue
             pm.go_up()

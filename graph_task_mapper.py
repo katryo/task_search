@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import networkx as nx
 import pdb
-from sqlite_data_loader import SQLiteDataLoader
+from hypohype_data_loader import HypoHypeDBDataLoader
 from entailment_librarian import EntailmentLibrarian
 
 
@@ -38,8 +38,8 @@ class GraphTaskMapper():
         """
         もし1ページ内に順序があればorder=1から始まる値を与える。
         """
-        hypes = self.hypes(task)
-        nouns = hypes + task.objec_term
+        nouns = self.hypes(task)
+        nouns.append(task.object_term.name)
         verbs = self._entailing_preds(task)
         verbs['original'] = task.predicate_term
 
@@ -47,20 +47,19 @@ class GraphTaskMapper():
         for noun in nouns:
             for entailment_type in verbs:  # verbsはdict
                 for verb in verbs[entailment_type]:
-                    self._add_new_node(nouns, verb, task.order)
+                    self._add_new_node(noun, verb, task.order)
                     self._add_new_edge(task, nouns, verb, entailment_type)
 
     def hypes(self, task):
     # object_term.core_nounのhypohypeを探る
-        sqldl = SQLiteDataLoader()
-        hypes = sqldl.select_hypes_with_hypo(task.object_term.name)
+        hhdbdl = HypoHypeDBDataLoader()
+        hypes = hhdbdl.select_hypes_with_hypo(task.object_term.name)
         return hypes
 
     def _entailing_preds(self, task):
         librarian = EntailmentLibrarian()
         entailing_predicates = librarian.entailing_from_all_except_for_nonent_ntriv_with_entailed(task.predicate_term)
         return entailing_predicates  # dict
-
 
     def nodes_with_higher_in_degree_score(self):
         scores = self.in_degree()

@@ -4,6 +4,7 @@ import pdb
 from base_sqlite_manager import BaseSQLiteManager
 from sqlite_data_loadable import SQLiteDataLoadable
 
+
 class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
     def select_hypes_with_hypo(self, hypo):
         sql = 'select hypernym, score from all_hyponymy where hyponym = "%s" limit 100' % hypo

@@ -1,8 +1,9 @@
 import sqlite3
 import pdb
 
+
 class BaseSQLiteManager(object):
-    def __init__(self, db_name='', table_name=''):
+    def __init__(self, db_name='hyponym_hypernym.sqlite', table_name='all_hyponymy'):
         self.conn = sqlite3.connect(db_name)
         self.table_name = table_name
         self.cur = self.conn.cursor()

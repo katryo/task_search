@@ -14,6 +14,8 @@ class GeneralizedTask(object):
             print('%s is a part-of %s, but the later is not a original task' % (self.edge[0], self.name))
 
     def _aspects_include_original(self):
+        if self.aspects is None:
+            return False
         for aspect in self.aspects:
             if aspect['is_original']:
                 return True

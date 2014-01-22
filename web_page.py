@@ -2,6 +2,7 @@
 import requests
 import builtins
 import re
+import constants
 from pyquery import PyQuery as pq
 from web_item import WebItem
 from parenthesis_remover import Parenthesis_remover
@@ -300,8 +301,14 @@ class WebPage(WebItem):
             if pattern.match(core_object):
                 continue
 
+            if core_object in constants.STOPWORDS_OF_WEBPAGE_NOUN:
+                continue
+
             predicate_term = sentence.core_predicate()
             if predicate_term == '?' or predicate_term == '？':
+                continue
+
+            if predicate_term in constants.STOPWORDS_OF_WEBPAGE_VERB:
                 continue
 
 

@@ -11,10 +11,10 @@ if __name__ == '__main__':
     pfl = PickleFileLoader()
 
 
-    #g = pfl.load_graph_with_query(query)
-    #tge = TaskGraphEvaluator(g)
-    #tge.evaluate()
-    #pdb.set_trace()
+    g = pfl.load_graph_with_query(query)
+    tge = TaskGraphEvaluator(g)
+    tge.evaluate()
+    pdb.set_trace()
     """
     for node in g.nodes():
         edges = g[node]

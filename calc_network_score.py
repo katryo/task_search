@@ -3,12 +3,18 @@ import pdb
 from graph_task_mapper import GraphTaskMapper
 from pickle_file_saver import PickleFileSaver
 from pickle_file_loader import PickleFileLoader
+from task_graph_evaluator import TaskGraphEvaluator
 
 
 if __name__ == '__main__':
     query = '掃除　方法'
     pfl = PickleFileLoader()
+
     g = pfl.load_graph_with_query(query)
+    tge = TaskGraphEvaluator(g)
+    tge.evaluate()
+    pdb.set_trace()
+    """
     for node in g.nodes():
         edges = g[node]
         for generalized_task in edges:
@@ -34,10 +40,11 @@ if __name__ == '__main__':
                 print('%s is a subtype-of %s, but the later is not a original task' % (node, generalized_task))
 
     pdb.set_trace()
+    """
     pages = pfl.load_fetched_pages_with_query(query)
     gtm = GraphTaskMapper()
 
-    for page in pages[2:3]:
+    for page in pages[:3]:
         for task in page.tasks:
             # ここでpart_of関係に繋がるorder=1のエッジを与えたい
             # ノードに与える？ エッジに与える？

@@ -29,10 +29,13 @@ class GraphTaskMapper():
             }
 
         if task_name in self.graph.node:
-            old_aspects = self.graph.node[task_name]['aspects']
-            new_aspects = old_aspects.append(new_aspect)
-            self.graph.add_node(task_name, new_aspects)
-            return
+            try:
+                old_aspects = self.graph.node[task_name]['aspects']
+                new_aspects = old_aspects.append(new_aspect)
+                self.graph.add_node(task_name, new_aspects)
+                return
+            except:
+                pdb.set_trace()
 
         # orderは、1ページに1タスクなら0。順序があるなら、そのタスクも、上位タスクにもorderが与えられる。orderは1から始まる。
         self.graph.add_node(task_name, aspects=[new_aspect])

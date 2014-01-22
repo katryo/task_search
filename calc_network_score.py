@@ -14,7 +14,12 @@ if __name__ == '__main__':
         for generalized_task in edges:
             entailment_type = edges[generalized_task].get('entailment_type')
             if entailment_type == 'nonent_predi' or entailment_type == 'ent_presu':
-                if g.node[generalized_task]['is_original']:
+                aspects = g.node[generalized_task]['aspects']
+                for aspect in aspects:
+                    #ひとつでもis_originalであれば次に進める
+                    if aspect['is_original']:
+
+                    if g.node[generalized_task]['aspects']['is_original']:
                     print('%s is a part-of %s because of entailment' % (node, generalized_task))
                     continue
                 print('%s is a part-of %s, but the later is not a original task' % (node, generalized_task))

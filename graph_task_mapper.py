@@ -7,7 +7,7 @@ from entailment_librarian import EntailmentLibrarian
 
 class GraphTaskMapper():
     def __init__(self):
-        self.graph = nx.DiGraph()
+        self.graph = nx.MultiDiGraph()
 
     def has_stop_object_term(self, object_term):
         stop_words = ['こと', 'もの', 'など']
@@ -21,11 +21,21 @@ class GraphTaskMapper():
         if type(object_term) == list:
             pdb.set_trace()
 
-        if '有料サービス' in object_term:
-            if 'メールアドレス' in object_term:
-                pdb.set_trace()
+        task_name = '%s_%s' % (object_term, predicate_term)
+        new_aspect = {
+                'order': order,
+                'url': url,
+                'is_original': is_original
+            }
+
+        if task_name in self.graph.node:
+            old_aspects = self.graph.node[task_name]['aspects']
+            new_aspects = old_aspects.append(new_aspect)
+            self.graph.add_node(task_name, new_aspects)
+            return
+
         # orderは、1ページに1タスクなら0。順序があるなら、そのタスクも、上位タスクにもorderが与えられる。orderは1から始まる。
-        self.graph.add_node('%s_%s' % (object_term, predicate_term), order=order, url=url, is_original=is_original)
+        self.graph.add_node(task_name, aspects=[new_aspect])
             # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
 
     def _add_new_edge(self, task, noun, verb, entailment_type, is_hype):
@@ -66,6 +76,8 @@ class GraphTaskMapper():
                             is_original = True
                         else:
                             is_original = False
+
+                        # 同じobject_termとpredicate_termのとき、どうする？
                         self._add_new_node(object_term=noun,
                                            predicate_term=verb,
                                            order=task.order,

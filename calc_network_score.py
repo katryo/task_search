@@ -7,11 +7,12 @@ from pickle_file_loader import PickleFileLoader
 
 
 if __name__ == '__main__':
+    query = '掃除　方法'
     pfl = PickleFileLoader()
-    pages = pfl.load_fetched_pages_with_query('掃除　方法')
+    pages = pfl.load_fetched_pages_with_query(query)
     gtm = GraphTaskMapper()
 
-    for page in pages:
+    for page in pages[1:3]:
         for task in page.tasks:
             # ここでpart_of関係に繋がるorder=1のエッジを与えたい
             # ノードに与える？ エッジに与える？
@@ -22,7 +23,8 @@ if __name__ == '__main__':
             gtm.add_node_and_edge_with_task(task)
         print('Tasks on %s are added!' % page.title)
     print('added all edges!')
-    results_dic = gtm.broader_nodes_with_higher_in_degree_score()
-    print(results_dic)
     #pfs = PickleFileSaver()
-    #pfs.save_simple_task_search_result_with_query(results_dic, constants.QUERY)
+    #pfs.save_graph_with_query(obj=gtm.graph, query=query)
+    results_dic = gtm.frequent_tasks_by_generalized_tasks()
+    print(results_dic)
+    pdb.set_trace()

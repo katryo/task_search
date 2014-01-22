@@ -15,7 +15,30 @@ class Sentence(Labelable):
         super().__init__(text)
         self.set_m_body_words_by_combine_words()
 
-    def includes_cmp_before_direction(self):
+    def is_invalid_for_task(self):
+        if self._is_block_word():
+            return True
+        if not self._includes_cmp_before_direction():
+            return True
+        if not self.core_object():
+            return True
+        return False
+
+    def _is_block_word(self):
+        blockwords = 'は pronoun さ ため 事 こと など ら ついで で て とき ほう ここ もの ご覧 ごらん'.split(' ')
+        for blockword in blockwords:
+            if self.core_object() == blockword:
+                return True
+        return False
+
+    def starts_with_block_word(self):
+        blockwords_startswith = 'var listli ビューワソフト JavaScript goo ヤフーGoogle className'.split(' ')
+        for blockword in blockwords_startswith:
+            if self.core_object().startswith(blockword):
+                return True
+        return False
+
+    def _includes_cmp_before_direction(self):
         if not self.includes_directions():  # をしなさい がなかったらダメ
             return False
         if self.cmp_r_i() is False:  # 'を'などがなかったらダメ。次の人。
@@ -46,9 +69,13 @@ class Sentence(Labelable):
                     return i
             if m_body_word.word_info == constants.CMP_INFO_NI:
                 # お早めにお知らせください のときにもここに来る。つまりobjectがない場合。
-                if not self.m_body_words[-i-2].word_info == constants.CMP_INFO_YO:
-                    self.cmp = 'に'
-                    return i
+                try:
+                    if not self.m_body_words[-i-2].word_info == constants.CMP_INFO_YO:
+                        self.cmp = 'に'
+                        return i
+                except IndexError:
+                    # ['に', '代理登録', 'さ', 'れ', 'ます']
+                    return False
                 # 例 選ぶようにしましょうのときは、その前に「AをB」のようなパターンがあるか探す
         # 塗れた畳は劣化しやすいので水が残らないようにしましょう
         return False

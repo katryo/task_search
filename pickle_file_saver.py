@@ -12,6 +12,14 @@ class PickleFileSaver(object):
             pickle.dump(obj, f)
         return obj
 
+    def save_graph_with_query(self, obj, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        self.save_file(obj, query)
+        pm.go_up()
+        pm.go_up()
+
     def save_pages_with_query_expansion(self, pages_dict, original_query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)

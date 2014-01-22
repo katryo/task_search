@@ -9,14 +9,20 @@ class EntailmentDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
     def entailed_with_entailing(self, entailing):
         sql = 'select entailed from %s where entailing = "%s"' % (self.table_name, entailing)
         self.cur.execute(sql)
-        results = self.cur.fetchall()
-        return results
+        tuple_in_list = self.cur.fetchall()
+        if tuple_in_list:
+            results = tuple_in_list[0]
+            return results
+        return []
 
     def entailing_with_entailed(self, entailed):
         sql = 'select entailing from %s where entailed = "%s"' % (self.table_name, entailed)
         self.cur.execute(sql)
-        results = self.cur.fetchall()
-        return results
+        tuple_in_list = self.cur.fetchall()
+        if tuple_in_list:
+            results = tuple_in_list[0]
+            return results
+        return []
 
 if __name__ == '__main__':
     el = EntailmentDBDataLoader()

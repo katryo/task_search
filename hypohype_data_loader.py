@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlite3
+import constants
 import pdb
 from base_sqlite_manager import BaseSQLiteManager
 from sqlite_data_loadable import SQLiteDataLoadable
@@ -12,6 +13,15 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
         print('%sを実行！' % sql)
         results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
         return results
+
+    def hypes_except_for_blockwords(self, hypo):
+        hypes = self.select_hypes_with_hypo(hypo)
+        for hype in hypes:
+            for stopword in constants.STOPWORDS_OF_HYPOHYPE:
+                if stopword in hype:
+                    hypes.remove(hype)
+                    break  # もうhypoはhypesにないからstopwordsから探す必要なし
+        return hypes
 
     def select_hypos_with_hype(self, hype):
         sql = 'select hyponym, score from  all_hyponymy where hypernym = "%s" limit 100' % hype

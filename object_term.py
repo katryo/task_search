@@ -12,6 +12,7 @@ class ObjectTerm():
     """
     def __init__(self, text='', context=''):
         self.name = text
+        self.set_core_noun_from_name()
         self.context = context  # contextはたいてい検索クエリが入る。
 
     def set_core_noun_from_name(self):

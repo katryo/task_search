@@ -1,4 +1,5 @@
 import constants
+import pdb
 from entailment_db_data_loader import EntailmentDBDataLoader
 
 
@@ -22,6 +23,8 @@ class EntailmentLibrarian(object):
     def entailing_from_all_except_for_nonent_ntriv_with_entailed(self, entailed):
         results = self.entailing_from_all_dictionaries_with_entailed(entailed)
         del(results['nonentailment_ntriv'])
+        if results == 'つ':
+            pdb.set_trace()
         return results
 
     def entailed_from_all_dictionaries_with_entailing(self, entailing):

@@ -289,27 +289,7 @@ class WebPage(WebItem):
             if type(sentence) == builtins.str:
                 # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
                 sentence = Sentence(sentence)
-            if not sentence.includes_cmp_before_direction():
-                continue
-                # を理解していきましょう のように、をの前がないとき
-            if not sentence.core_object():
-                continue
-                # varで始まるのはたいていJavaScript
-            if sentence.core_object().startswith('var'):
-                continue
-            if sentence.core_object().startswith('listli'):
-                continue
-            if sentence.core_object().startswith('ビューワソフト'):
-                continue
-            if sentence.core_object().startswith('JavaScript'):
-                continue
-            if sentence.core_object().startswith('goo'):
-                continue
-            if sentence.core_object().startswith('ヤフーGoogle'):
-                continue
-            if sentence.core_object().startswith('className'):
-                continue
-            if sentence.core_object() == 'pronoun':
+            if sentence.is_invalid_for_task():
                 continue
             task = Task(object_term=sentence.core_object(),
                         cmp=sentence.cmp,

@@ -30,7 +30,7 @@ class GraphTaskMapper():
             try:
                 old_aspects = self.graph.node[task_name]['aspects']
                 new_aspects = old_aspects.append(new_aspect)
-            except KeyError:  # add_edgeでnodeが追加されたあと、nodeとして追加されたときに、ここに来る。
+            except (KeyError, AttributeError):  # add_edgeでnodeが追加されたあと、nodeとして追加されたときに、ここに来る。
                 new_aspects = [new_aspect]
         else:
             new_aspects = [new_aspect]

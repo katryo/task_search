@@ -17,11 +17,9 @@ if __name__ == '__main__':
                 aspects = g.node[generalized_task]['aspects']
                 for aspect in aspects:
                     #ひとつでもis_originalであれば次に進める
-                    if aspect['is_original']:
-
                     if g.node[generalized_task]['aspects']['is_original']:
-                    print('%s is a part-of %s because of entailment' % (node, generalized_task))
-                    continue
+                        print('%s is a part-of %s because of entailment' % (node, generalized_task))
+                        continue
                 print('%s is a part-of %s, but the later is not a original task' % (node, generalized_task))
                 # 次はorderでpart-ofを発見
                 # 貢献度があり、同じurlで、

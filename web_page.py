@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import builtins
+import re
 from pyquery import PyQuery as pq
 from web_item import WebItem
 from parenthesis_remover import Parenthesis_remover
@@ -292,13 +293,21 @@ class WebPage(WebItem):
             if sentence.is_invalid_for_task():
                 continue
 
+
+            #  ひらがな・カタカナひともじのときはフィルタ
+            pattern = re.compile('^[ぁ-んァ-ン]$')
             core_object = sentence.core_object()
-            if core_object.startswith('っ'):
+            if pattern.match(core_object):
                 continue
+
+            predicate_term = sentence.core_predicate()
+            if predicate_term == '?' or predicate_term == '？':
+                continue
+
 
             task = Task(object_term=core_object,
                         cmp=sentence.cmp,
-                        predicate_term=sentence.core_predicate(),
+                        predicate_term=predicate_term,
                         context=self.query,
                         order=order,
                         url=self.url)

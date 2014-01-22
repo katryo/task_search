@@ -20,11 +20,9 @@ class EntailmentLibrarian(object):
         del(results['nonentailment_ntriv'])
         return results
 
-    def entailing_from_all_except_for_nonent_ntriv_with_entailed(self, entailed):
-        results = self.entailing_from_all_dictionaries_with_entailed(entailed)
+    def genaral_from_all_except_for_nonent_ntriv_with_special(self, entailed):
+        results = self.entailed_from_all_dictionaries_with_entailing(entailed)
         del(results['nonentailment_ntriv'])
-        if results == 'つ':
-            pdb.set_trace()
         return results
 
     def entailed_from_all_dictionaries_with_entailing(self, entailing):

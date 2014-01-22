@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import pdb
-import constants
 from graph_task_mapper import GraphTaskMapper
 from pickle_file_saver import PickleFileSaver
 from pickle_file_loader import PickleFileLoader
@@ -9,6 +8,25 @@ from pickle_file_loader import PickleFileLoader
 if __name__ == '__main__':
     query = '掃除　方法'
     pfl = PickleFileLoader()
+    g = pfl.load_graph_with_query(query)
+    for node in g.nodes():
+        edges = g[node]
+        for generalized_task in edges:
+            entailment_type = edges[generalized_task].get('entailment_type')
+            if entailment_type == 'nonent_predi' or entailment_type == 'ent_presu':
+                if g.node[generalized_task]['is_original']:
+                    print('%s is a subtype-of %s because of entailment' % (node, generalized_task))
+                    continue
+                print('%s is a subtype-of %s, but the later is...' % (node, generalized_task))
+
+            is_hype = edges[generalized_task].get('is_hype')
+            if is_hype:
+                if g.node[generalized_task]['is_original']:
+                    print('%s is a subtype-of %s' % (node, generalized_task))
+                    continue
+                print('%s is a subtype-of %s, but the later is...' % (node, generalized_task))
+
+    pdb.set_trace()
     pages = pfl.load_fetched_pages_with_query(query)
     gtm = GraphTaskMapper()
 
@@ -23,9 +41,8 @@ if __name__ == '__main__':
             gtm.add_node_and_edge_with_task(task)
         print('Tasks on %s are added!' % page.title)
     print('added all edges!')
-    pdb.set_trace()
-    #pfs = PickleFileSaver()
-    #pfs.save_graph_with_query(obj=gtm.graph, query=query)
+    pfs = PickleFileSaver()
+    pfs.save_graph_with_query(obj=gtm.graph, query=query)
     results_dic = gtm.frequent_tasks_by_generalized_tasks()
     print(results_dic)
     pdb.set_trace()

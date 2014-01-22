@@ -15,6 +15,15 @@ class PickleFileLoader(object):
                 pdb.set_trace()
         return obj
 
+    def load_graph_with_query(self, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        graph = self.load_file(query + '_graph.pkl')
+        pm.go_up()
+        pm.go_up()
+        return graph
+
     def load_queries(self):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.QUERIES_DIR_NAME)

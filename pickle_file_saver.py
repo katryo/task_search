@@ -16,7 +16,7 @@ class PickleFileSaver(object):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
         pm.go_or_create_and_go_to(query)
-        self.save_file(obj, query)
+        self.save_file(obj, query + '_graph.pkl')
         pm.go_up()
         pm.go_up()
 

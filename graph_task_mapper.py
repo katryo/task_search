@@ -54,7 +54,7 @@ class GraphTaskMapper():
         nouns['original'] = original_noun
 
         original_verb = task.predicate_term
-        verbs = self._entailing_preds(task)
+        verbs = self._broader_preds(task)
         verbs['original'] = tuple([original_verb])
 
         # 上位語・下位語が揃った。
@@ -88,9 +88,9 @@ class GraphTaskMapper():
         hypes = hhdbdl.hypes_except_for_blockwords(task.object_term.core_noun)
         return hypes
 
-    def _entailing_preds(self, task):
+    def _broader_preds(self, task):
         librarian = EntailmentLibrarian()
-        entailing_predicates = librarian.entailing_from_all_except_for_nonent_ntriv_with_entailed(task.predicate_term)
+        entailing_predicates = librarian.genaral_from_all_except_for_nonent_ntriv_with_special(task.predicate_term)
         return entailing_predicates  # dict
 
     def frequent_tasks_by_generalized_tasks(self):

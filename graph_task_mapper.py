@@ -18,8 +18,6 @@ class GraphTaskMapper():
     def _add_new_node(self, object_term, predicate_term, order, url, is_original=False):
         if self.has_stop_object_term(object_term):
             return False
-        if type(object_term) == list:
-            pdb.set_trace()
 
         task_name = '%s_%s' % (object_term, predicate_term)
         new_aspect = {
@@ -32,14 +30,11 @@ class GraphTaskMapper():
             try:
                 old_aspects = self.graph.node[task_name]['aspects']
                 new_aspects = old_aspects.append(new_aspect)
-                self.graph.add_node(task_name, new_aspects)
-                return
-            except:
-                pdb.set_trace()
-
-        # orderは、1ページに1タスクなら0。順序があるなら、そのタスクも、上位タスクにもorderが与えられる。orderは1から始まる。
-        self.graph.add_node(task_name, aspects=[new_aspect])
-            # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
+            except KeyError:  # add_edgeでnodeが追加されたあと、nodeとして追加されたときに、ここに来る。
+                new_aspects = [new_aspect]
+        else:
+            new_aspects = [new_aspect]
+        self.graph.add_node(task_name, aspects=new_aspects)
 
     def _add_new_edge(self, task, noun, verb, entailment_type, is_hype):
         if self.has_stop_object_term(noun):
@@ -64,7 +59,7 @@ class GraphTaskMapper():
         nouns = {'hypes': hypes}
         # hypesのときには、edgeにhypeエッジを与える必要ある？　subtype-ofを発見するために。
         original_noun = task.object_term.core_noun
-        nouns['original'] = original_noun
+        nouns['original'] = [original_noun]
 
         original_verb = task.predicate_term
         verbs = self._broader_preds(task)

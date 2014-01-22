@@ -22,13 +22,14 @@ class GraphTaskMapper():
         self.graph.add_node('%s_%s' % (object_term, predicate_term), order=order)
             # オリジナルのノードから、上位・下位に貼る。自分自身にも貼っている。
 
-    def _add_new_edge(self, task, object_term, predicate_term):
-        if self.has_stop_object_term(object_term):
+    def _add_new_edge(self, task, noun, verb, entailment_type):
+        if self.has_stop_object_term(noun):
             return False
         self.graph.add_edge('%s_%s' %
                             (task.object_term.name, task.predicate_term),
                             '%s_%s' %
-                            (object_term, predicate_term))
+                            (noun, verb),
+                            entailment_type=entailment_type)
 
     def in_degree(self):
         return self.graph.in_degree()
@@ -38,14 +39,16 @@ class GraphTaskMapper():
         もし1ページ内に順序があればorder=1から始まる値を与える。
         """
         hypes = self.hypes(task)
-        entailing_predicates = self._entailing_preds(task)
+        nouns = hypes + task.objec_term
+        verbs = self._entailing_preds(task)
+        verbs['original'] = task.predicate_term
 
         # 上位語・下位語が揃った。
-        for hype_or_original in (hypes + [task.object_term.name]):
-            for entailing_or_entailed_or_original in (entailing_predicates +
-                                                      [task.predicate_term]):
-                self._add_new_node(hype_or_original, entailing_or_entailed_or_original, task.order)
-                self._add_new_edge(task, hype_or_original, entailing_or_entailed_or_original)
+        for noun in nouns:
+            for entailment_type in verbs:  # verbsはdict
+                for verb in verbs[entailment_type]:
+                    self._add_new_node(nouns, verb, task.order)
+                    self._add_new_edge(task, nouns, verb, entailment_type)
 
     def hypes(self, task):
     # object_term.core_nounのhypohypeを探る
@@ -54,10 +57,9 @@ class GraphTaskMapper():
         return hypes
 
     def _entailing_preds(self, task):
-        entailing_predicates = []
         librarian = EntailmentLibrarian()
         entailing_predicates = librarian.entailing_from_all_except_for_nonent_ntriv_with_entailed(task.predicate_term)
-        return entailing_predicates
+        return entailing_predicates  # dict
 
 
     def nodes_with_higher_in_degree_score(self):

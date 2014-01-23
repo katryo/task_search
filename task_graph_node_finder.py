@@ -2,6 +2,10 @@ from abstract_task_graph_manager import AbstractTaskGraphManager
 
 
 class TaskGraphNodeFinder(AbstractTaskGraphManager):
+    """
+    直接使うことはなく、EdgeFinderから使われる。なぜなら、
+    タスク検索はクエリノードのエッジを求めることから始まる。
+    """
     # 同じgeneralized_taskにエッジを伸ばす2つのタスク。
     # これらを統合させる必要がある！ g_nodeの名前そのままではなく、
     # 重ね合わせ、集合体として。

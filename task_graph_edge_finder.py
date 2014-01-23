@@ -35,9 +35,8 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
             edges_dicts = edges[task_name_leaded_by_edge]
             for i in edges_dicts:
                 edge_dict = edges_dicts[i]
-                entailment_type = edge_dict['entailment_type']
-                # nonentailment_prediは違う気がする
-                if entailment_type == 'entailment_presu':
+                e_type = edge_dict['entailment_type']
+                if e_type == 'nonentailment_predi' or e_type == 'entailment_presu':
                     results.add(task_name_leaded_by_edge)
         return results  # 先のノードのset
 

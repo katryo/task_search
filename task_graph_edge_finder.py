@@ -16,9 +16,10 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         nodes = self.graph.nodes(data=True)
         results = set()
         for aspect in aspects:
-            finder = PartOfEdgeFinderWithOrder(nodes=nodes, aspect=aspect)
-            if finder.is_this_aspect_share_url():
-                results.add(task_name)
+            finder = PartOfEdgeFinderWithOrder(self_name=task_name, nodes=nodes, aspect=aspect)
+            name_shares_url = finder.task_name_shares_url()
+            if name_shares_url:
+                results.add(name_shares_url)
         return results
 
     def _part_of_edges_by_entailment_with_task_name(self, task_name):

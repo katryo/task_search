@@ -11,8 +11,8 @@ class TestSentence(unittest.TestCase):
         self.sentence_2 = Sentence('クワなどは体格や体力に応じたものを、吟味して選ぶようにしましょう')
         self.sentence_3 = Sentence('トイレ掃除方法を、解説していきましょう')
         self.sentence_4 = Sentence('地面を掘り上げていきましょう')
-
         self.sentence_5 = Sentence('右に移動してください')
+        self.sentence_6 = Sentence('じっくり本を読む')
 
     def test_includes_cmp(self):
         result = self.sentence_5.cmp_r_i()
@@ -38,20 +38,18 @@ class TestSentence(unittest.TestCase):
         self.assertEqual(result, '夏野菜へのシフト')
         self.assertEqual(self.sentence_2.core_object(), 'もの')
         self.assertEqual(self.sentence_3.core_object(), 'トイレ掃除方法')
+        self.assertEqual(self.sentence_6.core_object(), '本')
 
-    def test_core_verb(self):
+    def test_core_predicate(self):
         result = self.sentence_1.core_predicate()
         self.assertEqual(result, 'スタートする')
         self.assertEqual(self.sentence_2.core_predicate(), '吟味する')
         self.assertEqual(self.sentence_3.core_predicate(), '解説する')
+        self.assertEqual(self.sentence_6.core_predicate(), '読む')
 
     def test_direction_i(self):
         result_1 = self.sentence_1.direction_r_i()
         self.assertEqual(result_1, 1)
-
-    def test_includes_wo_before_direction(self):
-        result_1 = self.sentence_1.includes_cmp_before_direction()
-        self.assertEqual(result_1, True)
 
 if __name__ == '__main__':
     unittest.main()

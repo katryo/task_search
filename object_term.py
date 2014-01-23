@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import pdb
-from sentence_separator import SentenceSeparator
 from text_combiner import TextCombiner
 from m_words_factory import MWordsFactory
 

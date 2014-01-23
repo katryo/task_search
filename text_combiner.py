@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
-import constants
 from mecabed_noun import MecabedNoun
 from mecabed_verb import MecabedVerb
 from parenthesis_remover import Parenthesis_remover

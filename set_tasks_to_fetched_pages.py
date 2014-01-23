@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import constants
 from pickle_file_loader import PickleFileLoader
 from pickle_file_saver import PickleFileSaver
 

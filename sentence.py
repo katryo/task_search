@@ -13,7 +13,72 @@ from text_combiner import TextCombiner
 class Sentence(Labelable):
     def __init__(self, text):
         super().__init__(text)
-        self.set_m_body_words_by_combine_words()
+        self._set_m_body_words_by_combine_words()
+
+    def _set_m_body_words_by_combine_words(self):
+        tc = TextCombiner()
+        self.m_body_words = tc.combine_nouns(self.m_body_words)
+        self.m_body_words = tc.combine_verbs(self.m_body_words)
+
+    def core_object(self):
+        before_cmp = self.m_words_before_cmp()
+        try:
+            last_m = before_cmp[-1]
+        # を理解していきましょう のように、をの前がないとき
+        except IndexError:
+            return ''
+        if last_m.is_pronoun():
+            return 'pronoun'
+        try:  # before_woが少ないかも
+            before_last_m = before_cmp[-2]
+            if before_last_m.name == 'の':
+                #  'その階で金の剣を売ってください'は「金の剣を売る」になるべき
+                before_no = before_cmp[-3].name
+                #  '夏野菜へのシフトをスタートさせましょう'は「夏野菜へのシフトをスタート」になるべき
+                if before_no == 'へ':
+                    before_before_no = before_cmp[-4].name
+                    return before_before_no + 'への' + last_m.name
+
+                #  'その階で金の剣を売ってください'はここに来る
+                return before_no + 'の' + last_m.name
+            return last_m.name
+        except IndexError:  # len(before_wo)が小さいときはここに来る
+            return last_m.name
+
+    def core_predicate(self):
+        m_words_after_cmp = self.m_words_after_cmp()
+        for i, m_word in enumerate(m_words_after_cmp):
+            if m_word.type == '動詞':
+                # 例 '運動しましょう'
+                if 'サ変' in m_word.word_info and m_words_after_cmp[i-1].type == '名詞':
+                    return m_words_after_cmp[i-1].name + m_word.stem
+                if m_word.stem == 'くださる' or m_word.stem == '下さる':
+                    # 例 'ご遠慮ください'
+                    if m_words_after_cmp[i-1].subtype == 'サ変接続':
+                        return m_words_after_cmp[i-1].name + 'する'
+
+                    # 例 ご覧ください
+                    if m_words_after_cmp[i-1].subtype == '動詞非自立的':
+                        return '見る'
+
+                    # 例 ドライヤーを当ててください
+                    if m_words_after_cmp[i-1].name == 'て' and m_words_after_cmp[i-2].type == '動詞':
+                        return m_words_after_cmp[i-2].stem
+
+                # 吟味して選ぶようにしましょう => 吟味する
+                if m_words_after_cmp[i-1].stem == 'に':
+                    if m_words_after_cmp[i-2].stem == 'よう':
+                        # 吟味して選ぶようにしましょう => 吟味する
+                        if m_words_after_cmp[i-3].type == '動詞':
+                            return m_words_after_cmp[i-3].stem
+                        if m_words_after_cmp[i-3].stem == 'ない':
+                            # 慌てて選ばないようにしましょう
+                            if m_words_after_cmp[i-4].type == '動詞':
+                                return m_words_after_cmp[i-4].name + 'ない'
+
+
+                return m_word.stem
+        return '?'
 
     def is_invalid_for_task(self):
         if self._is_block_word():
@@ -101,68 +166,3 @@ class Sentence(Labelable):
         results = self.m_body_words[-self.cmp_r_i():]
         return results
 
-    def core_object(self):
-        before_cmp = self.m_words_before_cmp()
-        try:
-            last_m = before_cmp[-1]
-        # を理解していきましょう のように、をの前がないとき
-        except IndexError:
-            return ''
-        if last_m.is_pronoun():
-            return 'pronoun'
-        try:  # before_woが少ないかも
-            before_last_m = before_cmp[-2]
-            if before_last_m.name == 'の':
-                #  'その階で金の剣を売ってください'は「金の剣を売る」になるべき
-                before_no = before_cmp[-3].name
-                #  '夏野菜へのシフトをスタートさせましょう'は「夏野菜へのシフトをスタート」になるべき
-                if before_no == 'へ':
-                    before_before_no = before_cmp[-4].name
-                    return before_before_no + 'への' + last_m.name
-
-                #  'その階で金の剣を売ってください'はここに来る
-                return before_no + 'の' + last_m.name
-            return last_m.name
-        except IndexError:  # len(before_wo)が小さいときはここに来る
-            return last_m.name
-
-    def core_predicate(self):
-        m_words_after_cmp = self.m_words_after_cmp()
-        for i, m_word in enumerate(m_words_after_cmp):
-            if m_word.type == '動詞':
-                # 例 '運動しましょう'
-                if 'サ変' in m_word.word_info and m_words_after_cmp[i-1].type == '名詞':
-                    return m_words_after_cmp[i-1].name + m_word.stem
-                if m_word.stem == 'くださる' or m_word.stem == '下さる':
-                    # 例 'ご遠慮ください'
-                    if m_words_after_cmp[i-1].subtype == 'サ変接続':
-                        return m_words_after_cmp[i-1].name + 'する'
-
-                    # 例 ご覧ください
-                    if m_words_after_cmp[i-1].subtype == '動詞非自立的':
-                        return '見る'
-
-                    # 例 ドライヤーを当ててください
-                    if m_words_after_cmp[i-1].name == 'て' and m_words_after_cmp[i-2].type == '動詞':
-                        return m_words_after_cmp[i-2].stem
-
-                # 吟味して選ぶようにしましょう => 吟味する
-                if m_words_after_cmp[i-1].stem == 'に':
-                    if m_words_after_cmp[i-2].stem == 'よう':
-                        # 吟味して選ぶようにしましょう => 吟味する
-                        if m_words_after_cmp[i-3].type == '動詞':
-                            return m_words_after_cmp[i-3].stem
-                        if m_words_after_cmp[i-3].stem == 'ない':
-                            # 慌てて選ばないようにしましょう
-                            if m_words_after_cmp[i-4].type == '動詞':
-                                return m_words_after_cmp[i-4].name + 'ない'
-
-
-                return m_word.stem
-        return '?'
-
-
-    def set_m_body_words_by_combine_words(self):
-        tc = TextCombiner()
-        self.m_body_words = tc.combine_nouns(self.m_body_words)
-        self.m_body_words = tc.combine_verbs(self.m_body_words)

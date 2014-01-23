@@ -7,6 +7,7 @@ from pyquery import PyQuery as pq
 from web_item import WebItem
 from parenthesis_remover import Parenthesis_remover
 from sentence import Sentence
+from sentence_separator import SentenceSeparator
 from task import Task
 from node import Node
 
@@ -17,6 +18,13 @@ class WebPage(WebItem):
         self.query = query
         self.snippet = snippet
         self.sentences = []
+
+    def set_sentences_from_text(self):
+        sp = SentenceSeparator()
+        sentence_texts = sp.split_by_dots(self.text)
+        for sentence_text in sentence_texts:
+            sentence = Sentence(sentence_text)
+            self.sentences.append(sentence)
 
     def snippet_without_parenthesis(self):
         pr = Parenthesis_remover()
@@ -305,7 +313,7 @@ class WebPage(WebItem):
                 continue
 
             predicate_term = sentence.core_predicate()
-            if predicate_term == '?' or predicate_term == '？':
+            if predicate_term == '?':
                 continue
 
             if predicate_term in constants.STOPWORDS_OF_WEBPAGE_VERB:

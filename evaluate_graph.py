@@ -10,5 +10,11 @@ if __name__ == '__main__':
     query = '部屋　掃除する'
     pfl = PickleFileLoader()
     g = pfl.load_graph_with_query(query)
+    task_names = g.nodes()
     edge_finder = TaskGraphEdgeFinder(g)
-    pdb.set_trace()
+    for task_name in task_names:
+        edges = edge_finder.subtype_of_edges_with_task_name(task_name)
+        if edges:
+            print(task_name)
+            print('is a subtype of')
+            print(edges)

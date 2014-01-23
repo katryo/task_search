@@ -3,7 +3,7 @@ FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 QUERIES_DIR_NAME = 'queries'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
-ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
+# ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
 ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment_presu entailment_triv nonentailment_anton nonentailment_ntriv nonentailment_predi nonentailment_triv'.split(' ')
 STOPWORDS_OF_HYPOHYPE = 'ドラマ 作品 舞台 番組 出演作品 ' \
                         '映画 短編 登場 キャラクター 掲載作家 ' \

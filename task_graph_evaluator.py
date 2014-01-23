@@ -10,8 +10,6 @@ class TaskGraphEvaluator():
         for node in self.graph.nodes():
             edges = self.graph[node]
             for generalized_task_text in edges:
-                if generalized_task_text == '願_する':
-                    pdb.set_trace()
                 edge = edges[generalized_task_text]
                 generalized_task = GeneralizedTask(name=generalized_task_text,
                                                    edge=edge,

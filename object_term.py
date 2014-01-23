@@ -9,10 +9,10 @@ class ObjectTerm():
     目的語オブジェクト。たいていの場合は名詞。「という検索」により、具体化した語（instance-of関係）や
     抽象化した語（逆instance-of関係）を探せる。
     """
-    def __init__(self, text='', context=''):
+    def __init__(self, text='', query=''):
         self.name = text
         self.set_core_noun_from_name()
-        self.context = context  # contextはたいてい検索クエリが入る。
+        self.query = query  # contextはたいてい検索クエリが入る。
 
     def set_core_noun_from_name(self):
         mwf = MWordsFactory()

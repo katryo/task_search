@@ -70,8 +70,9 @@ class PickleFileSaver(object):
         os.chdir('..')
 
     def save_pages_with_query(self, pages, query):
-        os.chdir(constants.FETCHED_PAGES_DIR_NAME)
-        os.chdir(query)
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
         for i in range(constants.NUM_OF_FETCHED_PAGES):
             with open('%s_%i.pkl' % (query, i), 'wb') as f:
                 try:
@@ -79,7 +80,8 @@ class PickleFileSaver(object):
                 except TypeError:
                     pdb.set_trace()
                 print('%s_%i.pklの保存完了!' % (query, i))
-        os.chdir('..')
+        pm.go_up()
+        pm.go_up()
 
     # constants.QUERIES依存なのでちょっと危険。
     def save_all_pages(self, pages):

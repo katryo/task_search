@@ -16,13 +16,13 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
 
     def hypes_except_for_blockwords(self, hypo):
         hypes = self.select_hypes_with_hypo(hypo)
-        for hype in hypes:
-            for stopword in constants.STOPWORDS_OF_HYPOHYPE:
+        found_block_hypes = set()
+        for stopword in constants.STOPWORDS_OF_HYPOHYPE:
+            for hype in hypes:
                 if stopword in hype:
-                    hypes.remove(hype)
-                    break  # もうhypoはhypesにないからstopwordsから探す必要なし
-        if 'オリジナルアルバム' in hypes:
-            pdb.set_trace()
+                    found_block_hypes.add(hype)
+        for found_block_hype in found_block_hypes:
+            hypes.remove(found_block_hype)
         return hypes
 
     def select_hypos_with_hype(self, hype):

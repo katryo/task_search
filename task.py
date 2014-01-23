@@ -4,14 +4,10 @@ import pdb
 
 
 class Task(object):
-    def __init__(self, object_term='', cmp='', predicate_term='', context='', order=0, url=''):
-        try:
-            self.object_term = ObjectTerm(text=object_term, context=context)
-        except TypeError:
-            pdb.set_trace()
-        self.cmp = cmp
+    def __init__(self, object_term, predicate_term='', query='', order=0, url=''):
+        self.object_term = object_term
         self.predicate_term = predicate_term
-        self.context = context  # いらないのでは
+        self.query = query  # いらないのでは
         self.order = order
         self.url = url
 

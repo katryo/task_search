@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 from labelable import Labelable
-from mecabed_noun import MecabedNoun
-from mecabed_verb import MecabedVerb
-import patterns
 import constants
+import re
 import pdb
-import copy
 from sentence_classifier import SentenceClassifier
 from text_combiner import TextCombiner
 
 
 class Sentence(Labelable):
-    def __init__(self, text):
+    def __init__(self, text, query):
         super().__init__(text)
         self._set_m_body_words_by_combine_words()
+        self.query = query
 
     def _set_m_body_words_by_combine_words(self):
         tc = TextCombiner()
@@ -80,16 +78,99 @@ class Sentence(Labelable):
                 return m_word.stem
         return '?'
 
-    def is_invalid_for_task(self):
-        if self._is_block_word():
-            return True
-        if not self._includes_cmp_before_direction():
+
+
+    def set_noun_verb_if_good_task(self):
+        if self._is_invalid_for_task():
+            return False
+        #  ひらがな・カタカナひともじのときはフィルタ
+        pattern = re.compile('^[ぁ-んァ-ン]$')
+        noun = self.core_object()
+        if not noun:  # ''かも
+            return False
+
+        if pattern.match(noun):
+            return False
+
+        predicate_term = self.core_predicate()
+        if not predicate_term:  # ''かも
+            return False
+        if predicate_term == '?':
+            return False
+
+        if predicate_term in constants.STOPWORDS_OF_WEBPAGE_VERB:
+            return False
+
+        if '%s　%s' % (noun, predicate_term) == self.query:
+            return False
+        
+        self.noun = noun
+        self.verb = predicate_term
+        return True
+
+
+
+
+    def _is_invalid_for_task(self):
+        if self._core_noun_is_block_word():
             return True
         if not self.core_object():
             return True
+        if not self._includes_directions():
+            return True
+        if self._includes_cmp_before_direction():
+            return False
+        # 〜〜しなさい、といったパーツがないときは、数字から始まる、
+        if self._is_step():
+            return False
+        if self._ends_with_present_tense():
+            return False
+        return True
+
+    def _is_step(self):
+        if self._starts_with_symbol():
+            return True
+        if self._starts_with_digit():
+            return True
+        if self._starts_with_step():
+            return True
         return False
 
-    def _is_block_word(self):
+    def _starts_with_step(self):
+        step_texts = 'ステップ step STEP'.split(' ')
+        try:
+            if self.body[:4] in step_texts:
+                return True
+            if self.body[:2] == 'その':
+                if self.body[2].isnumeric():
+                    return True
+        except IndexError:
+            return False
+        return False
+
+    def _starts_with_symbol(self):
+        symbols = '・ 〇 ● ○ ◎ ★ ☆'.split(' ')
+        if self.body[0] in symbols:
+            return True
+        return False
+
+    def _starts_with_digit(self):
+        if self.body[0].isdigit():
+            return True
+        return False
+
+    def _ends_with_present_tense(self):
+        last_m_word = self.m_body_words[-1]
+        if last_m_word.type == '動詞' and last_m_word.c_form == '基本形':
+            return True
+        if last_m_word.name == 'ます':
+            m_word_before_last_word = self.m_body_words[-2]
+            if m_word_before_last_word.type == '動詞':
+                return True
+        return False
+
+
+    def _core_noun_is_block_word(self):
         blockwords = 'は pronoun さ ため 事 こと など ら ついで で て とき ほう ここ もの ご覧 ごらん'.split(' ')
         for blockword in blockwords:
             if self.core_object() == blockword:
@@ -104,7 +185,7 @@ class Sentence(Labelable):
         return False
 
     def _includes_cmp_before_direction(self):
-        if not self.includes_directions():  # をしなさい がなかったらダメ
+        if not self._includes_directions():  # をしなさい がなかったらダメ
             return False
         if self.cmp_r_i() is False:  # 'を'などがなかったらダメ。次の人。
             return False
@@ -112,7 +193,7 @@ class Sentence(Labelable):
             return True
         return False
 
-    def includes_directions(self):
+    def _includes_directions(self):
         for direction in constants.DIRECTIONS:
             if direction in self.body:
                 return True

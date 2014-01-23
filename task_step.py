@@ -1,6 +1,7 @@
 from web_item import WebItem
 import re
 
+
 class TaskStep(WebItem):
     def set_headings_from_text(self, text):
         self.set_step_text(text)

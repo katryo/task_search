@@ -5,12 +5,16 @@ QUERIES_DIR_NAME = 'queries'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
 ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
 ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment_presu entailment_triv nonentailment_anton nonentailment_ntriv nonentailment_predi nonentailment_triv'.split(' ')
-STOPWORDS_OF_HYPOHYPE = 'シングル 作品 収録曲 日本のテレビドラマ ' \
-                        '短編 登場 キャラクター 掲載作家 ' \
+STOPWORDS_OF_HYPOHYPE = 'ドラマ 作品 舞台 番組 出演作品 ' \
+                        '映画 短編 登場 キャラクター 掲載作家 ' \
                         '投稿戦士 現在所属 敵以外 人物 種類 ジャンル ' \
-                        '収録曲 アルバム 舞台 番組 出演'.split(' ')
-STOPWORDS_OF_WEBPAGE_NOUN = 'goo メールアドレス サイト画像 ｗｅｂサイト 当店 ボタン ブラウザ ポイント'.split(' ')
-STOPWORDS_OF_WEBPAGE_VERB = 'クリックする 押す 入力する'.split(' ')
+                        '小説 書籍 詩集 漫画 アイヌ語 ' \
+                        '歌謡曲 主題歌 楽曲 収録曲 アルバム CD・曲 ' \
+                        'ソング シングル 収録曲 '.split(' ')
+STOPWORDS_OF_WEBPAGE_NOUN = 'どこ だけ ごちゃごちゃ ： : ' \
+                            'お気に入り お気に入り詳細 リンク レス 注意事項 ' \
+                            '自己責任 JavaScriptの設定方法 知恵コレクション goo メールアドレス サイト画像 ｗｅｂサイト webサイト 当店 ボタン ブラウザ ポイント'.split(' ')
+STOPWORDS_OF_WEBPAGE_VERB = 'メッセージ こちらの記事 クリックする 押す 入力する'.split(' ')
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
 SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'

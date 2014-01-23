@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
-import builtins
-import re
 import constants
+import pdb
 from pyquery import PyQuery as pq
 from web_item import WebItem
 from parenthesis_remover import Parenthesis_remover
@@ -10,6 +9,7 @@ from sentence import Sentence
 from sentence_separator import SentenceSeparator
 from task import Task
 from node import Node
+from object_term import ObjectTerm
 
 
 class WebPage(WebItem):
@@ -23,7 +23,7 @@ class WebPage(WebItem):
         sp = SentenceSeparator()
         sentence_texts = sp.split_by_dots(self.text)
         for sentence_text in sentence_texts:
-            sentence = Sentence(sentence_text)
+            sentence = Sentence(sentence_text, self.query)
             self.sentences.append(sentence)
 
     def snippet_without_parenthesis(self):
@@ -296,37 +296,22 @@ class WebPage(WebItem):
         # sentenceはただのstrかもしれない。
         order = 0
         for sentence in self.sentences:
-            if type(sentence) == builtins.str:
-                # もしsentenceがただのstrだったら、Sentenceオブジェクトにする
-                sentence = Sentence(sentence)
-            if sentence.is_invalid_for_task():
+            if not sentence.set_noun_verb_if_good_task():
                 continue
 
+            object_term = ObjectTerm(sentence.noun)
 
-            #  ひらがな・カタカナひともじのときはフィルタ
-            pattern = re.compile('^[ぁ-んァ-ン]$')
-            core_object = sentence.core_object()
-            if pattern.match(core_object):
+            if object_term.core_noun in constants.STOPWORDS_OF_WEBPAGE_NOUN:
                 continue
 
-            if core_object in constants.STOPWORDS_OF_WEBPAGE_NOUN:
-                continue
-
-            predicate_term = sentence.core_predicate()
-            if predicate_term == '?':
-                continue
-
-            if predicate_term in constants.STOPWORDS_OF_WEBPAGE_VERB:
-                continue
-
-
-            task = Task(object_term=core_object,
-                        cmp=sentence.cmp,
-                        predicate_term=predicate_term,
-                        context=self.query,
+            task = Task(object_term=object_term,
+                        # cmp=sentence.cmp,
+                        predicate_term=sentence.verb,
+                        query=self.query,
                         order=order,
                         url=self.url)
             results.append(task)
+            print('%s_%sというタスクをセットしました' % (sentence.noun, sentence.verb))
             order += 1 # 登場の順番
         return results
 

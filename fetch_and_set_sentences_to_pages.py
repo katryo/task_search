@@ -15,10 +15,11 @@ if __name__ == '__main__':
             print('%sのフェッチ完了!' % page.title)
             page.set_text_from_html_body()
             page.set_sentences_from_text()
-            pfs.save_pages_with_query_expansion()
+            #pfs.save_pages_with_query_expansion()
         except (ValueError, IndexError):
+            print('%sのフェッチに失敗しました' % page.title)
             continue
 
     saver = PickleFileSaver()
-    saver.save_pages_with_dir_name(pages, constants.QUERY)
+    saver.save_pages_with_query(pages=pages, query=query)
 

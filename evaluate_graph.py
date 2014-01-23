@@ -18,8 +18,9 @@ if __name__ == '__main__':
         edges = edge_finder._part_of_edges_by_order_with_task_name(task_name)
         if edges:
             print('********')
-            print(task_name)
             print(edges)
+            print('are in the same url with')
+            print(task_name)
             print('********')
         continue
 

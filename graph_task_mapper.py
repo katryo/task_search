@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-import networkx as nx
 import pdb
-import constants
 from hypohype_data_loader import HypoHypeDBDataLoader
 from entailment_librarian import EntailmentLibrarian
+from abstract_task_graph_manager import AbstractTaskGraphManager
 
 
-class GraphTaskMapper():
-    def __init__(self, graph=False):
-        self.graph = graph or nx.MultiDiGraph()
-
+class GraphTaskMapper(AbstractTaskGraphManager):
     def has_stop_object_term(self, object_term):
         stop_words = ['こと', 'もの', 'など']
         if object_term in stop_words:
@@ -105,60 +101,3 @@ class GraphTaskMapper():
         entailing_predicates = librarian.genaral_from_all_except_for_nonent_ntriv_with_special(task.predicate_term)
         return entailing_predicates  # dict
 
-    def _task_names_in_score_higher_than(self, num=1):
-        scores = self.in_degree()  # {'調味料_ばらまく': 1, ...}
-        results = [name for name in scores if scores[name] > num]
-        return results
-
-    def remove_low_score_generalized_tasks(self):
-        low_score_generalized_task_names = self._generalized_task_names_in_score_lower_than()
-        self.graph.remove_nodes_from(low_score_generalized_task_names)
-
-    def _generalized_task_names_in_score_lower_than(self):
-        task_names_lower_in_score = self._task_names_in_score_lower_than()
-        results = set()
-        for task_name in task_names_lower_in_score:
-            aspects = self.graph.node[task_name]['aspects']  # がoriginalだったらcontinue
-            is_original = False
-            for aspect in aspects:
-                if aspect['is_original']:
-                    is_original = True
-                    break
-            if is_original:
-                continue
-            results.add(task_name)
-        return results
-
-    def _task_names_in_score_lower_than(self, num=2):
-        scores = self.in_degree()  # {'調味料_ばらまく': 1, ...}
-        results = [name for name in scores if scores[name] < num]
-        return results
-
-    def _original_task_names_lead_to_higher_score_nodes(self):
-        task_names_with_higher_score = self._task_names_in_score_higher_than()
-        good_original_task_names = set()
-        for generalized_task in task_names_with_higher_score:
-            task_names = self.graph.predecessors(generalized_task)
-            for task_name in task_names:
-                good_original_task_names.add(task_name)
-        return good_original_task_names
-
-
-    # 同じgeneralized_taskにエッジを伸ばす2つのタスク。
-    # これらを統合させる必要がある！ g_nodeの名前そのままではなく、
-    # 重ね合わせ、集合体として。
-    def frequent_tasks_by_generalized_tasks(self):
-        task_names_with_higher_score = self._task_names_in_score_higher_than()
-        results = dict()
-        pdb.set_trace()
-        for generalized_task in task_names_with_higher_score:
-            good_original_task_names = self.graph.predecessors(generalized_task)
-            good_original_tasks = []
-            for task_name in good_original_task_names:
-                task_attr_dict = self.graph.node[task_name]
-                task_attr_dict['name'] = task_name
-                good_original_tasks.append(task_attr_dict)
-
-            # もうここにfreqを淹れればよいのでは
-            results[generalized_task] = good_original_tasks  # 一見重複しているように見えるタスクかも
-        return results  # {'調味料_まく': {name:'塩_ばらまく', url:'http...', 'order': 5 }}

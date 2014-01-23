@@ -1,11 +1,9 @@
 from generalized_task import GeneralizedTask
+from abstract_task_graph_manager import AbstractTaskGraphManager
 import pdb
 
 
-class TaskGraphEvaluator():
-    def __init__(self, graph):
-        self.graph = graph
-
+class TaskGraphEvaluator(AbstractTaskGraphManager):
     def evaluate(self):
         for node in self.graph.nodes():
             edges = self.graph[node]

@@ -49,6 +49,13 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         results = [name for name in scores if scores[name] > num]
         return results
 
+    def _tasks_in_subtype_of_relation(self):
+        # 最初のクエリ'部屋_掃除する'に対する'子供部屋_掃除する'のようなものを出力
+        edge_finder = TaskGraphEdgeFinder(self.graph)
+        task_names = edge_finder.subtype_of_edges_lead_to_original_task_with_task_name(self.query_task)
+        return task_names
+
+
     def _tasks_in_instance_of_relation(self):
         task_names = self.frequent_original_tasks
         for subtype_of_task in self.subtype_of_tasks:

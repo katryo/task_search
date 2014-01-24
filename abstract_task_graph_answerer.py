@@ -33,11 +33,6 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
         self.instance_of_tasks = self._tasks_in_instance_of_relation()
 
-    def _tasks_in_subtype_of_relation(self):
-        # 最初のクエリ'部屋_掃除する'に対する'子供部屋_掃除する'のようなものを出力
-        edge_finder = TaskGraphEdgeFinder(self.graph)
-        task_names = edge_finder.subtype_of_edges_lead_to_original_task_with_task_name(self.query_task)
-        return task_names
 
     def _children_of_part_of_task_clusters(self):
         children = set()

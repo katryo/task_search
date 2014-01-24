@@ -2,6 +2,7 @@
 import pdb
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_edge_finder import TaskGraphEdgeFinder
+from task_graph_recursive_answerer_hand import TaskGraphRecursiveAnswererHand
 
 
 class TaskGraphRecursiveAnswerer(AbstractTaskGraphAnswerer):
@@ -14,31 +15,38 @@ class TaskGraphRecursiveAnswerer(AbstractTaskGraphAnswerer):
 
         is_original = edge_finder.guess_original_with_task_name(query_task)
         if is_original:
-            self.part_of_children_task_names = edge_finder.part_of_edges_with_task_name(self.query_task)
-        # グラフは基本的に汎化関係しか見ない。はず。
+            self.hands = set(TaskGraphRecursiveAnswererHand(query_task))
             return
 
-        # オリジナルではないときは、特化タスクを探して、その特化タスク下でしらべさせる
+        edges = self.graph.edges(query_task)
+        specialized_task_names = [edge[1] for edge in edges]
+        pdb.set_trace()  # edge[1]かedge[0]かどっちだったか
+        self.hands = set()
+        for specialized_task_name in specialized_task_names:
+            hand = TaskGraphRecursiveAnswererHand(specialized_task_name)
+            self.hands.add(hand)
+
+    def _tasks_in_subtype_of_relation(self):
+        tasks = set()
+        for hand in self.hands:
+            tasks_in_hand = hand.tasks_in_subtype_of_relation()
+            for task in tasks_in_hand:
+                tasks.add(task)
+        return tasks
 
 
     def _task_clusters_in_part_of_relation(self):
-        edge_finder = TaskGraphEdgeFinder(self.graph)
-        task_clusters = []
-        for task_name in self.part_of_children_task_names:
-            task_cluster = edge_finder.part_of_edges_with_task_name(task_name)
-            task_clusters.append(task_cluster)
-        return task_clusters
+        clusters = []
+        for hand in self.hands:
+            clusters_in_hand = hand.tasks_in_subtype_of_relation()
+            clusters.extend(clusters_in_hand)
+        return clusters
 
     def _tasks_in_instance_of_relation(self):
-        task_names = self.part_of_children_task_names
-        for subtype_of_task in self.subtype_of_tasks:
-            task_names.remove(subtype_of_task)
-
-        children_of_part_of_task_clusters = self._children_of_part_of_task_clusters()
-        for child in children_of_part_of_task_clusters:
-            try:
-                task_names.remove(child)
-            except KeyError:  # もうchildは削除されているとき
-                continue
+        task_names = set()
+        for hand in self.hands:
+            names_in_hand = hand.tasks_in_subtype_of_relation()
+            for name in names_in_hand:
+                task_names.add(name)
         return task_names
 

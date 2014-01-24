@@ -59,7 +59,10 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         return results
 
     def _subtype_of_edges_with_task_name(self, task_name):
-        edges = self.graph.edge[task_name]
+        try:
+            edges = self.graph.edge[task_name]
+        except KeyError:  # 検索クエリがtask_nameのときなど、ないこともある
+            return set()
         results = set()
         for task_name_leaded_by_edge in edges:  # edgeはset()
             edges_dicts = edges[task_name_leaded_by_edge]

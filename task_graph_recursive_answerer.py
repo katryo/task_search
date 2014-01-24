@@ -48,7 +48,6 @@ class TaskGraphRecursiveAnswerer(AbstractTaskGraphAnswerer):
                 tasks.add(task)
         return tasks
 
-
     def _task_clusters_in_part_of_relation(self):
         clusters = []
         for hand in self.hands:

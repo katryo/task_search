@@ -12,8 +12,10 @@ if __name__ == '__main__':
     sp = SentenceSeparator()
     pm = PathMover()
 
+    original_queries = ['部屋　掃除する']
+
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
-    for original_query in constants.QUERIES:
+    for original_query in original_queries:
         pm.go_or_create_and_go_to(original_query)
         expanded_queries = os.listdir()
         for expanded_query in expanded_queries:
@@ -21,7 +23,9 @@ if __name__ == '__main__':
                 continue
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
-            for filename in filenames:
+            for i, filename in enumerate(filenames):
+                if i == 100:
+                    break
                 if filename == '.DS_Store':
                     continue
                 page = pfl.load_file(filename)

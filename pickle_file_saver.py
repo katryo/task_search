@@ -28,7 +28,7 @@ class PickleFileSaver(object):
             # query => '犬　育てる　教育'
             pm.go_or_create_and_go_to(query)
 
-            #page_dict[query] => [Page, Page, ...]
+            #pages_dict[query] => [Page, Page, ...]
             for i, page in enumerate(pages_dict[query]):
                 with open('%s_%i.pkl' % (query, i), 'wb') as f:
                     try:
@@ -39,7 +39,6 @@ class PickleFileSaver(object):
             pm.go_up()
         pm.go_up()
         pm.go_up()
-
 
     def save_query(self, query_obj):
         pm = PathMover()

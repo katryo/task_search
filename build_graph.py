@@ -8,7 +8,7 @@ from pickle_file_loader import PickleFileLoader
 if __name__ == '__main__':
     query = '部屋　掃除する'
     pfl = PickleFileLoader()
-    pages = pfl.load_fetched_pages_with_query(query)
+    pages = pfl.load_fetched_pages_of_ex_with_query(query)
     gtm = GraphTaskMapper()
 
     for page in pages:
@@ -18,5 +18,3 @@ if __name__ == '__main__':
     print('added all edges!')
     pfs = PickleFileSaver()
     pfs.save_graph_with_query(obj=gtm.graph, query=query)
-    results_dic = gtm.frequent_tasks_by_generalized_tasks()
-    print(results_dic)

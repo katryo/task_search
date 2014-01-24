@@ -293,9 +293,11 @@ class WebPage(WebItem):
         最後に計算する際、同じページでの登場番号の前後で。part-ofを判断する
         """
         results = []
-        # sentenceはただのstrかもしれない。
         order = 0
         for sentence in self.sentences:
+            if type(sentence) == str:
+                sentence = Sentence(text=sentence, query=self.query)
+
             if not sentence.set_noun_verb_if_good_task():
                 continue
 

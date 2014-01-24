@@ -20,6 +20,7 @@ if __name__ == '__main__':
     #first_answerer.set_result_tasks()
     #first_answerer.print_subtasks()
 
+
     answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='燃料_持つ')
     answerer.set_result_tasks()
     answerer.print_subtasks()

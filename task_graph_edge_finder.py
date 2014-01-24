@@ -1,3 +1,4 @@
+# coding:utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from part_of_edge_finder_with_order import PartOfEdgeFinderWithOrder
 import pdb

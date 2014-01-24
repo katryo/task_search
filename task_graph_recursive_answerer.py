@@ -16,7 +16,8 @@ class TaskGraphRecursiveAnswerer(AbstractTaskGraphAnswerer):
 
         is_original = edge_finder.guess_original_with_task_name(query_task)
         if is_original:
-            self.hands = set(TaskGraphRecursiveAnswererHand(graph=graph, query_task=query_task))
+            hand = TaskGraphRecursiveAnswererHand(graph=graph, query_task=query_task)
+            self.hands = set([hand])
             return
 
         specialized_task_names = self.graph.predecessors(query_task)

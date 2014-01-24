@@ -11,8 +11,14 @@ class TaskGraphRecursiveAnswerer(AbstractTaskGraphAnswerer):
 
         super().__init__(graph, query_task)
         edge_finder = TaskGraphEdgeFinder(self.graph)
-        self.part_of_children_task_names = edge_finder.part_of_edges_with_task_name(self.query_task)
+
+        is_original = edge_finder.guess_original_with_task_name(query_task)
+        if is_original:
+            self.part_of_children_task_names = edge_finder.part_of_edges_with_task_name(self.query_task)
         # グラフは基本的に汎化関係しか見ない。はず。
+            return
+
+        # オリジナルではないときは、特化タスクを探して、その特化タスク下でしらべさせる
 
 
     def _task_clusters_in_part_of_relation(self):

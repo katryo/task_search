@@ -5,6 +5,13 @@ import pdb
 
 class TaskGraphEdgeFinder(AbstractTaskGraphManager):
 
+    def guess_original_with_task_name(self, task_name):
+        aspects = self._aspects_with_task_name(task_name)
+        for aspect in aspects:
+            if aspect['is_original']:
+                return True
+        return False
+
     def part_of_edges_lead_to_original_node_with_task_name(self, task_name):
         task_names = self.part_of_edges_with_task_name(task_name)
         results = self._select_original_task_with_task_names(task_names)

@@ -15,7 +15,7 @@ if __name__ == '__main__':
     task_names = node_remover.graph.nodes()
     edge_finder = TaskGraphEdgeFinder(node_remover.graph)
     for task_name in task_names:
-        edges = edge_finder._part_of_edges_by_order_with_task_name(task_name)
+        edges = edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name)
         if edges:
             print('********')
             print(edges)

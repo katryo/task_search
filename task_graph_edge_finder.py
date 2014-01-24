@@ -5,9 +5,20 @@ import pdb
 
 class TaskGraphEdgeFinder(AbstractTaskGraphManager):
 
+    def part_of_edges_lead_to_original_node_with_task_name(self, task_name):
+        task_names = self.part_of_edges_with_task_name(task_name)
+        results = set()
+        for _task_name in task_names:
+            aspects = self._aspects_with_task_name(task_name)
+            for aspect in aspects:
+                if aspect['is_original']:
+                    results.add(_task_name)
+        return results
+
+    # 高スコアの汎化タスクも取ってくる。普段はlead_to_original_nodeを使うべき
     def part_of_edges_with_task_name(self, task_name):
-        results = self._part_of_edges_by_order_with_task_name()
-        for item in self._part_of_edges_by_entailment_with_task_name():
+        results = self._part_of_edges_by_order_with_task_name(task_name)
+        for item in self._part_of_edges_by_entailment_with_task_name(task_name):
             results.add(item)
         return results
 
@@ -15,9 +26,7 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         # 全ての関係がinstance-ofとかsubtype-ofだと過程しておいてから、
         # 「もしかしたら」part-ofなんじゃない？ と、
         # instance-of関係にあるっぽいエッジに訊ねる
-        aspects = self.graph.node[task_name]['aspects']
-        if aspects is None:
-            return
+        aspects = self._aspects_with_task_name(task_name)
 
         nodes = self.graph.nodes(data=True)
         results = set()

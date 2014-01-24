@@ -6,14 +6,8 @@ from abstract_task_graph_manager import AbstractTaskGraphManager
 
 
 class GraphTaskMapper(AbstractTaskGraphManager):
-    def has_stop_object_term(self, object_term):
-        stop_words = ['こと', 'もの', 'など']
-        if object_term in stop_words:
-            return True
-        return False
-
     def _add_new_node(self, object_term, predicate_term, order, url, is_original=False):
-        if self.has_stop_object_term(object_term):
+        if self._has_stop_object_term(object_term):
             return False
 
         task_name = '%s_%s' % (object_term, predicate_term)
@@ -25,7 +19,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
 
         if task_name in self.graph.node:
             try:
-                old_aspects = self.graph.node[task_name]['aspects']
+                old_aspects = self._aspects_with_task_name(task_name)
                 new_aspects = old_aspects.append(new_aspect)
             except (KeyError, AttributeError):  # add_edgeでnodeが追加されたあと、nodeとして追加されたときに、ここに来る。
                 new_aspects = [new_aspect]
@@ -34,7 +28,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         self.graph.add_node(task_name, aspects=new_aspects)
 
     def _add_new_edge(self, task, noun, verb, entailment_type, is_hype):
-        if self.has_stop_object_term(noun):
+        if self._has_stop_object_term(noun):
             return False
         if type(noun) == list or type(task.object_term.core_noun) == list:
             pdb.set_trace()
@@ -44,6 +38,12 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                             (noun, verb),
                             entailment_type=entailment_type,
                             is_hype=is_hype)
+
+    def _has_stop_object_term(self, object_term):
+        stop_words = ['こと', 'もの', 'など']
+        if object_term in stop_words:
+            return True
+        return False
 
     def in_degree(self):
         return self.graph.in_degree()
@@ -65,8 +65,6 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         # 上位語・下位語が揃った。
         for hype_type in nouns:
             for noun in nouns[hype_type]:
-                if noun == 'ごちゃごちゃ':
-                    pdb.set_trace()
                 for entailment_type in verbs:  # verbsはdict
                     for verb in verbs[entailment_type]:
 

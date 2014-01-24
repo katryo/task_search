@@ -7,9 +7,13 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
 
     def part_of_edges_lead_to_original_node_with_task_name(self, task_name):
         task_names = self.part_of_edges_with_task_name(task_name)
+        results = self._select_original_task_with_task_names(task_names)
+        return results
+
+    def _select_original_task_with_task_names(self, task_names):
         results = set()
         for _task_name in task_names:
-            aspects = self._aspects_with_task_name(task_name)
+            aspects = self._aspects_with_task_name(_task_name)
             for aspect in aspects:
                 if aspect['is_original']:
                     results.add(_task_name)
@@ -49,7 +53,12 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
                     results.add(task_name_leaded_by_edge)
         return results  # 先のノードのset
 
-    def subtype_of_edges_with_task_name(self, task_name):
+    def subtype_of_edges_lead_to_original_task_with_task_name(self, task_name):
+        task_names = self._subtype_of_edges_with_task_name(task_name)
+        results = self._select_original_task_with_task_names(task_names)
+        return results
+
+    def _subtype_of_edges_with_task_name(self, task_name):
         edges = self.graph.edge[task_name]
         results = set()
         for task_name_leaded_by_edge in edges:  # edgeはset()

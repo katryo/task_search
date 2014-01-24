@@ -15,22 +15,12 @@ if __name__ == '__main__':
     task_names = node_remover.graph.nodes()
     edge_finder = TaskGraphEdgeFinder(node_remover.graph)
     for task_name in task_names:
-        edges = edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name)
+        edges = edge_finder.subtype_of_edges_lead_to_original_task_with_task_name(task_name)
         if edges:
-            print('********')
-            print(edges)
-            print('are in the same url with')
+            print('***')
             print(task_name)
-            print('********')
-        continue
+            print('is subtype-of')
+            print(edges)
+            print('are in the same page')
+            print('***')
 
-        edges = edge_finder.subtype_of_edges_with_task_name(task_name)
-        if edges:
-            print(task_name)
-            print('is a subtype of')
-            print(edges)
-        edges = edge_finder.part_of_edges_with_task_name(task_name)
-        if edges:
-            print(task_name)
-            print('is a part of')
-            print(edges)

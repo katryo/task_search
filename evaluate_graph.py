@@ -4,6 +4,7 @@ from task_graph_evaluator import TaskGraphEvaluator
 from task_graph_node_remover import TaskGraphNodeRemover
 from task_graph_edge_finder import TaskGraphEdgeFinder
 from task_graph_first_answerer import TaskGraphFirstAnswerer
+from task_graph_recursive_answerer import TaskGraphRecursiveAnswerer
 import pdb
 
 if __name__ == '__main__':
@@ -15,9 +16,11 @@ if __name__ == '__main__':
 
     query_task = '_'.join(query.split('　'))
 
-    node_selector = TaskGraphFirstAnswerer(graph=g, query_task=task_query)
-    node_selector.set_first_result_tasks()
-    node_selector.print_subtasks()
+    #first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
+    #first_answerer.set_result_tasks()
+    #first_answerer.print_subtasks()
 
-    edge_finder = TaskGraphEdgeFinder(node_remover.graph)
-    pdb.set_trace()
+    answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='燃料_持つ')
+    answerer.set_result_tasks()
+    answerer.print_subtasks()
+

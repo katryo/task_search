@@ -8,6 +8,10 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
     最初のタスク検索結果表示にだけ使う
     """
+    def __init__(self, graph=False, query_task='部屋_掃除する'):
+        super().__init__(graph=graph, query_task=query_task)
+        self.frequent_original_tasks = self._frequent_original_tasks()
+
 
     def _frequent_original_tasks(self):
         task_names_with_higher_score = self._task_names_in_score_higher_than()
@@ -45,18 +49,6 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         results = [name for name in scores if scores[name] > num]
         return results
 
-    def set_first_result_tasks(self):
-        self.subtype_of_tasks = self._tasks_in_subtype_of_relation()
-        self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
-        self.instance_of_tasks = self._tasks_in_instance_of_relation()
-
-    def _tasks_in_subtype_of_relation(self):
-        # 最初のクエリ'部屋_掃除する'に対する'子供部屋_掃除する'のようなものを出力
-        edge_finder = TaskGraphEdgeFinder(self.graph)
-        task_names = edge_finder.subtype_of_edges_lead_to_original_task_with_task_name(self.query_task)
-        return task_names
-
-
     def _tasks_in_instance_of_relation(self):
         task_names = self.frequent_original_tasks
         for subtype_of_task in self.subtype_of_tasks:
@@ -70,16 +62,6 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                 continue
         return task_names
 
-    def _children_of_part_of_task_clusters(self):
-        children = set()
-        for task_cluster in self.part_of_task_clusters:
-            for cluster_name in task_cluster:
-                children_names = self.graph.neighbors(cluster_name)
-                for child_name in children_names:
-                    children.add(child_name)
-        return children
-
-
     def _task_clusters_in_part_of_relation(self):
         edge_finder = TaskGraphEdgeFinder(self.graph)
         frequent_task_names = self._frequent_tasks_which_are_not_subtype_of()
@@ -88,7 +70,6 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
             task_cluster = edge_finder.part_of_edges_with_task_name(task_name)
             task_clusters.append(task_cluster)
         return task_clusters
-
 
     def _frequent_tasks_which_are_not_subtype_of(self):
         frequent_tasks = self.frequent_original_tasks

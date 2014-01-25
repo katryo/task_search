@@ -20,8 +20,8 @@ class WebPage(WebItem):
         self.sentences = []
 
     def set_sentences_from_text(self):
-        sp = SentenceSeparator()
-        sentence_texts = sp.split_by_dots(self.text)
+        sp = SentenceSeparator(self.text)
+        sentence_texts = sp.split_by_dots()
         for sentence_text in sentence_texts:
             sentence = Sentence(sentence_text, self.query)
             self.sentences.append(sentence)
@@ -56,13 +56,6 @@ class WebPage(WebItem):
             suspicious_string = text[i-suspicious_string_size:i]
         keyword = self.from_suspicious_string_to_task_sentence(suspicious_string)
         return keyword
-
-    def prepare_task_sentence(self, string):
-        string = self.remove_parentheses(string)
-        string = self.slice_after_dots(string)
-        m_words = self.to_m_words(string)
-        m_words = self.combine_nouns(m_words)
-        return m_words
 
     def find_task_sentence_by_grammar(self, m_words):
         """

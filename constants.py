@@ -15,7 +15,7 @@ STOPWORDS_OF_HYPOHYPE = 'ドラマ 作品 舞台 番組 出演作品 ' \
                         'ソング シングル 収録曲 '.split(' ')
 STOPWORDS_OF_WEBPAGE_NOUN = 'どこ だけ ごちゃごちゃ ： : ' \
                             'お気に入り お気に入り詳細 リンク レス 注意事項 ' \
-                            '自己責任 JavaScriptの設定方法 知恵コレクション goo メールアドレス サイト画像 ｗｅｂサイト webサイト 当店 ボタン ブラウザ ポイント'.split(' ')
+                            '自己責任 JavaScriptの設定方法 知恵コレクション goo メールアドレス サイト画像 ｗｅｂサイト webサイト 当店 ボタン ブラウザ ポイント メッセージ ファイル名 画面 参考 お客様の声'.split(' ')
 STOPWORDS_OF_WEBPAGE_VERB = 'メッセージ こちらの記事 クリックする 押す 入力する'.split(' ')
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
 SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'

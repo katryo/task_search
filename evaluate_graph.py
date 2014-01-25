@@ -16,12 +16,12 @@ if __name__ == '__main__':
 
     query_task = '_'.join(query.split('　'))
 
-    #first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
-    #first_answerer.set_result_tasks()
-    #first_answerer.print_subtasks()
+    first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
+    first_answerer.set_result_tasks()
+    first_answerer.print_subtasks()
 
 
-    answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='掃除機_かける')
-    answerer.set_result_tasks()
-    answerer.print_subtasks()
+    #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='マタハラ_受ける')
+    #answerer.set_result_tasks()
+    #answerer.print_subtasks()
 

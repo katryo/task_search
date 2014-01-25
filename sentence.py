@@ -15,8 +15,8 @@ class Sentence(Labelable):
 
     def _set_m_body_words_by_combine_words(self):
         tc = TextCombiner()
-        self.m_body_words = tc.combine_nouns(self.m_body_words)
-        self.m_body_words = tc.combine_verbs(self.m_body_words)
+        m_body_words = tc.combine_nouns(self.m_body_words)
+        self.m_body_words = tc.combine_verbs(m_body_words)
 
     def core_object(self):
         before_cmp = self.m_words_before_cmp()
@@ -229,11 +229,6 @@ class Sentence(Labelable):
     def direction_r_i(self):
         sc = SentenceClassifier(self)
         return sc.direction_r_i()
-        # directionは文字列、woはm_wordでやってたからちょい面倒
-
-    def direction_i(self):
-        sc = SentenceClassifier(self)
-        # return sc.direction_i()
         # directionは文字列、woはm_wordでやってたからちょい面倒
 
     def m_words_before_cmp(self):

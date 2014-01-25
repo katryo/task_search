@@ -11,10 +11,13 @@ if __name__ == '__main__':
     pages = pfl.load_fetched_pages_of_ex_with_query(query)
     gtm = GraphTaskMapper()
 
-    for page in pages:
-        for task in page.tasks:
-            gtm.add_node_and_edge_with_task(task)
-        print('Tasks on %s are added!' % page.title)
+    for i, page in enumerate(pages):
+        try:
+            for task in page.tasks:
+                gtm.add_node_and_edge_with_task(task)
+            print('%i 番目のページ %s のタスクをグラフに追加しました' % (i, page.title))
+        except AttributeError:
+            break
     print('added all edges!')
     pfs = PickleFileSaver()
     pfs.save_graph_with_query(obj=gtm.graph, query=query)

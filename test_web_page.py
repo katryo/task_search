@@ -2,6 +2,7 @@
 import unittest
 import copy
 from web_page import WebPage
+from sentence import Sentence
 import pdb
 
 
@@ -39,16 +40,6 @@ class TestWebPage(unittest.TestCase):
         page = copy.deepcopy(self.kanemoti_page)
         page.build_heading_tree()
         self.assertEqual(page.top_nodes[0].heading_title, '耐水圧')
-
-
-    def test_find_task_from_nanapi_with_headings(self):
-        task = self.nanapi_article_page.find_task_from_nanapi_with_headings()
-        self.assertEqual(task.title, '三万円以下で買えるハイテクアウターまとめ | nanapi [ナナピ]')
-        self.assertEqual(task.url, 'http://nanapi.jp')
-        self.assertEqual(task.steps[1].h2, '買う前に知っておきたい用語')
-        self.assertEqual(task.steps[1].h3s[0], '耐水圧')
-        self.assertEqual(task.steps[1].h3s[1], '透湿性')
-        self.assertEqual(task.steps[1].h3s[2], 'DWR（Durable Water Repellent）')
 
     def test_set_clusters_around_action_word(self):
         result_page = WebPage()
@@ -118,26 +109,15 @@ class TestWebPage(unittest.TestCase):
         m_words_after_combine = page.combine_to_one_noun(m_words, 0)
         self.assertEqual(m_words_after_combine[0].name, '親子決戦')
 
-    def test_prepare_task_sentence(self):
-        page = WebPage()
-        string = 'そこで「最強無敵魔法少女」になりました'
-        m_words = page.prepare_task_sentence(string)
-        self.assertEqual(m_words[0].name, 'そこで')
-        self.assertEqual(m_words[1].name, '最強無敵魔法少女')
-        self.assertEqual(m_words[2].name, 'に')
-        self.assertEqual(m_words[3].name, 'なり')
-        self.assertEqual(m_words[4].name, 'まし')
-        self.assertEqual(m_words[5].name, 'た')
+    def test_mashou_sentence(self):
+        page = WebPage('http://home.e05.itscom.net/mizuki/masako/bedmake.htm')
+        page.text = '１．トイレの便座も一度拭きましょう！'
+        page.set_sentences_from_text()
+        page.set_tasks_from_sentences()
+        task = page.tasks[0]
+        self.assertEqual(task.object_term.name, '便座')
+        self.assertEqual(task.predicate_term, '拭く')
 
-    def test_keyword_from_text(self):
-        page = WebPage()
-        string = 'しかしこの市販の薬を飲んで'
-        task = page.from_suspicious_string_to_task_sentence(string)
-        self.assertEqual(task, '市販の薬を飲んで')
-
-        string = '医師や薬剤師は薬を飲まずに風邪を治す'
-        task = page.from_suspicious_string_to_task_sentence(string)
-        self.assertEqual(task, '薬を飲まずに風邪を治す')
 
 if __name__ == '__main__':
     unittest.main()

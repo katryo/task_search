@@ -31,14 +31,12 @@ class PickleFileLoader(object):
         expanded_queries = os.listdir()
         pages = []
         for expanded_query in expanded_queries:
-            if expanded_query == '.DS_Store':
+            if expanded_query == '.DS_Store' or expanded_query == query + '_graph.pkl':
                 continue
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
             for i, filename in enumerate(filenames):
-                if i == 200:
-                    break
-                if filename == '.DS_Store':
+                if filename == '.DS_Store' or filename == query + '_graph.pkl':
                     continue
                 page = self.load_file(filename)
                 pages.append(page)

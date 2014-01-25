@@ -5,11 +5,14 @@ from m_words_factory import MWordsFactory
 
 
 class SentenceSeparator():
-    def split_by_dots(self, text):
+    def __init__(self, text):
+        self.text = text
+
+    def split_by_dots(self):
         """
         再帰的にsplitして1つのlistにする
         """
-        texts = self.split_texts_by_dots([text])
+        texts = self.split_texts_by_dots([self.text])
         # dotで繰り返しているのが話をややこしくしている。
         return texts
 

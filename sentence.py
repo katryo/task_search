@@ -194,9 +194,9 @@ class Sentence(Labelable):
     def _includes_cmp_before_direction(self):
         if not self._includes_directions():  # をしなさい がなかったらダメ
             return False
-        if self.cmp_r_i() is False:  # 'を'などがなかったらダメ。次の人。
+        if not self._cmp_r_i():  # 'を'などがなかったらダメ。次の人。
             return False
-        if self.cmp_r_i() > self.direction_r_i():
+        if self._cmp_r_i() > self.direction_r_i():
             return True
         return False
 

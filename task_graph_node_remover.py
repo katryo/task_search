@@ -13,7 +13,7 @@ class TaskGraphNodeRemover(AbstractTaskGraphManager):
         task_names_lower_in_score = self._task_names_in_score_lower_than()
         results = set()
         for task_name in task_names_lower_in_score:
-            aspects = self.graph.node[task_name]['aspects']  # がoriginalだったらcontinue
+            aspects = self._aspects_with_task_name(task_name)
             is_original = False
             for aspect in aspects:
                 if aspect['is_original']:
@@ -24,7 +24,7 @@ class TaskGraphNodeRemover(AbstractTaskGraphManager):
             results.add(task_name)
         return results
 
-    def _task_names_in_score_lower_than(self, num=2):
+    def _task_names_in_score_lower_than(self, num=3):
         scores = self.graph.in_degree()  # {'調味料_ばらまく': 1, ...}
         results = [name for name in scores if scores[name] < num]
         return results

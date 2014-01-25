@@ -18,8 +18,8 @@ class Sentence(Labelable):
         m_body_words = tc.combine_nouns(self.m_body_words)
         self.m_body_words = tc.combine_verbs(m_body_words)
 
-    def core_object(self):
-        before_cmp = self.m_words_before_cmp()
+    def _core_object(self):
+        before_cmp = self._m_words_before_cmp()
         try:
             last_m = before_cmp[-1]
         # を理解していきましょう のように、をの前がないとき
@@ -85,7 +85,11 @@ class Sentence(Labelable):
             return False
         #  ひらがな・カタカナひともじのときはフィルタ
         pattern = re.compile('^[ぁ-んァ-ン]$')
-        noun = self.core_object()
+        noun = self._core_object()
+        if noun == 'ましょ':
+            pdb.set_trace()
+
+
         if not noun:  # ''かも
             return False
 
@@ -103,7 +107,7 @@ class Sentence(Labelable):
 
         if '%s　%s' % (noun, predicate_term) == self.query:
             return False
-        
+
         self.noun = noun
         self.verb = predicate_term
         return True
@@ -114,7 +118,7 @@ class Sentence(Labelable):
     def _is_invalid_for_task(self):
         if self._core_noun_is_block_word():
             return True
-        if not self.core_object():
+        if not self._core_object():
             return True
         if not self._includes_directions():
             return True
@@ -173,7 +177,7 @@ class Sentence(Labelable):
     def _core_noun_is_block_word(self):
         blockwords = 'は pronoun さ ため 事 こと など ら ついで で て とき ほう ここ もの ご覧 ごらん'.split(' ')
         for blockword in blockwords:
-            if self.core_object() == blockword:
+            if self._core_object() == blockword:
                 return True
         return False
 
@@ -199,14 +203,6 @@ class Sentence(Labelable):
                 return True
         return False
 
-    # 日本語の語順傾向よりreversed()にしてみる
-    def cmp_i(self):
-        for i, m_body_word in enumerate(self.m_body_words):
-            for cmp_info in constants.CMP_INFO_LIST:
-                if cmp_info == m_body_word.word_info:
-                    return i
-        raise ValueError
-
     def cmp_r_i(self):
         for i, m_body_word in enumerate(reversed(self.m_body_words)):
             for cmp_info in constants.CMP_INFO_LIST:
@@ -231,7 +227,7 @@ class Sentence(Labelable):
         return sc.direction_r_i()
         # directionは文字列、woはm_wordでやってたからちょい面倒
 
-    def m_words_before_cmp(self):
+    def _m_words_before_cmp(self):
         """
         include_cmpでをがあることを確認してから使ってくれ
         """

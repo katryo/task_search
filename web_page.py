@@ -275,7 +275,6 @@ class WebPage(WebItem):
 
     def set_tasks_from_sentences(self):
         tasks = self._obj_and_predicate_dict_by_wo_from_sentences()
-
         # ここでもし1ページ内に複数のtaskがあったら、各タスクにbeforeとafterの
         # エッジを与える
         self.tasks = tasks
@@ -295,6 +294,8 @@ class WebPage(WebItem):
                 continue
 
             object_term = ObjectTerm(sentence.noun)
+            if object_term == 'ましょ':
+                pdb.set_trace()
 
             if object_term.core_noun in constants.STOPWORDS_OF_WEBPAGE_NOUN:
                 continue
@@ -306,6 +307,8 @@ class WebPage(WebItem):
                         order=order,
                         url=self.url)
             results.append(task)
+            if task.object_term.name == 'ましょ':
+                pdb.set_trace()
             print('%s_%sというタスクをセットしました' % (sentence.noun, sentence.verb))
             order += 1 # 登場の順番
         return results

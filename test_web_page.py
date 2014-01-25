@@ -115,7 +115,7 @@ class TestWebPage(unittest.TestCase):
         page.set_sentences_from_text()
         page.set_tasks_from_sentences()
         task = page.tasks[0]
-        self.assertEqual(task.object_term.name, '便座')
+        self.assertEqual(task.object_term.name, 'トイレの便座')
         self.assertEqual(task.predicate_term, '拭く')
 
 

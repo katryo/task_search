@@ -39,6 +39,9 @@ class Sentence(Labelable):
 
                 #  'その階で金の剣を売ってください'はここに来る
                 return before_no + 'の' + last_m.name
+
+            if last_m.name == 'ましょ':
+                pdb.set_trace()
             return last_m.name
         except IndexError:  # len(before_wo)が小さいときはここに来る
             return last_m.name
@@ -76,7 +79,7 @@ class Sentence(Labelable):
 
 
                 return m_word.stem
-        return '?'
+        return ''
 
 
 
@@ -203,7 +206,7 @@ class Sentence(Labelable):
                 return True
         return False
 
-    def cmp_r_i(self):
+    def _cmp_r_i(self):
         for i, m_body_word in enumerate(reversed(self.m_body_words)):
             for cmp_info in constants.CMP_INFO_LIST:
                 if cmp_info == m_body_word.word_info:
@@ -217,10 +220,10 @@ class Sentence(Labelable):
                         return i
                 except IndexError:
                     # ['に', '代理登録', 'さ', 'れ', 'ます']
-                    return False
+                    return -1
                 # 例 選ぶようにしましょうのときは、その前に「AをB」のようなパターンがあるか探す
         # 塗れた畳は劣化しやすいので水が残らないようにしましょう
-        return False
+        return -1
 
     def direction_r_i(self):
         sc = SentenceClassifier(self)
@@ -231,10 +234,18 @@ class Sentence(Labelable):
         """
         include_cmpでをがあることを確認してから使ってくれ
         """
-        results = self.m_body_words[:-self.cmp_r_i()-1]
+        r_index = self._cmp_r_i()
+        if r_index == -1:
+            return []
+        index = - r_index
+        results = self.m_body_words[:index-1]
         return results
 
     def m_words_after_cmp(self):
-        results = self.m_body_words[-self.cmp_r_i():]
+        r_index = self._cmp_r_i()
+        if r_index == -1:
+            return []
+        index = - r_index
+        results = self.m_body_words[index:]
         return results
 

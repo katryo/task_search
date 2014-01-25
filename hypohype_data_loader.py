@@ -7,11 +7,19 @@ from sqlite_data_loadable import SQLiteDataLoadable
 
 
 class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
+    def __init__(self, db_name='hyponym_hypernym.sqlite', table_name='all_hyponymy'):
+        super().__init__(db_name, table_name)
+        self.used_hypo_results = dict()
+
     def select_hypes_with_hypo(self, hypo):
+        if hypo in self.used_hypo_results:
+            print('%sはすでにselectしていました！' % hypo)
+            return self.used_hypo_results[hypo]
         sql = 'select hypernym, score from all_hyponymy where hyponym = "%s" limit 100' % hypo
         self.cur.execute(sql)
         print('%sを実行！' % sql)
         results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
+        self.used_hypo_results[hypo] = results
         return results
 
     def hypes_except_for_blockwords(self, hypo):

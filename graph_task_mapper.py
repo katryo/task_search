@@ -6,6 +6,10 @@ from abstract_task_graph_manager import AbstractTaskGraphManager
 
 
 class GraphTaskMapper(AbstractTaskGraphManager):
+    def __init__(self, graph=None):
+        super().__init__(graph)
+        self.loader = HypoHypeDBDataLoader()
+
     def _add_new_node(self, object_term, predicate_term, order, url, is_original=False):
         if self._has_stop_object_term(object_term):
             return False
@@ -90,8 +94,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
 
     def _hypes(self, task):
     # object_term.core_nounのhypohypeを探る
-        hhdbdl = HypoHypeDBDataLoader()
-        hypes = hhdbdl.hypes_except_for_blockwords(task.object_term.core_noun)
+        hypes = self.loader.hypes_except_for_blockwords(task.object_term.core_noun)
         return hypes
 
     def _broader_preds(self, task):

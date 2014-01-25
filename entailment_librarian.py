@@ -6,6 +6,7 @@ from entailment_db_data_loader import EntailmentDBDataLoader
 class EntailmentLibrarian(object):
     def __init__(self):
         self.dictionary_names = constants.ENTAILMENT_DICTIONARY_TABLENAMES
+        self.used_results_by_specials = dict()
 
     def entailing_from_all_dictionaries_with_entailed(self, entailed):
         results = dict()
@@ -21,8 +22,13 @@ class EntailmentLibrarian(object):
         return results
 
     def genaral_from_all_except_for_nonent_ntriv_with_special(self, entailed):
+        if entailed in self.used_results_by_specials:
+            print('%sはすでにエンテイルメントを調べていました！' % entailed)
+            return self.used_results_by_specials[entailed]
         results = self.entailed_from_all_dictionaries_with_entailing(entailed)
         del(results['nonentailment_ntriv'])
+        print('%sのエンテイルメントの調査完了！' % entailed)
+        self.used_results_by_specials[entailed] = results
         return results
 
     def entailed_from_all_dictionaries_with_entailing(self, entailing):

@@ -71,28 +71,24 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                 continue
         return task_names
 
-    def set_result_tasks(self):
-        subtype_tasks = self._tasks_in_subtype_of_relation()
-        self.subtype_of_tasks = subtype_tasks
-        self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
-        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
-
     def _task_clusters_in_instance_of_relation(self):
         task_names_with_higher_score = self._task_names_in_score_higher_than()
-        task_clusters = []
+        task_clusters = set()
         for generalized_task in task_names_with_higher_score:
             good_original_task_names = self.graph.predecessors(generalized_task)
-            task_clusters.append(good_original_task_names)
-        return task_clusters
+            good_original_task_name_set = set(good_original_task_names)
+            task_clusters = task_clusters.union(good_original_task_name_set)
+        results = task_clusters.difference(self.subtype_of_tasks)  # subtype_ofはinstance_ofではない
+        return results
 
 
     def _task_clusters_in_part_of_relation(self):
         edge_finder = TaskGraphEdgeFinder(self.graph)
         frequent_task_names = self._frequent_tasks_which_are_not_subtype_of()
-        task_clusters = []
+        task_clusters = set()  # {{'a_b', 'c_d'}, {e_f, 'g_h'}}
         for task_name in frequent_task_names:
             task_cluster = edge_finder.part_of_edges_with_task_name(task_name)
-            task_clusters.append(task_cluster)
+            task_clusters = task_clusters.union(set(task_cluster))
         return task_clusters
 
     def _frequent_tasks_which_are_not_subtype_of(self):

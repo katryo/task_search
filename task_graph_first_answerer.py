@@ -88,6 +88,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         for task_name in frequent_task_names:
             task_cluster = edge_finder.part_of_edges_with_task_name(task_name)
+            if task_cluster in task_clusters:  # 重複して数えているのを排除
+                continue
             if task_cluster:
                 task_clusters.append(set(task_cluster))
         return task_clusters

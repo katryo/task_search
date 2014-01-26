@@ -11,8 +11,7 @@ class PartOfEdgeFinderWithOrder(object):
     def task_name_shares_url(self):
         original_task_names = set()
         for node in self.nodes:
-            if node[0] == self.task_name:  # 自分自身を見ている
-                continue
+            # 自分自身を選んでもok
             aspects = node[1]['aspects']
             if aspects:
                 for node_aspect in aspects:

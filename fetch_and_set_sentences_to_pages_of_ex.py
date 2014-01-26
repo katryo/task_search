@@ -35,7 +35,7 @@ if __name__ == '__main__':
                     page.fetch_html()
                     print('%sのフェッチ完了!' % page.title)
                     page.set_text_from_html_body()
-                    page.sentences = sp.split_by_dots(page.text)
+                    page.set_sentences_from_text()
                     pfs.save_file(obj=page, filename=filename)
                     print('%sの保存完了!' % page.title)
                 except:

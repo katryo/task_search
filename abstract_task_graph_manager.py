@@ -1,4 +1,5 @@
 import networkx as nx
+import pdb
 
 
 class AbstractTaskGraphManager(object):
@@ -6,7 +7,10 @@ class AbstractTaskGraphManager(object):
         self.graph = graph or nx.MultiDiGraph()
 
     def _aspects_with_task_name(self, task_name):
-        aspects = self.graph.node[task_name]['aspects']
+        try:
+            aspects = self.graph.node[task_name]['aspects']
+        except KeyError:
+            return []
         if aspects is None:
             return []
         return aspects

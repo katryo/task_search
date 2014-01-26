@@ -26,6 +26,8 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
         hypes = self.select_hypes_with_hypo(hypo)
         found_block_hypes = set()
         for stopword in constants.STOPWORDS_OF_HYPOHYPE:
+            if stopword == '':  # 空白のあるhypeが排除されないように。
+                continue
             for hype in hypes:
                 if stopword in hype:
                     found_block_hypes.add(hype)

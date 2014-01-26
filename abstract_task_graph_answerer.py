@@ -25,13 +25,13 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         print ('part_of')
         print(self.part_of_task_clusters)
         print ('instance_of')
-        print(self.instance_of_tasks)
+        print(self.instance_of_task_clusters)
         print ('*********')
 
     def set_result_tasks(self):
         self.subtype_of_tasks = self._tasks_in_subtype_of_relation()
         self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
-        self.instance_of_tasks = self._tasks_in_instance_of_relation()
+        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
 
 
     def _children_of_part_of_task_clusters(self):

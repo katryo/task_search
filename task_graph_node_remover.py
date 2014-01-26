@@ -24,7 +24,7 @@ class TaskGraphNodeRemover(AbstractTaskGraphManager):
             results.add(task_name)
         return results
 
-    def _task_names_in_score_lower_than(self, num=3):
+    def _task_names_in_score_lower_than(self, num=2):
         scores = self.graph.in_degree()  # {'調味料_ばらまく': 1, ...}
         results = [name for name in scores if scores[name] < num]
         return results

@@ -8,7 +8,7 @@ from task_graph_recursive_answerer import TaskGraphRecursiveAnswerer
 import pdb
 
 if __name__ == '__main__':
-    query = '部屋　掃除する'
+    query = '保育園　入園させる'
     pfl = PickleFileLoader()
     g = pfl.load_graph_with_query(query)
     node_remover = TaskGraphNodeRemover(g)
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     first_answerer.print_subtasks()
 
 
-    #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='マタハラ_受ける')
+    #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='畦_節約する')
     #answerer.set_result_tasks()
     #answerer.print_subtasks()
 

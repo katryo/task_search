@@ -35,3 +35,6 @@ class TaskGraphRecursiveAnswererHand(AbstractTaskGraphAnswerer):
             except KeyError:  # もうchildは削除されているとき
                 continue
         return task_names
+
+    def task_clusters_in_instance_of_relation(self):
+        pass

@@ -10,8 +10,10 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
     def __init__(self, graph=False, query_task='部屋_掃除する'):
         super().__init__(graph=graph, query_task=query_task)
-        self.frequent_original_tasks = self._frequent_original_tasks()
+        self._set_frequent_original_tasks()
 
+    def _set_frequent_original_tasks(self):
+        self.frequent_original_tasks = self._frequent_original_tasks()
 
     def _frequent_original_tasks(self):
         task_names_with_higher_score = self._task_names_in_score_higher_than()
@@ -68,6 +70,15 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
             except KeyError:  # もうchildは削除されているとき
                 continue
         return task_names
+
+    def _task_clusters_in_instance_of_relation(self):
+        task_names_with_higher_score = self._task_names_in_score_higher_than()
+        task_clusters = []
+        for generalized_task in task_names_with_higher_score:
+            good_original_task_names = self.graph.predecessors(generalized_task)
+            task_clusters.append(good_original_task_names)
+        return task_clusters
+
 
     def _task_clusters_in_part_of_relation(self):
         edge_finder = TaskGraphEdgeFinder(self.graph)

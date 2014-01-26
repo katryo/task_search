@@ -93,7 +93,6 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                                            is_hype=is_hype)
 
     def _hypes(self, task):
-    # object_term.core_nounのhypohypeを探る
         hypes = self.loader.hypes_except_for_blockwords(task.object_term.core_noun)
         return hypes
 

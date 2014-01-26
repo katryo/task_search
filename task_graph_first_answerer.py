@@ -85,10 +85,11 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     def _task_clusters_in_part_of_relation(self):
         edge_finder = TaskGraphEdgeFinder(self.graph)
         frequent_task_names = self._frequent_tasks_which_are_not_subtype_of()
-        task_clusters = set()  # {{'a_b', 'c_d'}, {e_f, 'g_h'}}
+        task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         for task_name in frequent_task_names:
             task_cluster = edge_finder.part_of_edges_with_task_name(task_name)
-            task_clusters = task_clusters.union(set(task_cluster))
+            if task_cluster:
+                task_clusters.append(set(task_cluster))
         return task_clusters
 
     def _frequent_tasks_which_are_not_subtype_of(self):

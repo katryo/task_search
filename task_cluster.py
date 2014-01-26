@@ -5,3 +5,4 @@ class TaskCluster(set):
                 if task_name in one_task_cluster:
                     return i
         return -1
+

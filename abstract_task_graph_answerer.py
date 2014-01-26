@@ -14,7 +14,6 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     def __init__(self, graph=False, query_task='部屋_掃除する'):
         super().__init__(graph)
         self.query_task = query_task
-        self.part_of_task_clusters = []
 
     def print_subtasks(self):
         print ('*********')

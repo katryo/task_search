@@ -86,7 +86,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                     if i_clusters == -1:
                         task_clusters.append(task_cluster)
                         continue
-                    task_clusters[i_clusters] = task_clusters[i_clusters].union(task_cluster)
+                    # ここでTaskClusterオブジェクトではなくsetオブジェクトになる。
+                    task_clusters[i_clusters] = TaskCluster(task_clusters[i_clusters].union(task_cluster))
         return task_clusters
 
     def _task_names_only_instance_of_with_task_names(self, task_names):

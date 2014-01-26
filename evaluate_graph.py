@@ -2,9 +2,8 @@
 from pickle_file_loader import PickleFileLoader
 from task_graph_evaluator import TaskGraphEvaluator
 from task_graph_node_remover import TaskGraphNodeRemover
-from task_graph_edge_finder import TaskGraphEdgeFinder
 from task_graph_first_answerer import TaskGraphFirstAnswerer
-from task_graph_recursive_answerer import TaskGraphRecursiveAnswerer
+from task_cluster import TaskCluster
 import pdb
 
 if __name__ == '__main__':
@@ -19,6 +18,12 @@ if __name__ == '__main__':
     first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
     first_answerer.set_result_tasks()
     first_answerer.print_subtasks()
+    evaluator = TaskGraphEvaluator(g)
+    cluster = TaskCluster({'予約申し込み_する'})
+
+    num = evaluator.appearance_count_with_task_cluster(cluster)
+    pdb.set_trace()
+    print(num)
 
 
     #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='畦_節約する')

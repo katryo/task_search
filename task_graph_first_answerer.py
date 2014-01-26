@@ -49,7 +49,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     def _task_names_in_score_higher_than(self, num=1):
         scores = self.graph.in_degree()  # {'調味料_ばらまく': 1, ...}
         results = [name for name in scores if scores[name] > num]
-        return results
+        return results  # original_taskはほとんどない。
 
     def _tasks_in_subtype_of_relation(self):
         # 最初のクエリ'部屋_掃除する'に対する'子供部屋_掃除する'のようなものを出力
@@ -70,6 +70,12 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
             except KeyError:  # もうchildは削除されているとき
                 continue
         return task_names
+
+    def set_result_tasks(self):
+        subtype_tasks = self._tasks_in_subtype_of_relation()
+        self.subtype_of_tasks = subtype_tasks
+        self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
+        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
 
     def _task_clusters_in_instance_of_relation(self):
         task_names_with_higher_score = self._task_names_in_score_higher_than()

@@ -1,6 +1,7 @@
 # coding:utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from part_of_edge_finder_with_order import PartOfEdgeFinderWithOrder
+import networkx
 import pdb
 
 
@@ -68,15 +69,8 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
 
     def _subtype_of_edges_with_task_name(self, task_name):
         try:
-            edges = self.graph.edge[task_name]
-        except KeyError:  # 検索クエリがtask_nameのときなど、ないこともある
+            nodes = self.graph.predecessors(task_name)
+            return set(nodes)
+        except networkx.exception.NetworkXError:  # 検索クエリがtask_nameのときなど、ないこともある
             return set()
-        results = set()
-        for task_name_leaded_by_edge in edges:  # edgeはset()
-            edges_dicts = edges[task_name_leaded_by_edge]
-            for i in edges_dicts:
-                edge_dict = edges_dicts[i]
-                if edge_dict['is_hype']:
-                    results.add(task_name_leaded_by_edge)
-        return results
 

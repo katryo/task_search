@@ -18,7 +18,7 @@ class TestTaskGraph(unittest.TestCase):
         page_3.text = '理学療法士に質問してください。'
 
         gtm = GraphTaskMapper()
-        for page in [page_2]:
+        for page in [page_1, page_2, page_3]:
             page.set_sentences_from_text()
             page.set_tasks_from_sentences()
             for task in page.tasks:

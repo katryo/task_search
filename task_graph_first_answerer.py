@@ -98,6 +98,9 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     def _frequent_tasks_which_are_not_subtype_of(self):
         frequent_tasks = self.frequent_original_tasks
         for subtype_of_task in self.subtype_of_tasks:
-            frequent_tasks.remove(subtype_of_task)
+            try:
+                frequent_tasks.remove(subtype_of_task)
+            except KeyError:  # subtype_of_taskがfrequentじゃないとき
+                continue
         return frequent_tasks
 

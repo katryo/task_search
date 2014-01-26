@@ -17,7 +17,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                       url,
                       is_original=False,
                       is_shopping=False,
-                      is_official=False)
+                      is_official=False):
         if self._has_stop_object_term(object_term):
             return False
 

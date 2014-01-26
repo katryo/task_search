@@ -21,9 +21,9 @@ if __name__ == '__main__':
     evaluator = TaskGraphEvaluator(g)
     cluster = TaskCluster({'予約申し込み_する'})
 
-    num = evaluator.appearance_count_with_task_cluster(cluster)
+    contribution = evaluator.contribution(cluster)
+    print(contribution)
     pdb.set_trace()
-    print(num)
 
 
     #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='畦_節約する')

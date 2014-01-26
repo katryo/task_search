@@ -24,7 +24,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         if task_name in self.graph.node:
             try:
                 old_aspects = self._aspects_with_task_name(task_name)
-                new_aspects = old_aspects.append(new_aspect)
+                old_aspects.append(new_aspect)
+                new_aspects = old_aspects
             except (KeyError, AttributeError):  # add_edgeでnodeが追加されたあと、nodeとして追加されたときに、ここに来る。
                 new_aspects = [new_aspect]
         else:

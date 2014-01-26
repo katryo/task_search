@@ -23,10 +23,6 @@ class TestTaskGraph(unittest.TestCase):
             page.set_tasks_from_sentences()
             for task in page.tasks:
                 gtm.add_node_and_edge_with_task(task)
-
-        if gtm.graph.node['看護師_質問する']['aspects'] is None:
-            print('STRANGE!!!!!!!!')
-
         remover = TaskGraphNodeRemover(gtm.graph)
         remover.remove_low_score_generalized_tasks()
 

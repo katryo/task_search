@@ -143,6 +143,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         for cluster in self.part_of_task_clusters:
             result = (cluster, evaluator.contribution(cluster))
             results.append(result)
+        results.sort(key=lambda result: result[1], reverse=True)
         return results
 
     def _instance_of_task_clusters_higher(self):
@@ -151,4 +152,5 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         for cluster in self.instance_of_task_clusters:
             result = (cluster, evaluator.contribution(cluster))
             results.append(result)
+        results.sort(key=lambda result: result[1], reverse=True)
         return results

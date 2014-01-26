@@ -2,6 +2,7 @@
 import pdb
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_edge_finder import TaskGraphEdgeFinder
+from task_cluster import TaskCluster
 
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
@@ -73,13 +74,39 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
 
     def _task_clusters_in_instance_of_relation(self):
         task_names_with_higher_score = self._task_names_in_score_higher_than()
-        task_clusters = set()
+        task_clusters = []  # [{'a_b', 'a_c', ...}]
+        # ひとつでも共通するタスクがあればtask_clusterは貪欲にとりこんでいく
         for generalized_task in task_names_with_higher_score:
             good_original_task_names = self.graph.predecessors(generalized_task)
-            good_original_task_name_set = set(good_original_task_names)
-            task_clusters = task_clusters.union(good_original_task_name_set)
-        results = task_clusters.difference(self.subtype_of_tasks)  # subtype_ofはinstance_ofではない
-        return results
+            if good_original_task_names:
+                good_original_task_names = self._task_names_only_instance_of_with_task_names(good_original_task_names)
+                if good_original_task_names:
+                    task_cluster = TaskCluster(good_original_task_names)
+                    i_clusters = task_cluster.i_cluster_shares_task_with_clusters(task_clusters)
+                    if i_clusters == -1:
+                        task_clusters.append(task_cluster)
+                        continue
+                    task_clusters[i_clusters] = task_clusters[i_clusters].union(task_cluster)
+        return task_clusters
+
+    def _task_names_only_instance_of_with_task_names(self, task_names):
+        task_names = self._task_names_excluded_subtype_of_with_task_names(task_names)
+        task_names = self._task_names_excluded_part_of_with_task_names(task_names)
+        return task_names
+
+
+    def _task_names_excluded_subtype_of_with_task_names(self, task_names):
+        for s_task_name in self.subtype_of_tasks:
+            if s_task_name in task_names:
+                task_names.remove(s_task_name)
+        return task_names
+
+    def _task_names_excluded_part_of_with_task_names(self, task_names):
+        for cluster in self.part_of_task_clusters:
+            for p_task_name in cluster:
+                if p_task_name in task_names:
+                    task_names.remove(p_task_name)
+        return task_names
 
 
     def _task_clusters_in_part_of_relation(self):
@@ -91,7 +118,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
             if task_cluster in task_clusters:  # 重複して数えているのを排除
                 continue
             if task_cluster:
-                task_clusters.append(set(task_cluster))
+                if len(task_cluster) > 1:  # 1ページに1つだけタスク記述あるときはpart-ofでない
+                    task_clusters.append(set(task_cluster))
         return task_clusters
 
     def _frequent_tasks_which_are_not_subtype_of(self):

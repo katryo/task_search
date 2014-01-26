@@ -30,10 +30,8 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     def _children_of_part_of_task_clusters(self):
         children = set()
         for task_cluster in self.part_of_task_clusters:
-            for cluster_name in task_cluster:
-                children_names = self.graph.neighbors(cluster_name)
-                for child_name in children_names:
-                    children.add(child_name)
+            for task_name in task_cluster:
+                children.add(task_name)
         return children
 
     def set_result_tasks(self):

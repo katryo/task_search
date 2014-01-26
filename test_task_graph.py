@@ -39,7 +39,7 @@ class TestTaskGraph(unittest.TestCase):
         answerer = TaskGraphFirstAnswerer(graph=self.graph, query_task='職業_質問する')
         answerer.set_result_tasks()
         clusters = answerer.instance_of_task_clusters
-        self.assertEqual(clusters, set())
+        self.assertEqual(clusters, [])
 
     def test_part_of_task_clusters(self):
         page = WebPage(url='somewhere', query='カメラ　買う')
@@ -51,18 +51,24 @@ class TestTaskGraph(unittest.TestCase):
         p_clusters = answerer.part_of_task_clusters
         self.assertEqual(p_clusters, [{'お金_払う', 'ヨドバシカメラ_行く'}])
 
+        i_clusters = answerer.instance_of_task_clusters
+        self.assertEqual(i_clusters, [])
+
     def test_instance_of_task_clusters_exclude_part_of(self):
         page_1 = WebPage(url='somewhere', query='チョコレート　食べる')
         page_1.text = 'ヨドバシカメラに行く必要があります。お金を払ってください。' \
-                      'ヨドバシカメラに行く必要があります。お金を払ってください。' \
-                      'あと、神社にお参りしましょう。'
+                      'ヨドバシカメラに行く必要があります。お金を払ってください。'
         page_2 = WebPage(url='elsewhere', query='チョコレート　食べる')
-        page_2.text = '神社にお参りをしてください。そして、お金を払うとよいです。'
-        graph = self.build_graph([page_1, page_2])
+        page_2.text = '神社にお参りしてください。'
+        page_3 = WebPage(url='anywhere', query='チョコレート　食べる')
+        page_3.text = '神社にお参りしてください。'
+        page_4 = WebPage(url='where', query='チョコレート　食べる')
+        page_4.text = 'お金を払いましょう'
+        graph = self.build_graph([page_1, page_2, page_3, page_4])
         answerer = TaskGraphFirstAnswerer(graph=graph, query_task='チョコレート_食べる')
         answerer.set_result_tasks()
         i_clusters = answerer.instance_of_task_clusters
-        self.assertEqual(i_clusters, set(['ヨドバシカメラ_行く', 'お金_払う']))
+        self.assertEqual(i_clusters, [{'神社_お参りする'}])
 
 if __name__ == '__main__':
     unittest.main()

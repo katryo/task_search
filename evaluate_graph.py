@@ -7,7 +7,7 @@ from task_cluster import TaskCluster
 import pdb
 
 if __name__ == '__main__':
-    query = '保育園　入園させる'
+    query = '花粉症　対策する'
     pfl = PickleFileLoader()
     g = pfl.load_graph_with_query(query)
     node_remover = TaskGraphNodeRemover(g)
@@ -17,13 +17,8 @@ if __name__ == '__main__':
 
     first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
     first_answerer.set_result_tasks()
-    first_answerer.print_subtasks()
-    evaluator = TaskGraphEvaluator(g)
-    cluster = TaskCluster({'予約申し込み_する'})
-
-    contribution = evaluator.contribution(cluster)
-    print(contribution)
-    pdb.set_trace()
+    first_answerer.set_selected_result_tasks()
+    first_answerer.print_score_of_subtasks()
 
 
     #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='畦_節約する')

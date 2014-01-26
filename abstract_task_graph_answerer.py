@@ -25,6 +25,15 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         print(self.instance_of_task_clusters)
         print ('*********')
 
+    def print_score_of_subtasks(self):
+        print ('*********')
+        print ('subtype_of')
+        print(self.subtype_of_tasks)
+        print ('part_of')
+        print(self.part_of_task_clusters_higher)
+        print ('instance_of')
+        print(self.instance_of_task_clusters_higher)
+        print ('*********')
 
     def _children_of_part_of_task_clusters(self):
         children = set()

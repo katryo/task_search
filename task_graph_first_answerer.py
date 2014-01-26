@@ -3,6 +3,7 @@ import pdb
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_edge_finder import TaskGraphEdgeFinder
 from task_cluster import TaskCluster
+from task_graph_evaluator import TaskGraphEvaluator
 
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
@@ -115,12 +116,12 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         frequent_task_names = self._frequent_tasks_which_are_not_subtype_of()
         task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         for task_name in frequent_task_names:
-            task_cluster = edge_finder.part_of_edges_with_task_name(task_name)
+            task_cluster = TaskCluster(edge_finder.part_of_edges_with_task_name(task_name))
             if task_cluster in task_clusters:  # 重複して数えているのを排除
                 continue
             if task_cluster:
                 if len(task_cluster) > 1:  # 1ページに1つだけタスク記述あるときはpart-ofでない
-                    task_clusters.append(set(task_cluster))
+                    task_clusters.append(task_cluster)
         return task_clusters
 
     def _frequent_tasks_which_are_not_subtype_of(self):
@@ -132,3 +133,22 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                 continue
         return frequent_tasks
 
+    def set_selected_result_tasks(self):
+        self.part_of_task_clusters_higher = self._part_of_task_clusters_higher()
+        self.instance_of_task_clusters_higher = self._instance_of_task_clusters_higher()
+
+    def _part_of_task_clusters_higher(self):
+        results = []
+        evaluator = TaskGraphEvaluator(self.graph)
+        for cluster in self.part_of_task_clusters:
+            result = (cluster, evaluator.contribution(cluster))
+            results.append(result)
+        return results
+
+    def _instance_of_task_clusters_higher(self):
+        results = []
+        evaluator = TaskGraphEvaluator(self.graph)
+        for cluster in self.instance_of_task_clusters:
+            result = (cluster, evaluator.contribution(cluster))
+            results.append(result)
+        return results

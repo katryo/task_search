@@ -23,6 +23,8 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
                 score_for_task_cluster += score_for_aspect
                 used_urls.add(aspect['url'])
         score_for_task_cluster *= len(used_urls)
+        score_for_task_cluster /= len(task_cluster)
+        print('%sの貢献度計算完了！' % task_cluster)
         return score_for_task_cluster
 
     def appearance_count_with_task_cluster(self, task_cluster):

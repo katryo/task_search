@@ -26,6 +26,62 @@ class WebPage(WebItem):
             sentence = Sentence(sentence_text, self.query)
             self.sentences.append(sentence)
 
+    def set_tasks_from_sentences(self):
+        tasks = self._obj_and_predicate_dict_by_wo_from_sentences()
+        # ここでもし1ページ内に複数のtaskがあったら、各タスクにbeforeとafterの
+        # エッジを与える
+        self.tasks = tasks
+
+    def is_shopping(self):
+        for sentence in self.sentences:
+            for clue in constants.CLUES_FOR_SHOPPING_PAGE:
+                if clue in sentence:
+                    return True
+        return False
+
+    def is_official(self):
+        for sentence in self.sentences:
+            for clue in constants.CLUES_FOR_OFFICIAL_PAGE:
+                if clue in sentence:
+                    return True
+        return False
+
+    def _obj_and_predicate_dict_by_wo_from_sentences(self):
+        """
+        self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
+        最後に計算する際、同じページでの登場番号の前後で。part-ofを判断する
+        """
+        results = []
+        order = 0
+        for sentence in self.sentences:
+            if type(sentence) == str:
+                sentence = Sentence(text=sentence, query=self.query)
+
+            if not sentence.set_noun_verb_if_good_task():
+                continue
+
+            object_term = ObjectTerm(sentence.noun)
+            if object_term == 'ましょ':
+                pdb.set_trace()
+
+            if object_term.core_noun in constants.STOPWORDS_OF_WEBPAGE_NOUN:
+                continue
+
+            task = Task(object_term=object_term,
+                        # cmp=sentence.cmp,
+                        predicate_term=sentence.verb,
+                        query=self.query,
+                        order=order,
+                        url=self.url,
+                        is_shopping=self.is_shopping(),
+                        is_official=self.is_official())
+            results.append(task)
+            if task.object_term.name == 'ましょ':
+                pdb.set_trace()
+            print('%s_%sというタスクをセットしました' % (sentence.noun, sentence.verb))
+            order += 1 # 登場の順番
+        return results
+
     def snippet_without_parenthesis(self):
         pr = Parenthesis_remover()
         snippet = pr.remove_inside_round_parenthesis(self.snippet)
@@ -272,44 +328,4 @@ class WebPage(WebItem):
     def add_object_terms_to_dictionary(self, dictionary):
         for task in self.tasks:
             dictionary.add(task.object)
-
-    def set_tasks_from_sentences(self):
-        tasks = self._obj_and_predicate_dict_by_wo_from_sentences()
-        # ここでもし1ページ内に複数のtaskがあったら、各タスクにbeforeとafterの
-        # エッジを与える
-        self.tasks = tasks
-
-    def _obj_and_predicate_dict_by_wo_from_sentences(self):
-        """
-        self.sentencesから、「〜〜を〜〜」を見つけて、「AをB」にして返す
-        最後に計算する際、同じページでの登場番号の前後で。part-ofを判断する
-        """
-        results = []
-        order = 0
-        for sentence in self.sentences:
-            if type(sentence) == str:
-                sentence = Sentence(text=sentence, query=self.query)
-
-            if not sentence.set_noun_verb_if_good_task():
-                continue
-
-            object_term = ObjectTerm(sentence.noun)
-            if object_term == 'ましょ':
-                pdb.set_trace()
-
-            if object_term.core_noun in constants.STOPWORDS_OF_WEBPAGE_NOUN:
-                continue
-
-            task = Task(object_term=object_term,
-                        # cmp=sentence.cmp,
-                        predicate_term=sentence.verb,
-                        query=self.query,
-                        order=order,
-                        url=self.url)
-            results.append(task)
-            if task.object_term.name == 'ましょ':
-                pdb.set_trace()
-            print('%s_%sというタスクをセットしました' % (sentence.noun, sentence.verb))
-            order += 1 # 登場の順番
-        return results
 

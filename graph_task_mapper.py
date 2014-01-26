@@ -10,7 +10,14 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         super().__init__(graph)
         self.loader = HypoHypeDBDataLoader()
 
-    def _add_new_node(self, object_term, predicate_term, order, url, is_original=False):
+    def _add_new_node(self,
+                      object_term,
+                      predicate_term,
+                      order,
+                      url,
+                      is_original=False,
+                      is_shopping=False,
+                      is_official=False)
         if self._has_stop_object_term(object_term):
             return False
 
@@ -18,7 +25,9 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         new_aspect = {
                 'order': order,
                 'url': url,
-                'is_original': is_original
+                'is_original': is_original,
+                'is_shopping': is_shopping,
+                'is_official': is_official
             }
 
         if task_name in self.graph.node:
@@ -81,7 +90,9 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                                            predicate_term=verb,
                                            order=task.order,
                                            url=task.url,
-                                           is_original=is_original)
+                                           is_original=is_original,
+                                           is_shopping=task.is_shopping,
+                                           is_official=task.is_official)
 
                         if hype_type == 'hypes':
                             is_hype = True

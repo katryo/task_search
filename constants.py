@@ -23,6 +23,12 @@ STOPWORDS_OF_WEBPAGE_NOUN = '是非 どこ だけ ごちゃごちゃ ： : ' \
                             '２ちゃんねる運営 ヘルプ サイトポリシー ホームページ ' \
                             'リンク先 ビューワソフト一覧 利用規約 暗号化 JavaScript対応ブラウザ'.split(' ')
 STOPWORDS_OF_WEBPAGE_VERB = 'メッセージ こちらの記事 クリックする 押す 入力する'.split(' ')
+CLUES_FOR_OFFICIAL_PAGE = 'All Rights Reserved\tAll Right Reserved\tall rights reserved\tall right reverved\t' \
+                          'copyright\tCopyright\t利用規約\tお問い合わせ\t' \
+                          'お問いあわせ\tお問い合せ\tFAQ\tよくある質問'.split('\t')
+
+CLUES_FOR_SHOPPING_PAGE = 'ショップ\tお買い上げ\t商品\tお支払い\tお客様\tお客さま\t特定商取引法に基づく表記'.split('\t')
+
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
 SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'

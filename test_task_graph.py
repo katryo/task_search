@@ -18,11 +18,14 @@ class TestTaskGraph(unittest.TestCase):
         page_3.text = '理学療法士に質問してください。'
 
         gtm = GraphTaskMapper()
-        for page in [page_1, page_2, page_3]:
+        for page in [page_2]:
             page.set_sentences_from_text()
             page.set_tasks_from_sentences()
             for task in page.tasks:
                 gtm.add_node_and_edge_with_task(task)
+
+        if gtm.graph.node['看護師_質問する']['aspects'] is None:
+            print('STRANGE!!!!!!!!')
 
         remover = TaskGraphNodeRemover(gtm.graph)
         remover.remove_low_score_generalized_tasks()
@@ -36,6 +39,7 @@ class TestTaskGraph(unittest.TestCase):
         self.assertEqual(tasks, set(['理学療法士_質問する', '医師_質問する', '看護師_質問する']))
 
     def _test_instance_of_task_clusters(self):
+        print('!?!?!?!?!?!')
         answerer = TaskGraphFirstAnswerer(graph=self.graph, query_task='職業_質問する')
         answerer.set_result_tasks()
         clusters = answerer.instance_of_task_clusters

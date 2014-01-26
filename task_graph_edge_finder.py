@@ -63,7 +63,7 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         return results  # 先のノードのset
 
     def subtype_of_edges_lead_to_original_task_with_task_name(self, task_name):
-        task_names = self._subtype_of_edges_with_task_name(task_name)
+        task_names = self._subtype_of_edges_with_task_name(task_name)  # ここですでに出力不一定
         results = self._select_original_task_with_task_names(task_names)
         return results
 

@@ -123,7 +123,10 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                     continue
                 if task_cluster:
                     if len(task_cluster) > 1:  # 1ページに1つだけタスク記述あるときはpart-ofでない
+                        if task_cluster == {'き', 'す', '_', 'こ', '引', '起', '癖'}:
+                            pdb.set_trace()
                         task_clusters.append(task_cluster)
+        print(task_clusters)
         return task_clusters
 
     def _frequent_tasks_which_are_not_subtype_of(self):
@@ -151,14 +154,14 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         task_names = {l for l in cluster}
         url_set = set()
         for task_name in task_names:
+            #if len(task_name) == 1:
+            #    pdb.set_trace()
             aspects = self._aspects_with_task_name(task_name)
             urls = {aspect['url'] for aspect in aspects}
-            if url_set:
+            if not url_set:
                 url_set = urls
             else:
                 url_set = url_set.intersection(urls)
-            if len(url_set) > 1:
-                pdb.set_trace()
 
         evaluator = TaskGraphEvaluator(self.graph)
         # cluster => TaskCluster({'', '', ...})

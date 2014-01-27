@@ -32,7 +32,7 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         # results => [{'', '', ...}, {}, ...]
         results = self._same_url_nodes_with_task_name(task_name)
         for item in self._part_of_edges_by_entailment_with_task_name(task_name):
-            results.append(item)
+            results.append({item})
         return results
 
     def _same_url_nodes_with_task_name(self, task_name='query!!'):
@@ -65,7 +65,7 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         return results  # 先のノードのset
 
     def subtype_of_edges_lead_to_original_task_with_task_name(self, task_name):
-        task_names = self._subtype_of_edges_with_task_name(task_name)  # ここですでに出力不一定
+        task_names = self._subtype_of_edges_with_task_name(task_name)
         results = self._select_original_task_with_task_names(task_names)
         return results
 

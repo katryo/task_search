@@ -8,6 +8,10 @@ fetched_pages/
 fetched_pages/*
 fetched_pages/~
 
+*fetched_pages/
+*fetched_pages/*
+*fetched_pages/~
+
 entailment_dictionaries/
 *.py[cod]
 workspace.xml

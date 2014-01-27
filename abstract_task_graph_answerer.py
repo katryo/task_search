@@ -30,9 +30,9 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         print ('subtype_of')
         print(self.subtype_of_tasks)
         print ('part_of')
-        print(self.part_of_task_clusters_higher)
+        print(self.part_of_task_clusters_scores)
         print ('instance_of')
-        print(self.instance_of_task_clusters_higher)
+        print(self.instance_of_task_clusters_scores)
         print ('*********')
 
     def _children_of_part_of_task_clusters(self):

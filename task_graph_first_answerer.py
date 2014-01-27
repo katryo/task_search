@@ -116,7 +116,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         frequent_task_names = self._frequent_tasks_which_are_not_subtype_of()
         task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         for task_name in frequent_task_names:
-            task_cluster = TaskCluster(edge_finder.part_of_edges_with_task_name(task_name))
+            task_cluster = TaskCluster(edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name))
             if task_cluster in task_clusters:  # 重複して数えているのを排除
                 continue
             if task_cluster:
@@ -133,21 +133,21 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                 continue
         return frequent_tasks
 
-    def set_selected_result_tasks(self):
-        self.part_of_task_clusters_higher = self._part_of_task_clusters_higher()
-        self.instance_of_task_clusters_higher = self._instance_of_task_clusters_higher()
+    def set_task_scores(self):
+        self.part_of_task_clusters_scores = self._part_of_task_clusters_higher()
+        self.instance_of_task_clusters_scores = self._instance_of_task_clusters_higher()
 
     def _part_of_task_clusters_higher(self):
-        results = []
-        for cluster in self.part_of_task_clusters:
-            result = self._cluster_contribution_url(cluster)
-            results.append(result)
-        results.sort(key=lambda result: result[1], reverse=True)
+        results = self._clusters_contribution_url(self.part_of_task_clusters)
         return results
 
     def _instance_of_task_clusters_higher(self):
+        results = self._clusters_contribution_url(self.instance_of_task_clusters)
+        return results
+
+    def _clusters_contribution_url(self, clusters):
         results = []
-        for cluster in self.instance_of_task_clusters:
+        for cluster in clusters:
             result = self._cluster_contribution_url(cluster)
             results.append(result)
         results.sort(key=lambda result: result[1], reverse=True)
@@ -155,7 +155,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
 
     def _cluster_contribution_url(self, cluster):
         evaluator = TaskGraphEvaluator(self.graph)
-        aspects = (self._aspects_with_task_name(task_name) for task_name in cluster)
-        urls = {aspect['url'] for aspect in aspects}
+        task_names = {l for l in cluster}
+        aspects = (self._aspects_with_task_name(task_name) for task_name in task_names)
+        urls = {aspect[0]['url'] for aspect in aspects}
         result = (cluster, evaluator.contribution(cluster), urls)
         return result

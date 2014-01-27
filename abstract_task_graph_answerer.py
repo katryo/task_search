@@ -58,3 +58,8 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         # zeroでは同じurlのページのタスク集合を返す
         pass
 
+    def _task_clusters_in_instance_of_relation(self):
+        # override me !!!
+        # zeroではpart-ofでないタスクを{'A_B'}のように、度順に返す
+        pass
+

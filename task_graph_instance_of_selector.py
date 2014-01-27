@@ -1,6 +1,4 @@
 #coding: utf-8
-from task_cluster import TaskCluster
-from task_graph_edge_finder import TaskGraphEdgeFinder
 from abstract_task_graph_manager import AbstractTaskGraphManager
 
 

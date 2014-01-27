@@ -58,9 +58,3 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         # zeroでは同じurlのページのタスク集合を返す
         pass
 
-    def _children_of_part_of_task_clusters(self):
-        children = set()
-        for task_cluster in self.part_of_task_clusters:
-            for task_name in task_cluster:
-                children.add(task_name)
-        return children

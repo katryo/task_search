@@ -4,6 +4,9 @@ from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_edge_finder import TaskGraphEdgeFinder
 from task_cluster import TaskCluster
 from task_cluster_classifier import TaskClusterClassifier
+from task_graph_part_of_selector import TaskGraphPartOfSelector
+from task_graph_instance_of_selector import TaskGraphInstanceOfSelector
+
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
@@ -73,35 +76,12 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
 #---------------part-of------------
 
     def _task_clusters_in_part_of_relation(self):
-        task_names = self._frequent_tasks_which_are_not_subtype_of()
-        task_clusters = self._part_of_task_clusters_with_task_names(task_names)
+        selector = TaskGraphPartOfSelector(self.graph,
+                                           candidate_tasks=self.frequent_original_tasks,
+                                           subtype_of_tasks=self.subtype_of_tasks)
+        task_names = selector._frequent_tasks_which_are_not_subtype_of()
+        task_clusters = selector._part_of_task_clusters_with_task_names(task_names)
         return task_clusters
-
-    def _part_of_task_clusters_with_task_names(self, task_names):
-        edge_finder = TaskGraphEdgeFinder(self.graph)
-        task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
-        # 高頻度の、subtypeでない、オリジナルのタスクの集合から、同じurlのものかentailment関係にあるものを見つける
-        for task_name in task_names:
-            task_names_list = edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name)
-            for task_names in task_names_list:
-                task_cluster = TaskCluster(list(task_names))
-                if task_cluster in task_clusters:  # 重複して数えているのを排除
-                    continue
-                if task_cluster:
-                    if len(task_cluster) > 1:  # 1ページに1つだけタスク記述あるときはpart-ofでない
-                        task_clusters.append(task_cluster)
-        return task_clusters
-
-    # オリジナルの、高頻度のタスクだけ返す
-    def _frequent_tasks_which_are_not_subtype_of(self):
-        frequent_tasks = self.frequent_original_tasks
-        for subtype_of_task in self.subtype_of_tasks:
-            try:
-                frequent_tasks.remove(subtype_of_task)
-            except KeyError:  # subtype_of_taskがfrequentじゃないとき
-                continue
-        return frequent_tasks
-
 #---------------instance-of------------
 
     def _task_clusters_in_instance_of_relation(self):
@@ -111,7 +91,11 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         for generalized_task in task_names_with_higher_score:
             good_original_task_names = self.graph.predecessors(generalized_task)
             if good_original_task_names:
-                good_original_task_names = self._task_names_only_instance_of_with_task_names(good_original_task_names)
+                selector = TaskGraphInstanceOfSelector(graph=self.graph,
+                                                       candidate_tasks=self.frequent_original_tasks,
+                                                       subtype_of_tasks=self.subtype_of_tasks,
+                                                       part_of_tasks_clusters=self.part_of_task_clusters)
+                good_original_task_names = selector.task_names_only_instance_of_with_task_names(good_original_task_names)
                 if good_original_task_names:
                     task_cluster = TaskCluster(good_original_task_names)
                     i_clusters = task_cluster.i_cluster_shares_task_with_clusters(task_clusters)
@@ -122,34 +106,3 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                     task_clusters[i_clusters] = TaskCluster(task_clusters[i_clusters].union(task_cluster))
         return task_clusters
 
-    def _tasks_in_instance_of_relation(self):
-        task_names = self.frequent_original_tasks
-        for subtype_of_task in self.subtype_of_tasks:
-            task_names.remove(subtype_of_task)
-
-        children_of_part_of_task_clusters = self._children_of_part_of_task_clusters()
-        for child in children_of_part_of_task_clusters:
-            try:
-                task_names.remove(child)
-            except KeyError:  # もうchildは削除されているとき
-                continue
-        return task_names
-
-    def _task_names_only_instance_of_with_task_names(self, task_names):
-        task_names = self._task_names_excluded_subtype_of_with_task_names(task_names)
-        task_names = self._task_names_excluded_part_of_with_task_names(task_names)
-        return task_names
-
-
-    def _task_names_excluded_subtype_of_with_task_names(self, task_names):
-        for s_task_name in self.subtype_of_tasks:
-            if s_task_name in task_names:
-                task_names.remove(s_task_name)
-        return task_names
-
-    def _task_names_excluded_part_of_with_task_names(self, task_names):
-        for cluster in self.part_of_task_clusters:
-            for p_task_name in cluster:
-                if p_task_name in task_names:
-                    task_names.remove(p_task_name)
-        return task_names

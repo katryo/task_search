@@ -5,20 +5,22 @@ from pickle_file_saver import PickleFileSaver
 from sentence_separator import SentenceSeparator
 from path_mover import PathMover
 import os
+import constants
 
 if __name__ == '__main__':
     pfl = PickleFileLoader()
     pfs = PickleFileSaver()
-    sp = SentenceSeparator()
     pm = PathMover()
 
-    original_queries = ['部屋　掃除する']
+    original_queries = constants.QUERIES
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
         pm.go_or_create_and_go_to(original_query)
         expanded_queries = os.listdir()
         for expanded_query in expanded_queries:
+            if 'graph' in expanded_query:
+                continue
             if expanded_query == '.DS_Store':
                 continue
             pm.go_or_create_and_go_to(expanded_query)

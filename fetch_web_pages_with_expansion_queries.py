@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pickle_file_loader import PickleFileLoader
 from pickle_file_saver import PickleFileSaver
+import constants
 
 # 1000件以上検索するようにする？？？
 

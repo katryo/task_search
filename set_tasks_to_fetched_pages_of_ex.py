@@ -2,6 +2,7 @@
 from pickle_file_loader import PickleFileLoader
 from pickle_file_saver import PickleFileSaver
 import constants
+import pdb
 
 if __name__ == '__main__':
     for query in constants.QUERIES:
@@ -9,6 +10,7 @@ if __name__ == '__main__':
         pages = pfl.load_fetched_pages_of_ex_with_query(query)
         for i, page in enumerate(pages):
             page.set_tasks_from_sentences()
+            pdb.set_trace()
             print('%s の %i 番目のページにtasksをセットしました！' % (page.query, i))
         pages_dict = {query: pages}
 

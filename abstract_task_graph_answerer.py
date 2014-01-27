@@ -1,6 +1,9 @@
 #coding: utf-8
 import pdb
 from abstract_task_graph_manager import AbstractTaskGraphManager
+from task_graph_node_remover import TaskGraphNodeRemover
+from task_graph_edge_finder import TaskGraphEdgeFinder
+from task_cluster import TaskCluster
 
 class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     """
@@ -14,6 +17,8 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     def __init__(self, graph=False, query_task='部屋_掃除する'):
         super().__init__(graph)
         self.query_task = query_task
+        node_remover = TaskGraphNodeRemover(graph)
+        node_remover.remove_low_score_generalized_tasks()
 
 
     def print_subtasks(self):
@@ -36,15 +41,26 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         print(self.instance_of_task_clusters_scores)
         print ('*********')
 
+    def set_result_tasks(self):
+        self.subtype_of_tasks = self._tasks_in_subtype_of_relation()
+        self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
+        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
+
+#-----private------
+
+    def _tasks_in_subtype_of_relation(self):
+        # override me !!!
+        # zeroではset()を返す
+        pass
+
+    def _task_clusters_in_part_of_relation(self):
+        # override me !!!
+        # zeroでは同じurlのページのタスク集合を返す
+        pass
+
     def _children_of_part_of_task_clusters(self):
         children = set()
         for task_cluster in self.part_of_task_clusters:
             for task_name in task_cluster:
                 children.add(task_name)
         return children
-
-    def set_result_tasks(self):
-        self.subtype_of_tasks = self._tasks_in_subtype_of_relation()
-        self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
-        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
-

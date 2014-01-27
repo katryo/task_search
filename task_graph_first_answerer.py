@@ -58,7 +58,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                                                    candidate_tasks=self.frequent_original_tasks,
                                                    subtype_of_tasks=self.subtype_of_tasks)
         task_names = selector._frequent_tasks_which_are_not_subtype_of()
-        task_clusters = selector._part_of_task_clusters_with_task_names(task_names)
+        task_clusters = selector.part_of_task_clusters_with_task_names(task_names)
         return task_clusters
 #---------------instance-of------------
 

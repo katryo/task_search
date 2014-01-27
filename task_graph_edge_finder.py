@@ -67,12 +67,15 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
     def subtype_of_edges_lead_to_original_task_with_task_name(self, task_name):
         task_names = self._subtype_of_edges_with_task_name(task_name)
         results = self._select_original_task_with_task_names(task_names)
+        if task_name in results:  # クエリタスク自身を省いている
+            results.remove(task_name)
         return results
 
     def _subtype_of_edges_with_task_name(self, task_name):
         try:
-            nodes = self.graph.predecessors(task_name)
-            return set(nodes)
+            nodes = self.graph.predecessors(task_name)  # 特化
+            nodes.extend(self.graph.successors(task_name))  # 汎化
+            return set(nodes)  # task_name自身を含むことある
         except networkx.exception.NetworkXError:  # 検索クエリがtask_nameのときなど、ないこともある
             return set()
 

@@ -11,6 +11,9 @@ fetched_pages/~
 graphed_fetched_pages/
 graphed_fetched_pages/*
 graphed_fetched_pages/~
+*fetched_pages/
+*fetched_pages/*
+*fetched_pages/~
 
 entailment_dictionaries/
 *.py[cod]

@@ -10,18 +10,10 @@ if __name__ == '__main__':
     query = '家庭菜園　始める'
     pfl = PickleFileLoader()
     g = pfl.load_graph_with_query(query)
-    node_remover = TaskGraphNodeRemover(g)
-    node_remover.remove_low_score_generalized_tasks()
-
     query_task = '_'.join(query.split('　'))
 
     first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
     first_answerer.set_result_tasks()
     first_answerer.set_task_scores()
     first_answerer.print_score_of_subtasks()
-
-
-    #answerer = TaskGraphRecursiveAnswerer(graph=g, query_task='畦_節約する')
-    #answerer.set_result_tasks()
-    #answerer.print_subtasks()
 

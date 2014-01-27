@@ -1,5 +1,6 @@
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from task_graph_evaluator import TaskGraphEvaluator
+import pdb
 
 
 class TaskClusterClassifier(AbstractTaskGraphManager):
@@ -45,6 +46,9 @@ class TaskClusterClassifier(AbstractTaskGraphManager):
         evaluator = TaskGraphEvaluator(self.graph)
         task_names = {l for l in cluster}
         aspects = (self._aspects_with_task_name(task_name) for task_name in task_names)
-        urls = {aspect[0]['url'] for aspect in aspects}
+        try:
+            urls = {aspect[0]['url'] for aspect in aspects}
+        except IndexError:
+            urls = set()
         result = (cluster, evaluator.contribution(cluster), urls)
         return result

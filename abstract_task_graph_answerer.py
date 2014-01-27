@@ -15,6 +15,7 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         super().__init__(graph)
         self.query_task = query_task
 
+
     def print_subtasks(self):
         print ('*********')
         print ('subtype_of')

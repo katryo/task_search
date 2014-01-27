@@ -4,12 +4,15 @@ from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_edge_finder import TaskGraphEdgeFinder
 from task_cluster import TaskCluster
 from task_cluster_classifier import TaskClusterClassifier
+from task_graph_node_remover import TaskGraphNodeRemover
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
     最初のタスク検索結果表示にだけ使う
     """
     def __init__(self, graph=False, query_task='部屋_掃除する'):
+        node_remover = TaskGraphNodeRemover(graph)
+        node_remover.remove_low_score_generalized_tasks()
         super().__init__(graph=graph, query_task=query_task)
         self._set_frequent_original_tasks()
 
@@ -138,7 +141,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         return frequent_tasks
 
     def set_task_scores(self):
-        classifier = TaskClusterClassifier()
+        classifier = TaskClusterClassifier(self.graph)
         self.part_of_task_clusters_scores = classifier.clusters_contribution_url_intersections(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = classifier.instance_of_task_clusters_higher(self.instance_of_task_clusters)
 

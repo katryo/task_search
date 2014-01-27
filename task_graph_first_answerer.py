@@ -116,12 +116,14 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         frequent_task_names = self._frequent_tasks_which_are_not_subtype_of()
         task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         for task_name in frequent_task_names:
-            task_cluster = TaskCluster(edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name))
-            if task_cluster in task_clusters:  # 重複して数えているのを排除
-                continue
-            if task_cluster:
-                if len(task_cluster) > 1:  # 1ページに1つだけタスク記述あるときはpart-ofでない
-                    task_clusters.append(task_cluster)
+            task_names_list = edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name)
+            for task_names in task_names_list:
+                task_cluster = TaskCluster(list(task_names))
+                if task_cluster in task_clusters:  # 重複して数えているのを排除
+                    continue
+                if task_cluster:
+                    if len(task_cluster) > 1:  # 1ページに1つだけタスク記述あるときはpart-ofでない
+                        task_clusters.append(task_cluster)
         return task_clusters
 
     def _frequent_tasks_which_are_not_subtype_of(self):
@@ -134,12 +136,34 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         return frequent_tasks
 
     def set_task_scores(self):
-        self.part_of_task_clusters_scores = self._part_of_task_clusters_higher()
+        self.part_of_task_clusters_scores = self._clusters_contribution_url_intersections(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = self._instance_of_task_clusters_higher()
 
-    def _part_of_task_clusters_higher(self):
-        results = self._clusters_contribution_url(self.part_of_task_clusters)
+    def _clusters_contribution_url_intersections(self, clusters):
+        results = []
+        for cluster in clusters:
+            result = self._cluster_contribution_url_intersection(cluster)
+            results.append(result)
+        results.sort(key=lambda result: result[1], reverse=True)
         return results
+
+    def _cluster_contribution_url_intersection(self, cluster):
+        task_names = {l for l in cluster}
+        url_set = set()
+        for task_name in task_names:
+            aspects = self._aspects_with_task_name(task_name)
+            urls = {aspect['url'] for aspect in aspects}
+            if url_set:
+                url_set = urls
+            else:
+                url_set = url_set.intersection(urls)
+            if len(url_set) > 1:
+                pdb.set_trace()
+
+        evaluator = TaskGraphEvaluator(self.graph)
+        # cluster => TaskCluster({'', '', ...})
+        result = (cluster, evaluator.contribution(cluster), url_set)
+        return result
 
     def _instance_of_task_clusters_higher(self):
         results = self._clusters_contribution_url(self.instance_of_task_clusters)

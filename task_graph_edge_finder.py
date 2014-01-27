@@ -15,9 +15,8 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         return False
 
     def part_of_edges_lead_to_original_node_with_task_name(self, task_name):
-        task_names = self.part_of_edges_with_task_name(task_name)
-        results = self._select_original_task_with_task_names(task_names)
-        return results
+        task_names_list = self._part_of_edges_with_task_name(task_name)
+        return task_names_list
 
     def _select_original_task_with_task_names(self, task_names):
         results = set()
@@ -29,10 +28,11 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         return results
 
     # 高スコアの汎化タスクも取ってくる。普段はlead_to_original_nodeを使うべき
-    def part_of_edges_with_task_name(self, task_name):
+    def _part_of_edges_with_task_name(self, task_name):
+        # results => [{'', '', ...}, {}, ...]
         results = self._same_url_nodes_with_task_name(task_name)
         for item in self._part_of_edges_by_entailment_with_task_name(task_name):
-            results.add(item)
+            results.append(item)
         return results
 
     def _same_url_nodes_with_task_name(self, task_name='query!!'):
@@ -41,12 +41,15 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         # instance-of関係にあるっぽいエッジに訊ねる
         aspects = self._aspects_with_task_name(task_name)
         nodes = self.graph.nodes(data=True)
-        results = set()
+        results = []
         for aspect in aspects:
+            if not aspect['is_original']:
+                continue
             finder = PartOfEdgeFinderWithOrder(self_name=task_name, nodes=nodes, url=aspect['url'])
             name_shares_url = finder.task_name_shares_url()
             if name_shares_url:
-                results = results.union(name_shares_url)
+                if not name_shares_url in results:
+                    results.append(name_shares_url)
         return results
 
     def _part_of_edges_by_entailment_with_task_name(self, task_name):

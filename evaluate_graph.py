@@ -7,7 +7,7 @@ from task_cluster import TaskCluster
 import pdb
 
 if __name__ == '__main__':
-    query = '花粉症　対策する'
+    query = '犬　育てる'
     pfl = PickleFileLoader()
     g = pfl.load_graph_with_query(query)
     node_remover = TaskGraphNodeRemover(g)

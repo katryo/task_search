@@ -139,18 +139,23 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
 
     def _part_of_task_clusters_higher(self):
         results = []
-        evaluator = TaskGraphEvaluator(self.graph)
         for cluster in self.part_of_task_clusters:
-            result = (cluster, evaluator.contribution(cluster))
+            result = self._cluster_contribution_url(cluster)
             results.append(result)
         results.sort(key=lambda result: result[1], reverse=True)
         return results
 
     def _instance_of_task_clusters_higher(self):
         results = []
-        evaluator = TaskGraphEvaluator(self.graph)
         for cluster in self.instance_of_task_clusters:
-            result = (cluster, evaluator.contribution(cluster))
+            result = self._cluster_contribution_url(cluster)
             results.append(result)
         results.sort(key=lambda result: result[1], reverse=True)
         return results
+
+    def _cluster_contribution_url(self, cluster):
+        evaluator = TaskGraphEvaluator(self.graph)
+        aspects = (self._aspects_with_task_name(task_name) for task_name in cluster)
+        urls = {aspect['url'] for aspect in aspects}
+        result = (cluster, evaluator.contribution(cluster), urls)
+        return result

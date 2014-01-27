@@ -1,3 +1,6 @@
+# coding:utf-8
+
+
 class TaskCluster(set):
     def i_cluster_shares_task_with_clusters(self, clusters):
         for task_name in self:

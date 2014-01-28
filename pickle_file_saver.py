@@ -30,7 +30,11 @@ class PickleFileSaver(object):
 
             #pages_dict[query] => [Page, Page, ...]
             for i, page in enumerate(pages_dict[query]):
+                filename = '%s_%i.pkl' % (query, i)
+                if os.path.exists(filename):
+                    continue
                 with open('%s_%i.pkl' % (query, i), 'wb') as f:
+                    pdb.set_trace()
                     try:
                         pickle.dump(page, f)
                     except TypeError:

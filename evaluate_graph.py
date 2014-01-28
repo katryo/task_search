@@ -12,8 +12,9 @@ if __name__ == '__main__':
 
     zero_answerer = TaskGraphZeroAnswerer(graph=g, query_task=query_task)
     zero_answerer.set_result_tasks()
+    zero_answerer.print_subtasks()
 
-    first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
-    first_answerer.set_result_tasks()
-    first_answerer.set_task_scores()
-    first_answerer.print_score_of_subtasks()
+    #first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
+    #first_answerer.set_result_tasks()
+    #first_answerer.set_task_scores()
+    #first_answerer.print_score_of_subtasks()

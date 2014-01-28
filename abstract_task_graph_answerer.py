@@ -46,6 +46,10 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
         self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
 
+    def set_task_scores(self):
+        #override me!!
+        pass
+
 #-----private------
 
     def _tasks_in_subtype_of_relation(self):

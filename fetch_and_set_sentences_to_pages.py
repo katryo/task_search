@@ -24,7 +24,6 @@ if __name__ == '__main__':
             print('%sのフェッチ完了!' % page.title)
             page.set_text_from_html_body()
             page.set_sentences_from_text()
-            pdb.set_trace()
             filename = '%s_%i.pkl' % (query, i)
             saver.save_file(obj=page, filename=filename)
             print('%sの保存完了!' % page.title)

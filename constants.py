@@ -32,11 +32,11 @@ CLUES_FOR_OFFICIAL_PAGE = 'All Rights Reserved\tAll Right Reserved\tall rights r
 CLUES_FOR_SHOPPING_PAGE = 'ショップ\tお買い上げ\t商品\tお支払い\tお客様\tお客さま\t特定商取引法に基づく表記'.split('\t')
 
 ENTAILMENT_DICTIONARY_TYPES = 'entailing entailed'.split(' ')
-SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simpla_task_search_results'
+SIMPLE_TASK_SEARCH_RESULTS_DIR_NAME = 'simple_task_search_results'
 ACTION_WORD_IN_QUERY = 'を使う'
 SO_CALLED = 'という'
 QUERY = 'ビリヤード　プロ　なるには'
-QUERIES = 'カブトムシ　撮影する,鴨肉　食べる,ネコ　預ける,ゴキブリ　対策する,' \
+QUERIES = 'カブトムシ　撮影する,鴨肉　食べる,ゴキブリ　対策する,' \
           '子供　なだめる,小学校　受験させる,大学　復学する,アメリカ　留学する,' \
           '禁煙　する,ストレス　解消する,夏バテ　防止する,頭痛　防止する,精神　鍛える,' \
           'アルバイト　見つける,生命保険　営業する,ページビュー　増やす,ブラック企業　辞める,Web　宣伝する,お金　儲ける,' \

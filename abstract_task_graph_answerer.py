@@ -51,7 +51,7 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
 
     def set_united_results(self):
         sorter = TaskSearchResultSorter(self)
-        self.united_results = sorter.sorted_by_score()
+        self.united_results = sorter.sorted_by_mmr()
 
 #-----private------
 

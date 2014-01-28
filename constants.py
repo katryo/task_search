@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+THRESHOLD_FOR_REMOVING_FROM_PART_OF = 0.2
+THRESHOLD_FOR_UNITING_IN_PART_OF = 0.4
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 QUERIES_DIR_NAME = 'queries'

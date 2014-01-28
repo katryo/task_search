@@ -1,6 +1,7 @@
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from sim_calculator import SimCalculator
 from task_graph_evaluator import TaskGraphEvaluator
+import constants
 
 
 class PartOfTaskUniter(AbstractTaskGraphManager):
@@ -13,7 +14,7 @@ class PartOfTaskUniter(AbstractTaskGraphManager):
         return self.task_clusters
 
     def _unite_recursively(self):
-        threshold = 0.5
+        threshold = constants.THRESHOLD_FOR_REMOVING_FROM_PART_OF  # 0.2くらい
         try:
             cluster_a, cluster_b = self._find_clusters_to_be_united()
         except ValueError:  # []つまり統合すべきタスクなし
@@ -24,9 +25,9 @@ class PartOfTaskUniter(AbstractTaskGraphManager):
 
         evaluator = TaskGraphEvaluator(self.graph)
         for task_name in not_shared_tasks:
-            if float(evaluator.contribution_with_task_name(task_name)[0]) < \
-               (evaluator.contribution_with_cluster(united_new_cluster) /
-               len(united_new_cluster)) * threshold:
+            contribution = float(evaluator.contribution_with_task_name(task_name)[0])
+            average_of_contribution = evaluator.contribution_with_cluster(united_new_cluster) / len(united_new_cluster)
+            if contribution < average_of_contribution * threshold:
                 united_new_cluster.remove(task_name)
 
         self.task_clusters.append(united_new_cluster)
@@ -35,13 +36,14 @@ class PartOfTaskUniter(AbstractTaskGraphManager):
         self._unite_recursively()
 
     def _find_clusters_to_be_united(self):
+        threshold = constants.THRESHOLD_FOR_UNITING_IN_PART_OF  # 0.4くらい
         # すべての組み合わせ（ただしcluster_a自身を除く）で、和をとるべきものを見つけたらその組み合わせを返す
         sim_calculator = SimCalculator(self.graph)
         for cluster_a in self.task_clusters:
             for cluster_b in self.task_clusters:
                 if cluster_a == cluster_b:
                     continue
-                if sim_calculator.similarity(cluster_a, cluster_b) > 0.5:
+                if sim_calculator.similarity(cluster_a, cluster_b) > threshold:
                     return [cluster_a, cluster_b]
         return []
 

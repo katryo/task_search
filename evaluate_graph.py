@@ -7,7 +7,7 @@ from path_mover import PathMover
 import pdb
 
 if __name__ == '__main__':
-    query = '部屋　借りる'
+    query = 'ビリヤード　優勝する'
     pfl = PickleFileLoader()
     g = pfl.load_graph_with_query(query)
     query_task = '_'.join(query.split('　'))

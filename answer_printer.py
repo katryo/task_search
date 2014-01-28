@@ -1,5 +1,4 @@
 #coding: utf-8
-from path_mover import PathMover
 import pdb
 
 
@@ -9,12 +8,9 @@ class AnswererPrinter(object):
         self.query = query
 
     def output(self, method_name=''):
-        pm = PathMover()
-        pm.go_or_create_and_go_to('results')
         with open('%s_%s_result.md' % (self.query, method_name), 'w') as f:
             self.file = f
             self._write_with_list()
-        pm.go_up()
 
     def _write_with_list(self):
         num_of_writing = 0

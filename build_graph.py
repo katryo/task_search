@@ -7,13 +7,15 @@ import constants
 
 
 if __name__ == '__main__':
-    for query in constants.QUERIES:
+    original_queries = ['来客　もてなす']
+    for query in original_queries:
         pfl = PickleFileLoader()
         pages = pfl.load_fetched_pages_of_ex_with_query(query)
         gtm = GraphTaskMapper()
 
         for i, page in enumerate(pages):
             try:
+                print(len(page.sentences))
                 for task in page.tasks:
                     gtm.add_node_and_edge_with_task(task)
                 print('%i 番目のページ %s のタスクをグラフに追加しました' % (i, page.title))

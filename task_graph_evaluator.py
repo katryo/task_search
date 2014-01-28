@@ -11,22 +11,32 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
             num_of_appearance += len(aspects)
         return num_of_appearance
 
+    def contribution_with_task_name(self,
+                                    task_name,
+                                    multiplier_for_official=2.0,
+                                    multiplier_for_shopping=0.5):
+        aspects = self._aspects_with_task_name(task_name)
+        score_for_task = 0
+        used_urls = set()
+        for aspect in aspects:
+            score_for_aspect = 1
+            if aspect['is_official']:
+                score_for_aspect *= multiplier_for_official
+            if aspect['is_shopping']:
+                score_for_aspect *= multiplier_for_shopping
+            score_for_task += score_for_aspect
+            used_urls.add(aspect['url'])
+        return score_for_task, used_urls
+
     def contribution(self,
-                     task_cluster,
-                     multiplier_for_official=2.0,
-                     multiplier_for_shopping=0.5):
+                     task_cluster):
         score_for_task_cluster = 0
         used_urls = set()
         for task_name in task_cluster:
-            aspects = self._aspects_with_task_name(task_name)
-            for aspect in aspects:
-                score_for_aspect = 1
-                if aspect['is_official']:
-                    score_for_aspect *= multiplier_for_official
-                if aspect['is_shopping']:
-                    score_for_aspect *= multiplier_for_shopping
-                score_for_task_cluster += score_for_aspect
-                used_urls.add(aspect['url'])
+            [score_for_task,
+             used_urls_per_task] = self.contribution_with_task_name(task_name)
+            score_for_task_cluster += score_for_task
+            used_urls = used_urls.union(used_urls_per_task)
         score_for_task_cluster *= len(used_urls)
         score_for_task_cluster /= len(task_cluster)
         print('%sの貢献度計算完了！' % task_cluster)

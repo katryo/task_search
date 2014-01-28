@@ -13,10 +13,10 @@ class TaskSearchResultSorter(object):
             if len(self.part_ofs) == 0 and len(self.instance_ofs) == 0:
                 break
             if len(self.part_ofs) == 0:
-                results.append(self.instance_ofs(0))
+                results.append(self.instance_ofs[0])
                 continue
             if len(self.instance_ofs) == 0:
-                results.append(self.part_ofs(0))
+                results.append(self.part_ofs[0])
                 continue
 
             if self._p_is_higher(top_of_i=self.instance_ofs[0],

@@ -6,7 +6,7 @@ from task_cluster import TaskCluster
 from task_cluster_classifier_for_first import TaskClusterClassifierForFirst
 from task_graph_part_of_selector_for_first import TaskGraphPartOfSelectorForFirst
 from task_graph_instance_of_selector import TaskGraphInstanceOfSelector
-
+from part_of_task_uniter import PartOfTaskUniter
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
@@ -59,6 +59,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                                                    subtype_of_tasks=self.subtype_of_tasks)
         task_names = selector._frequent_tasks_which_are_not_subtype_of()
         task_clusters = selector.part_of_task_clusters_with_task_names(task_names)
+        # uniter = PartOfTaskUniter(graph=self.graph, task_clusters=task_clusters)
+        # task_clusters = uniter.unite()
         return task_clusters
 #---------------instance-of------------
 

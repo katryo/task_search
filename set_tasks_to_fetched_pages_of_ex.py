@@ -11,7 +11,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaver()
     pm = PathMover()
 
-    original_queries = constants.QUERIES
+    original_queries = ['来客　もてなす']
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
@@ -36,13 +36,3 @@ if __name__ == '__main__':
         pm.go_up()
     pm.go_up()
 
-    for query in constants.QUERIES:
-        pfl = PickleFileLoader()
-        pages = pfl.load_fetched_pages_of_ex_with_query(query)
-        for i, page in enumerate(pages):
-            page.set_tasks_from_sentences()
-            print('%s の %i 番目のページにtasksをセットしました！' % (page.query, i))
-        pages_dict = {query: pages}
-#ここが原因。ネコを預けるはすでに汚染
-        pfs = PickleFileSaver()
-        #pfs.save_pages_with_query_expansion(pages_dict=pages_dict, original_query=query)

@@ -12,7 +12,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaver()
     pm = PathMover()
 
-    original_queries = constants.QUERIES
+    original_queries = ['来客　もてなす']
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:

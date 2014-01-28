@@ -31,12 +31,12 @@ class PickleFileLoader(object):
         expanded_queries = os.listdir()
         pages = []
         for expanded_query in expanded_queries:
-            if expanded_query == '.DS_Store' or expanded_query == query + '_graph.pkl':
+            if expanded_query == '.DS_Store' or 'graph' in expanded_query:
                 continue
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
             for i, filename in enumerate(filenames):
-                if filename == '.DS_Store' or filename == query + '_graph.pkl':
+                if filename == '.DS_Store' or 'graph' in filename:
                     continue
                 page = self.load_file(filename)
                 pages.append(page)
@@ -118,12 +118,18 @@ class PickleFileLoader(object):
     def load_fetched_pages_with_query(self, query):
         path = os.path.join(constants.FETCHED_PAGES_DIR_NAME, query)
         os.chdir(path)
+        pm = PathMover()
+        pm.go_or_create_and_go_to(query)
         pages = []
         for i in range(constants.NUM_OF_FETCHED_PAGES):
-            with open('%s_%i.pkl' % (query, i), 'rb') as f:
-                page = pickle.load(f)
-                pages.append(page)
+            try:
+                with open('%s_%i.pkl' % (query, i), 'rb') as f:
+                    page = pickle.load(f)
+                    pages.append(page)
+            except EOFError:
+                break
         os.chdir('../..')
+        pm.go_up()
         return pages
 
     def load_fetched_pages_with_query_and_expansion_word(self, query, expansion_word):

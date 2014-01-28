@@ -26,8 +26,6 @@ if __name__ == '__main__':
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
             for i, filename in enumerate(filenames):
-                if i == 100:
-                    break
                 if filename == '.DS_Store':
                     continue
                 page = pfl.load_file(filename)

@@ -72,6 +72,7 @@ class PickleFileSaver(object):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
         pm.go_or_create_and_go_to(query)
+        pm.go_or_create_and_go_to(query)
         for i in range(constants.NUM_OF_FETCHED_PAGES):
             with open('%s_%i.pkl' % (query, i), 'wb') as f:
                 try:
@@ -79,6 +80,7 @@ class PickleFileSaver(object):
                 except TypeError:
                     pdb.set_trace()
                 print('%s_%i.pklの保存完了!' % (query, i))
+        pm.go_up()
         pm.go_up()
         pm.go_up()
 

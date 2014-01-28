@@ -8,7 +8,7 @@ class Parenthesis_remover(object):
     def remove_inside_round_parenthesis(self, text):
         for parentheses in constants.ROUND_PARENTHESIS:
             if parentheses in text:
-                pattern_1 = re.compile('（.*?）')
+                pattern_1 = re.compile('（(.*?)）')
                 pattern_2 = re.compile('\(.*?\)')
                 text = pattern_1.sub(text, '')
                 text = pattern_2.sub(text, '')

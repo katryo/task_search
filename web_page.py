@@ -35,14 +35,14 @@ class WebPage(WebItem):
     def is_shopping(self):
         for sentence in self.sentences:
             for clue in constants.CLUES_FOR_SHOPPING_PAGE:
-                if clue in sentence:
+                if clue in sentence.body:
                     return True
         return False
 
     def is_official(self):
         for sentence in self.sentences:
             for clue in constants.CLUES_FOR_OFFICIAL_PAGE:
-                if clue in sentence:
+                if clue in sentence.body:
                     return True
         return False
 

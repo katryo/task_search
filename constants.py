@@ -22,7 +22,8 @@ STOPWORDS_OF_WEBPAGE_NOUN = '是非 どこ だけ ごちゃごちゃ ： : に�
                             '画面 参考 お客様の声 ページ サイト カート どんどんカート ' \
                             'コンタクトフォーム ページ プライバシーポリシー コメント欄 jp ' \
                             '２ちゃんねる運営 ヘルプ サイトポリシー ホームページ ' \
-                            'リンク先 ビューワソフト一覧 利用規約 暗号化 JavaScript対応ブラウザ'.split(' ')
+                            'リンク先 ビューワソフト一覧 利用規約 暗号化 JavaScript対応ブラウザ ' \
+                            'グリル'.split(' ')
 STOPWORDS_OF_WEBPAGE_VERB = 'メッセージ こちらの記事 クリックする 押す 入力する'.split(' ')
 CLUES_FOR_OFFICIAL_PAGE = 'All Rights Reserved\tAll Right Reserved\tall rights reserved\tall right reverved\t' \
                           'copyright\tCopyright\t利用規約\tお問い合わせ\t' \
@@ -69,7 +70,7 @@ DIRECTIONS = ['ください','下さい', \
 PRONOUNS = 'それ あれ これ こちら そちら これら それら あれら'.split(' ')
 DOTS = '. ! ? 。 ！ ？'.split(' ')
 PICKLE_RESULT_DICT_NAME = 'hay_fever_result_dic.pkl'
-NUM_OF_FETCHED_PAGES = 50
+NUM_OF_FETCHED_PAGES = 1000
 NUM_OF_TOTAL_FETCHED_PAGES = 1000
 NUM_OF_DEDUPLICATED_FETCHED_PAGES = 500
 

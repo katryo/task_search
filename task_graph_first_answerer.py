@@ -3,7 +3,7 @@ import pdb
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_edge_finder import TaskGraphEdgeFinder
 from task_cluster import TaskCluster
-from task_cluster_classifier import TaskClusterClassifier
+from task_cluster_classifier_for_first import TaskClusterClassifierForFirst
 from task_graph_part_of_selector_for_first import TaskGraphPartOfSelectorForFirst
 from task_graph_instance_of_selector import TaskGraphInstanceOfSelector
 
@@ -17,7 +17,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         self.frequent_original_tasks = self._frequent_original_tasks()
 
     def set_task_scores(self):
-        classifier = TaskClusterClassifier(self.graph)
+        classifier = TaskClusterClassifierForFirst(self.graph)
         self.part_of_task_clusters_scores = classifier.clusters_contribution_url_intersections(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = classifier.instance_of_task_clusters_higher(self.instance_of_task_clusters)
 

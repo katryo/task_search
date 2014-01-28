@@ -12,8 +12,8 @@ class TaskGraphZeroAnswerer(AbstractTaskGraphAnswerer):
 
     def set_task_scores(self):
         classifier = TaskClusterClassifierForZero(self.graph)
-        self.part_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_task_clusters(self.part_of_task_clusters)
-        self.instance_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_task_clusters(self.instance_of_task_clusters)
+        self.part_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_part_of_task_clusters(self.part_of_task_clusters)
+        self.instance_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_instance_of_task_clusters(self.instance_of_task_clusters)
 
 #-------------initial setting-----
     def _original_task_scores(self):

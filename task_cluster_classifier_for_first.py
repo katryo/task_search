@@ -1,31 +1,25 @@
 #coding: utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from task_graph_evaluator import TaskGraphEvaluator
+from abstract_task_cluster_classifier import AbstractTaskClusterClassifier
 import pdb
 
 
-class TaskClusterClassifier(AbstractTaskGraphManager):
-
-
+class TaskClusterClassifierForFirst(AbstractTaskClusterClassifier):
 #-----------part-of------
-
     def clusters_contribution_url_intersections(self, clusters):
         task_name_frequency_pairs = []
         for cluster in clusters:
             result = self._cluster_contribution_url_intersection(cluster)
             task_name_frequency_pairs.append(result)
-        task_name_frequency_pairs.sort(key=lambda result: result[1], reverse=True)
-        return task_name_frequency_pairs
+        results = self._sorted_by_score(task_name_frequency_pairs)
+        return results
 
-
-#-----------instance-of----
-
+    #-----------instance-of----
     def instance_of_task_clusters_higher(self, clusters):
         results = self._clusters_contribution_url(clusters)
         return results
-
-
-#--------ここでcontributionを切り替え
+    #--------ここでcontributionを切り替え
 
     def _cluster_contribution_url_intersection(self, cluster):
         task_names = {l for l in cluster}
@@ -45,7 +39,7 @@ class TaskClusterClassifier(AbstractTaskGraphManager):
         result = (cluster, evaluator.contribution(cluster), url_set)
         return result
 
-#-----------part-of------
+    #-----------part-of------
 
     def _clusters_contribution_url(self, clusters):
         results = []
@@ -65,6 +59,4 @@ class TaskClusterClassifier(AbstractTaskGraphManager):
             urls = set()
         result = (cluster, evaluator.contribution(cluster), urls)
         return result
-
-#---------zero----------
 

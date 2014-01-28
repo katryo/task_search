@@ -2,6 +2,7 @@
 from pickle_file_loader import PickleFileLoader
 from task_graph_first_answerer import TaskGraphFirstAnswerer
 from task_graph_zero_answerer import TaskGraphZeroAnswerer
+from answer_printer import AnswererPrinter
 import pdb
 
 if __name__ == '__main__':
@@ -15,7 +16,9 @@ if __name__ == '__main__':
     zero_answerer = TaskGraphZeroAnswerer(graph=g, query_task=query_task)
     zero_answerer.set_result_tasks()
     zero_answerer.set_task_scores()
-    zero_answerer.print_score_of_subtasks()
+
+    printer = AnswererPrinter(answerer=zero_answerer, query=query)
+    printer.ourput(method_name='zero')
 
     print('firstの結果です')
 

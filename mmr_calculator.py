@@ -4,16 +4,25 @@ from sim_calculator import SimCalculator
 class MMRCalculator(object):
     def __init__(self, graph, scores):
         self.graph = graph
-        self.scores = scores
-        self.i = 0  # mmrが呼ばれるたびに増える
+        self.scores_candidate = scores  # => [(TaskCluster({'a_b', 'c_d', ...}), 110), ...]
+        self.scores_selected = []
         self.lambda_p = 0.5
 
     def mmr(self):
         cluster_score_pair = self._argmax()
-        self.i += 1
+        self.scores_selected.append(cluster_score_pair)
+        self.scores_candidate.remove(cluster_score_pair)
         return cluster_score_pair
 
     def _argmax(self):
+        max_cluster_score_pair = self.scores_candidate[0]
+        for cluster_score_pair in self.scores_candidate:
+            if self._score_in_parenthesis(cluster_score_pair) > \
+            self._score_in_parenthesis(max_cluster_score_pair):
+                max_cluster_score_pair = cluster_score_pair
+        return max_cluster_score_pair
+
+    def _score_in_parenthesis(self, cluster_score_pair):
 
 
     def _left(self):
@@ -24,6 +33,8 @@ class MMRCalculator(object):
 
     def _max_sim(self):
         sim_calculator = SimCalculator(self.graph)
+        max_sim = 0.0
+        for selected in self.scores_selected:
 
 
 

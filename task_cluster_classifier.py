@@ -12,6 +12,8 @@ class TaskClusterClassifier(AbstractTaskGraphManager):
         results.sort(key=lambda result: result[1], reverse=True)
         return results
 
+#--------ここでcontributionを切り替え
+
     def _cluster_contribution_url_intersection(self, cluster):
         task_names = {l for l in cluster}
         url_set = set()
@@ -29,6 +31,8 @@ class TaskClusterClassifier(AbstractTaskGraphManager):
         # cluster => TaskCluster({'', '', ...})
         result = (cluster, evaluator.contribution(cluster), url_set)
         return result
+
+#-----------
 
     def instance_of_task_clusters_higher(self, clusters):
         results = self._clusters_contribution_url(clusters)

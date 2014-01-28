@@ -32,6 +32,7 @@ if __name__ == '__main__':
                     continue
                 page = pfl.load_file(filename)
                 if hasattr(page, 'text'):
+                    print('%sはすでにフェッチしています' % page.title)
                     continue
                 try:
                     page.fetch_html()

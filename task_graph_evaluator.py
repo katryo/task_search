@@ -31,3 +31,13 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
         score_for_task_cluster /= len(task_cluster)
         print('%sの貢献度計算完了！' % task_cluster)
         return score_for_task_cluster
+
+    def contribution_without_official(self, task_cluster):
+        scores = self.contribution(task_cluster,
+                                   multiplier_for_official=1)
+        return scores
+
+    def contribution_without_shopping(self, task_cluster):
+        scores = self.contribution(task_cluster,
+                                   multiplier_for_shopping=1)
+        return scores

@@ -59,7 +59,12 @@ class TaskGraphZeroAnswerer(AbstractTaskGraphAnswerer):
 
 #---------------instance-of------------
     def _task_clusters_in_instance_of_relation(self):
-        task_names = self.frequent_original_tasks.keys()
+        task_names = list(self.frequent_original_tasks.keys())
+        for part_of_task_cluster in self.part_of_task_clusters:
+            for part_of_task_name in part_of_task_cluster:
+                if part_of_task_name in task_names:
+                    task_names.remove(part_of_task_name)
+
         task_clusters = []
         for task_name in task_names:
             task_clusters.append({task_name})

@@ -18,7 +18,6 @@ class TaskClusterClassifierForZero(AbstractTaskClusterClassifier):
         results = self._sorted_by_score(task_names_frequency_pairs)
         return results
 
-
     #---------instance_of---
     def task_name_frequency_pairs_with_instance_of_task_clusters(self, clusters):
         task_name_frequency_pairs = []

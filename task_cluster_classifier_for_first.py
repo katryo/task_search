@@ -1,5 +1,4 @@
 #coding: utf-8
-from abstract_task_graph_manager import AbstractTaskGraphManager
 from task_graph_evaluator import TaskGraphEvaluator
 from abstract_task_cluster_classifier import AbstractTaskClusterClassifier
 import pdb
@@ -36,7 +35,7 @@ class TaskClusterClassifierForFirst(AbstractTaskClusterClassifier):
 
         evaluator = TaskGraphEvaluator(self.graph)
         # cluster => TaskCluster({'', '', ...})
-        result = (cluster, evaluator.contribution(cluster), url_set)
+        result = (cluster, evaluator.contribution_with_cluster(cluster), url_set)
         return result
 
     #-----------part-of------
@@ -57,6 +56,6 @@ class TaskClusterClassifierForFirst(AbstractTaskClusterClassifier):
             urls = {aspect[0]['url'] for aspect in aspects}
         except IndexError:
             urls = set()
-        result = (cluster, evaluator.contribution(cluster), urls)
+        result = (cluster, evaluator.contribution_with_cluster(cluster), urls)
         return result
 

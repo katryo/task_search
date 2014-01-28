@@ -28,13 +28,18 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
             used_urls.add(aspect['url'])
         return score_for_task, used_urls
 
-    def contribution(self,
-                     task_cluster):
+    def contribution_with_cluster(self,
+                                  task_cluster,
+                                  multiplier_for_official=2.0,
+                                  multiplier_for_shopping=0.5):
         score_for_task_cluster = 0
         used_urls = set()
         for task_name in task_cluster:
             [score_for_task,
-             used_urls_per_task] = self.contribution_with_task_name(task_name)
+             used_urls_per_task] = self.\
+                contribution_with_task_name(task_name,
+                                            multiplier_for_official,
+                                            multiplier_for_shopping)
             score_for_task_cluster += score_for_task
             used_urls = used_urls.union(used_urls_per_task)
         score_for_task_cluster *= len(used_urls)
@@ -43,11 +48,11 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
         return score_for_task_cluster
 
     def contribution_without_official(self, task_cluster):
-        scores = self.contribution(task_cluster,
-                                   multiplier_for_official=1)
+        scores = self.contribution_with_cluster(task_cluster,
+                                                multiplier_for_official=1)
         return scores
 
     def contribution_without_shopping(self, task_cluster):
-        scores = self.contribution(task_cluster,
-                                   multiplier_for_shopping=1)
+        scores = self.contribution_with_cluster(task_cluster,
+                                                multiplier_for_shopping=1)
         return scores

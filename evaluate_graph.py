@@ -16,13 +16,16 @@ if __name__ == '__main__':
     zero_answerer = TaskGraphZeroAnswerer(graph=g, query_task=query_task)
     zero_answerer.set_result_tasks()
     zero_answerer.set_task_scores()
+    zero_answerer.set_united_results()
 
     printer = AnswererPrinter(answerer=zero_answerer, query=query)
-    printer.ourput(method_name='zero')
+    printer.output(method_name='zero')
 
     print('firstの結果です')
 
     first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
     first_answerer.set_result_tasks()
     first_answerer.set_task_scores()
-    first_answerer.print_score_of_subtasks()
+    first_answerer.set_united_results()
+    printer = AnswererPrinter(answerer=first_answerer, query=query)
+    printer.output(method_name='first')

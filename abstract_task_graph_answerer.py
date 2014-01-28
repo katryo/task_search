@@ -2,8 +2,7 @@
 import pdb
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from task_graph_node_remover import TaskGraphNodeRemover
-from task_graph_edge_finder import TaskGraphEdgeFinder
-from task_cluster import TaskCluster
+from task_search_result_sorter import TaskSearchResultSorter
 
 class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     """
@@ -49,6 +48,10 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     def set_task_scores(self):
         #override me!!
         pass
+
+    def set_united_results(self):
+        sorter = TaskSearchResultSorter(self)
+        self.united_results = sorter.sorted_by_score()
 
 #-----private------
 

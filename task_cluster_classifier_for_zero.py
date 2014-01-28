@@ -26,7 +26,7 @@ class TaskClusterClassifierForZero(AbstractTaskClusterClassifier):
         for cluster in clusters:
             for task_name in cluster:
                 num_of_appearance = counter.frequency_with_task_name(task_name)
-                task_name_frequency_pair = (task_name, num_of_appearance)
+                task_name_frequency_pair = (set([task_name]), num_of_appearance)
                 task_name_frequency_pairs.append(task_name_frequency_pair)
         results = self._sorted_by_score(task_name_frequency_pairs)
         return results

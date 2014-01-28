@@ -1,6 +1,5 @@
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_part_of_selector_for_zero import TaskGraphPartOfSelectorForZero
-from task_frequency_counter import TaskFrequencyCounter
 from task_cluster_classifier_for_zero import TaskClusterClassifierForZero
 import pdb
 
@@ -13,15 +12,29 @@ class TaskGraphZeroAnswerer(AbstractTaskGraphAnswerer):
 
     def set_task_scores(self):
         classifier = TaskClusterClassifierForZero(self.graph)
-        self.part_of_task_clusters_scores = classifier.score_frequency_of_items_in_task_clusters(self.part_of_task_clusters)
-        self.instance_of_task_clusters_scores = classifier.score_frequency_of_items(self.instance_of_task_clusters)
+        self.part_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_task_clusters(self.part_of_task_clusters)
+        self.instance_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_task_clusters(self.instance_of_task_clusters)
 
 #-------------initial setting-----
     def _original_task_scores(self):
         nodes = self.graph.nodes(data=True)
-        counter = TaskFrequencyCounter(nodes)
-        scores = counter.original_task_scores()
+        scores = self._original_task_scores_with_nodes(nodes)
         return scores
+
+    def _original_task_scores_with_nodes(self, nodes):
+        original_task_scores = dict()
+        for node in nodes:
+            try:
+                aspects = node[1]['aspects']
+                original_counter = 0
+                for aspect in aspects:
+                    if aspect['is_original'] is True:
+                        original_counter += 1
+                if original_counter > 0:
+                    original_task_scores[node[0]] = original_counter
+            except IndexError:
+                continue
+        return original_task_scores
 
     def _frequent_original_tasks(self):
         results = dict()
@@ -46,6 +59,9 @@ class TaskGraphZeroAnswerer(AbstractTaskGraphAnswerer):
 
 #---------------instance-of------------
     def _task_clusters_in_instance_of_relation(self):
-        task_clusters = set(self.frequent_original_tasks.keys())
+        task_names = self.frequent_original_tasks.keys()
+        task_clusters = []
+        for task_name in task_names:
+            task_clusters.append({task_name})
         # keysを1 item setにすべきかも。
         return task_clusters

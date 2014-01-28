@@ -1,14 +1,15 @@
 #coding: utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from task_frequency_counter import TaskFrequencyCounter
+import pdb
 
 
 class TaskClusterClassifierForZero(AbstractTaskGraphManager):
     #---------part-of---
-    def score_frequency_of_items_in_task_clusters(self, clusters):
+    def task_name_frequency_pairs_with_task_clusters(self, clusters):
         task_name_frequency_pairs = []
-        nodes = self.graph.nodes(data=True)
-        counter = TaskFrequencyCounter(nodes)
+        node_dict = self.graph.node
+        counter = TaskFrequencyCounter(node_dict)
         for cluster in clusters:
             for task_name in cluster:
                 num_of_appearance = counter.frequency_with_task_name(task_name)

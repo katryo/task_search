@@ -1,31 +1,17 @@
 #coding: utf-8
+import pdb
 
 
 class TaskFrequencyCounter(object):
     """
     zeroのために作った
     """
-    def __init__(self, nodes):
-        self.nodes = nodes
-
-    def original_task_scores(self):
-        original_task_scores = dict()
-        for node in self.nodes:
-            try:
-                aspects = node[1]['aspects']
-                original_counter = 0
-                for aspect in aspects:
-                    if aspect['is_original'] is True:
-                        original_counter += 1
-                if original_counter > 0:
-                    original_task_scores[node[0]] = original_counter
-            except IndexError:
-                continue
-        return original_task_scores
+    def __init__(self, node_dict):
+        self.node_dict = node_dict
 
     def frequency_with_task_name(self, task_name):
-        node = self.nodes[task_name]
-        aspects = node[1]['aspects']
+        node = self.node_dict[task_name]
+        aspects = node['aspects']
         num_of_appearance = 0
         for aspect in aspects:
             if aspect['is_original']:

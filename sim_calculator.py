@@ -1,4 +1,5 @@
 import math
+from task_graph_similar_node_finder import TaskGraphSimilarNodeFinder
 
 
 class SimCalculator(object):
@@ -7,43 +8,19 @@ class SimCalculator(object):
 
     # a_set => {'夢_見つける', '未来_待つ'
     def similarity(self, a_set, b_set):
-        # hypernimのhypornymリストにあれば
+        num_of_similar_task = self._num_of_similar_task(a_set, b_set)
+        num_of_union = len(a_set.union(b_set))
+        return num_of_similar_task / num_of_union
 
+    def _num_of_similar_task(self, a_set, b_set):
+        num_of_similar_task = 0
+        node_finder = TaskGraphSimilarNodeFinder(self.graph)
+        for b_task in b_set:
+            for a_task in a_set:
+                tasks_similar_to_a = node_finder.similar_nodes_with_task_name(a_task)
+                tasks_similar_to_a.add(a_task)  # 自分自身
+                if b_task in tasks_similar_to_a:
+                    num_of_similar_task += 1
+        return num_of_similar_task
 
-        a_set_nouns = []
-        a_set_verbs = []
-        b_set_nouns = []
-        b_set_verbs = []
-        for pair in a_set:
-            words = pair.split('_')
-            a_set_nouns.append(words[0])
-            a_set_verbs.append(words[1])
-
-        for pair in b_set:
-            words = pair.split('_')
-            b_set_nouns.append(words[0])
-            b_set_verbs.append(words[1])
-
-
-        result = self._cos()
-
-    def _absolute(self, vector):
-        # ベクトルvの長さつまり絶対値を返す
-        squared_distance = sum([vector[word] ** 2 for word in vector])
-        distance = math.sqrt(squared_distance)
-        return distance
-
-    def _cos(self, v1, v2):
-        # v1 => {'a': 2, 'b': 3}
-        numerator = 0
-        # v1とv2で共通するkeyがあったとき、その値の積を加算していく。2つのベクトルの内積になる。
-        for word in v1:
-            if word in v2:
-                numerator += v1[word] * v2[word]  # 回数
-
-        denominator = self._absolute(v1) * self._absolute(v2)
-
-        if denominator == 0:
-            return 0
-        return numerator / denominator
 

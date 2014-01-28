@@ -59,8 +59,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                                                    subtype_of_tasks=self.subtype_of_tasks)
         task_names = selector._frequent_tasks_which_are_not_subtype_of()
         task_clusters = selector.part_of_task_clusters_with_task_names(task_names)
-        # uniter = PartOfTaskUniter(graph=self.graph, task_clusters=task_clusters)
-        # task_clusters = uniter.unite()
+        uniter = PartOfTaskUniter(graph=self.graph, task_clusters=task_clusters)
+        task_clusters = uniter.unite()
         return task_clusters
 #---------------instance-of------------
 

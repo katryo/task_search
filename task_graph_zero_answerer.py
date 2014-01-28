@@ -1,6 +1,7 @@
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_part_of_selector_for_zero import TaskGraphPartOfSelectorForZero
 from task_frequency_counter import TaskFrequencyCounter
+from task_cluster_classifier_for_zero import TaskClusterClassifierForZero
 import pdb
 
 
@@ -11,7 +12,7 @@ class TaskGraphZeroAnswerer(AbstractTaskGraphAnswerer):
         self.frequent_original_tasks = self._frequent_original_tasks()
 
     def set_task_scores(self):
-        classifier = TaskClusterClassifier(self.graph)
+        classifier = TaskClusterClassifierForZero(self.graph)
         self.part_of_task_clusters_scores = classifier.score_frequency_of_items_in_task_clusters(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = classifier.score_frequency_of_items(self.instance_of_task_clusters)
 

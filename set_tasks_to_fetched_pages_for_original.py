@@ -6,7 +6,6 @@ import constants
 if __name__ == '__main__':
     queries = constants.QUERIES_1
     for query in queries:
-        query = '部屋　掃除する'
         pfl = PickleFileLoaderForOriginal()
         pages = pfl.load_fetched_pages_with_query(query)
         for i, page in enumerate(pages):

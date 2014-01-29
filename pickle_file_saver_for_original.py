@@ -32,3 +32,12 @@ class PickleFileSaverForOriginal(PickleFileSaver):
             print('%s_answerer_zero.pklの保存完了！' % query)
         pm.go_up()
 
+    def save_graph_with_query(self, obj, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_O_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        with open('%s_graph.pkl' % query, 'wb') as f:
+            pickle.dump(obj, f)
+            print('%s_graph.pklの保存完了！' % query)
+        pm.go_up()
+        pm.go_up()

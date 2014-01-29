@@ -15,3 +15,4 @@ class PickleFileSaverForEx(PickleFileSaver):
             pickle.dump(answerer, f)
             print('%s_answerer_first.pklの保存完了！' % query)
         pm.go_up()
+

@@ -6,6 +6,7 @@ FETCHED_PAGES_O_DIR_NAME = 'fetched_pages_for_original_queries'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 QUERIES_DIR_NAME = 'queries'
 ANSWERER_DIR_NAME = 'answerers'
+GRAPH_DIR_NAME = 'graphs'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
 # ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
 ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment_presu entailment_triv nonentailment_anton nonentailment_ntriv nonentailment_predi nonentailment_triv'.split(' ')

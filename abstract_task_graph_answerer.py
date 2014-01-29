@@ -2,7 +2,6 @@
 import pdb
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from task_graph_node_remover import TaskGraphNodeRemover
-from task_search_result_sorter import TaskSearchResultSorter
 
 class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     """
@@ -50,8 +49,8 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         pass
 
     def set_united_results(self):
-        sorter = TaskSearchResultSorter(self)
-        self.united_results = sorter.sorted_by_mmr()
+        # override me!
+        pass
 
 #-----private------
 

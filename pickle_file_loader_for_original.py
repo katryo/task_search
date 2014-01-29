@@ -25,7 +25,7 @@ class PickleFileLoaderForOriginal(PickleFileLoader):
 
     def load_graph_with_query(self, query):
         pm = PathMover()
-        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_O_DIR_NAME)
+        pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
         pm.go_or_create_and_go_to(query)
         graph = self.load_file(query + '_graph.pkl')
         pm.go_up()

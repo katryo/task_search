@@ -8,7 +8,7 @@ class TaskSearchResultSorter(object):
         self.instance_ofs = answerer.instance_of_task_clusters_scores
         self.part_ofs = answerer.part_of_task_clusters_scores
 
-    def _sorted_by_score(self):
+    def sorted_by_score(self):
         # 両方を比較して、大きい方を入れる、を繰り返す
         results = []
         for i in range(30):
@@ -34,7 +34,7 @@ class TaskSearchResultSorter(object):
         return False
 
     def sorted_by_mmr(self):
-        scores = self._sorted_by_score()  # => [(TaskCluster({'a_b', 'c_d', ...}), 110), ...]
+        scores = self.sorted_by_score()  # => [(TaskCluster({'a_b', 'c_d', ...}), 110), ...]
         calculator = MMRCalculator(graph=self.answerer.graph, scores=scores)
         mmr_scores = []
         for i in range(10):

@@ -1,6 +1,7 @@
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from task_graph_part_of_selector_for_zero import TaskGraphPartOfSelectorForZero
 from task_cluster_classifier_for_zero import TaskClusterClassifierForZero
+from task_search_result_sorter import TaskSearchResultSorter
 import pdb
 
 
@@ -14,6 +15,10 @@ class TaskGraphZeroAnswerer(AbstractTaskGraphAnswerer):
         classifier = TaskClusterClassifierForZero(self.graph)
         self.part_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_part_of_task_clusters(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = classifier.task_name_frequency_pairs_with_instance_of_task_clusters(self.instance_of_task_clusters)
+
+    def set_united_results(self):
+        sorter = TaskSearchResultSorter(self)
+        self.united_results = sorter.sorted_by_score()
 
 #-------------initial setting-----
     def _original_task_scores(self):

@@ -8,8 +8,12 @@ import constants
 
 if __name__ == '__main__':
     original_queries = constants.QUERIES_1
+    pfl = PickleFileLoaderForOriginal()
+    pfs = PickleFileSaverForOriginal()
     for query in original_queries:
-        pfl = PickleFileLoaderForOriginal()
+        if pfs.can_find_graph_with_query(query):
+            continue
+
         pages = pfl.load_fetched_pages_with_query(query)
         gtm = GraphTaskMapper()
 
@@ -21,5 +25,4 @@ if __name__ == '__main__':
             except AttributeError:
                 break
         print('added all edges!')
-        pfs = PickleFileSaverForOriginal()
         pfs.save_graph_with_query(obj=gtm.graph, query=query)

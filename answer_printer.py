@@ -17,7 +17,10 @@ class AnswererPrinter(object):
         for result in self.results:
             task_cluster = result[0]
             self.file.write('\n')
-            score = str(task_cluster[1])
+            try:
+                score = str(task_cluster[1])
+            except:
+                pdb.set_trace()
             self.file.write('### SCORE: %s\n' % score)
             self._write_header_with_task_type(result[1])
             for task_name in task_cluster[0]:

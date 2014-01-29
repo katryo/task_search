@@ -7,6 +7,7 @@ from task_cluster_classifier_for_first import TaskClusterClassifierForFirst
 from task_graph_part_of_selector_for_first import TaskGraphPartOfSelectorForFirst
 from task_graph_instance_of_selector import TaskGraphInstanceOfSelector
 from part_of_task_uniter import PartOfTaskUniter
+from task_search_result_sorter import TaskSearchResultSorter
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
@@ -20,6 +21,10 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         classifier = TaskClusterClassifierForFirst(self.graph)
         self.part_of_task_clusters_scores = classifier.clusters_contribution_url_intersections(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = classifier.instance_of_task_clusters_higher(self.instance_of_task_clusters)
+
+    def set_united_results(self):
+        sorter = TaskSearchResultSorter(self)
+        self.united_results = sorter.sorted_by_mmr()
 
 #-------private----------
     def _frequent_original_tasks(self):

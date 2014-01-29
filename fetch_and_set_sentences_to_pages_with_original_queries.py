@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 import constants
-from pickle_file_loader import PickleFileLoader
-from pickle_file_saver import PickleFileSaver
+from pickle_file_loader_for_original import PickleFileLoaderForOriginal
+from pickle_file_saver_for_original import PickleFileSaverForOriginal
 from path_mover import PathMover
 import pdb
 
 if __name__ == '__main__':
-    queries = constants.QUERIES
-    pfl = PickleFileLoader()
-    saver = PickleFileSaver()
+    queries = constants.QUERIES_1
+    pfl = PickleFileLoaderForOriginal()
+    saver = PickleFileSaverForOriginal()
     pm = PathMover()
     for query in queries:
-        pages = pfl.load_fetched_pages_with_original_query(query)
+        pages = pfl.load_fetched_pages_with_query(query)
         pm.go_or_create_and_go_to(constants.FETCHED_PAGES_O_DIR_NAME)
         pm.go_or_create_and_go_to(query)
         for i, page in enumerate(pages):

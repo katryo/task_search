@@ -1,3 +1,4 @@
+#coding: utf-8
 from pickle_file_loader import PickleFileLoader
 from path_mover import PathMover
 import constants
@@ -36,6 +37,9 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
         pm.go_up()
         pm.go_up()
         return graph
+
+
+#---不要？
 
     def load_fetched_pages_with_query_and_expansion_word(self, query, expansion_word):
         pm = PathMover()

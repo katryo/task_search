@@ -7,13 +7,13 @@ import pdb
 
 if __name__ == '__main__':
     query = 'ネコ　預ける'
+    dirname = constants.FETCHED_PAGES_O_DIR_NAME
     pfl = PickleFileLoader()
     saver = PickleFileSaver()
     pages = pfl.load_fetched_pages_with_query(query)
     pm = PathMover()
-    pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
-    pm.go_or_create_and_go_to(query)
-    pm.go_or_create_and_go_to(query)
+    pm.go_or_create_and_go_to(dirname)
+    pm.go_or_create_and_go_to(query)  # クエリ拡張するのならもう一度深くへ
     for i, page in enumerate(pages):
         if hasattr(page, 'sentences'):
             if page.sentences:
@@ -31,7 +31,6 @@ if __name__ == '__main__':
         except (ValueError, IndexError):
             print('%sのフェッチに失敗しました' % page.title)
             continue
-    pm.go_up()
     pm.go_up()
     pm.go_up()
 

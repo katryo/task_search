@@ -38,6 +38,15 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
         pm.go_up()
         return graph
 
+    def load_answerer_with_query(self, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.ANSWERER_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        graph = self.load_file(query + '_answerer_first.pkl')
+        pm.go_up()
+        pm.go_up()
+        return graph
+
 
 #---不要？
 

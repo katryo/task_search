@@ -5,6 +5,7 @@ FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_PAGES_O_DIR_NAME = 'fetched_pages_for_original_queries'
 FETCHED_ADS_DIR_NAME = 'fetched_ads'
 QUERIES_DIR_NAME = 'queries'
+ANSWERER_DIR_NAME = 'answerers'
 ENTAILMENT_DICTIONARIES_DIR_NAME = 'entailment_dictionaries'
 # ENTAILMENT_DICTIONARY_NAMES = 'ent_presu ent_triv nonent_predi ent_ntriv nonent_ntriv'.split(' ')
 ENTAILMENT_DICTIONARY_TABLENAMES = 'entailment_acrac entailment_ntriv entailment_presu entailment_triv nonentailment_anton nonentailment_ntriv nonentailment_predi nonentailment_triv'.split(' ')
@@ -44,10 +45,12 @@ QUERIES_1 = '家庭菜園　始める,胃もたれ　防止する,ビリヤー�
             '保育園　入園する,犬　育てる,骨折　治療する,部屋　掃除する,' \
             'クレー射撃　体験する,ノベルゲーム　完成させる'.split(',')
 
-QUERIES = 'カブトムシ　撮影する,鴨肉　食べる,ゴキブリ　対策する,' \
+QUERIES_2 = 'カブトムシ　撮影する,鴨肉　食べる,ゴキブリ　対策する,' \
           '子供　なだめる,小学校　受験させる,大学　復学する,アメリカ　留学する,' \
           '禁煙　する,ストレス　解消する,夏バテ　防止する,頭痛　防止する,精神　鍛える,' \
-          'アルバイト　見つける,生命保険　営業する,ページビュー　増やす,ブラック企業　辞める,Web　宣伝する,お金　儲ける,' \
+          'アルバイト　見つける,生命保険　営業する,ページビュー　増やす,ブラック企業　辞める,'.split(',')
+
+QUERIES_3 = 'お金　儲ける,' \
           '暇　つぶす,ダイエット　する,英語　学習する,Ruby　学ぶ,発表　上達する,' \
           '自然言語処理　勉強する,' \
           'ダンス　上達する,草野球　試合する,プロテイン　購入する,ロードバイク　始める,ポーカー　稼ぐ,ドミニオン　遊ぶ,' \

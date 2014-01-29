@@ -4,6 +4,7 @@ from mmr_calculator import MMRCalculator
 
 class TaskSearchResultSorter(object):
     def __init__(self, answerer):
+        self.answerer = answerer
         self.instance_ofs = answerer.instance_of_task_clusters_scores
         self.part_ofs = answerer.part_of_task_clusters_scores
 
@@ -34,7 +35,7 @@ class TaskSearchResultSorter(object):
 
     def sorted_by_mmr(self):
         scores = self._sorted_by_score()  # => [(TaskCluster({'a_b', 'c_d', ...}), 110), ...]
-        calculator = MMRCalculator(scores)
+        calculator = MMRCalculator(graph=self.answerer.graph, scores=scores)
         mmr_scores = []
         for i in range(10):
             cluster_score_pair = calculator.mmr()

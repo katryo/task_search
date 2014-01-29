@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import constants
-from pickle_file_loader import PickleFileLoader
-from pickle_file_saver import PickleFileSaver
+from pickle_file_loader_for_ex import PickleFileLoaderForExpandedQuery
+from pickle_file_saver_for_ex import PickleFileSaverForEx
 from path_mover import PathMover
 import pdb
 import os
 import constants
 
 if __name__ == '__main__':
-    pfl = PickleFileLoader()
-    pfs = PickleFileSaver()
+    pfl = PickleFileLoaderForExpandedQuery()
+    pfs = PickleFileSaverForEx()
     pm = PathMover()
 
     original_queries = constants.QUERIES

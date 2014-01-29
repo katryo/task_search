@@ -2,8 +2,8 @@
 import constants
 from pickle_file_loader import PickleFileLoader
 from pickle_file_saver import PickleFileSaver
-from sentence_separator import SentenceSeparator
 from path_mover import PathMover
+import pdb
 import os
 import constants
 
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaver()
     pm = PathMover()
 
-    original_queries = ['来客　もてなす']
+    original_queries = constants.QUERIES
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
@@ -33,12 +33,13 @@ if __name__ == '__main__':
                     print('%sはすでにフェッチしています' % page.title)
                     continue
                 try:
+                    if page.sentences:
+                        continue
                     page.fetch_html()
-                    print('%sのフェッチ完了!' % page.title)
                     page.set_text_from_html_body()
                     page.set_sentences_from_text()
                     pfs.save_file(obj=page, filename=filename)
-                    print('%sの保存完了!' % page.title)
+                    print('%i番目のページ、%sの保存完了!' % (i, page.title))
                 except:
                     print('%sの処理に失敗！' % page.title)
                     continue

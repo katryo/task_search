@@ -34,7 +34,6 @@ class PickleFileSaver(object):
                 if os.path.exists(filename):
                     continue
                 with open('%s_%i.pkl' % (query, i), 'wb') as f:
-                    pdb.set_trace()
                     try:
                         pickle.dump(page, f)
                     except TypeError:
@@ -72,10 +71,9 @@ class PickleFileSaver(object):
             pickle.dump(obj=results_dic, file=f)
         os.chdir('..')
 
-    def save_pages_with_query(self, pages, query):
+    def save_pages_with_original_query(self, pages, query):
         pm = PathMover()
-        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
+        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_O_DIR_NAME)
         pm.go_or_create_and_go_to(query)
         for i in range(constants.NUM_OF_FETCHED_PAGES):
             with open('%s_%i.pkl' % (query, i), 'wb') as f:
@@ -84,7 +82,6 @@ class PickleFileSaver(object):
                 except TypeError:
                     pdb.set_trace()
                 print('%s_%i.pklの保存完了!' % (query, i))
-        pm.go_up()
         pm.go_up()
         pm.go_up()
 

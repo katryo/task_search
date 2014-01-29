@@ -20,9 +20,11 @@ class MMRCalculator(object):
             if self._score_in_parenthesis(cluster_score_pair) > \
             self._score_in_parenthesis(max_cluster_score_pair):
                 max_cluster_score_pair = cluster_score_pair
+
         return max_cluster_score_pair
 
     def _score_in_parenthesis(self, cluster_score_pair):
+        return self._left() - self._right()
 
 
     def _left(self):

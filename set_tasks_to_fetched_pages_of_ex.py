@@ -11,7 +11,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaver()
     pm = PathMover()
 
-    original_queries = ['来客　もてなす']
+    original_queries = ['小学校　受験させる']
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
@@ -28,6 +28,10 @@ if __name__ == '__main__':
                 if filename == '.DS_Store':
                     continue
                 page = pfl.load_file(filename)
+                if hasattr(page, 'tasks'):
+                    if page.tasks:
+                        print('すでにtasksがあります')
+                        continue
                 page.set_tasks_from_sentences()
                 print('%s の %i 番目のページにtasksをセットしました！' % (page.query, i))
                 pfs.save_file(obj=page, filename=filename)

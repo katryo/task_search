@@ -10,7 +10,7 @@ class TaskSearchResultSorter(object):
     def _sorted_by_score(self):
         # 両方を比較して、大きい方を入れる、を繰り返す
         results = []
-        while True:  # 30回くらいに制限したほうがいい？
+        for i in range(30):
             if len(self.part_ofs) == 0 and len(self.instance_ofs) == 0:
                 break
             if len(self.part_ofs) == 0:
@@ -38,6 +38,7 @@ class TaskSearchResultSorter(object):
         mmr_scores = []
         for i in range(10):
             cluster_score_pair = calculator.mmr()
+            print('MMRにより')
             if not cluster_score_pair:
                 break  # 10個も答えなかった
             mmr_scores.append(cluster_score_pair)

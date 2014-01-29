@@ -6,7 +6,7 @@ import pickle
 import pdb
 
 
-class PickleFileLoaderForEx(PickleFileLoader):
+class PickleFileLoaderForOriginal(PickleFileLoader):
     def load_fetched_pages_with_original_query(self, query):
         path = os.path.join(constants.FETCHED_PAGES_O_DIR_NAME, query)
         os.chdir(path)

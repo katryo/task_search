@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from pickle_file_loader import PickleFileLoader
-from pickle_file_saver import PickleFileSaver
+from pickle_file_loader_for_ex import PickleFileLoaderForExpandedQuery
+from pickle_file_saver_for_ex import PickleFileSaverForEx
 from path_mover import PathMover
 import constants
 import pdb
 import os
 
 if __name__ == '__main__':
-    pfl = PickleFileLoader()
-    pfs = PickleFileSaver()
+    pfl = PickleFileLoaderForExpandedQuery()
+    pfs = PickleFileSaverForEx()
     pm = PathMover()
 
-    original_queries = ['小学校　受験させる']
+    original_queries = ['来客　もてなす']
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:

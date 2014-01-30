@@ -7,7 +7,7 @@ import pickle
 import pdb
 
 
-class PickleFileLoaderForEx(PickleFileLoader):
+class PickleFileLoaderForAds(PickleFileLoader):
     def load_queries(self):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.QUERIES_DIR_NAME)
@@ -16,8 +16,6 @@ class PickleFileLoaderForEx(PickleFileLoader):
         for filename in filenames:
             if filename == '.DS_Store':
                 continue
-            if not filename[:-4] in constants.QUERIES:
-                continue  # 以前使って、消した花粉症対策のようなクエリかも
             try:
                 with open(filename, 'rb') as f:
                     query = pickle.load(f)

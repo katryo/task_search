@@ -4,6 +4,8 @@ hyponym_hypernym.sqlite
 
 *.pkl
 
+fetched_ads/
+
 fetched_pages/
 fetched_pages/*
 fetched_pages/~

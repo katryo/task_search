@@ -33,6 +33,18 @@ class PickleFileSaverForOriginal(PickleFileSaver):
         pm.go_up()
         pm.go_up()
 
+    def can_find_page_with_query(self, query):
+        pm = PathMover()
+        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_O_DIR_NAME)
+        pm.go_or_create_and_go_to(query)
+        if os.path.exists('%s_10.pkl' % query):
+            pm.go_up()
+            pm.go_up()
+            return True
+        pm.go_up()
+        pm.go_up()
+        return False
+
     def can_find_graph_with_query(self, query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)

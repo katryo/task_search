@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import pdb
-from pickle_file_loader import PickleFileLoader
+from pickle_file_loader_for_ads import PickleFileLoaderForAds
 from term_counter import TermCounter
 
 if __name__ == '__main__':
-    loader = PickleFileLoader()
-    ads = loader.load_ads_with_query('花粉症対策')
+    loader = PickleFileLoaderForAds()
+    ads = loader.load_ads_with_query('花粉症　対策する')
     sahens = []
     for ad in ads:
         ad.set_sahens_from_title_and_snippet()

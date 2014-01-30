@@ -63,9 +63,13 @@ class Bing(object):
     def _search(self, request_url, top, skip, keys):
         # APIを叩くための最終的なURL
         final_url = "{0}&$top={1}&$skip={2}".format(request_url, top, skip)
-        response = requests.get(final_url,
-                                auth=(self.api_key, self.api_key),
-                                headers={'User-Agent': 'My API Robot'}).json()
+        try:
+            response = requests.get(final_url,
+                                    auth=(self.api_key, self.api_key),
+                                    headers={'User-Agent': 'My API Robot'}).json()
+        except ValueError:
+            print('Bing検索に失敗しました')
+            return []
         results = []
         # 返ってきたもののうち指定された情報を取得する
         for item in response["d"]["results"]:

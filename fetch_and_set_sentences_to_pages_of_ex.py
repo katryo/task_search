@@ -18,7 +18,6 @@ if __name__ == '__main__':
     for original_query in original_queries:
         pm.go_or_create_and_go_to(original_query)
         expanded_queries = os.listdir()
-        pdb.set_trace()
         for expanded_query in expanded_queries:
             if 'graph' in expanded_query:
                 print('graph!')
@@ -30,7 +29,13 @@ if __name__ == '__main__':
             for i, filename in enumerate(filenames):
                 if filename == '.DS_Store':
                     continue
-                page = pfl.load_file(filename)
+                try:
+                    page = pfl.load_file(filename)
+                except EOFError:
+                    print('%sのロードに失敗！' % page.title)
+                    page.text = ''
+                    page.sentences = ['']
+                    continue
                 if hasattr(page, 'text'):
                     print('%sはすでにフェッチしています' % page.title)
                     continue

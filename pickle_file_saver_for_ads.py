@@ -49,6 +49,8 @@ class PickleFileSaverForAds(PickleFileSaver):
             pm.go_up()
             print('ない2')
             return False
+        pm.go_up()
+        pm.go_up()
 
     def save_pages_with_query(self, pages_dict, original_query):
         pm = PathMover()

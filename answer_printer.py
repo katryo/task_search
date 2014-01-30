@@ -10,6 +10,7 @@ class AnswererPrinter(object):
     def output(self, method_name=''):
         with open('%s_%s_result.md' % (self.query, method_name), 'w') as f:
             self.file = f
+            self._write_title()
             self._write_with_list()
 
     def _write_with_list(self):
@@ -40,3 +41,6 @@ class AnswererPrinter(object):
 
     def _write_footer(self):
         self.file.write('\n----------\n')
+
+    def _write_title(self):
+        self.file.write('## クエリ 「%s」\n' % self.query)

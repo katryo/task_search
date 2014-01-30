@@ -9,7 +9,6 @@ import pdb
 
 if __name__ == '__main__':
     queries = constants.QUERIES_1
-    queries.remove('骨折　治療する')
     for query in queries:
         pfl = PickleFileLoaderForOriginal()
         pfs = PickleFileSaverForOriginal()

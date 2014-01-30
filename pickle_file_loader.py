@@ -12,7 +12,7 @@ class PickleFileLoader(object):
             try:
                 obj = pickle.load(f)
             except EOFError:
-                pdb.set_trace()
+                raise EOFError
         return obj
 
     def load_fetched_pages_with_query(self, query):

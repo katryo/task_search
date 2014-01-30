@@ -1,6 +1,6 @@
 class TaskSearchResultFormatter(object):
-    def __init__(self, file, task_type):
-        self.file = file
+    def __init__(self, file_obj, task_type):
+        self.file = file_obj
         self.task_type = task_type
 
     def write_head(self):

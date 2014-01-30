@@ -18,3 +18,4 @@ if __name__ == '__main__':
         pages = query.search_with_expansion_words()
         pfs.save_pages_with_query(pages_dict=pages,
                                   original_query=query.body)
+        print('%sで検索して、その結果を保存しました！' % query.expansion_words)

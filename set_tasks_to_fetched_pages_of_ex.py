@@ -11,7 +11,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForEx()
     pm = PathMover()
 
-    original_queries = ['来客　もてなす']
+    original_queries = constants.QUERIES_2
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
@@ -27,7 +27,10 @@ if __name__ == '__main__':
             for i, filename in enumerate(filenames):
                 if filename == '.DS_Store':
                     continue
-                page = pfl.load_file(filename)
+                try:
+                    page = pfl.load_file(filename)
+                except EOFError:
+                    break
                 if hasattr(page, 'tasks'):
                     if page.tasks:
                         print('すでにtasksがあります')

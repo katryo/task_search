@@ -1,3 +1,4 @@
+# coding: utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from sim_calculator import SimCalculator
 from task_graph_evaluator import TaskGraphEvaluator
@@ -28,6 +29,7 @@ class PartOfTaskUniter(AbstractTaskGraphManager):
             contribution = float(evaluator.contribution_with_task_name(task_name)[0])
             average_of_contribution = evaluator.contribution_with_cluster(united_new_cluster) / len(united_new_cluster)
             if contribution < average_of_contribution * threshold:
+                print('%sは別ルートの可能性が高いので排除しました' % task_name)
                 united_new_cluster.remove(task_name)
 
         self.task_clusters.append(united_new_cluster)

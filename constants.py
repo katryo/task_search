@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-THRESHOLD_FOR_REMOVING_FROM_PART_OF = 0.5
+THRESHOLD_FOR_REMOVING_FROM_PART_OF = 2.0
 THRESHOLD_FOR_UNITING_IN_PART_OF = 0.4
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_PAGES_O_DIR_NAME = 'fetched_pages_for_original_queries'
@@ -44,7 +44,7 @@ QUERY = 'ビリヤード　プロ　なるには'
 
 QUERIES_1 = '家庭菜園　始める,胃もたれ　防止する,ビリヤード　優勝する,花粉症　対策する,' \
             '保育園　入園させる,犬　育てる,部屋　掃除する,' \
-            'クレー射撃　体験する,ノベルゲーム　完成させる'.split(',')
+            'クレー射撃　体験する'.split(',')
 
 QUERIES_2 = 'カブトムシ　撮影する,鴨肉　食べる,ゴキブリ　対策する,' \
           '子供　なだめる,小学校　受験させる,大学　復学する,アメリカ　留学する,' \

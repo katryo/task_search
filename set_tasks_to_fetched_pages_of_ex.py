@@ -11,7 +11,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForEx()
     pm = PathMover()
 
-    original_queries = ['保育園　入園する']
+    original_queries = ['ノベルゲーム　完成させる']
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
@@ -30,6 +30,7 @@ if __name__ == '__main__':
                 try:
                     page = pfl.load_file(filename)
                 except EOFError:
+                    print('%sをロードできません！' % page.title)
                     break
                 if hasattr(page, 'tasks'):
                     if page.tasks:

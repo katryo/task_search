@@ -26,6 +26,8 @@ class TaskSearchResultSorter(object):
                 results.append((self.part_ofs.pop(0), 'PART-OF'))
             else:
                 results.append((self.instance_ofs.pop(0), 'INSTANCE-OF'))
+        if not results:
+            pdb.set_trace()
         return results
 
     def _p_is_higher(self, top_of_i, top_of_p):

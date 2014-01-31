@@ -24,8 +24,6 @@ if __name__ == '__main__':
         pfs.save_answerer_with_query(first_answerer, query)
         first_answerer.set_task_scores()
         pfs.save_answerer_with_query(first_answerer, query)
-        if not first_answerer.graph.nodes:
-            pdb.set_trace()
         first_answerer.set_united_results()
         pfs.save_answerer_with_query(first_answerer, query)
         printer = AnswererPrinter(answerer=first_answerer, query=query)

@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 import pdb
 from graph_task_mapper import GraphTaskMapper
-from pickle_file_saver import PickleFileSaver
-from pickle_file_loader import PickleFileLoader
+from pickle_file_saver_for_ex import PickleFileSaverForEx
+from pickle_file_loader_for_ex import PickleFileLoaderForExpandedQuery
 import constants
 
 
 if __name__ == '__main__':
-    original_queries = ['小学校　受験させる']
+    original_queries = ['保育園　入園する']
+    pfs = PickleFileSaverForEx()
+    pfl = PickleFileLoaderForExpandedQuery()
     for query in original_queries:
-        pfl = PickleFileLoader()
-        pages = pfl.load_fetched_pages_of_ex_with_query(query)
+        if pfs.can_find_graph_with_query(query):
+            continue
+        pages = pfl.load_fetched_pages_with_query(query)
         gtm = GraphTaskMapper()
 
         for i, page in enumerate(pages):
@@ -21,5 +24,4 @@ if __name__ == '__main__':
             except AttributeError:
                 break
         print('added all edges!')
-        pfs = PickleFileSaver()
         pfs.save_graph_with_query(obj=gtm.graph, query=query)

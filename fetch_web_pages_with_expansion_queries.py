@@ -15,6 +15,7 @@ if __name__ == '__main__':
         if pfs.can_find_pages_with_query_dir(query.body, query.expansion_words):
             print('%sはもうあります' % query.body)
             continue
+        pdb.set_trace()
         pages = query.search_with_expansion_words()
         pfs.save_pages_with_query(pages_dict=pages,
                                   original_query=query.body)

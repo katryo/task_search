@@ -9,6 +9,8 @@ class TaskClusterClassifierForFirst(AbstractTaskClusterClassifier):
     def clusters_contribution_url_intersections(self, clusters):
         task_name_frequency_pairs = []
         for cluster in clusters:
+            if len(cluster) == 0:
+                continue
             result = self._cluster_contribution_url_intersection(cluster)
             task_name_frequency_pairs.append(result)
         results = self._sorted_by_score(task_name_frequency_pairs)

@@ -22,8 +22,12 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
             for i, filename in enumerate(filenames):
                 if filename == '.DS_Store' or 'graph' in filename:
                     continue
-                page = self.load_file(filename)
-                pages.append(page)
+                try:
+                    page = self.load_file(filename)
+                    print('%sのロードに成功しました！' % filename)
+                    pages.append(page)
+                except EOFError:
+                    print('%sのロードに失敗しました！' % filename)
             pm.go_up()
         pm.go_up()
         pm.go_up()
@@ -31,9 +35,9 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
 
     def load_graph_with_query(self, query):
         pm = PathMover()
-        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
+        pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
         pm.go_or_create_and_go_to(query)
-        graph = self.load_file(query + '_graph.pkl')
+        graph = self.load_file(query + '_graph_first.pkl')
         pm.go_up()
         pm.go_up()
         return graph

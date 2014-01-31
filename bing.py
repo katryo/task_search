@@ -2,6 +2,7 @@
 import urllib
 import requests
 import json
+import pdb
 
 
 class Bing(object):

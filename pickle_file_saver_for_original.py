@@ -26,12 +26,10 @@ class PickleFileSaverForOriginal(PickleFileSaver):
     def save_graph_with_query(self, obj, query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
-        pm.go_or_create_and_go_to('zero')
         pm.go_or_create_and_go_to(query)
-        with open('%s_graph.pkl' % query, 'wb') as f:
+        with open('%s_graph_zero.pkl' % query, 'wb') as f:
             pickle.dump(obj, f)
-            print('%s_graph.pklの保存完了！' % query)
-        pm.go_up()
+            print('%s_graph_zero.pklの保存完了！' % query)
         pm.go_up()
         pm.go_up()
 
@@ -50,13 +48,11 @@ class PickleFileSaverForOriginal(PickleFileSaver):
     def can_find_graph_with_query(self, query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
-        pm.go_or_create_and_go_to('zero')
         pm.go_or_create_and_go_to(query)
-        if os.path.exists(query + '_graph.pkl'):
+        if os.path.exists(query + '_graph_zero.pkl'):
             pm.go_up()
             pm.go_up()
             return True
-        pm.go_up()
         pm.go_up()
         pm.go_up()
         return False

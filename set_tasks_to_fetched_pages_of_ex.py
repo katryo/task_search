@@ -11,7 +11,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForEx()
     pm = PathMover()
 
-    original_queries = ['ノベルゲーム　完成させる']
+    original_queries = constants.QUERIES_2
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
@@ -24,18 +24,20 @@ if __name__ == '__main__':
                 continue
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
+            print('拡張クエリは%sです' % expanded_query)
             for i, filename in enumerate(filenames):
+                print('ファイル名は%sです' % filename)
                 if filename == '.DS_Store':
                     continue
                 try:
                     page = pfl.load_file(filename)
                 except EOFError:
-                    print('%sをロードできません！' % page.title)
+                    print('%sのファイルをロードできません！' % expanded_query)
                     break
                 if hasattr(page, 'tasks'):
                     if page.tasks:
                         print('すでにtasksがあります')
-                        continue
+                        # continue
                 page.set_tasks_from_sentences()
                 print('%s の %i 番目のページにtasksをセットしました！' % (page.query, i))
                 pfs.save_file(obj=page, filename=filename)

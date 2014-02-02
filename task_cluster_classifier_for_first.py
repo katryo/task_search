@@ -26,8 +26,6 @@ class TaskClusterClassifierForFirst(AbstractTaskClusterClassifier):
         task_names = {l for l in cluster}
         url_set = set()
         for task_name in task_names:
-            #if len(task_name) == 1:
-            #    pdb.set_trace()
             aspects = self._aspects_with_task_name(task_name)
             urls = {aspect['url'] for aspect in aspects}
             if not url_set:

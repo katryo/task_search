@@ -6,7 +6,8 @@ from path_mover import PathMover
 import pdb
 
 if __name__ == '__main__':
-    queries = constants.QUERIES_1
+    queries = constants.QUERIES_2
+    #queries = ['保育園　入園させる']
     pfl = PickleFileLoaderForOriginal()
     saver = PickleFileSaverForOriginal()
     pm = PathMover()

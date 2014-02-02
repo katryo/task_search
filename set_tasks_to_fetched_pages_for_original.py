@@ -4,7 +4,7 @@ from pickle_file_saver_for_original import PickleFileSaverForOriginal
 import constants
 
 if __name__ == '__main__':
-    queries = constants.QUERIES_1
+    queries = ['保育園　入園させる']
     for query in queries:
         pfl = PickleFileLoaderForOriginal()
         pages = pfl.load_fetched_pages_with_query(query)

@@ -9,6 +9,7 @@ import pdb
 class PickleFileLoader(object):
     def load_file(self, filename):
         with open(filename, 'rb') as f:
+            print('%sをロードします' % filename)
             try:
                 obj = pickle.load(f)
             except EOFError:

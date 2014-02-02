@@ -8,11 +8,14 @@ import constants
 import pdb
 
 if __name__ == '__main__':
-    queries = constants.QUERIES_1
+    queries = constants.QUERIES_2
     for query in queries:
         pfl = PickleFileLoaderForExpandedQuery()
         pfs = PickleFileSaverForEx()
         g = pfl.load_graph_with_query(query)
+        if not g.nodes():
+            print('%sのグラフに異常があります' % query)
+            continue
         query_task = '_'.join(query.split('　'))
 
         pm = PathMover()

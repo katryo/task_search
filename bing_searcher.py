@@ -9,7 +9,7 @@ class BingSearcher():
         self.query = query
 
     def _search(self, page_num):
-        key = my_keys.MICROSOFT_API_KEY
+        key = my_keys.MICROSOFT_API_KEY_2
         bing = Bing(key)
         items = bing.web_search(self.query, page_num, ['Title', 'Url', 'Description'])
         return items

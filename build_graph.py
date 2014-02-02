@@ -7,12 +7,12 @@ import constants
 
 
 if __name__ == '__main__':
-    original_queries = ['ノベルゲーム　完成させる']
+    original_queries = constants.QUERIES_2
     pfs = PickleFileSaverForEx()
     pfl = PickleFileLoaderForExpandedQuery()
     for query in original_queries:
-        if pfs.can_find_graph_with_query(query):
-            continue
+        #if pfs.can_find_graph_with_query(query):
+            # continue
         pages = pfl.load_fetched_pages_with_query(query)
         gtm = GraphTaskMapper()
 

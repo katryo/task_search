@@ -35,6 +35,7 @@ class TextCombiner(Parenthesis_remover):
         """
         new_m_words = self._try_combine_nouns(m_words)
         # 合致するまで=変化しなくなるまで繰り返す
+        # ただし、20回くらい繰り返したら諦める機能が必要？
         if new_m_words == m_words:
             return m_words
         else:

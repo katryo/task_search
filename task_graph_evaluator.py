@@ -17,7 +17,7 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
                                     multiplier_for_official=2.0,
                                     multiplier_for_shopping=0.5):
         aspects = self._aspects_with_task_name(task_name)
-        score_for_task = 0
+        score_for_task = 0.0
         used_urls = set()
         for aspect in aspects:
             score_for_aspect = 1
@@ -27,6 +27,7 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
                 score_for_aspect *= multiplier_for_shopping
             score_for_task += score_for_aspect
             used_urls.add(aspect['url'])
+        print('%sの貢献度は%fです' % (task_name, score_for_task))
         return score_for_task, used_urls
 
     # 1クラスターの貢献度

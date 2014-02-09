@@ -36,13 +36,13 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
         return pages
 
     def load_graph_with_query(self, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        graph = self.load_file(query + '_graph_first.pkl')
-        pm.go_up()
-        pm.go_up()
-        return graph
+        graph_path = os.path.join(constants.GRAPH_DIR_NAME, query)
+        for dirpath, dirnames, filenames in os.walk(graph_path):
+            for filename in filenames:
+                if filename == query + '_graph_first.pkl':
+                    filepath = os.path.join(dirpath, filename)
+                    graph = self.load_file(filepath)
+                    return graph
 
     def load_answerer_with_query(self, query):
         pm = PathMover()

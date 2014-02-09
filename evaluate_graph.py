@@ -19,7 +19,6 @@ if __name__ == '__main__':
             continue
         query_task = '_'.join(query.split('　'))
 
-        pm = PathMover()
 
         first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
         first_answerer.set_result_tasks()
@@ -30,6 +29,7 @@ if __name__ == '__main__':
         pfs.save_answerer_with_query(first_answerer, query)
         printer = AnswererPrinter(answerer=first_answerer, query=query)
 
+        pm = PathMover()
         pm.go_or_create_and_go_to('results')
         pm.go_or_create_and_go_to(query)
 

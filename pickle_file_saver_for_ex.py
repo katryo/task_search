@@ -24,14 +24,14 @@ class PickleFileSaverForEx(PickleFileSaver):
             print('%sの%i番目のセーブに成功しました！' % (page.query, i))
 
     def save_answerer_with_query(self, answerer, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.ANSWERER_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        with open('%s_answerer_first.pkl' % query, 'wb') as f:
-            pickle.dump(answerer, f)
-            print('%s_answerer_first.pklの保存完了！' % query)
-        pm.go_up()
-        pm.go_up()
+        path = os.path.join(constants.ANSWERER_DIR_NAME, query)
+        for dirpath, dirnames, filenames in os.walk(path):
+            for filename in filenames:
+                if filename == '%s_answerer_first.pkl' % query:
+                    filepath = os.path.join(dirpath, filename)
+                    with open(filepath, 'wb') as f:
+                        pickle.dump(answerer, f)
+                        print('%s_answerer_first.pklの保存完了！' % query)
 
     def can_find_graph_with_query(self, query):
         pm = PathMover()

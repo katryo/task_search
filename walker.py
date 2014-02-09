@@ -12,15 +12,12 @@ class Walker(object):
         with open(tex_pathname, 'w') as f:
             f.write(result)
 
-    def move(self, target_type):
-        for dirpath, dirnames, filenames in os.walk(target_type):
-            for filename in filenames:
-                if '.txt' in filename:
-                    path = os.path.join(dirpath, filename)
-
+    def move(self, target_dirname):
+        # target_dirname => 'fetched_pages' or 'graph'
+        for dirpath, dirnames, filenames in os.walk(target_dirname):
             for dirname in dirnames:
-                for d_dirpath, d_dirnames, d_filenames in os.walk('src/%s' % dirname):
+                # dirname => '花粉症　対策する'
+                deeper_dirname = os.path.join(target_dirname, dirname)
+                for d_dirpath, d_dirnames, d_filenames in os.walk(deeper_dirname):
                     for d_filename in d_filenames:
-                        if '.txt' in d_filename:
-                            path = os.path.join(d_dirpath, d_filename)
-
+                        if '.pkl' in d_filename:

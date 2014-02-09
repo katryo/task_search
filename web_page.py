@@ -22,6 +22,9 @@ class WebPage(WebItem):
         self.snippet = snippet
         self.sentences = []
 
+    def _set_subtypes(self):
+        self.subtypes = self._subtypes()
+
     def _subtypes(self):
         """
         nounの下位語を探している。
@@ -90,6 +93,7 @@ class WebPage(WebItem):
         """
         results = []
         order = 0
+        self._set_subtypes()
         for i, sentence in enumerate(self.sentences):
             if type(sentence) == str:
                 sentence = Sentence(text=sentence, query=self.query)
@@ -104,13 +108,15 @@ class WebPage(WebItem):
             if object_term.core_noun in constants.STOPWORDS_OF_WEBPAGE_NOUN:
                 continue
 
-
-            distance = self._distance_between_subtype(i)
+            distance_between_subtypes = {}
+            for subtype in self.subtypes:
+                distance = self._distance_between_subtype(i, subtype=subtype)
+                distance_between_subtypes[subtype] = distance
 
             task = Task(object_term=object_term,
                         cmp=sentence.cmp,
                         predicate_term=sentence.verb,
-                        distance_between_subtype=distance,
+                        distance_between_subtypes=distance_between_subtypes,
                         query=self.query,
                         order=order,
                         url=self.url,
@@ -122,12 +128,11 @@ class WebPage(WebItem):
         return results
 
     def _distance_between_subtype(self, i, subtype):
-        subtypes = self._subtypes()
         # subtype記述がないときは、default_distance_between_task_and_subtypeが与えられる。
-        if not subtype in subtypes:
+        if not subtype in self.subtypes:
             return constants.DEFAULT_DISTANCE_BETWEEN_TASK_AND_SUBTYPE
 
-        subtype_i = subtypes[subtype]
+        subtype_i = self.subtypes[subtype]
         return i - subtype_i
 
     def snippet_without_parenthesis(self):

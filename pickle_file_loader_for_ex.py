@@ -3,7 +3,6 @@ from pickle_file_loader import PickleFileLoader
 from path_mover import PathMover
 import constants
 import os
-import pickle
 import pdb
 
 

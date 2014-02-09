@@ -7,12 +7,31 @@ from base_sqlite_manager import BaseSQLiteManager
 class TaskDataInserter(BaseSQLiteManager):
     def __init__(self, db_name='tasks.sqlite', table_name='tasks'):
         super().__init__(db_name, table_name)
+        self._create_table()
+
+    def _create_table(self):
+        sql = 'create table if not exists tasks(' \
+              'id integer primary key autoincrement,' \
+              'query text,' \
+              'url text,' \
+              'noun text,' \
+              'cmp text,' \
+              'verb text' \
+              ');'
+        try:
+            self.cur.execute(sql)
+        except sqlite3.OperationalError:
+            pdb.set_trace()
+
 
     def has(self, query, url, noun, cmp, verb):
         sql = 'select * from  tasks where exists(' \
               'select * from  tasks where query = "%s" and url = "%s" and noun = "%s" and cmp = "%s" and verb = "%s"' \
               ')' % (query, url, noun, cmp, verb)
-        self.cur.execute(sql)
+        try:
+            self.cur.execute(sql)
+        except sqlite3.OperationalError:
+            return False
         if self.cur.fetchall():
             return True
         return False

@@ -19,11 +19,11 @@ class Task(object):
         with TaskDataInserter() as tdi:
             if not tdi.has(query=self.query,
                            url=self.url,
-                           noun=self.object_term,
+                           noun=self.object_term.core_noun,
                            cmp=self.cmp,
                            verb=self.predicate_term):
                 tdi.insert(query=self.query,
                            url=self.url,
-                           noun=self.object_term,
+                           noun=self.object_term.core_noun,
                            cmp=self.cmp,
                            verb=self.predicate_term)

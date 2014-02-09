@@ -3,7 +3,7 @@ entailment.sqlite
 hyponym_hypernym.sqlite
 
 *.pkl
-
+*.sqlite
 fetched_ads/*
 fetched_ads/
 results/

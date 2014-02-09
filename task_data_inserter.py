@@ -3,7 +3,6 @@ import sqlite3
 import pdb
 from base_sqlite_manager import BaseSQLiteManager
 
-
 class TaskDataInserter(BaseSQLiteManager):
     def __init__(self, db_name='tasks.sqlite', table_name='tasks'):
         super().__init__(db_name, table_name)

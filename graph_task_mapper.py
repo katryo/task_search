@@ -67,6 +67,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         """
         もし1ページ内に順序があればorder=1から始まる値を与える。
         """
+        if task.is_noise():
+            return
         hypes = self._hypes(task)
         nouns = {'hypes': hypes}
         # hypesのときには、edgeにhypeエッジを与える必要ある？　subtype-ofを発見するために。

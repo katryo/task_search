@@ -8,8 +8,16 @@ import pdb
 
 class PickleFileLoaderForExpandedQuery(PickleFileLoader):
     def load_fetched_pages_with_query(self, query):
+        pages = self._load_with_query_and_dirname(query, constants.FETCHED_PAGES_DIR_NAME)
+        return pages
+
+    def load_pages_with_task_with_query(self, query):
+        pages = self._load_with_query_and_dirname(query, constants.FETCHED_PAGES_WITH_TASK_FOR_EX_DIR_NAME)
+        return pages
+
+    def _load_with_query_and_dirname(self, query, dirname_for_pages):
         pages = []
-        for dirpath, dirnames, filenames in os.walk(constants.FETCHED_PAGES_DIR_NAME):
+        for dirpath, dirnames, filenames in os.walk(dirname_for_pages):
             original_query_dirpath = os.path.join(dirpath, query)
             for d_dirpath, d_dirnames, d_filenames in os.walk(original_query_dirpath):
                 for expanded_query in d_dirnames:

@@ -8,6 +8,21 @@ from pickle_file_saver import PickleFileSaver
 
 
 class PickleFileSaverForEx(PickleFileSaver):
+    def save_page_with_original_query(self, page, original_query, i):
+        original_query_dirpath = os.path.join(constants.FETCHED_PAGES_WITH_TASK_FOR_EX_DIR_NAME, original_query)
+        if not os.path.exists(original_query_dirpath):
+            os.mkdir(original_query_dirpath)
+        expanded_query_dirpath = os.path.join(constants.FETCHED_PAGES_WITH_TASK_FOR_EX_DIR_NAME, original_query, page.query)
+        if not os.path.exists(expanded_query_dirpath):
+            os.mkdir(expanded_query_dirpath)
+        for dirpath, dirnames, filenames in os.walk(expanded_query_dirpath):
+            if page.title in filenames:
+                return  #すでに保存してある
+            filepath = os.path.join(dirpath, page.query, str(i))
+            page = self.save_file(obj=page, filename=filepath)
+            print('%sの%i番目のセーブに成功しました！' % (page.query, i))
+            pdb.set_trace()
+
     def save_answerer_with_query(self, answerer, query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.ANSWERER_DIR_NAME)

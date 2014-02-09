@@ -13,6 +13,18 @@ if __name__ == '__main__':
     pm = PathMover()
 
     original_queries = constants.QUERIES_1
+    for i, query in enumerate(original_queries):
+        pages = pfl.load_fetched_pages_with_query(query)
+        for page in pages:
+            if hasattr(page, 'tasks'):
+                if page.tasks:
+                    print('すでにtasksがあります')
+                    # continue
+            page.set_tasks_from_sentences()
+            print('%s の %i 番目のページにtasksをセットしました！' % (page.query, i))
+            pfs.save_page_with_original_query(page=page, original_query=query, i=i)
+    pdb.set_trace()
+
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:

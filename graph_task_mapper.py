@@ -13,6 +13,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
     def _add_new_node(self,
                       object_term,
                       predicate_term,
+                      cmp,
                       order,
                       url,
                       is_original=False,
@@ -21,7 +22,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         if self._has_stop_object_term(object_term):
             return False
 
-        task_name = '%s_%s' % (object_term, predicate_term)
+        task_name = '%s_%s_%s' % (object_term, cmp, predicate_term)
         new_aspect = {
                 'order': order,
                 'url': url,
@@ -46,10 +47,10 @@ class GraphTaskMapper(AbstractTaskGraphManager):
             return False
         if type(noun) == list or type(task.object_term.core_noun) == list:
             pdb.set_trace()
-        self.graph.add_edge('%s_%s' %
-                            (task.object_term.core_noun, task.predicate_term),
-                            '%s_%s' %
-                            (noun, verb),
+        self.graph.add_edge('%s_%s_%s' %
+                            (task.object_term.core_noun, task.cmp, task.predicate_term),
+                            '%s_%s_%s' %
+                            (noun, task.cmp, verb),
                             entailment_type=entailment_type,
                             is_hype=is_hype)
 
@@ -76,6 +77,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         verbs = self._broader_preds(task)
         verbs['original'] = tuple([original_verb])
 
+        cmp = task.cmp
+
         # 上位語・下位語が揃った。
         for hype_type in nouns:
             for noun in nouns[hype_type]:
@@ -88,6 +91,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                             is_original = False
                         self._add_new_node(object_term=noun,
                                            predicate_term=verb,
+                                           cmp=cmp,
                                            order=task.order,
                                            url=task.url,
                                            is_original=is_original,

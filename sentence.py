@@ -3,6 +3,7 @@ from labelable import Labelable
 import constants
 import re
 import pdb
+import CaboCha
 from sentence_classifier import SentenceClassifier
 from text_combiner import TextCombiner
 

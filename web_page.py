@@ -76,9 +76,7 @@ class WebPage(WebItem):
                         is_shopping=self.is_shopping(),
                         is_official=self.is_official())
             results.append(task)
-            if task.object_term.name == 'ましょ':
-                pdb.set_trace()
-            print('%s_%sというタスクをセットしました' % (sentence.noun, sentence.verb))
+            print('%s_%s_%sというタスクをセットしました' % (sentence.noun, sentence.cmp, sentence.verb))
             order += 1 # 登場の順番
         return results
 

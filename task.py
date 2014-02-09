@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from object_term import ObjectTerm
 import pdb
+from task_data_inserter import TaskDataInserter
 
 
 class Task(object):
@@ -15,4 +15,14 @@ class Task(object):
         self.is_shopping = is_shopping
         self.is_official = is_official
 
-
+        tdi = TaskDataInserter()
+        if not tdi.has(query=self.query,
+                       url=self.url,
+                       noun=object_term,
+                       cmp=cmp,
+                       verb=predicate_term):
+            tdi.insert(query=self.query,
+                       url=self.url,
+                       noun=object_term,
+                       cmp=cmp,
+                       verb=predicate_term)

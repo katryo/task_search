@@ -7,7 +7,7 @@ import constants
 
 
 if __name__ == '__main__':
-    original_queries = constants.QUERIES_2
+    original_queries = constants.QUERIES_1
     pfs = PickleFileSaverForEx()
     pfl = PickleFileLoaderForExpandedQuery()
     for query in original_queries:

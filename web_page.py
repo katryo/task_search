@@ -22,21 +22,21 @@ class WebPage(WebItem):
         self.snippet = snippet
         self.sentences = []
 
-    def _subtype_indexes(self):
+    def _subtypes(self):
         """
         nounの下位語を探している。
         """
         if not hasattr(self, 'query_noun'):
             self._convert_query_from_nv_to_ncv()
-        indexes = []
+        subtypes = {}
         with HypoHypeDBDataLoader() as loader:
             subtype_nouns = loader.select_hypos_with_hype(self.query_noun)
 
         for i, sentence in enumerate(self.sentences):
             for noun in subtype_nouns:
                 if noun in sentence.body:
-                    indexes.append(i)
-        return indexes
+                    subtypes[noun] = i
+        return subtypes  # {'シャワールーム': 12, 'トイレ': 93, ...}
 
     def _subtype_verbs(self):
         """
@@ -121,37 +121,14 @@ class WebPage(WebItem):
             order += 1 # 登場の順番
         return results
 
-    def _distance_between_subtype(self, i):
-        indexes = self._subtype_indexes()
+    def _distance_between_subtype(self, i, subtype):
+        subtypes = self._subtypes()
         # subtype記述がないときは、default_distance_between_task_and_subtypeが与えられる。
-        if not indexes:
+        if not subtype in subtypes:
             return constants.DEFAULT_DISTANCE_BETWEEN_TASK_AND_SUBTYPE
 
-        negative_max = 0
-        positive_min = 0
-        for index in indexes:
-            # subtype記述のある行であれば、0
-            if i == index:
-                return 0
-
-            # subtype記述のあとのときは正の数字で、最小のもの
-            if index < i:
-                distance = i - index
-                if positive_min > distance:
-                    positive_min = distance
-
-            # subtype記述の前のときは、負の数字で、最大のもの
-            if index > i:
-                distance = i - index # distanceは負
-                if negative_max < distance:
-                    negative_max = distance
-
-        # 正の距離があるときは正の距離を返す
-        # 正の距離がなかったときつまりsubtypeの前がタスクだったときは負の距離を返す
-
-        if positive_min > 0:
-            return positive_min
-        return negative_max
+        subtype_i = subtypes[subtype]
+        return i - subtype_i
 
     def snippet_without_parenthesis(self):
         pr = Parenthesis_remover()

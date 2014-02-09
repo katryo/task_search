@@ -22,25 +22,28 @@ class WebPage(WebItem):
         self.snippet = snippet
         self.sentences = []
 
-    def subtype_indexes(self):
+    def _subtype_indexes(self):
         """
-        nounとverbの下位語を探している。
+        nounの下位語を探している。
         """
-        self._convert_query_from_nv_to_ncv()
+        if not hasattr(self, 'query_noun'):
+            self._convert_query_from_nv_to_ncv()
         indexes = []
         with HypoHypeDBDataLoader() as loader:
             subtype_nouns = loader.select_hypos_with_hype(self.query_noun)
-        librarian = EntailmentLibrarian()
-        subtype_verbs = librarian.entailed_from_all_dictionaries_with_entailing(self.query_verb)
 
         for i, sentence in enumerate(self.sentences):
             for noun in subtype_nouns:
                 if noun in sentence.body:
                     indexes.append(i)
-            for verb in subtype_verbs:
-                if verb in sentence.body:
-                    indexes.append(i)
         return indexes
+
+    def _subtype_verbs(self):
+        """
+        とりあえずは使わない。nounだけでsubtypeは十分と判断。
+        """
+        librarian = EntailmentLibrarian()
+        return librarian.entailed_from_all_dictionaries_with_entailing(self.query_verb)
 
     def _convert_query_from_nv_to_ncv(self):
         words = self.query.split('　')

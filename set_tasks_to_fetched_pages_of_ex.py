@@ -19,14 +19,14 @@ if __name__ == '__main__':
         pm.go_or_create_and_go_to(original_query)
         expanded_queries = os.listdir()
         for expanded_query in expanded_queries:
-            if expanded_query == '.DS_Store':
+            if expanded_query == '.DS_Store' or expanded_query == 'tasks.sqlite':
                 continue
             pm.go_or_create_and_go_to(expanded_query)
             filenames = os.listdir()
             print('拡張クエリは%sです' % expanded_query)
             for i, filename in enumerate(filenames):
                 print('ファイル名は%sです' % filename)
-                if filename == '.DS_Store':
+                if filename == '.DS_Store' or expanded_query == 'tasks.sqlite':
                     continue
                 try:
                     page = pfl.load_file(filename)

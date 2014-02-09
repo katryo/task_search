@@ -8,21 +8,22 @@ class Task(object):
                  is_shopping=False, is_official=False):
         self.object_term = object_term
         self.predicate_term = predicate_term
-        self.query = query  # いらないのでは
+        self.query = query
         self.cmp = cmp
         self.order = order
         self.url = url
         self.is_shopping = is_shopping
         self.is_official = is_official
 
-        tdi = TaskDataInserter()
-        if not tdi.has(query=self.query,
-                       url=self.url,
-                       noun=object_term,
-                       cmp=cmp,
-                       verb=predicate_term):
-            tdi.insert(query=self.query,
-                       url=self.url,
-                       noun=object_term,
-                       cmp=cmp,
-                       verb=predicate_term)
+    def insert_task_to_database(self):
+        with TaskDataInserter() as tdi:
+            if not tdi.has(query=self.query,
+                           url=self.url,
+                           noun=self.object_term,
+                           cmp=self.cmp,
+                           verb=self.predicate_term):
+                tdi.insert(query=self.query,
+                           url=self.url,
+                           noun=self.object_term,
+                           cmp=self.cmp,
+                           verb=self.predicate_term)

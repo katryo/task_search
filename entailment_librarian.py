@@ -26,8 +26,7 @@ class EntailmentLibrarian(object):
         if entailed in self.used_results_by_specials:
             print('%sはすでにエンテイルメントを調べていました！' % entailed)
             return self.used_results_by_specials[entailed]
-        results = self.entailed_from_all_dictionaries_with_entailing(entailed)
-        del(results['nonentailment_ntriv'])
+        results = self.entailing_from_all_dictionaries_with_entailed(entailed)
         print('%sのエンテイルメントの調査完了！' % entailed)
         self.used_results_by_specials[entailed] = results
         return results

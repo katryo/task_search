@@ -4,7 +4,7 @@ from pickle_file_loader_for_ex import PickleFileLoaderForExpandedQuery
 
 if __name__ == '__main__':
     loader = PickleFileLoaderForExpandedQuery()
-    pages = loader.load_pages_with_task_with_query('犬　育てる')
+    pages = loader.load_pages_with_task_with_query('部屋　掃除する')
     subtype_nouns = {}
     for page in pages:
         for subtype in page.subtypes:
@@ -26,6 +26,6 @@ if __name__ == '__main__':
             task_string = '%s%s%s' % (task.object_term.core_noun,
                                       task.cmp,
                                       task.predicate_term)
-            print(task_string)
+            #print(task_string)
         print('=======')
 

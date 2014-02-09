@@ -16,6 +16,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                       cmp,
                       order,
                       url,
+                      distance_between_subtypes,
                       is_original=False,
                       is_shopping=False,
                       is_official=False):
@@ -26,6 +27,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         new_aspect = {
                 'order': order,
                 'url': url,
+                'distance_between_subtypes': distance_between_subtypes,
                 'is_original': is_original,
                 'is_shopping': is_shopping,
                 'is_official': is_official
@@ -96,6 +98,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                                            cmp=cmp,
                                            order=task.order,
                                            url=task.url,
+                                           distance_between_subtypes=task.distance_between_subtypes,
                                            is_original=is_original,
                                            is_shopping=task.is_shopping,
                                            is_official=task.is_official)

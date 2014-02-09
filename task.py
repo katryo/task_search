@@ -5,10 +5,12 @@ from task_database_selector import TaskDatabaseSelector
 
 
 class Task(object):
-    def __init__(self, object_term, cmp='を', predicate_term='', query='', order=0, url='',
+    def __init__(self, distance_between_subtype, object_term, cmp='を', predicate_term='',
+                  query='', order=0, url='',
                  is_shopping=False, is_official=False):
         self.object_term = object_term
         self.predicate_term = predicate_term
+        self.distance_between_subtype = distance_between_subtype
         self.query = query
         self.cmp = cmp
         self.order = order

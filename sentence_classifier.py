@@ -44,22 +44,22 @@ class SentenceClassifier():
         self.m_body_words = sentence.m_body_words
 
     def direction_r_i(self):
-        result_1 = self.cleared_one_hurdle_problem_r_i()
+        result_1 = self._cleared_one_hurdle_problem_r_i()
         if result_1:
             return result_1
-        result_2 = self.cleared_two_hurdle_problem_r_i()
+        result_2 = self._cleared_two_hurdle_problem_r_i()
         if result_2:
             return result_2
         return False
 
-    def one_hurdle_problem_word_infos(self):
+    def _one_hurdle_problem_word_infos(self):
         prob_1 = 'ください\t動詞,非自立,*,*,五段・ラ行特殊,命令ｉ,くださる,クダサイ,クダサイ'
         prob_2 = '下さい\t動詞,非自立,*,*,五段・ラ行特殊,命令ｉ,下さる,クダサイ,クダサイ'
         prob_3 = 'なさい\t動詞,非自立,*,*,五段・ラ行特殊,命令ｉ,なさる,ナサイ,ナサイ'
         prob_4 = 'べき\t助動詞,*,*,*,文語・ベシ,体言接続,べし,ベキ,ベキ'
         return [prob_1, prob_2, prob_3, prob_4]
 
-    def two_hurdle_problem_word_infos(self):
+    def _two_hurdle_problem_word_infos(self):
         prob_1_1 = 'ましょ\t助動詞,*,*,*,特殊・マス,未然ウ接続,ます,マショ,マショ'
         prob_1_2 = 'う\t助動詞,*,*,*,不変化型,基本形,う,ウ,ウ'
 
@@ -89,25 +89,25 @@ class SentenceClassifier():
                 [prob_6_1, prob_6_2],
                 [prob_7_1, prob_7_2]]
 
-    def cleared_one_hurdle_problem_r_i(self):
+    def _cleared_one_hurdle_problem_r_i(self):
         """
         self.m_body_wordsを見て、1つハードルの問題を突破できるか調べる。
         突破できればそのindexを、できなければFalseを返す
         こっちはreversedが楽。
         """
         for i, m_word in enumerate(reversed(self.m_body_words)):
-            for direction_info in self.one_hurdle_problem_word_infos():
+            for direction_info in self._one_hurdle_problem_word_infos():
                 if m_word.word_info == direction_info:
                     return i
         return False
 
-    def cleared_two_hurdle_problem_r_i(self):
+    def _cleared_two_hurdle_problem_r_i(self):
         """
         2つハードルの問題をクリアできたらその前半のindexを、
         クリアできなかったらFalseを返す
         """
         for i, m_word in enumerate(reversed(self.m_body_words)):
-            for direction_infos in self.two_hurdle_problem_word_infos():
+            for direction_infos in self._two_hurdle_problem_word_infos():
                 if m_word.word_info == direction_infos[0]:
                     if self.m_body_words[-i].word_info == direction_infos[1]:
                         return i

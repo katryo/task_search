@@ -46,7 +46,7 @@ class Sentence(Labelable):
         except IndexError:  # len(before_wo)が小さいときはここに来る
             return last_m.name
 
-    def core_predicate(self):
+    def _core_predicate(self):
         m_words_after_cmp = self.m_words_after_cmp()
         for i, m_word in enumerate(m_words_after_cmp):
             if m_word.type == '動詞':
@@ -81,17 +81,12 @@ class Sentence(Labelable):
                 return m_word.stem
         return ''
 
-
-
     def set_noun_verb_if_good_task(self):
         if self._is_invalid_for_task():
             return False
         #  ひらがな・カタカナひともじのときはフィルタ
         pattern = re.compile('^[ぁ-んァ-ン]$')
         noun = self._core_object()
-        if noun == 'ましょ':
-            pdb.set_trace()
-
 
         if not noun:  # ''かも
             return False
@@ -99,7 +94,7 @@ class Sentence(Labelable):
         if pattern.match(noun):
             return False
 
-        predicate_term = self.core_predicate()
+        predicate_term = self._core_predicate()
         if not predicate_term:  # ''かも
             return False
         if predicate_term == '?':
@@ -114,9 +109,6 @@ class Sentence(Labelable):
         self.noun = noun
         self.verb = predicate_term
         return True
-
-
-
 
     def _is_invalid_for_task(self):
         if self._core_noun_is_block_word():

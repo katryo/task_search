@@ -68,7 +68,7 @@ class WebPage(WebItem):
                 continue
 
             task = Task(object_term=object_term,
-                        # cmp=sentence.cmp,
+                        cmp=sentence.cmp,
                         predicate_term=sentence.verb,
                         query=self.query,
                         order=order,

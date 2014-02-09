@@ -8,19 +8,18 @@ import constants
 import pdb
 
 if __name__ == '__main__':
-    queries = constants.QUERIES_2
+    queries = ['クレー射撃　体験する']
     for query in queries:
         pfl = PickleFileLoaderForExpandedQuery()
         pfs = PickleFileSaverForEx()
         g = pfl.load_graph_with_query(query)
+
         if not g.nodes():
             print('%sのグラフに異常があります' % query)
             continue
         query_task = '_'.join(query.split('　'))
 
         pm = PathMover()
-
-        print('firstの結果です')
 
         first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
         first_answerer.set_result_tasks()

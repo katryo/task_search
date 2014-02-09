@@ -15,6 +15,10 @@ fetched_pages/
 fetched_pages/*
 fetched_pages/~
 
+fetched_pages_with_task_for_expanded_queries/
+fetched_pages_with_task_for_expanded_queries/*
+fetched_pages_with_task_for_expanded_queries/~
+
 graphed_fetched_pages/
 graphed_fetched_pages/*
 graphed_fetched_pages/~

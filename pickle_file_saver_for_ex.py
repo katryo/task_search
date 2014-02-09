@@ -18,10 +18,10 @@ class PickleFileSaverForEx(PickleFileSaver):
         for dirpath, dirnames, filenames in os.walk(expanded_query_dirpath):
             if page.title in filenames:
                 return  #すでに保存してある
-            filepath = os.path.join(dirpath, page.query, str(i))
-            page = self.save_file(obj=page, filename=filepath)
+            filename = '%s_%i.pkl' % (page.query, i)
+            filepath = os.path.join(dirpath, filename)
+            self.save_file(obj=page, filename=filepath)
             print('%sの%i番目のセーブに成功しました！' % (page.query, i))
-            pdb.set_trace()
 
     def save_answerer_with_query(self, answerer, query):
         pm = PathMover()

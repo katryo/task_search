@@ -1,3 +1,4 @@
+#coding: utf-8
 import constants
 import pdb
 from entailment_db_data_loader import EntailmentDBDataLoader
@@ -32,12 +33,23 @@ class EntailmentLibrarian(object):
         return results
 
     def entailed_from_all_dictionaries_with_entailing(self, entailing):
-        results = dict()
+        dicts = dict()
         for dictionary_name in self.dictionary_names:
             with EntailmentDBDataLoader(table_name=dictionary_name) as loader:
                 result = loader.entailed_with_entailing(entailing)
-                results[dictionary_name] = result
-        return results
+                dicts[dictionary_name] = result
+        terms = set()
+        """
+        # dicts => {'nonentailment_anton': [],
+        #  'nonentailment_triv': [], 'nonentailment_predi': [],
+        #  'entailment_triv': [], 'nonentailment_ntriv': ('掃く',),
+        # 'entailment_acrac': [], 'entailment_presu': [],
+        #  'entailment_ntriv': ('清掃する',)}
+        """
+        for dictionary_name in dicts:
+            for item in dicts[dictionary_name]:
+                terms.add(item)
+        return terms  # => {'', '', ...}
 
 if __name__ == '__main__':
     librarian = EntailmentLibrarian()

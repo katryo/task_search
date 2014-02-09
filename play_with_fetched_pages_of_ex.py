@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import pdb
 import constants
-from pickle_file_loader import PickleFileLoader
+from pickle_file_loader_for_ex import PickleFileLoaderForExpandedQuery
 
 if __name__ == '__main__':
-    loader = PickleFileLoader()
-    pages = loader.load_fetched_pages_with_query_and_expansion_word('春　楽しむ', '')
+    loader = PickleFileLoaderForExpandedQuery()
+    pages = loader.load_fetched_pages_with_query('部屋　掃除する')
+    for page in pages:
+        indexes = page.subtype_indexes()
+        print(indexes)
     pdb.set_trace()

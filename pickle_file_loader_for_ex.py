@@ -51,31 +51,3 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
         pm.go_up()
         return graph
 
-
-#---不要？
-
-    def load_fetched_pages_with_query_and_expansion_word(self, query, expansion_word):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        if expansion_word == '':
-            pm.go_or_create_and_go_to(query)
-        else:
-            pm.go_or_create_and_go_to(query + '　' + expansion_word)
-
-        filenames = os.listdir()
-        pages = []
-        for filename in filenames:
-            if filename == '.DS_Store':
-                continue
-            try:
-                with open(filename, 'rb') as f:
-                    page = pickle.load(f)
-                    pages.append(page)
-            except IsADirectoryError:
-                pdb.set_trace()
-        pm.go_up()
-        pm.go_up()
-        pm.go_up()
-        return pages
-

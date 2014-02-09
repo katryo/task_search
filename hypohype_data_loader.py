@@ -42,7 +42,9 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
             return self.used_hypo_results[hype]
         sql = 'select hyponym, score from  all_hyponymy where hypernym = "%s" limit 500' % hype
         self.cur.execute(sql)
+        print('%sを実行！' % sql)
         results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
+        self.used_hype_results[hype] = results
         return results
 
     def has(self, hypernym, hyponym):

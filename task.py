@@ -30,12 +30,19 @@ class Task(object):
                            verb=self.predicate_term)
 
     def is_noise(self):
-        threshold = 0.5
+        threshold = 0.7
         selector = TaskDatabaseSelector()
         num_of_queries = selector.num_of_queries()
-        num_of_queries_contain_noun = selector.num_or_queries_contain_noun(self.object_term.core_noun)
+        num_of_queries_contain_self = selector.num_of_queries_contain_noun(
+            self.object_term.core_noun
+        )
 
-        ratio = num_of_queries_contain_noun / num_of_queries
+        ratio = num_of_queries_contain_self / num_of_queries
         if ratio > threshold:
+            print('%s_%s_%sはノイズです' % (
+                self.object_term.core_noun,
+                self.cmp,
+                self.predicate_term)
+            )
             return True
         return False

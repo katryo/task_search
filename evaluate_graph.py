@@ -8,7 +8,7 @@ import constants
 import pdb
 
 if __name__ == '__main__':
-    queries = ['クレー射撃　体験する']
+    queries = ['部屋　掃除する']
     for query in queries:
         pfl = PickleFileLoaderForExpandedQuery()
         pfs = PickleFileSaverForEx()

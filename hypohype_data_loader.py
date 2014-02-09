@@ -10,6 +10,7 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
     def __init__(self, db_name='hyponym_hypernym.sqlite', table_name='all_hyponymy'):
         super().__init__(db_name, table_name)
         self.used_hypo_results = dict()
+        self.used_hype_results = dict()
 
     def select_hypes_with_hypo(self, hypo):
         if hypo in self.used_hypo_results:
@@ -36,7 +37,10 @@ class HypoHypeDBDataLoader(BaseSQLiteManager, SQLiteDataLoadable):
         return hypes
 
     def select_hypos_with_hype(self, hype):
-        sql = 'select hyponym, score from  all_hyponymy where hypernym = "%s" limit 100' % hype
+        if hype in self.used_hype_results:
+            print('%sはすでにselectしていました！' % hype)
+            return self.used_hypo_results[hype]
+        sql = 'select hyponym, score from  all_hyponymy where hypernym = "%s" limit 500' % hype
         self.cur.execute(sql)
         results = [tpl[0] for tpl in self.cur.fetchall() if tpl[1] > 0]
         return results

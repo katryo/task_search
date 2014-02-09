@@ -10,14 +10,45 @@ from sentence_separator import SentenceSeparator
 from task import Task
 from node import Node
 from object_term import ObjectTerm
+from hypohype_data_loader import HypoHypeDBDataLoader
+from entailment_librarian import EntailmentLibrarian
 
 
 class WebPage(WebItem):
     def __init__(self, url='unknown', query='', snippet=''):
         self.url = url
         self.query = query
+        self._convert_query_from_nv_to_ncv()
         self.snippet = snippet
         self.sentences = []
+
+    def subtype_noun_indexes(self):
+        self._convert_query_from_nv_to_ncv()
+        indexes = []
+        with HypoHypeDBDataLoader() as loader:
+            subtype_nouns = loader.select_hypos_with_hype(self.query_noun)
+        librarian = EntailmentLibrarian
+        subtype_verbs = librarian.entailed_from_all_dictionaries_with_entailing(self.query_verb)
+
+        for i, sentence in enumerate(self.sentences):
+            for noun in subtype_nouns:
+                if noun in sentence:
+                    indexes.append(i)
+            for verb in subtype_verbs:
+                if verb in sentence:
+                    indexes.append(i)
+        return indexes
+
+    def _convert_query_from_nv_to_ncv(self):
+        words = self.query.split('　')
+        if len(words) == 2:
+            self.query_noun = words[0]
+            self.query_cmp = 'を'
+            self.query_verb = words[1]
+        elif len(words) == 3:
+            self.query_noun = words[0]
+            self.query_cmp = words[1]
+            self.query_verb = words[2]
 
     def set_sentences_from_text(self):
         sp = SentenceSeparator(self.text)

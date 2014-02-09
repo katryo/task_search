@@ -2,9 +2,11 @@ TODO
 ===
 
 ### 優先
-- fuzzy c meansでクラスタリング
+- クラスタリング
 - - SUBTYPE-OFタスクを下位語で作る
-- - [x] 下位語との距離と、下位語との共起頻度が素性（subtypeの名前が必要なのでは？）
+- - まずsubtype-of以外の、ほぼ全てのタスクを、subtype下にあるものとquery直下にものとに分ける。
+- - subtype下にあるものは、subtypeのsentenceとの距離で、平均以上に離れているものを排除。マイナスは、プラスの2倍と考える。
+- - query直下のpart-ofは、これまで通りにfrequencyでフィルタする。
 
 ### あと
 

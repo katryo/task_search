@@ -4,7 +4,6 @@ from pickle_file_saver_for_ex import PickleFileSaverForEx
 from task_graph_first_answerer import TaskGraphFirstAnswerer
 from answer_printer import AnswererPrinter
 from path_mover import PathMover
-import constants
 import pdb
 
 if __name__ == '__main__':
@@ -13,6 +12,7 @@ if __name__ == '__main__':
         pfl = PickleFileLoaderForExpandedQuery()
         pfs = PickleFileSaverForEx()
         g = pfl.load_graph_with_query(query)
+        print('ロードしました')
 
         if not g.nodes():
             print('%sのグラフに異常があります' % query)
@@ -20,8 +20,11 @@ if __name__ == '__main__':
         query_task = '_'.join(query.split('　'))
 
 
+        # answererがいらないノードをremoveしてくれてるはず
         first_answerer = TaskGraphFirstAnswerer(graph=g, query_task=query_task)
+        print('answererをinstance化しました')
         first_answerer.set_result_tasks()
+        print('set_result_tasksをしました')
         pfs.save_answerer_with_query(first_answerer, query)
         first_answerer.set_task_scores()
         pfs.save_answerer_with_query(first_answerer, query)

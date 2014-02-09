@@ -11,9 +11,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForEx()
     pfl = PickleFileLoaderForExpandedQuery()
     for query in original_queries:
-        #if pfs.can_find_graph_with_query(query):
-            # continue
-        pages = pfl.load_fetched_pages_with_query(query)
+        pages = pfl.load_pages_with_task_with_query(query)
         gtm = GraphTaskMapper()
 
         for i, page in enumerate(pages):

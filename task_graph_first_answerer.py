@@ -20,6 +20,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     def set_task_scores(self):
         classifier = TaskClusterClassifierForFirst(self.graph)
         self.part_of_task_clusters_scores = classifier.clusters_contribution_url_intersections(self.part_of_task_clusters)
+        pdb.set_trace()
         self.instance_of_task_clusters_scores = classifier.instance_of_task_clusters_higher(self.instance_of_task_clusters)
 
     def set_united_results(self):

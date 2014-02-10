@@ -3,16 +3,33 @@ from abstract_task_graph_manager import AbstractTaskGraphManager
 from sim_calculator import SimCalculator
 from task_graph_evaluator import TaskGraphEvaluator
 import constants
+import pdb
 
 
 class PartOfTaskUniter(AbstractTaskGraphManager):
-    def __init__(self, graph=None, task_clusters={}):
+    """
+    subtypeごとにまとめて、頻度と距離でフィルタリングする。
+    1. そもそもタスク数の少ないsubtypeは除外すべき。
+    なぜならノイズのsubtypeである可能性が高いから。
+    しかし、どうせ最後のscore計算ではじかれる。
+    2. frequencyの少ないタスクは除外すべき。ノイズの可能性が高い。
+    """
+    def __init__(self, graph=None, task_distance_pairs={'旅館': {('温泉_に_入る', 12), ('湯船_に_つかる', -4)}}):
         super().__init__(graph)
-        self.task_clusters = task_clusters
+        self.task_distance_pairs = task_distance_pairs
 
     def unite(self):
+        for subtype in self.task_distance_pairs:
+            print(subtype)
+            for pair in self.task_distance_pairs[subtype]:
+                print(pair)
+        pdb.set_trace()
         self._unite_recursively()
-        return self.task_clusters
+        return self.task_distance_pairs
+
+
+
+#---------旧式---------
 
     def _unite_recursively(self):
         threshold = constants.THRESHOLD_FOR_REMOVING_FROM_PART_OF  # 0.2くらい

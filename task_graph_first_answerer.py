@@ -64,9 +64,9 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
         selector = TaskGraphPartOfSelectorForFirst(self.graph,
                                                    candidate_tasks=self.frequent_original_tasks,
                                                    subtype_of_tasks=self.subtype_of_tasks)
-        tasks = selector.task_distance_pairs()
+        task_distance_pairs = selector.task_distance_pairs()
         # ここでuniteしない。というのは？ subtypeのとき。
-        uniter = PartOfTaskUniter(graph=self.graph, task_clusters=tasks)
+        uniter = PartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
         task_clusters = uniter.unite()
         return task_clusters
 

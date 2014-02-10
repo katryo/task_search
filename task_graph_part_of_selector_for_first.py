@@ -1,6 +1,4 @@
 #coding: utf-8
-from task_cluster import TaskCluster
-from task_graph_edge_finder import TaskGraphEdgeFinder
 from abstract_task_graph_part_of_selector import AbstractTaskGraphPartOfSelector
 import pdb
 
@@ -12,7 +10,6 @@ class TaskGraphPartOfSelectorForFirst(AbstractTaskGraphPartOfSelector):
         """
         task_clusters = {}
         # {'サロン': {'渋谷の部屋_を_探す', ...}, 'オフィス': {}, ...}
-
         for subtype_noun in self.subtype_of_tasks:
             # 高頻度の、subtypeでない、オリジナルのタスクの集合から、同じurlのものかentailment関係にあるものを見つける
             for task_name in self.candidate_tasks:
@@ -26,7 +23,4 @@ class TaskGraphPartOfSelectorForFirst(AbstractTaskGraphPartOfSelector):
                                 task_clusters[subtype_noun].add((task_name, distance))
                             else:
                                 task_clusters[subtype_noun] = set([(task_name, distance)])
-
-                # task_names_listはtask_nameがいるページでまとめたタスクの集合のlist
-        pdb.set_trace()
         return task_clusters

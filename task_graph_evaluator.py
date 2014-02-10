@@ -11,6 +11,9 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
             num_of_appearance += len(aspects)
         return num_of_appearance
 
+    def score_with_task_name(self, task_name):
+        return self.contribution_with_task_name(task_name)
+
     # 1タスクノードの貢献度
     def contribution_with_task_name(self,
                                     task_name,

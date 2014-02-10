@@ -1,6 +1,7 @@
 from sim_calculator import SimCalculator
 import pdb
 
+
 class MMRCalculator(object):
     def __init__(self, graph, scores):
         self.graph = graph
@@ -40,6 +41,7 @@ class MMRCalculator(object):
         for selected in self.scores_selected:
             set_a = selected[0][0]
             sim = sim_calculator.similarity(set_a, set_b)
+            pdb.set_trace()
             if sim >= max_sim:
                 max_sim = sim
         return max_sim

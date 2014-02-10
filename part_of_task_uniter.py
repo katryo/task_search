@@ -24,7 +24,6 @@ class PartOfTaskUniter(AbstractTaskGraphManager):
     def unite(self):
         for subtype in self.task_distance_pairs:
             self._remove_far_tasks_with_subtype(subtype)
-        pdb.set_trace()
         return self.task_distance_pairs
 
     def _remove_far_tasks_with_subtype(self, subtype):

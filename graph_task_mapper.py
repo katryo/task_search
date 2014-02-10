@@ -21,7 +21,7 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                       is_shopping=False,
                       is_official=False):
         if self._has_stop_object_term(object_term):
-            return False
+            return
 
         task_name = '%s_%s_%s' % (object_term, cmp, predicate_term)
         new_aspect = {
@@ -36,6 +36,9 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         if task_name in self.graph.node:
             try:
                 old_aspects = self._aspects_with_task_name(task_name)
+                if new_aspect in old_aspects:
+                    print('このaspectはもうgraphにあります')
+                    return
                 old_aspects.append(new_aspect)
                 new_aspects = old_aspects
             except (KeyError, AttributeError):  # add_edgeでnodeが追加されたあと、nodeとして追加されたときに、ここに来る。

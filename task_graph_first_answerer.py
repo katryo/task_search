@@ -8,18 +8,24 @@ from task_graph_part_of_selector_for_first import TaskGraphPartOfSelectorForFirs
 from task_graph_instance_of_selector import TaskGraphInstanceOfSelector
 from part_of_task_uniter import PartOfTaskUniter
 from task_search_result_sorter import TaskSearchResultSorter
+from part_of_task_scorer import PartOfTaskScorer
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
     部分的に改良した手法と全部改良した手法
+scores[0] => (TaskCluster(
+    {'不動産業者_に_確認する', '確認_を_する',
+     '掃除_を_する', '明細_を_貰う', '全体_を_拭く'}
+), 5265.0, {'http://www.hikkoshi-tatsujin.com/arrangement/clean.html'})
     """
     def __init__(self, graph=False, query_task='部屋_掃除する'):
         super().__init__(graph=graph, query_task=query_task)
         self.frequent_original_tasks = self._frequent_original_tasks()
 
     def set_task_scores(self):
+        scorer = PartOfTaskScorer(self.graph)
+        self.part_of_task_clusters_scores = scorer.scores(self.part_of_task_clusters)
         classifier = TaskClusterClassifierForFirst(self.graph)
-        self.part_of_task_clusters_scores = classifier.clusters_contribution_url_intersections(self.part_of_task_clusters)
         self.instance_of_task_clusters_scores = classifier.instance_of_task_clusters_higher(self.instance_of_task_clusters)
 
     def set_united_results(self):
@@ -43,7 +49,7 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
                 results.add(good_original_task['name'])
         return results
 
-    def _task_names_in_score_higher_than(self, num=1):
+    def _task_names_in_score_higher_than(self, num=5):
         scores = self.graph.in_degree()  # {'調味料_ばらまく': 1, ...}
         results = [name for name in scores if scores[name] > num]
         return results  # original_taskはほとんどない。

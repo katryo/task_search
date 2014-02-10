@@ -53,21 +53,23 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     def _tasks_in_subtype_of_relation(self):
         # 最初のクエリ'部屋_掃除する'に対する'子供部屋_掃除する'のようなものを出力
         subtype_finder = SubtypeFinder(self.graph)
-        task_names = subtype_finder.subtypes()
-        return task_names
+        task_nouns = subtype_finder.subtypes()
+        return task_nouns
 
 #---------------part-of------------
+
+
 
     def _task_clusters_in_part_of_relation(self):
         selector = TaskGraphPartOfSelectorForFirst(self.graph,
                                                    candidate_tasks=self.frequent_original_tasks,
                                                    subtype_of_tasks=self.subtype_of_tasks)
-        task_names = selector._frequent_tasks_which_are_not_subtype_of()
-        task_clusters = selector.part_of_task_clusters_with_task_names(task_names)
+        task_clusters = selector.task_clusers()
         # ここでuniteしない。というのは？ subtypeのとき。
         uniter = PartOfTaskUniter(graph=self.graph, task_clusters=task_clusters)
         task_clusters = uniter.unite()
         return task_clusters
+
 #---------------instance-of------------
 
     def _task_clusters_in_instance_of_relation(self):

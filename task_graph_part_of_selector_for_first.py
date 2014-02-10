@@ -5,6 +5,10 @@ from abstract_task_graph_part_of_selector import AbstractTaskGraphPartOfSelector
 
 
 class TaskGraphPartOfSelectorForFirst(AbstractTaskGraphPartOfSelector):
+    def task_clusers(self):
+        task_names = self._frequent_tasks_which_are_not_subtype_of()
+        return self._part_of_task_clusters_with_task_names(task_names)
+
     # オリジナルの、高頻度のタスクだけ返す
     def _frequent_tasks_which_are_not_subtype_of(self):
         frequent_tasks = self.candidate_tasks
@@ -15,7 +19,7 @@ class TaskGraphPartOfSelectorForFirst(AbstractTaskGraphPartOfSelector):
                 continue
         return frequent_tasks
 
-    def part_of_task_clusters_with_task_names(self, task_names):
+    def _part_of_task_clusters_with_task_names(self, task_names):
         edge_finder = TaskGraphEdgeFinder(self.graph)
         task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         # 高頻度の、subtypeでない、オリジナルのタスクの集合から、同じurlのものかentailment関係にあるものを見つける

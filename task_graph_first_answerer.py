@@ -1,7 +1,7 @@
 #coding: utf-8
 import pdb
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
-from task_graph_edge_finder import TaskGraphEdgeFinder
+from subtype_finder import SubtypeFinder
 from task_cluster import TaskCluster
 from task_cluster_classifier_for_first import TaskClusterClassifierForFirst
 from task_graph_part_of_selector_for_first import TaskGraphPartOfSelectorForFirst
@@ -52,8 +52,8 @@ class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
 
     def _tasks_in_subtype_of_relation(self):
         # 最初のクエリ'部屋_掃除する'に対する'子供部屋_掃除する'のようなものを出力
-        edge_finder = TaskGraphEdgeFinder(self.graph)
-        task_names = edge_finder.subtype_of_edges_lead_to_original_task_with_task_name(self.query_task)
+        subtype_finder = SubtypeFinder(self.graph)
+        task_names = subtype_finder.subtypes()
         return task_names
 
 #---------------part-of------------

@@ -42,7 +42,9 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     def set_result_tasks(self):
         self.subtype_of_tasks = self._tasks_in_subtype_of_relation()
         self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
-        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
+        self.instance_of_task_clusters = []
+        # instance_ofはとりあえず計算しない。subtypeとpart-ofのみで。不要。
+        # self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
 
     def set_task_scores(self):
         #override me!!

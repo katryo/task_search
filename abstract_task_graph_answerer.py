@@ -16,8 +16,7 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         super().__init__(graph)
         self.query_task = query_task
         node_remover = TaskGraphNodeRemover(graph)
-        node_remover.remove_low_score_generalized_tasks()
-
+        self.graph = node_remover.graph_without_low_score_generalized_tasks()
 
     def print_subtasks(self):
         print ('*********')
@@ -44,7 +43,7 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         self.part_of_task_clusters = self._task_clusters_in_part_of_relation()
         self.instance_of_task_clusters = []
         # instance_ofはとりあえず計算しない。subtypeとpart-ofのみで。不要。
-        # self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
+        self.instance_of_task_clusters = self._task_clusters_in_instance_of_relation()
 
     def set_task_scores(self):
         #override me!!

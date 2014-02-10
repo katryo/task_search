@@ -32,6 +32,23 @@ scores[0] => (TaskCluster(
         sorter = TaskSearchResultSorter(self)
         self.united_results = sorter.sorted_by_mmr()
 
+    def remove_generalized_tasks(self):
+        """
+        すべてのaspectsを探しても、is_originalなaspectがなかったとき
+        """
+        task_names = self.graph.nodes()
+        for task_name in task_names:
+            if self._finds_original_with_task_name(task_name):
+                continue
+            self.graph.remove_node(task_name)
+
+    def _finds_original_with_task_name(self, task_name):
+        aspects = self._aspects_with_task_name(task_name)
+        for aspect in aspects:
+            if aspect['is_original']:
+                return True
+        return False
+
 #-------private----------
     def _frequent_original_tasks(self):
         task_names_with_higher_score = self._task_names_in_score_higher_than()

@@ -24,6 +24,8 @@ class AnswererPrinter(object):
                 pdb.set_trace()
             self.file.write('### SCORE: %s\n' % score)
             self._write_header_with_task_type(result[1])
+            if result[1] == 'PART-OF':
+                self._write_subtype(result[0][2])
             for task_name in task_cluster[0]:
                 self.file.write('- %s \n' % task_name)
             num_of_writing += 1
@@ -34,6 +36,10 @@ class AnswererPrinter(object):
     def _print_with_subtype_of(self, set_obj):
         for item in set_obj:
             self.file.write(item + '\n')
+
+    def _write_subtype(self, subtype):
+        self.file.write('##### %s\n' % subtype)
+        self.file.write('\n')
 
     def _write_header_with_task_type(self, task_type):
         self.file.write('#### %s\n' % task_type)

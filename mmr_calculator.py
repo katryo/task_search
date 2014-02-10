@@ -1,4 +1,4 @@
-from sim_calculator import SimCalculator
+from sklearn.metrics import jaccard_similarity_score
 import pdb
 
 
@@ -17,7 +17,10 @@ class MMRCalculator(object):
 
     def _argmax(self):
         # scores_candidate => (({}, 111), 'PART-OF')
-        max_cluster_score_pair_type_pair = self.scores_candidate[0]
+        try:
+            max_cluster_score_pair_type_pair = self.scores_candidate[0]
+        except IndexError:  # scoresが10個ないときもある
+            return tuple([set(), 0, 'NONE'])
         for cluster_score_pair in self.scores_candidate:
             if self._score_in_square_bracket(cluster_score_pair) > \
                self._score_in_square_bracket(max_cluster_score_pair_type_pair):
@@ -36,22 +39,26 @@ class MMRCalculator(object):
 
     def _max_sim(self, cluster):
         set_b = cluster[0][0]
-        sim_calculator = SimCalculator(self.graph)
         max_sim = 0.0
         for selected in self.scores_selected:
             set_a = selected[0][0]
-            sim = sim_calculator.similarity(set_a, set_b)
-            pdb.set_trace()
+            list_a = list(set_a)
+            list_b = list(set_b)
+            list_a, list_b = self._level_lists(list_a, list_b)
+            sim = jaccard_similarity_score(list_a, list_b)
             if sim >= max_sim:
                 max_sim = sim
         return max_sim
 
+    def _level_lists(self, list_a, list_b):
+        diff = len(list_a) - len(list_b)
+        if diff == 0:
+            return list_a, list_b
+        if diff > 0:
+            for i in range(diff):
+                list_b.append('')
+            return list_a, list_b
+        for i in range(-diff):
+            list_a.append('')
+        return list_a, list_b
 
-
-
-
-
-
-
-    def _score(self, index):
-        return self.scores[index][1]

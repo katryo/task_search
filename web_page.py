@@ -50,7 +50,7 @@ class WebPage(WebItem):
             self.query_noun = words[0]
             self.query_cmp = 'を'
             self.query_verb = words[1]
-        elif len(words) == 3:
+        elif len(words) == 3 or len(words) == 4:
             self.query_noun = words[0]
             self.query_cmp = words[1]
             self.query_verb = words[2]

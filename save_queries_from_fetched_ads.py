@@ -1,13 +1,13 @@
-from pickle_file_loader import PickleFileLoader
-from pickle_file_saver import PickleFileSaver
+from pickle_file_loader_for_ads import PickleFileLoaderForAds
+from pickle_file_saver_for_ads import PickleFileSaverForAds
 from term_counter import TermCounter
 import constants
 from query import Query
 import pdb
 
 if __name__ == '__main__':
-    pfl = PickleFileLoader()
-    for query in constants.QUERIES:
+    pfl = PickleFileLoaderForAds()
+    for query in constants.QUERIES_4:
         adding_terms = []
         ads = pfl.load_ads_with_query(query)
         sahens = []
@@ -24,5 +24,5 @@ if __name__ == '__main__':
 
         q = Query(query)
         q.set_expansion_words(adding_terms)
-        pfs = PickleFileSaver()
+        pfs = PickleFileSaverForAds()
         pfs.save_query(q)

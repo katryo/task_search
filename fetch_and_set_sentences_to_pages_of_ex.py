@@ -12,7 +12,7 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForEx()
     pm = PathMover()
 
-    original_queries = constants.QUERIES_2
+    original_queries = constants.QUERIES_4
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:

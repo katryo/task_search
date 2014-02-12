@@ -14,7 +14,7 @@ class TaskDatabaseSelector(BaseSQLiteManager, SQLiteDataLoadable):
         result = self.cur.fetchone()  #数字
         return int(result[0])
 
-    def num_of_queries_coutain_ncv(self, noun, cmp, verb):
+    def num_of_queries_contain_ncv(self, noun, cmp, verb):
         sql = 'select count(distinct query) from tasks where' \
               'noun = "%s"' \
               'cmp = "%s"' \

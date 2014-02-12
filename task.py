@@ -2,6 +2,7 @@
 import pdb
 from task_data_inserter import TaskDataInserter
 from task_database_selector import TaskDatabaseSelector
+import constants
 
 
 class Task(object):
@@ -17,8 +18,9 @@ class Task(object):
         self.url = url
         self.is_shopping = is_shopping
         self.is_official = is_official
+        self._insert_task_to_database()
 
-    def insert_task_to_database(self):
+    def _insert_task_to_database(self):
         with TaskDataInserter() as tdi:
             if not tdi.has(query=self.query,
                            url=self.url,
@@ -30,16 +32,30 @@ class Task(object):
                            noun=self.object_term.core_noun,
                            cmp=self.cmp,
                            verb=self.predicate_term)
+                print('タスクDBに「%s%s%s」を入力完了！' % (
+                    self.object_term.core_noun,
+                    self.cmp,
+                    self.predicate_term)
+                )
 
     def is_noise(self):
-        threshold = 0.7
+        threshold = constants.THRESHOLD_FOR_FREQUENTLY_APPERING_TASK
         selector = TaskDatabaseSelector()
         num_of_queries = selector.num_of_queries()
-        num_of_queries_contain_self = selector.num_of_queries_contain_noun(
-            self.object_term.core_noun
+        num_of_queries_contain_self = selector.num_of_queries_contain_ncv(
+            noun=self.object_term.core_noun,
+            cmp=self.cmp,
+            verb=self.predicate_term
         )
 
         ratio = num_of_queries_contain_self / num_of_queries
+        print('クエリごとの、このタスク「%s%s%s」の出現比率は%f' % (
+            self.object_term.core_noun,
+            self.cmp,
+            self.predicate_term,
+            ratio)
+        )
+        pdb.set_trace()
         if ratio > threshold:
             print('%s_%s_%sはノイズです' % (
                 self.object_term.core_noun,

@@ -32,6 +32,6 @@ class PartOfTaskUniter(AbstractTaskGraphManager):
             distance = pair[1]
             if distance > constants.THRESHOLD_DISTANCE_FOR_REMOVING_FROM_PART_OF:
                 self.task_distance_pairs[subtype].remove(pair)
-            if distance * 2 < - constants.THRESHOLD_DISTANCE_FOR_REMOVING_FROM_PART_OF:
+            if distance * 4 < - constants.THRESHOLD_DISTANCE_FOR_REMOVING_FROM_PART_OF:
                 self.task_distance_pairs[subtype].remove(pair)
 

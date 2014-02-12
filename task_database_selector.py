@@ -11,6 +11,7 @@ class TaskDatabaseSelector(BaseSQLiteManager, SQLiteDataLoadable):
     def num_of_queries_contain_noun(self, noun):
         sql = 'select count(distinct query) from tasks where noun = "%s"' % noun
         self.cur.execute(sql)
+        print('%sを実行！' % sql)
         result = self.cur.fetchone()  #数字
         return int(result[0])
 
@@ -20,12 +21,14 @@ class TaskDatabaseSelector(BaseSQLiteManager, SQLiteDataLoadable):
               'cmp = "%s"' \
               'verb = "%s"' % (noun, cmp, verb)
         self.cur.execute(sql)
+        print('%sを実行！' % sql)
         result = self.cur.fetchone()  #数字
         return int(result[0])
 
     def num_of_queries(self):
         sql = 'select count(distinct query) from tasks'
         self.cur.execute(sql)
+        print('%sを実行！' % sql)
         result = self.cur.fetchone()  #数字
         return result[0]
 

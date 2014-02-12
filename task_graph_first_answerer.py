@@ -1,5 +1,6 @@
 #coding: utf-8
 import pdb
+import constants
 from abstract_task_graph_answerer import AbstractTaskGraphAnswerer
 from subtype_finder import SubtypeFinder
 from task_cluster import TaskCluster
@@ -10,6 +11,7 @@ from part_of_task_uniter import PartOfTaskUniter
 from task_search_result_sorter import TaskSearchResultSorter
 from part_of_task_scorer import PartOfTaskScorer
 from same_url_part_of_task_uniter import SameURLPartOfTaskUniter
+
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
@@ -85,24 +87,21 @@ scores[0] => (TaskCluster(
         return task_nouns
 
 #---------------part-of------------
-
-
-
     def _task_clusters_in_part_of_relation(self):
         task_names = self.frequent_original_tasks
         selector = TaskGraphPartOfSelectorForFirst(self.graph,
                                                    candidate_tasks=task_names,
                                                    subtype_of_tasks=self.subtype_of_tasks)
         task_distance_pairs = selector.task_distance_pairs()
-        if task_distance_pairs:
-            # ここでuniteしない。というのは？ subtypeのとき。
-            uniter = PartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
-            task_clusters = uniter.unite()
-            return task_clusters
-        task_distance_pairs = selector.part_of_task_clusters_with_task_names(task_names)
-        uniter = SameURLPartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
-        uniter.unite_recursively()
-        task_clusters = uniter.task_distance_pairs
+        # ここでuniteしない。というのは？ subtypeのとき。
+        uniter = PartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
+        task_clusters = uniter.unite()
+            # return task_clusters
+        task_clusters_by_same_url = selector.part_of_task_clusters_with_task_names(task_names)
+        same_url_uniter = SameURLPartOfTaskUniter(graph=self.graph, task_distance_pairs=task_clusters_by_same_url)
+        same_url_uniter.unite_recursively()
+        task_clusters_for_supertype = same_url_uniter.task_distance_pairs
+        task_clusters[constants.SUPERTYPE_NAME] = task_clusters_for_supertype[constants.SUPERTYPE_NAME]
         return task_clusters
 
 

@@ -39,6 +39,6 @@ class PickleFileSaverForEx(PickleFileSaver):
         return False
 
     def save_graph_with_query(self, obj, query):
-        filepath = os.path.join(constants.GRAPH_DIR_NAME, query + '_graph_first.pkl')
+        filepath = os.path.join(constants.GRAPH_DIR_NAME, query, query + '_graph_first.pkl')
         self.save_file(obj=obj, filename=filepath)
         print('%sのグラフを保存しました' % query)

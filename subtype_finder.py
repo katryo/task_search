@@ -1,5 +1,6 @@
 from abstract_task_graph_manager import AbstractTaskGraphManager
 import pdb
+import constants
 
 
 class SubtypeFinder(AbstractTaskGraphManager):
@@ -16,6 +17,8 @@ class SubtypeFinder(AbstractTaskGraphManager):
             for aspect in aspects:
                 dists = aspect['distance_between_subtypes']
                 for dist in dists:
+                    if dist in constants.STOPWORDS_OF_SUBTYPES:
+                        continue
                     subtype_nouns.add(dist)
         return subtype_nouns
 

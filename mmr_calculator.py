@@ -15,7 +15,7 @@ class MMRCalculator(object):
         try:
             self.scores_candidate.remove(cluster_score_pair)
         except ValueError:
-            pdb.set_trace()
+            pass  # scoresが10ないときはここにくる
         return cluster_score_pair
 
     def _argmax(self):

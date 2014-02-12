@@ -21,7 +21,7 @@ class AnswererPrinter(object):
             try:
                 score = str(task_cluster[1])
             except:
-                pdb.set_trace()
+                continue  # 答えが10ないとき
             self.file.write('### SCORE: %s\n' % score)
             self._write_header_with_task_type(result[1])
             if result[1] == 'PART-OF':

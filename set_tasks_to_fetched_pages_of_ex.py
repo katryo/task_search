@@ -15,7 +15,6 @@ if __name__ == '__main__':
     original_queries = constants.QUERIES_4
     for query in original_queries:
         pages = pfl.load_fetched_pages_with_query(query)
-        pdb.set_trace()
         for i, page in enumerate(pages):
             if hasattr(page, 'tasks'):
                 if page.tasks:

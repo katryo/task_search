@@ -12,16 +12,16 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForEx()
     pm = PathMover()
 
-    original_queries = constants.QUERIES_4
+    original_queries = ['野球　が　上手くなる',
+               'ビリヤード　が　上手くなる',
+               'サッカー　が　上手くなる',
+               'ハンドボール　が　上手くなる']
 
     pm.go_or_create_and_go_to(constants.FETCHED_PAGES_DIR_NAME)
     for original_query in original_queries:
         pm.go_or_create_and_go_to(original_query)
         expanded_queries = os.listdir()
         for expanded_query in expanded_queries:
-            if 'graph' in expanded_query:
-                print('graph!')
-                continue
             if expanded_query == '.DS_Store':
                 continue
             pm.go_or_create_and_go_to(expanded_query)

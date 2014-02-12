@@ -12,7 +12,10 @@ class MMRCalculator(object):
     def mmr(self):
         cluster_score_pair = self._argmax()
         self.scores_selected.append(cluster_score_pair)
-        self.scores_candidate.remove(cluster_score_pair)
+        try:
+            self.scores_candidate.remove(cluster_score_pair)
+        except ValueError:
+            pdb.set_trace()
         return cluster_score_pair
 
     def _argmax(self):

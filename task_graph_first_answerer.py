@@ -9,6 +9,7 @@ from task_graph_instance_of_selector import TaskGraphInstanceOfSelector
 from part_of_task_uniter import PartOfTaskUniter
 from task_search_result_sorter import TaskSearchResultSorter
 from part_of_task_scorer import PartOfTaskScorer
+from same_url_part_of_task_uniter import SameURLPartOfTaskUniter
 
 class TaskGraphFirstAnswerer(AbstractTaskGraphAnswerer):
     """
@@ -23,6 +24,10 @@ scores[0] => (TaskCluster(
         self.frequent_original_tasks = self._frequent_original_tasks()
 
     def set_task_scores(self):
+        """
+        subtypeをキーにしたdict
+         '子ども部屋': {('工夫_を_する', -15), ('綺麗_に_する', 63), ('浴衣_を_楽しむ', 11), ('掃除_を_する', -46)}, '逸話': {('男心_を_尊重する', -34)}}
+        """
         scorer = PartOfTaskScorer(self.graph)
         self.part_of_task_clusters_scores = scorer.scores(self.part_of_task_clusters)
         classifier = TaskClusterClassifierForFirst(self.graph)
@@ -84,14 +89,22 @@ scores[0] => (TaskCluster(
 
 
     def _task_clusters_in_part_of_relation(self):
+        task_names = self.frequent_original_tasks
         selector = TaskGraphPartOfSelectorForFirst(self.graph,
-                                                   candidate_tasks=self.frequent_original_tasks,
+                                                   candidate_tasks=task_names,
                                                    subtype_of_tasks=self.subtype_of_tasks)
         task_distance_pairs = selector.task_distance_pairs()
-        # ここでuniteしない。というのは？ subtypeのとき。
-        uniter = PartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
-        task_clusters = uniter.unite()
+        if task_distance_pairs:
+            # ここでuniteしない。というのは？ subtypeのとき。
+            uniter = PartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
+            task_clusters = uniter.unite()
+            return task_clusters
+        task_distance_pairs = selector.part_of_task_clusters_with_task_names(task_names)
+        uniter = SameURLPartOfTaskUniter(graph=self.graph, task_distance_pairs=task_distance_pairs)
+        uniter.unite_recursively()
+        task_clusters = uniter.task_distance_pairs
         return task_clusters
+
 
 #---------------instance-of------------
 

@@ -55,7 +55,6 @@ class Task(object):
             self.predicate_term,
             ratio)
         )
-        pdb.set_trace()
         if ratio > threshold:
             print('%s_%s_%sはノイズです' % (
                 self.object_term.core_noun,

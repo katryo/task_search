@@ -16,9 +16,9 @@ class TaskDatabaseSelector(BaseSQLiteManager, SQLiteDataLoadable):
         return int(result[0])
 
     def num_of_queries_contain_ncv(self, noun, cmp, verb):
-        sql = 'select count(distinct query) from tasks where' \
-              'noun = "%s"' \
-              'cmp = "%s"' \
+        sql = 'select count(distinct query) from tasks where ' \
+              'noun = "%s" and ' \
+              'cmp = "%s" and ' \
               'verb = "%s"' % (noun, cmp, verb)
         self.cur.execute(sql)
         print('%sを実行！' % sql)

@@ -22,6 +22,7 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
             for expanded_query in d_dirnames:
                 expanded_query_dirpath = os.path.join(d_dirpath, expanded_query)
                 for d_d_dirpath, d_d_dirnames, d_d_filenames in os.walk(expanded_query_dirpath):
+                    pdb.set_trace()
                     for i, filename in enumerate(d_d_filenames):
                         if filename == '.DS_Store':
                             continue
@@ -30,9 +31,11 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
                             page = self.load_file(filepath)
                             print('%sのロードに成功しました！' % filename)
                             pages.append(page)
+                            if len(pages) == constants.NUM_OF_PAGE_PER_QUERY:
+                                return pages
                         except EOFError:
                             print('%sのロードに失敗しました！' % filename)
-        return pages
+        # return pages
 
     def load_graph_with_query(self, query):
         filepath = os.path.join(constants.GRAPH_DIR_NAME, query, query + '_graph_first.pkl')

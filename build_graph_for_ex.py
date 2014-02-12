@@ -7,7 +7,7 @@ import constants
 
 
 if __name__ == '__main__':
-    original_queries = constants.QUERIES_4
+    original_queries = ['野球　が　上手くなる']
     pfs = PickleFileSaverForEx()
     pfl = PickleFileLoaderForExpandedQuery()
     for query in original_queries:
@@ -23,3 +23,4 @@ if __name__ == '__main__':
                 break
         print('added all edges!')
         pfs.save_graph_with_query(obj=gtm.graph, query=query)
+        pdb.set_trace()

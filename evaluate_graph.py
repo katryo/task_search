@@ -8,7 +8,7 @@ import constants
 import pdb
 
 if __name__ == '__main__':
-    queries = constants.QUERIES_1
+    queries = constants.QUERIES_4
     for query in queries:
         pfl = PickleFileLoaderForExpandedQuery()
         pfs = PickleFileSaverForEx()

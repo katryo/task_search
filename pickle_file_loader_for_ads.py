@@ -27,13 +27,10 @@ class PickleFileLoaderForAds(PickleFileLoader):
 
     def load_expanded_queries_with_query(self, query):
         expanded_queries = []
-        for dirpath, dirnames, filenames in os.walk(constants.QUERIES_DIR_NAME):
-            for filename in filenames:
-                if filename == query + '.pkl':
-                    filepath = os.path.join(dirpath, filename)
-                    with open(filepath, 'rb') as f:
-                        expanded_query = pickle.load(f)
-                        expanded_queries.append(expanded_query)
+        filepath = os.path.join(constants.QUERIES_DIR_NAME, query + '.pkl')
+        with open(filepath, 'rb') as f:
+            expanded_query = pickle.load(f)
+            expanded_queries.append(expanded_query)
         return expanded_queries
 
 

@@ -42,10 +42,9 @@ class MMRCalculator(object):
         max_sim = 0.0
         for selected in self.scores_selected:
             set_a = selected[0][0]
-            list_a = list(set_a)
-            list_b = list(set_b)
-            list_a, list_b = self._level_lists(list_a, list_b)
-            sim = jaccard_similarity_score(list_a, list_b)
+            numerator = len(set_a.intersection(set_b))
+            denominator = len(set_a.union(set_b))
+            sim = numerator / denominator
             if sim >= max_sim:
                 max_sim = sim
         return max_sim

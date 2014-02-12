@@ -4,7 +4,8 @@ from ad_fetcher import AdFetcher
 from pickle_file_saver_for_ads import PickleFileSaverForAds
 
 if __name__ == '__main__':
-    for query in constants.QUERIES_4:
+    queries = ['野球　が　上手くなる']
+    for query in queries:
         ad_fetcher = AdFetcher(query)
         ads = ad_fetcher.fetch_ads()
         pfs = PickleFileSaverForAds()

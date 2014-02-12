@@ -4,11 +4,12 @@ from pickle_file_saver_for_ads import PickleFileSaverForAds
 import pdb
 import constants
 
-# 1000件以上検索するようにする？？？
-
 if __name__ == '__main__':
     pfl = PickleFileLoaderForAds()
-    queries = constants.QUERIES_4
+    queries = ['野球　が　上手くなる',
+               'ビリヤード　が　上手くなる',
+               'サッカー　が　上手くなる',
+               'ハンドボール　が　上手くなる']
     for query in queries:
         expanded_queries = pfl.load_expanded_queries_with_query(query)
         pfs = PickleFileSaverForAds()

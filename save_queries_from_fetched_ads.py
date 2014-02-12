@@ -7,7 +7,8 @@ import pdb
 
 if __name__ == '__main__':
     pfl = PickleFileLoaderForAds()
-    for query in constants.QUERIES_4:
+    queries = ['野球　が　上手くなる']
+    for query in queries:
         adding_terms = []
         ads = pfl.load_ads_with_query(query)
         sahens = []

@@ -13,6 +13,7 @@ class PickleFileLoader(object):
             try:
                 obj = pickle.load(f)
             except EOFError:
+                pdb.set_trace()
                 raise EOFError
         return obj
 

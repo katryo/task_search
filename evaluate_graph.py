@@ -8,7 +8,7 @@ import constants
 import pdb
 
 if __name__ == '__main__':
-    queries = constants.QUERIES_4
+    queries = ['野球　が　上手くなる']
     for query in queries:
         pfl = PickleFileLoaderForExpandedQuery()
         pfs = PickleFileSaverForEx()
@@ -17,6 +17,7 @@ if __name__ == '__main__':
 
         if not g:
             print('%sのグラフが存在しません！' % query)
+            pdb.set_trace()
             continue
 
         if not g.nodes():

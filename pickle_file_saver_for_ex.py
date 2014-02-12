@@ -29,28 +29,16 @@ class PickleFileSaverForEx(PickleFileSaver):
             for filename in filenames:
                 if filename == '%s_answerer_first.pkl' % query:
                     filepath = os.path.join(dirpath, filename)
-                    with open(filepath, 'wb') as f:
-                        pickle.dump(answerer, f)
-                        print('%s_answerer_first.pklの保存完了！' % query)
+                    self.save_file(obj=answerer, filename=filepath)
+                    print('%s_answerer_first.pklの保存完了！' % query)
 
     def can_find_graph_with_query(self, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        if os.path.exists(query + '_graph_first.pkl'):
-            pm.go_up()
-            pm.go_up()
+        filepath = os.path.join(constants.GRAPH_DIR_NAME, query + '_graph_first.pkl')
+        if os.path.exists(filepath):
             return True
-        pm.go_up()
-        pm.go_up()
         return False
 
     def save_graph_with_query(self, obj, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        with open('%s_graph_first.pkl' % query, 'wb') as f:
-            pickle.dump(obj, f)
-            print('%s_graph_first.pklの保存完了！' % query)
-        pm.go_up()
-        pm.go_up()
+        filepath = os.path.join(constants.GRAPH_DIR_NAME, query + '_graph_first.pkl')
+        self.save_file(obj=obj, filename=filepath)
+        print('%sのグラフを保存しました' % query)

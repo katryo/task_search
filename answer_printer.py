@@ -1,5 +1,6 @@
 #coding: utf-8
 import pdb
+import constants
 
 
 class AnswererPrinter(object):
@@ -25,7 +26,10 @@ class AnswererPrinter(object):
             self.file.write('### SCORE: %s\n' % score)
             self._write_header_with_task_type(result[1])
             if result[1] == 'PART-OF':
-                self._write_subtype(result[0][2])
+                try:
+                    self._write_subtype(result[0][2])
+                except IndexError:
+                    self._write_subtype(constants.SUPERTYPE_NAME)
             for task_name in task_cluster[0]:
                 self.file.write('- %s \n' % task_name)
             num_of_writing += 1

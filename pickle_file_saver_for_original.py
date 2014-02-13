@@ -22,7 +22,7 @@ class PickleFileSaverForOriginal(PickleFileSaver):
                         break
 
     def save_graph_with_query(self, obj, query):
-        filepath = os.path.join(constants.GRAPH_DIR_NAME, query + '_graph_zero.pkl')
+        filepath = os.path.join(constants.GRAPH_DIR_NAME, query, query + '_graph_zero.pkl')
         with open(filepath, 'wb') as f:
             pickle.dump(obj, f)
             print('%s_graph_zero.pklの保存完了！' % query)

@@ -23,13 +23,15 @@ class AnswererPrinter(object):
                 score = str(task_cluster[1])
             except:
                 continue  # 答えが10ないとき
-            self.file.write('### SCORE: %s\n' % score)
-            self._write_header_with_task_type(result[1])
+            #self.file.write('### SCORE: %s\n' % score)
+            #self._write_header_with_task_type(result[1])
             if result[1] == 'PART-OF':
                 try:
-                    self._write_subtype(result[0][2])
+                    pass
+                    #self._write_subtype(result[0][2])
                 except IndexError:
-                    self._write_subtype(constants.SUPERTYPE_NAME)
+                    pass
+                    #self._write_subtype(constants.SUPERTYPE_NAME)
             for task_name in task_cluster[0]:
                 self.file.write('- %s \n' % task_name)
             num_of_writing += 1

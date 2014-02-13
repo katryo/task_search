@@ -24,7 +24,7 @@ class PickleFileLoaderForOriginal(PickleFileLoader):
         return pages
 
     def load_graph_with_query(self, query):
-        path = os.path.join(constants.FETCHED_PAGES_O_DIR_NAME, query+'_graph_zero.pkl')
+        path = os.path.join(constants.GRAPH_DIR_NAME, query, query+'_graph_zero.pkl')
         graph = self.load_file(path)
         return graph
 

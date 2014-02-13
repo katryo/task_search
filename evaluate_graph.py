@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pickle_file_loader_for_ex import PickleFileLoaderForExpandedQuery
-from pickle_file_saver_for_ex import PickleFileSaverForEx
+from pickle_file_loader_for_original import PickleFileLoaderForOriginal
 from task_graph_first_answerer import TaskGraphFirstAnswerer
 from answer_printer import AnswererPrinter
 from path_mover import PathMover
@@ -10,8 +10,7 @@ import pdb
 if __name__ == '__main__':
     queries = constants.QUERIES_4
     for query in queries:
-        pfl = PickleFileLoaderForExpandedQuery()
-        pfs = PickleFileSaverForEx()
+        pfl = PickleFileLoaderForOriginal()
         g = pfl.load_graph_with_query(query)
         print('ロードしました')
 
@@ -31,9 +30,7 @@ if __name__ == '__main__':
         print('answererをinstance化しました')
         first_answerer.set_result_tasks()
         print('set_result_tasksをしました')
-        pfs.save_answerer_with_query(first_answerer, query)
         first_answerer.set_task_scores()
-        pfs.save_answerer_with_query(first_answerer, query)
 
         # generalized_taskはもう計算の邪魔なので消す
         first_answerer.remove_generalized_tasks()

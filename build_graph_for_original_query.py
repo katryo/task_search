@@ -7,7 +7,7 @@ import constants
 
 
 if __name__ == '__main__':
-    original_queries = ['保育園　入園させる']
+    original_queries = constants.QUERIES_4
     pfl = PickleFileLoaderForOriginal()
     pfs = PickleFileSaverForOriginal()
     for query in original_queries:

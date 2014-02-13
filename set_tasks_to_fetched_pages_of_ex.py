@@ -19,7 +19,7 @@ if __name__ == '__main__':
             if hasattr(page, 'tasks'):
                 if page.tasks:
                     print('すでにtasksがあります')
-                    # が、無視。上書き。continue
+                    continue
             page.set_tasks_from_sentences()
             print('%s の %i 番目のページにtasksをセットしました！' % (page.query, i))
             pfs.save_page_with_original_query(page=page, original_query=query, i=i)

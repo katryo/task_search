@@ -28,3 +28,12 @@ class BingSearcher():
             pages.append(page)
         return pages
 
+if __name__ == '__main__':
+    query = '"ドッグフードを教える"'
+    bs = BingSearcher(query)
+    pages = bs.result_pages(page_num=50)
+    for page in pages:
+        print(page.title)
+        print(page.snippet)
+    pdb.set_trace()
+    print('end')

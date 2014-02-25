@@ -1,5 +1,6 @@
 #coding: utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
+from networkx.exception import NetworkXError
 import pdb
 
 
@@ -14,20 +15,36 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
     def score_with_task_name(self, task_name):
         return self.contribution_with_task_name(task_name)
 
+    def frequency_with_task_name(self, task_name):
+        score_for_task = 0.0
+        same_task_names = set()
+        generalized_task_names = self.graph.out_edges(task_name)
+        for generalized_task in generalized_task_names:
+            try:
+                for same_task in self.graph.predecessors(generalized_task[0]):
+                    print('同じタスクを発見！')
+                    same_task_names.add(same_task)
+            except NetworkXError:
+                continue
+        used_urls = set()
+        if not same_task_names:
+            same_task_names.add(task_name)
+        for same_task in same_task_names:
+            aspects = self._aspects_with_task_name(same_task)
+            for aspect in aspects:
+                score_for_task += 1
+                used_urls.add(aspect['url'])
+        print('%sの貢献度は%fです' % (task_name, score_for_task))
+        return score_for_task, used_urls
+
     # 1タスクノードの貢献度
     def contribution_with_task_name(self,
-                                    task_name,
-                                    multiplier_for_official=2.0,
-                                    multiplier_for_shopping=0.5):
+                                    task_name):
         aspects = self._aspects_with_task_name(task_name)
         score_for_task = 0.0
         used_urls = set()
         for aspect in aspects:
             score_for_aspect = 1
-            if aspect['is_official']:
-                score_for_aspect *= multiplier_for_official
-            if aspect['is_shopping']:
-                score_for_aspect *= multiplier_for_shopping
             score_for_task += score_for_aspect
             used_urls.add(aspect['url'])
         print('%sの貢献度は%fです' % (task_name, score_for_task))
@@ -35,17 +52,12 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
 
     # 1クラスターの貢献度
     def contribution_with_cluster(self,
-                                  task_cluster,
-                                  multiplier_for_official=2.0,
-                                  multiplier_for_shopping=0.5):
+                                  task_cluster):
         score_for_task_cluster = 0
         used_urls = set()
         for task_name in task_cluster:
             [score_for_task,
-             used_urls_per_task] = self.\
-                contribution_with_task_name(task_name,
-                                            multiplier_for_official,
-                                            multiplier_for_shopping)
+             used_urls_per_task] = self.contribution_with_task_name(task_name)
             score_for_task_cluster += score_for_task
             used_urls = used_urls.union(used_urls_per_task)
         score_for_task_cluster *= len(used_urls)

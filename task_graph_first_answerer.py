@@ -35,9 +35,11 @@ scores[0] => (TaskCluster(
         classifier = TaskClusterClassifierForFirst(self.graph)
         self.instance_of_task_clusters_scores = classifier.instance_of_task_clusters_higher(self.instance_of_task_clusters)
 
+
     def set_united_results(self):
         sorter = TaskSearchResultSorter(self)
-        self.united_results = sorter.sorted_by_mmr()
+        # self.united_results = sorter.sorted_by_mmr()
+        self.united_results = sorter.sorted_by_score()
 
     def remove_generalized_tasks(self):
         """

@@ -9,18 +9,19 @@ import pdb
 
 class PickleFileLoaderForOriginal(PickleFileLoader):
     def load_fetched_pages_with_query(self, query):
-        path = os.path.join(constants.FETCHED_PAGES_O_DIR_NAME, query)
+        dirpath = os.path.join(constants.FETCHED_PAGES_O_DIR_NAME, query)
         pages = []
-        for dirpath, dirname, filenames in os.walk(path):
-            for filename in filenames:
-                if not filename == '.DS_Store':
-                    try:
-                        filepath = os.path.join(dirpath, filename)
-                        with open(filepath, 'rb') as f:
-                            page = pickle.load(f)
-                            pages.append(page)
-                    except EOFError:  #1000個ないとき
-                        break
+        for i in range(1000):
+            filename = query + '_%i.pkl' % i
+            filepath = os.path.join(dirpath, filename)
+            try:
+                with open(filepath, 'rb') as f:
+                    page = pickle.load(f)
+                    page.rank = i
+                    pages.append(page)
+            except (EOFError, FileNotFoundError):  #1000個ないとき
+                print('%iページしかないです' % i)
+                break
         return pages
 
     def load_graph_with_query(self, query):

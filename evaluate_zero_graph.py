@@ -12,7 +12,8 @@ if __name__ == '__main__':
     for query in queries:
         pfl = PickleFileLoaderForOriginal()
         g = pfl.load_graph_with_query(query)
-        query_task = '_'.join(query.split('　'))
+        noun, cmp, verb = query.split('　')
+        query_task = '_'.join([noun, cmp, verb])
 
         pm = PathMover()
 
@@ -25,7 +26,25 @@ if __name__ == '__main__':
         answerer.set_task_scores()
         print('set_task_scores')
         answerer.set_united_results()
-        print('set_united_results')
+        simple_results = []
+        for united_result in answerer.united_results:
+            tasks = united_result[0][0]
+            result_tasks = []
+            for task in tasks:
+                aspects = answerer.graph.node[task]['aspects']
+                task_noun = task.split('_')[0]
+                task_verb = task.split('_')[2]
+                if len(aspects) > 2:
+                    if not noun in task_noun:
+                        if not verb in task_noun:
+                            if not verb in task_verb:
+                                if not noun in task_verb:
+                                    if not task_noun in verb:
+                                        result_tasks.append(task)
+            if not result_tasks in simple_results:
+                if result_tasks:
+                    simple_results.append(result_tasks)
+        answerer.simple_results = simple_results
         printer = AnswererPrinter(answerer=answerer, query=query)
 
         pm.go_or_create_and_go_to('results')

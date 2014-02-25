@@ -10,12 +10,12 @@ class TaskDataInserter(BaseSQLiteManager):
 
     def _create_table(self):
         sql = 'create table if not exists tasks(' \
-              'id integer primary key autoincrement,' \
-              'query text,' \
-              'url text,' \
-              'noun text,' \
-              'cmp text,' \
-              'verb text' \
+              'id integer primary key autoincrement, ' \
+              'sentence_id integer, ' \
+              'noun text, ' \
+              'cmp text, ' \
+              'verb text, ' \
+              'unique(sentence_id)' \
               ');'
         try:
             self.cur.execute(sql)
@@ -23,10 +23,10 @@ class TaskDataInserter(BaseSQLiteManager):
             pdb.set_trace()
 
 
-    def has(self, query, url, noun, cmp, verb):
+    def has(self, sentence_id, noun, cmp, verb):
         sql = 'select * from  tasks where exists(' \
-              'select * from  tasks where query = "%s" and url = "%s" and noun = "%s" and cmp = "%s" and verb = "%s"' \
-              ')' % (query, url, noun, cmp, verb)
+              'select * from  tasks where sentence_id = %i and noun = "%s" and cmp = "%s" and verb = "%s"' \
+              ')' % (sentence_id, noun, cmp, verb)
         try:
             self.cur.execute(sql)
         except sqlite3.OperationalError:
@@ -35,20 +35,20 @@ class TaskDataInserter(BaseSQLiteManager):
             return True
         return False
 
-    def insert(self, query, url, noun, cmp, verb):
-        if self.has(query, url, noun, cmp, verb):
-            print('%sのタスクはすでに存在しているのでスキップしました' % url)
+    def insert(self, sentence_id, noun, cmp, verb):
+        if self.has(sentence_id, noun, cmp, verb):
+            print('%iのタスクはすでに存在しているのでスキップしました' % sentence_id)
             return False
         try:
-            sql = 'insert into tasks(query, url, noun, cmp, verb) values("%s", "%s", "%s", "%s", "%s")' \
-                  % (query, url, noun, cmp, verb)
+            sql = 'insert into tasks(sentence_id, noun, cmp, verb) values(%i, "%s", "%s", "%s")' \
+                  % (sentence_id, noun, cmp, verb)
         except IndexError:
-            print('%sのタスクのinsert失敗' % url)
+            print('%iのタスクのinsert失敗' % sentence_id)
             return False
         try:
             self.cur.execute(sql)
         except sqlite3.OperationalError:
             pdb.set_trace()
-        print('%sの入力完了！' % url)
+        print('%iの入力完了！' % sentence_id)
         self.conn.commit()
 

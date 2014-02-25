@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pdb
 from task_data_inserter import TaskDataInserter
-from task_database_selector import TaskDatabaseSelector
+from task_data_selector import TaskDatabaseSelector
 import constants
 
 

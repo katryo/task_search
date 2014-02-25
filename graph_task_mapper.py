@@ -10,6 +10,54 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         super().__init__(graph)
         self.loader = HypoHypeDBDataLoader()
 
+    def add_node_and_edge_with_task(self, task):
+        """
+        もし1ページ内に順序があればorder=1から始まる値を与える。
+        """
+        if task.is_noise():
+            return
+        hypes = self._hypes(task)
+        nouns = {'hypes': hypes}
+        # hypesのときには、edgeにhypeエッジを与える必要ある？　subtype-ofを発見するために。
+        original_noun = task.object_term.core_noun
+        nouns['original'] = [original_noun]
+
+        original_verb = task.predicate_term
+        verbs = self._broader_preds(task)
+        verbs['original'] = tuple([original_verb])
+
+        cmp = task.cmp
+
+        # 上位語・下位語が揃った。
+        for hype_type in nouns:
+            for noun in nouns[hype_type]:
+                for entailment_type in verbs:  # verbsはdict
+                    for verb in verbs[entailment_type]:
+
+                        if noun == original_noun and verb == original_verb:
+                            is_original = True
+                        else:
+                            is_original = False
+                        self._add_new_node(object_term=noun,
+                                           predicate_term=verb,
+                                           cmp=cmp,
+                                           order=task.order,
+                                           url=task.url,
+                                           distance_between_subtypes=task.distance_between_subtypes,
+                                           is_original=is_original,
+                                           is_shopping=task.is_shopping,
+                                           is_official=task.is_official)
+
+                        if hype_type == 'hypes':
+                            is_hype = True
+                        else:
+                            is_hype = False
+                        self._add_new_edge(task=task,
+                                           noun=noun,
+                                           verb=verb,
+                                           entailment_type=entailment_type,
+                                           is_hype=is_hype)
+
     def _add_new_node(self,
                       object_term,
                       predicate_term,
@@ -67,54 +115,6 @@ class GraphTaskMapper(AbstractTaskGraphManager):
 
     def in_degree(self):
         return self.graph.in_degree()
-
-    def add_node_and_edge_with_task(self, task):
-        """
-        もし1ページ内に順序があればorder=1から始まる値を与える。
-        """
-        if task.is_noise():
-            return
-        hypes = self._hypes(task)
-        nouns = {'hypes': hypes}
-        # hypesのときには、edgeにhypeエッジを与える必要ある？　subtype-ofを発見するために。
-        original_noun = task.object_term.core_noun
-        nouns['original'] = [original_noun]
-
-        original_verb = task.predicate_term
-        verbs = self._broader_preds(task)
-        verbs['original'] = tuple([original_verb])
-
-        cmp = task.cmp
-
-        # 上位語・下位語が揃った。
-        for hype_type in nouns:
-            for noun in nouns[hype_type]:
-                for entailment_type in verbs:  # verbsはdict
-                    for verb in verbs[entailment_type]:
-
-                        if noun == original_noun and verb == original_verb:
-                            is_original = True
-                        else:
-                            is_original = False
-                        self._add_new_node(object_term=noun,
-                                           predicate_term=verb,
-                                           cmp=cmp,
-                                           order=task.order,
-                                           url=task.url,
-                                           distance_between_subtypes=task.distance_between_subtypes,
-                                           is_original=is_original,
-                                           is_shopping=task.is_shopping,
-                                           is_official=task.is_official)
-
-                        if hype_type == 'hypes':
-                            is_hype = True
-                        else:
-                            is_hype = False
-                        self._add_new_edge(task=task,
-                                           noun=noun,
-                                           verb=verb,
-                                           entailment_type=entailment_type,
-                                           is_hype=is_hype)
 
     def _hypes(self, task):
         hypes = self.loader.hypes_except_for_blockwords(task.object_term.core_noun)

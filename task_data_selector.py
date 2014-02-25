@@ -4,7 +4,7 @@ import numpy
 from base_sqlite_manager import BaseSQLiteManager
 from sqlite_data_loadable import SQLiteDataLoadable
 
-class TaskDatabaseSelector(BaseSQLiteManager, SQLiteDataLoadable):
+class TaskDataSelector(BaseSQLiteManager, SQLiteDataLoadable):
     def __init__(self, db_name='tasks.sqlite', table_name='tasks'):
         super().__init__(db_name, table_name)
 
@@ -31,6 +31,16 @@ class TaskDatabaseSelector(BaseSQLiteManager, SQLiteDataLoadable):
         print('%sを実行！' % sql)
         result = self.cur.fetchone()  #数字
         return result[0]
+
+    def task_set_of_higher_rank_with_query(self, query, rank_threshold=100):
+        sql = 'select tasks.noun, tasks.cmp, tasks.verb, pages.rank from tasks, sentences, pages ' \
+              'where tasks.sentence_id = sentences.id and sentences.page_id = pages.id ' \
+              'and pages.rank < %i and query = "%s";' % (rank_threshold, query)
+        self.cur.execute(sql)
+        print('%sを実行！' % sql)
+        results = self.cur.fetchall()
+        # ('栽培方法', 'を', '参考する', 97), ('たくさん道ばた', 'に', '落ちる', 98), ...]
+        return results
 
 
 class Median:

@@ -14,8 +14,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
         """
         もし1ページ内に順序があればorder=1から始まる値を与える。
         """
-        if task.is_noise():
-            return
+        #if task.is_noise():
+        #    return
         hypes = self._hypes(task)
         nouns = {'hypes': hypes}
         # hypesのときには、edgeにhypeエッジを与える必要ある？　subtype-ofを発見するために。
@@ -46,7 +46,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                                            distance_between_subtypes=task.distance_between_subtypes,
                                            is_original=is_original,
                                            is_shopping=task.is_shopping,
-                                           is_official=task.is_official)
+                                           is_official=task.is_official,
+                                           sentence=task.sentence)
 
                         if hype_type == 'hypes':
                             is_hype = True
@@ -67,7 +68,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                       distance_between_subtypes,
                       is_original=False,
                       is_shopping=False,
-                      is_official=False):
+                      is_official=False,
+                      sentence=''):
         if self._has_stop_object_term(object_term):
             return
 
@@ -78,7 +80,8 @@ class GraphTaskMapper(AbstractTaskGraphManager):
                 'distance_between_subtypes': distance_between_subtypes,
                 'is_original': is_original,
                 'is_shopping': is_shopping,
-                'is_official': is_official
+                'is_official': is_official,
+                'sentence': sentence
             }
 
         if task_name in self.graph.node:

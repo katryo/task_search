@@ -9,7 +9,7 @@ import pdb
 
 class PickleFileLoaderForOriginal(PickleFileLoader):
     def load_fetched_pages_with_query(self, query):
-        dirpath = os.path.join(constants.FETCHED_PAGES_O_DIR_NAME, query)
+        dirpath = os.path.join(constants.FETCHED_PAGES_DIR_NAME, query)
         pages = []
         for i in range(1000):
             filename = query + '_%i.pkl' % i

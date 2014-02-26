@@ -31,7 +31,7 @@ class SentenceSubtypeDataInserter(BaseSQLiteManager):
             pdb.set_trace()
         result = self.cur.fetchone()
         if result:
-            print('もうdbにあります')
+            print('もう%iはdbにあります' % result[0])
             return True
         print('dbにないです')
         return False

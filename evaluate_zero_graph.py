@@ -24,6 +24,7 @@ if __name__ == '__main__':
         answerer.set_result_tasks()
         print('set_result_tasks')
         answerer.set_task_scores()
+        answerer.remove_generalized_tasks()
         print('set_task_scores')
         answerer.set_united_results()
         simple_results = []

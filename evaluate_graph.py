@@ -10,8 +10,8 @@ import pdb
 if __name__ == '__main__':
     queries = constants.QUERIES_4
     for query in queries:
-        pfl = PickleFileLoaderForExpandedQuery()
-        #pfl = PickleFileLoaderForOriginal()
+        #pfl = PickleFileLoaderForExpandedQuery()
+        pfl = PickleFileLoaderForOriginal()
         g = pfl.load_graph_with_query(query)
         print('ロードしました')
         noun, cmp, verb = query.split('　')
@@ -46,7 +46,7 @@ if __name__ == '__main__':
                 aspects = first_answerer.graph.node[task]['aspects']
                 task_noun = task.split('_')[0]
                 task_verb = task.split('_')[2]
-                if len(aspects) > 6:
+                if len(aspects) > 2:
                     if not noun in task_noun:
                         if not verb in task_noun:
                             if not verb in task_verb:

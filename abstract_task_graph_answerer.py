@@ -53,6 +53,23 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         # override me!
         pass
 
+    def remove_generalized_tasks(self):
+        """
+        すべてのaspectsを探しても、is_originalなaspectがなかったとき
+        """
+        task_names = self.graph.nodes()
+        for task_name in task_names:
+            if self._finds_original_with_task_name(task_name):
+                continue
+            self.graph.remove_node(task_name)
+
+    def _finds_original_with_task_name(self, task_name):
+        aspects = self._aspects_with_task_name(task_name)
+        for aspect in aspects:
+            if aspect['is_original']:
+                return True
+        return False
+
 #-----private------
 
     def _tasks_in_subtype_of_relation(self):

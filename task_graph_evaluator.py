@@ -1,6 +1,7 @@
 #coding: utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from networkx.exception import NetworkXError
+from posinega_evaluator import PosinegaEvaluator
 import pdb
 
 
@@ -44,7 +45,9 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
         score_for_task = 0.0
         used_urls = set()
         for aspect in aspects:
-            score_for_aspect = 1
+            evaluator = PosinegaEvaluator()
+            score_for_aspect = evaluator.score_of_sentence(aspect['sentence'])
+            #score_for_aspect = 1  # ここをposinegaでやってみる？
             score_for_task += score_for_aspect
             used_urls.add(aspect['url'])
         print('%sの貢献度は%fです' % (task_name, score_for_task))
@@ -63,7 +66,7 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
         score_for_task_cluster *= len(used_urls)
         # 大きなpart-ofを高く評価するためコメントアウトしてみる
         # score_for_task_cluster /= len(task_cluster)
-        print('%sの貢献度計算完了！' % task_cluster)
+        print('%sの頻度計算完了！' % task_cluster)
         return score_for_task_cluster
 
     def contribution_without_official(self, task_cluster):

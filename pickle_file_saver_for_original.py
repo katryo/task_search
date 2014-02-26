@@ -9,17 +9,17 @@ from pickle_file_saver import PickleFileSaver
 
 class PickleFileSaverForOriginal(PickleFileSaver):
     def save_pages_with_query(self, pages, query):
-        dirpath = os.path.join(constants.FETCHED_PAGES_O_DIR_NAME, query)
-        for d_dirpath, dirnames, filenames in os.walk(dirpath):
-            for i, page in enumerate(pages):
-                filename = os.path.join(d_dirpath, '%s_%i.pkl' % (query, i))
-                with open(filename, 'wb') as f:
-                    try:
-                        pickle.dump(page, f)
-                        print('%s_%i.pklの保存完了!' % (query, i))
-                    except (TypeError, IndexError):
-                        print('%sは%i個までしかありません！' % (query, i))
-                        break
+        dirpath = os.path.join(constants.FETCHED_PAGES_DIR_NAME, query)
+        # os.mkdir(dirpath)
+        for i, page in enumerate(pages):
+            filename = os.path.join(dirpath, '%s_%i.pkl' % (query, i))
+            with open(filename, 'wb') as f:
+                try:
+                    pickle.dump(page, f)
+                    print('%s_%i.pklの保存完了!' % (query, i))
+                except (TypeError, IndexError):
+                    print('%sは%i個までしかありません！' % (query, i))
+                    break
 
     def save_graph_with_query(self, obj, query):
         filepath = os.path.join(constants.GRAPH_DIR_NAME, query, query + '_graph_zero.pkl')

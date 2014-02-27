@@ -7,6 +7,18 @@ class PageDataLoader(BaseSQLiteManager):
     def __init__(self, db_name='tasks.sqlite', table_name='pages'):
         super().__init__(db_name, table_name)
 
+    def title_with_id(self, page_id):
+        sql = 'select title from pages where id = %i;' % page_id
+        try:
+            self.cur.execute(sql)
+        except sqlite3.OperationalError:
+            pdb.set_trace()
+            raise EOFError
+        title = self.cur.fetchone()
+        if not title:
+            raise EOFError
+        return title[0]
+
     def body_with_id(self, page_id):
         sql = 'select body from pages where id = %i;' % page_id
         try:

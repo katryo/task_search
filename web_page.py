@@ -12,7 +12,7 @@ from page_data_loader import PageDataLoader
 
 
 class WebPage(WebItem):
-    def __init__(self, id = 100, url='unknown', query='', snippet='', rank=1000):
+    def __init__(self, id=100, url='unknown', query='', snippet='', rank=1000, title=''):
         self.id = id
         self.url = url
         self.query = query
@@ -20,11 +20,10 @@ class WebPage(WebItem):
         self.snippet = snippet
         self.sentences = []
         self.rank = rank
+        self.title = title
 
     def query_task(self):
         return self.query.replace('　', '_')
-
-    def is_subtype(self):
 
     def set_rank_from_db(self):
         with PageDataLoader() as loader:
@@ -35,7 +34,7 @@ class WebPage(WebItem):
                 rank = 1000
         self.rank = rank
 
-    def _set_subtypes(self):
+    def set_subtypes(self):
         self.subtypes = self._subtypes()
 
     def _subtypes(self):
@@ -44,15 +43,13 @@ class WebPage(WebItem):
         """
         if not hasattr(self, 'query_noun'):
             self._convert_query_from_nv_to_ncv()
-        subtypes = {}
+        subtypes = set()
         with HypoHypeDBDataLoader() as loader:
             subtype_nouns = loader.select_hypos_with_hype(self.query_noun)
-
-        for i, sentence in enumerate(self.sentences):
-            for noun in subtype_nouns:
-                if noun in sentence.body:
-                    subtypes[noun] = i
-        return subtypes  # {'シャワールーム': 12, 'トイレ': 93, ...}
+        for noun in subtype_nouns:
+            if noun in self.title:
+                subtypes.add(noun)
+        return subtypes
 
     def _subtype_verbs(self):
         """
@@ -151,3 +148,15 @@ class WebPage(WebItem):
         return i - subtype_i
 
 
+if __name__ == '__main__':
+    from pickle_file_loader_for_original import PickleFileLoaderForOriginal
+    from pickle_file_saver_for_original import PickleFileSaverForOriginal
+    queries = constants.QUERIES_4
+    for query in queries:
+        pfl = PickleFileLoaderForOriginal()
+        pfs = PickleFileSaverForOriginal()
+        pages = pfl.load_fetched_pages_with_query(query)
+        for i, page in enumerate(pages):
+            page.set_subtypes()
+            print(str(i))
+        pfs.save_pages_with_query(pages=pages, query=query)

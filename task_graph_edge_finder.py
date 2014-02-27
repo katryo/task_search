@@ -14,10 +14,6 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
                 return True
         return False
 
-    def part_of_edges_lead_to_original_node_with_task_name(self, task_name):
-        task_names_list = self._part_of_edges_with_task_name(task_name)
-        return task_names_list
-
     def _select_original_task_with_task_names(self, task_names):
         results = set()
         for _task_name in task_names:
@@ -28,7 +24,7 @@ class TaskGraphEdgeFinder(AbstractTaskGraphManager):
         return results
 
     # 高スコアの汎化タスクも取ってくる。普段はlead_to_original_nodeを使うべき
-    def _part_of_edges_with_task_name(self, task_name):
+    def part_of_edges_with_task_name(self, task_name):
         # results => [{'', '', ...}, {}, ...]
         results = self._same_url_nodes_with_task_name(task_name)
         for item in self._part_of_edges_by_entailment_with_task_name(task_name):

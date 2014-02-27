@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 THRESHOLD_FOR_REMOVING_FROM_PART_OF = 2.0
 THRESHOLD_FOR_UNITING_IN_PART_OF = 0.4
+THRESHOLD_FOR_FREQUENTLY_APPERING_TASK = 0.5
 DEFAULT_DISTANCE_BETWEEN_TASK_AND_SUBTYPE = 1000
+THRESHOLD_DISTANCE_FOR_REMOVING_FROM_PART_OF = 50  # part-ofで使う
+NUM_OF_PAGE_PER_QUERY = 100
+
+SUPERTYPE_NAME = 'SUPERTYPE'
 FETCHED_PAGES_DIR_NAME = 'fetched_pages'
 FETCHED_PAGES_WITH_TASK_FOR_EX_DIR_NAME = 'fetched_pages_with_task_for_expanded_queries'
 FETCHED_PAGES_O_DIR_NAME = 'fetched_pages_for_original_queries'
@@ -20,6 +25,7 @@ STOPWORDS_OF_HYPOHYPE = 'ドラマ 作品 舞台 番組 出演作品 ' \
                         '麻雀用語 和製漢語 ' \
                         '歌謡曲 主題歌 楽曲 収録曲 アルバム CD・曲 ' \
                         'ソング シングル 収録曲 '.split(' ')
+STOPWORDS_OF_SUBTYPES = 'の部屋 の国'.split(' ')
 STOPWORDS_OF_WEBPAGE_NOUN = '是非 どこ だけ ごちゃごちゃ ： : について 方 コメント ' \
                             'お気に入り お気に入り詳細 リンク レス 注意事項 よくある質問コンテンツ よくある質問 ' \
                             'FAQ ＦＡＱ 有効 機能 ファイル 方法 まで 何 メールフォーム ' \
@@ -48,6 +54,10 @@ QUERY = 'ビリヤード　プロ　なるには'
 QUERIES_1 = '家庭菜園　始める,胃もたれ　防止する,ビリヤード　優勝する,花粉症　対策する,' \
             '保育園　入園させる,犬　育てる,部屋　掃除する,' \
             'クレー射撃　体験する'.split(',')
+
+QUERIES_4 = '家庭菜園　を　始める,胃もたれ　を　防止する,ビリヤード　が　上手くなる,花粉症　を　対策する,' \
+            '保育園　に　入園させる,犬　を　育てる,部屋　を　掃除する,' \
+            'クレー射撃　を　体験する,野球　が　上手くなる,サッカー　が　上手くなる,ハンドボール　が　上手くなる'.split(',')
 
 QUERIES_2 = 'カブトムシ　撮影する,ゴキブリ　対策する,' \
           '子供　なだめる,小学校　受験させる,大学　復学する,アメリカ　留学する,' \
@@ -98,9 +108,11 @@ ALL_PARENTHESIS = PARENTHESIS + ROUND_PARENTHESIS
 # を|に|へ|で|から
 CMP_INFO_LIST = ['を\t助詞,格助詞,一般,*,*,*,を,ヲ,ヲ',
                  'へ\t助詞,格助詞,一般,*,*,*,へ,ヘ,エ',
-                 'で\t助詞,格助詞,一般,*,*,*,で,デ,デ',
-                 'から\t助詞,格助詞,一般,*,*,*,から,カラ,カラ',
-                 'も\t助詞,係助詞,*,*,*,*,も,モ,モ']
+                 'で\t助詞,格助詞,一般,*,*,*,で,デ,デ']
+
+# からともはタスクではないとする
+#                 'から\t助詞,格助詞,一般,*,*,*,から,カラ,カラ',
+#                 'も\t助詞,係助詞,*,*,*,*,も,モ,モ']
 
 # にだけは「選ぶようにしましょう」から「する」ではなく「選ぶ」となるよう気をつけねば
 CMP_INFO_NI = 'に\t助詞,格助詞,一般,*,*,*,に,ニ,ニ'

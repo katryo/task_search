@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-__author__ = 'katouryou'
 import re
 import constants
+import sre_constants
 
 
 class Parenthesis_remover(object):
@@ -10,8 +10,11 @@ class Parenthesis_remover(object):
             if parentheses in text:
                 pattern_1 = re.compile('（(.*?)）')
                 pattern_2 = re.compile('\(.*?\)')
-                text = pattern_1.sub(text, '')
-                text = pattern_2.sub(text, '')
+                try:
+                    text = pattern_1.sub(text, '')
+                    text = pattern_2.sub(text, '')
+                except sre_constants.error:
+                    continue
         return text
 
     def remove_parenthesis(self, text):

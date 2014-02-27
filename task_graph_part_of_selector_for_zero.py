@@ -11,7 +11,7 @@ class TaskGraphPartOfSelectorForZero(AbstractTaskGraphPartOfSelector):
         task_clusters = []  # [{'a_b', 'c_d'}, {e_f, 'g_h'}]
         # オリジナルのタスクの集合から、同じurlのものを探す
         for task_name in self.candidate_tasks:
-            task_names_list = edge_finder.part_of_edges_lead_to_original_node_with_task_name(task_name)
+            task_names_list = edge_finder.part_of_edges_with_task_name(task_name)
 
             for task_names in task_names_list:
                 task_cluster = TaskCluster(list(task_names))

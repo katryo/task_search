@@ -17,32 +17,30 @@ class PickleFileLoaderForExpandedQuery(PickleFileLoader):
 
     def _load_with_query_and_dirname(self, query, dirname_for_pages):
         pages = []
-        for dirpath, dirnames, filenames in os.walk(dirname_for_pages):
-            original_query_dirpath = os.path.join(dirpath, query)
-            for d_dirpath, d_dirnames, d_filenames in os.walk(original_query_dirpath):
-                for expanded_query in d_dirnames:
-                    expanded_query_dirpath = os.path.join(d_dirpath, expanded_query)
-                    for d_d_dirpath, d_d_dirnames, d_d_filenames in os.walk(expanded_query_dirpath):
-                        for i, filename in enumerate(d_d_filenames):
-                            if filename == '.DS_Store':
-                                continue
-                            try:
-                                filepath = os.path.join(d_d_dirpath, filename)
-                                page = self.load_file(filepath)
-                                print('%sのロードに成功しました！' % filename)
-                                pages.append(page)
-                            except EOFError:
-                                print('%sのロードに失敗しました！' % filename)
-        return pages
+        original_query_dirpath = os.path.join(dirname_for_pages, query)
+        for d_dirpath, d_dirnames, d_filenames in os.walk(original_query_dirpath):
+            for expanded_query in d_dirnames:
+                expanded_query_dirpath = os.path.join(d_dirpath, expanded_query)
+                for d_d_dirpath, d_d_dirnames, d_d_filenames in os.walk(expanded_query_dirpath):
+                    pdb.set_trace()
+                    for i, filename in enumerate(d_d_filenames):
+                        if filename == '.DS_Store':
+                            continue
+                        try:
+                            filepath = os.path.join(d_d_dirpath, filename)
+                            page = self.load_file(filepath)
+                            print('%sのロードに成功しました！' % filename)
+                            pages.append(page)
+                            if len(pages) == constants.NUM_OF_PAGE_PER_QUERY:
+                                return pages
+                        except EOFError:
+                            print('%sのロードに失敗しました！' % filename)
+        # return pages
 
     def load_graph_with_query(self, query):
-        graph_path = os.path.join(constants.GRAPH_DIR_NAME, query)
-        for dirpath, dirnames, filenames in os.walk(graph_path):
-            for filename in filenames:
-                if filename == query + '_graph_first.pkl':
-                    filepath = os.path.join(dirpath, filename)
-                    graph = self.load_file(filepath)
-                    return graph
+        filepath = os.path.join(constants.GRAPH_DIR_NAME, query, query + '_graph_first.pkl')
+        graph = self.load_file(filepath)
+        return graph
 
     def load_answerer_with_query(self, query):
         pm = PathMover()

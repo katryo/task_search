@@ -16,8 +16,7 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
         super().__init__(graph)
         self.query_task = query_task
         node_remover = TaskGraphNodeRemover(graph)
-        node_remover.remove_low_score_generalized_tasks()
-
+        self.graph = node_remover.graph_without_low_score_generalized_tasks()
 
     def print_subtasks(self):
         print ('*********')
@@ -53,6 +52,23 @@ class AbstractTaskGraphAnswerer(AbstractTaskGraphManager):
     def set_united_results(self):
         # override me!
         pass
+
+    def remove_generalized_tasks(self):
+        """
+        すべてのaspectsを探しても、is_originalなaspectがなかったとき
+        """
+        task_names = self.graph.nodes()
+        for task_name in task_names:
+            if self._finds_original_with_task_name(task_name):
+                continue
+            self.graph.remove_node(task_name)
+
+    def _finds_original_with_task_name(self, task_name):
+        aspects = self._aspects_with_task_name(task_name)
+        for aspect in aspects:
+            if aspect['is_original']:
+                return True
+        return False
 
 #-----private------
 

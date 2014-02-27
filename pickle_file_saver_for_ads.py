@@ -9,12 +9,11 @@ from pickle_file_saver import PickleFileSaver
 
 class PickleFileSaverForAds(PickleFileSaver):
     def save_query(self, query_obj):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.QUERIES_DIR_NAME)
-        with open('%s.pkl' % query_obj.body, 'wb') as f:
-            pickle.dump(obj=query_obj, file=f)
-            print('%sの保存完了' % query_obj.body)
-        pm.go_up()
+        for dirpath, dirnames, filenames in os.walk(constants.QUERIES_DIR_NAME):
+            filepath = os.path.join(dirpath, query_obj.body + '.pkl')
+            with open(filepath, 'wb') as f:
+                pickle.dump(obj=query_obj, file=f)
+                print('%sの保存完了' % query_obj.body)
 
     def save_ads_with_query(self, ads, query):
         pm = PathMover()

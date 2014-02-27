@@ -8,15 +8,32 @@ from task import Task
 from object_term import ObjectTerm
 from hypohype_data_loader import HypoHypeDBDataLoader
 from entailment_librarian import EntailmentLibrarian
+from page_data_loader import PageDataLoader
 
 
 class WebPage(WebItem):
-    def __init__(self, url='unknown', query='', snippet=''):
+    def __init__(self, id = 100, url='unknown', query='', snippet='', rank=1000):
+        self.id = id
         self.url = url
         self.query = query
         self._convert_query_from_nv_to_ncv()
         self.snippet = snippet
         self.sentences = []
+        self.rank = rank
+
+    def query_task(self):
+        return self.query.replace('　', '_')
+
+    def is_subtype(self):
+
+    def set_rank_from_db(self):
+        with PageDataLoader() as loader:
+            try:
+                rank = loader.rank_with_query_url(self.query, self.url)
+            except EOFError:
+                print('%sのページないです' % self.url)
+                rank = 1000
+        self.rank = rank
 
     def _set_subtypes(self):
         self.subtypes = self._subtypes()
@@ -50,7 +67,7 @@ class WebPage(WebItem):
             self.query_noun = words[0]
             self.query_cmp = 'を'
             self.query_verb = words[1]
-        elif len(words) == 3:
+        elif len(words) == 3 or len(words) == 4:
             self.query_noun = words[0]
             self.query_cmp = words[1]
             self.query_verb = words[2]
@@ -109,15 +126,17 @@ class WebPage(WebItem):
                 distance = self._distance_between_subtype(i, subtype=subtype)
                 distance_between_subtypes[subtype] = distance
 
-            task = Task(object_term=object_term,
+            task = Task(object_term=object_term.name,
                         cmp=sentence.cmp,
                         predicate_term=sentence.verb,
                         distance_between_subtypes=distance_between_subtypes,
                         query=self.query,
                         order=order,
                         url=self.url,
-                        is_shopping=self.is_shopping(),
-                        is_official=self.is_official())
+                        is_shopping=False,
+                        is_official=False,
+                        rank=self.rank,
+                        sentence=sentence.body)
             results.append(task)
             print('%s_%s_%sというタスクをセットしました' % (sentence.noun, sentence.cmp, sentence.verb))
             order += 1 # 登場の順番

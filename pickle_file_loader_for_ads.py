@@ -25,6 +25,15 @@ class PickleFileLoaderForAds(PickleFileLoader):
         pm.go_up()
         return queries
 
+    def load_expanded_queries_with_query(self, query):
+        expanded_queries = []
+        filepath = os.path.join(constants.QUERIES_DIR_NAME, query + '.pkl')
+        with open(filepath, 'rb') as f:
+            expanded_query = pickle.load(f)
+            expanded_queries.append(expanded_query)
+        return expanded_queries
+
+
     def load_queries_with_original_query(self, original_query):
         pm = PathMover()
         pm.go_or_create_and_go_to(constants.QUERIES_DIR_NAME)
@@ -43,21 +52,18 @@ class PickleFileLoaderForAds(PickleFileLoader):
         return queries
 
     def load_ads_with_query(self, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.FETCHED_ADS_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        filenames = os.listdir()
         ads = []
-        for filename in filenames:
-            if filename == '.DS_Store':
-                continue
-            try:
-                with open(filename, 'rb') as f:
-                    ad = pickle.load(f)
-                    ads.append(ad)
-            except IsADirectoryError:
-                pdb.set_trace()
-        pm.go_up()
-        pm.go_up()
+        q_dirpath = os.path.join(constants.FETCHED_ADS_DIR_NAME, query)
+        for dirpath, dirnames, filenames in os.walk(q_dirpath):
+            for filename in filenames:
+                if filename == '.DS_Store':
+                    continue
+                try:
+                    filepath = os.path.join(dirpath, filename)
+                    with open(filepath, 'rb') as f:
+                        ad = pickle.load(f)
+                        ads.append(ad)
+                except IsADirectoryError:
+                    pdb.set_trace()
         return ads
 

@@ -5,7 +5,7 @@ from bing_searcher import BingSearcher
 from pickle_file_saver_for_original import PickleFileSaverForOriginal
 
 if __name__ == '__main__':
-    queries = ['保育園　入園させる']
+    queries = constants.QUERIES_4
     saver = PickleFileSaverForOriginal()
     for query in queries:
         if saver.can_find_page_with_query(query):

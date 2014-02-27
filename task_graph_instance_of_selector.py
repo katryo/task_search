@@ -1,5 +1,6 @@
 #coding: utf-8
 from abstract_task_graph_manager import AbstractTaskGraphManager
+import pdb
 
 
 class TaskGraphInstanceOfSelector(AbstractTaskGraphManager):
@@ -46,6 +47,8 @@ class TaskGraphInstanceOfSelector(AbstractTaskGraphManager):
         return task_names
 
     def _task_names_excluded_part_of_with_task_names(self, task_names):
+        if not self.part_of_task_clusters:
+            pdb.set_trace()
         for cluster in self.part_of_task_clusters:
             for p_task_name in cluster:
                 if p_task_name in task_names:

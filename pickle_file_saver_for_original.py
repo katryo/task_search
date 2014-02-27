@@ -9,29 +9,23 @@ from pickle_file_saver import PickleFileSaver
 
 class PickleFileSaverForOriginal(PickleFileSaver):
     def save_pages_with_query(self, pages, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.FETCHED_PAGES_O_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        for i in range(constants.NUM_OF_FETCHED_PAGES):
-            with open('%s_%i.pkl' % (query, i), 'wb') as f:
+        dirpath = os.path.join(constants.FETCHED_PAGES_DIR_NAME, query)
+        # os.mkdir(dirpath)
+        for i, page in enumerate(pages):
+            filename = os.path.join(dirpath, '%s_%i.pkl' % (query, i))
+            with open(filename, 'wb') as f:
                 try:
-                    pickle.dump(pages[i], f)
+                    pickle.dump(page, f)
                     print('%s_%i.pklの保存完了!' % (query, i))
                 except (TypeError, IndexError):
                     print('%sは%i個までしかありません！' % (query, i))
                     break
-        pm.go_up()
-        pm.go_up()
 
     def save_graph_with_query(self, obj, query):
-        pm = PathMover()
-        pm.go_or_create_and_go_to(constants.GRAPH_DIR_NAME)
-        pm.go_or_create_and_go_to(query)
-        with open('%s_graph_zero.pkl' % query, 'wb') as f:
+        filepath = os.path.join(constants.GRAPH_DIR_NAME, query, query + '_graph_zero.pkl')
+        with open(filepath, 'wb') as f:
             pickle.dump(obj, f)
             print('%s_graph_zero.pklの保存完了！' % query)
-        pm.go_up()
-        pm.go_up()
 
     def can_find_page_with_query(self, query):
         pm = PathMover()

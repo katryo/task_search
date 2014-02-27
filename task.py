@@ -24,6 +24,11 @@ class Task(object):
         self.rank = rank
         self.sentence = sentence
 
+    def task_name(self):
+        return '%s_%s_%s' % (self.object_term.name,
+                             self.cmp,
+                             self.predicate_term)
+
     def is_noise(self):
         threshold = constants.THRESHOLD_FOR_FREQUENTLY_APPERING_TASK
         selector = TaskDataSelector()

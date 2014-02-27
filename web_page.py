@@ -21,6 +21,11 @@ class WebPage(WebItem):
         self.sentences = []
         self.rank = rank
 
+    def query_task(self):
+        return self.query.replace('　', '_')
+
+    def is_subtype(self):
+
     def set_rank_from_db(self):
         with PageDataLoader() as loader:
             try:

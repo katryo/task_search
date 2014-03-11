@@ -47,6 +47,8 @@ class WebPage(WebItem):
         with HypoHypeDBDataLoader() as loader:
             subtype_nouns = loader.select_hypos_with_hype(self.query_noun)
         for noun in subtype_nouns:
+            if noun == 'の部屋':
+                continue
             if noun in self.title:
                 subtypes.add(noun)
         return subtypes
@@ -152,11 +154,11 @@ if __name__ == '__main__':
     from pickle_file_loader_for_original import PickleFileLoaderForOriginal
     from pickle_file_saver_for_original import PickleFileSaverForOriginal
     queries = constants.QUERIES_4
+    pfl = PickleFileLoaderForOriginal()
+    pfs = PickleFileSaverForOriginal()
     for query in queries:
-        pfl = PickleFileLoaderForOriginal()
-        pfs = PickleFileSaverForOriginal()
         pages = pfl.load_fetched_pages_with_query(query)
         for i, page in enumerate(pages):
-            page.set_subtypes()
-            print(str(i))
-        pfs.save_pages_with_query(pages=pages, query=query)
+            if page.subtypes:
+                print(page.subtypes)
+        #pfs.save_pages_with_query(pages=pages, query=query)

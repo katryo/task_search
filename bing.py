@@ -16,7 +16,7 @@ class Bing(object):
             keysには'ID','Title','Description','DisplayUrl','Url'が入りうる
         """
         # 基本になるURL
-        url = 'https://api.datamarket.azure.com/Bing/Search/Web?'
+        url = 'https://api.datamarket.azure.com/Bing/Search/v1/Composite?Sources=%27Web%27&'
         # 一回で返ってくる最大数
         max_num = 50
         # 各種パラメータ
@@ -73,7 +73,7 @@ class Bing(object):
             return []
         results = []
         # 返ってきたもののうち指定された情報を取得する
-        for item in response["d"]["results"]:
+        for item in response["d"]["results"][0]['Web']:
             result = {}
             for key in keys:
                 result[key] = item[key]
@@ -82,10 +82,9 @@ class Bing(object):
 
 
 if __name__ == '__main__':
-    key = '<キー>'
+    import my_keys
+    key = my_keys.MICROSOFT_API_KEY
     q = "京都"
     bing = Bing(key)
-    results = bing.web_search(q, 100, ["Title", "Url"])
-    print(json.dumps(results, indent=2))
-    results = bing.related_search(q)
+    results = bing.web_search(q, 50, ["Title", "Url"])
     print(json.dumps(results, indent=2))

@@ -45,6 +45,7 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
         score_for_task = 0.0
         used_urls = set()
         for aspect in aspects:
+            pdb.set_trace()
             evaluator = PosinegaEvaluator()
             score_for_aspect = evaluator.score_of_sentence(aspect['sentence'])
             #score_for_aspect = 1  # ここをposinegaでやってみる？

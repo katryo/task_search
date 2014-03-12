@@ -2,6 +2,7 @@
 from abstract_task_graph_manager import AbstractTaskGraphManager
 from networkx.exception import NetworkXError
 from posinega_evaluator import PosinegaEvaluator
+from sentence_data_loader import SentenceDataLoader
 import pdb
 
 
@@ -38,20 +39,31 @@ class TaskGraphEvaluator(AbstractTaskGraphManager):
         print('%sの貢献度は%fです' % (task_name, score_for_task))
         return score_for_task, used_urls
 
-    # 1タスクノードの貢献度
+    # 1タスクノードのポジティブ度
     def contribution_with_task_name(self,
                                     task_name):
         aspects = self._aspects_with_task_name(task_name)
         score_for_task = 0.0
+        max_num_of_sentences_related_to_task = 10
         used_urls = set()
         for aspect in aspects:
-            pdb.set_trace()
             evaluator = PosinegaEvaluator()
-            score_for_aspect = evaluator.score_of_sentence(aspect['sentence'])
-            #score_for_aspect = 1  # ここをposinegaでやってみる？
-            score_for_task += score_for_aspect
+            with SentenceDataLoader() as loader:
+                sentences = loader.sentence_after_sentence_with_body_url(aspect['sentence'], aspect['url'])
+            sum_score_for_page = 0.0
+            num_of_sentences_related_to_task = max_num_of_sentences_related_to_task
+            for i, sentence in enumerate(sentences):
+                # 目的：sentencesの文を見つけること
+                # そのために、sentence_idを特定する
+                sum_score_for_page += evaluator.score_of_sentence(sentence)
+                if i > max_num_of_sentences_related_to_task:
+                    num_of_sentences_related_to_task = i
+                    break
+            score_for_page = sum_score_for_page / num_of_sentences_related_to_task
+            score_for_task += score_for_page
             used_urls.add(aspect['url'])
-        print('%sの貢献度は%fです' % (task_name, score_for_task))
+        # ページ数で割る必要はない。なぜなら頻度も計算に入れるから。
+        print('%sのポジティブ度は%fです' % (task_name, score_for_task))
         return score_for_task, used_urls
 
     # 1クラスターの貢献度

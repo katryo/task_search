@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import pdb
-from graph_task_mapper import GraphTaskMapper
+from posinega_graph_mapper import PosinegaGraphMapper
 from pickle_file_saver_for_original import PickleFileSaverForOriginal
 from pickle_file_loader_for_original import PickleFileLoaderForOriginal
+import networkx as nx
+import matplotlib.pyplot as plt
 import constants
 
 
@@ -11,15 +13,14 @@ if __name__ == '__main__':
     pfs = PickleFileSaverForOriginal()
     pfl = PickleFileLoaderForOriginal()
     for query in original_queries:
-        counter = 0
         pages = pfl.load_fetched_pages_with_query(query)
-        gtm = GraphTaskMapper()
+        posinega_graph_mapper = PosinegaGraphMapper()
 
         for i, page in enumerate(pages):
-            for task in page.tasks:
-                counter += 1
-                gtm.add_node_and_edge_with_task(task)
-            print('%i 番目のページのタスクをグラフに追加しました' % i)
+            if -1 < page.rank < 5:
+                if page.tasks:
+                    posinega_graph_mapper.add_edges_with_page(page)
+                    print('%i 番目のページのタスクをグラフに追加しました' % i)
+        nx.draw(posinega_graph_mapper.graph)
+        plt.show()
         print('added all edges!')
-        print('%iです' % counter)
-        pfs.save_graph_with_query(obj=gtm.graph, query=query)
